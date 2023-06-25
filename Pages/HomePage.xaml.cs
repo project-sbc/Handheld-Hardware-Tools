@@ -1,8 +1,12 @@
 ﻿using Everything_Handhelds_Tool.Classes;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
+using Everything_Handhelds_Tool.Classes.Models;
+using Everything_Handhelds_Tool.Models.DefaultModels;
+using Everything_Handhelds_Tool.UserControls.HomePageUserControls;
 using ModernWpf.Controls;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows.Controls;
 
 namespace Everything_Handhelds_Tool.Pages
@@ -12,7 +16,7 @@ namespace Everything_Handhelds_Tool.Pages
     /// </summary>
     public partial class HomePage : ControllerPage
     {
-        private Dictionary<ControllerUserControl,bool> hpl = new HomePageList();
+       
         public HomePage()
         {
             InitializeComponent();
@@ -22,14 +26,19 @@ namespace Everything_Handhelds_Tool.Pages
 
         public void AddUserControlsToStackPanel()
         {
-            foreach (KeyValuePair<ControllerUserControl,bool> keyValuePair in hpl)
+            CompleteHomePageList chpl = (CompleteHomePageList)XML_Management.Load_XML("UserConfiguration\\HomePage\\HomePage.xml", "CompleteHomePageList");
+
+            
+
+         
+
+            foreach (HomePageItem hpi in chpl)
             {
-                if (keyValuePair.Value == true) 
-                {
-                    stackPanel.Children.Add(keyValuePair.Key);
-                }
+                hpi.UserControlVisible = false;
                 
             }
+            
+            chpl.SaveToXML();
         }
 
         public override void HandleControllerInput(string action)

@@ -8,12 +8,22 @@ using System.Threading.Tasks;
 
 namespace Everything_Handhelds_Tool.Models.DefaultModels
 {
-    public class DefaultHomePageList : Dictionary<ControllerUserControl, bool>
+    public class DefaultCompleteHomePageList : List<ControllerUserControl>
+    {
+        //complete list for home page items, this gets updated when new controls are added
+        public DefaultCompleteHomePageList()
+        {
+            this.Add(new TDP_Slider());
+        }
+
+    }
+
+    public class DefaultHomePageList : List<ControllerUserControl>
     {
         //Default list for home page if there is none in the user configuration folder
         public DefaultHomePageList()
         {
-            this.Add(new TDP_Slider(), true);
+            this.Add(new TDP_Slider());
         }
 
     }

@@ -21,15 +21,7 @@ namespace Everything_Handhelds_Tool.Classes
         private void LoadHomePageStackPanelItems()
         {
             //Try loading the users home page arrangement from XML, if not then get the default setup from default models, then add to this
-            Dictionary<ControllerUserControl, bool> dictionary = (Dictionary<ControllerUserControl, bool>)XML_Management.Load_XML("UserConfiguration\\HomePage\\HomePageStackPanelItems.xml", "HomePageStackPanelItems");
-            if (dictionary == null) { dictionary = new DefaultHomePageList(); }
-            if (dictionary != null)
-            {
-                foreach (KeyValuePair< ControllerUserControl, bool> item in dictionary)
-                {
-                    this.TryAdd(item.Key,item.Value);
-                }
-            }
+           
 
         }
 

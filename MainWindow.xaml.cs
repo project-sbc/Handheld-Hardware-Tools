@@ -22,6 +22,7 @@ using CommunityToolkit.Mvvm.Messaging.Messages;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Everything_Handhelds_Tool.Classes;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
+using Everything_Handhelds_Tool.Models.DefaultModels;
 
 namespace Everything_Handhelds_Tool
 {
@@ -32,6 +33,7 @@ namespace Everything_Handhelds_Tool
     {
         public ControllerInput controllerInput = new ControllerInput();
         public bool controllerNavigateWindow = true;
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -45,7 +47,7 @@ namespace Everything_Handhelds_Tool
             //subscribe to controller input
             controllerInput.buttonPressEvent.controllerInputEvent += HandleControllerInput;
 
-            //
+            
             
         }
 
