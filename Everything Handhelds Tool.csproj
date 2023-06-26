@@ -9,13 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
-    <PackageReference Include="ModernWpfUI" Version="0.9.6" />
-    <PackageReference Include="SharpDX.XInput" Version="4.2.0" />
+    <Compile Remove="Messenger\**" />
+    <EmbeddedResource Remove="Messenger\**" />
+    <None Remove="Messenger\**" />
+    <Page Remove="Messenger\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Messenger\" />
+    <PackageReference Include="ModernWpfUI" Version="0.9.6" />
+    <PackageReference Include="SharpDX.XInput" Version="4.2.0" />
+    <PackageReference Include="System.Management" Version="7.0.2" />
   </ItemGroup>
 
 </Project>

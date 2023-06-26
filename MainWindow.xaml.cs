@@ -9,20 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using CommunityToolkit.Mvvm.Messaging;
-using CommunityToolkit.Mvvm.Messaging.Messages;
-using CommunityToolkit.Mvvm.ComponentModel;
 using Everything_Handhelds_Tool.Classes;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
 using Everything_Handhelds_Tool.Models.DefaultModels;
+using Microsoft.Win32;
+using System.Windows.Threading;
+using Everything_Handhelds_Tool.Classes.Models;
+using System.Globalization;
 
 namespace Everything_Handhelds_Tool
 {
@@ -31,9 +24,8 @@ namespace Everything_Handhelds_Tool
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ControllerInput controllerInput = new ControllerInput();
-        public bool controllerNavigateWindow = true;
         
+
         public MainWindow()
         {
             InitializeComponent();
@@ -44,26 +36,148 @@ namespace Everything_Handhelds_Tool
             //set nav menu items from model
             SetNavigationMenuItemSource();
 
-            //subscribe to controller input
-            controllerInput.buttonPressEvent.controllerInputEvent += HandleControllerInput;
+            //subscribe to events
+            SubscribeEvents();
 
-            
-            
+            //start statusbar dispatcher timer
+            StartStatusBarDispatcherTimer();
+
+
+            //update time and power status
+            UpdateTime();
+            UpdatePowerStatusBar();
         }
-
-        private void HandleControllerInput(object? sender, controllerInputEventArgs e)
-        {
-            Debug.WriteLine(e.Action);
-            ControllerPage a = (ControllerPage)frame.Content;
-            a.HandleControllerInput(e.Action);
-          
-        }
-
+        #region Set up
         public void SetNavigationMenuItemSource()
         {
             navigationViewListBox.ItemsSource = new NavigationViewMenuItems();
         }
 
+        private void SubscribeEvents()
+        {
+            //subscribe to controller input
+            controllerInput.buttonPressEvent.controllerInputEvent += HandleControllerInputTopLevel;
+            //subscribe to power changed (to update status bar)
+            SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
+        }
        
+
+        #endregion
+        #region status bar updates
+        private DispatcherTimer statusBarDispatcherTimer = new DispatcherTimer();
+        private void StartStatusBarDispatcherTimer()
+        {
+            statusBarDispatcherTimer.Interval = new TimeSpan(0, 0, 6);
+            statusBarDispatcherTimer.Tick += StatusBarDispatcherTimer_Tick;
+            statusBarDispatcherTimer.Start();
+        }
+
+        private void StatusBarDispatcherTimer_Tick(object? sender, EventArgs e)
+        {
+            UpdateTime();
+            UpdatePowerStatusBar();
+        }
+        private void UpdateTime()
+        {
+            timeStatusBar.Text = DateTime.Now.ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern);
+        }
+        private void SystemEvents_PowerModeChanged(object sender, PowerModeChangedEventArgs e)
+        {
+            switch (e.Mode)
+            {
+                case PowerModes.Resume:
+
+                    break;
+                case PowerModes.StatusChange:
+                    UpdatePowerStatusBar();
+                    break;
+            }
+
+          
+        }
+
+        private void UpdatePowerStatusBar()
+        {
+            try
+            {
+                PowerStatus ps = new PowerStatus();
+                if (ps.powerStatus == "AC")
+                {
+                    viewBoxBatteryPercentage.Visibility = Visibility.Collapsed;
+                    batteryStatusBarIcon.Visibility = Visibility.Collapsed;
+                    chargingStatusBarIcon.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    if (ps.powerStatus == "Online")
+                    {
+                        batteryStatusBarIcon.Visibility = Visibility.Collapsed;
+                        chargingStatusBarIcon.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        batteryStatusBarIcon.Visibility = Visibility.Visible;
+                        chargingStatusBarIcon.Visibility = Visibility.Collapsed;
+                    }
+                    viewBoxBatteryPercentage.Visibility = Visibility.Visible;
+                    batteryPercentageStatusBar.Text = ps.batteryLevel+"%";
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+        #endregion
+        #region Controller Navigation
+        public ControllerInput controllerInput = new ControllerInput();
+        public bool controllerNavigateWindow = true;
+
+        private void SetControllerNavigateWindow(bool navigateValue)
+        {
+            //set the controllerNavigateWindow from page level
+            controllerNavigateWindow= navigateValue;
+        }
+
+        private void HandleControllerInputTopLevel(object? sender, controllerInputEventArgs e)
+        {
+            if (!controllerNavigateWindow)
+            {//if not navigating at the window level pass input to page level
+                ControllerPage a = (ControllerPage)frame.Content;
+                a.HandleControllerInput(e.Action);
+            }
+            else
+            {//send input to window handler
+                HandleControllerInput(e.Action);
+            }
+        }
+        private void HandleControllerInput(string action)
+        {
+
+        }
+        #endregion
+        #region Closing
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //unsubscribe to all events to make sure it doesn't keep the app open
+            UnsubscribeEvents();
+
+            //stop dispatcher timer for status bar
+            statusBarDispatcherTimer.Stop();
+
+
+        }
+        private void UnsubscribeEvents()
+        {
+            //unsubscribe to controller input
+            controllerInput.buttonPressEvent.controllerInputEvent -= HandleControllerInputTopLevel;
+            //unsubscribe to power changed (to update status bar)
+            SystemEvents.PowerModeChanged -= SystemEvents_PowerModeChanged;
+
+
+        }
+        #endregion
+
+      
     }
 }

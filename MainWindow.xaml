@@ -8,10 +8,11 @@
         mc:Ignorable="d"
         Title="Everything Handhelds Tool" Height="700" Width="500"
         ui:WindowHelper.UseModernWindowStyle="True"
-        ui:TitleBar.ExtendViewIntoTitleBar="False"
+        ui:TitleBar.ExtendViewIntoTitleBar="True"
         ui:TitleBar.IsBackButtonVisible="False"
         ui:ThemeManager.IsThemeAware="True"
-        
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib" Closing="Window_Closing"
         >
     <Grid >
         <Grid.RowDefinitions>
@@ -20,10 +21,34 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="6,0,6,0">
+            <Viewbox MaxHeight="25" Margin="0,0,6,0" >
+                <TextBlock x:Name="timeStatusBar" FontSize="30" />
+            </Viewbox>
+            <ui:FontIcon x:Name="controllerStatusBarIcon" Style="{StaticResource statusBarIcons}" Glyph="&#xE7FC;"  />
+            <ui:FontIcon x:Name="chargingStatusBarIcon" Style="{StaticResource statusBarIcons}" Glyph="&#xE83E;" Margin="6,0,0,4" />
+            <ui:FontIcon x:Name="batteryStatusBarIcon" Style="{StaticResource statusBarIcons}" Glyph="&#xE83F;"  />
+            <Viewbox MaxHeight="25" Margin="0,0,6,0" Name="viewBoxBatteryPercentage" >
+                <TextBlock x:Name="batteryPercentageStatusBar" FontSize="30"/>
+            </Viewbox>
+            <ui:FontIcon x:Name="wifiStatusBarIcon" Style="{StaticResource statusBarIcons}" Glyph="&#xE701;"  />
+            <ui:FontIcon x:Name="ethernetStatusBarIcon" Style="{StaticResource statusBarIcons}" Glyph="&#xE839;"  />
+            <ui:FontIcon x:Name="noInternetStatusBarIcon" Style="{StaticResource statusBarIcons}" Glyph="&#xF384;"  />
         
-        
-        <Grid Grid.Row="1">
-            <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF10A;" HorizontalAlignment="Left"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Margin="6,0,6,0">
+            <ui:FontIcon   FontFamily="Segoe MDL2 Assets" Glyph="&#xF10A;" HorizontalAlignment="Left">
+                <ui:FontIcon.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=controllerStatusBarIcon, Path=Visibility}" Value="Collapsed">
+                                <Setter Property="Button.Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ui:FontIcon.Style>
+            </ui:FontIcon>
             <ListBox x:Name="navigationViewListBox" HorizontalAlignment="Center">
                 <ListBox.Resources>
                     <Style TargetType="ListBoxItem">
@@ -44,7 +69,17 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF10B;" HorizontalAlignment="Right"/>
+            <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF10B;" HorizontalAlignment="Right">
+                <ui:FontIcon.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=controllerStatusBarIcon, Path=Visibility}" Value="Collapsed">
+                                <Setter Property="Button.Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ui:FontIcon.Style>
+            </ui:FontIcon>
         </Grid>
 
          
