@@ -14,13 +14,42 @@
         
         >
     <Grid >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"  />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"  />
+            <RowDefinition Height="50"  />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        <ui:NavigationView   Name="navigationView" PaneDisplayMode="LeftCompact"    IsSettingsVisible="False" IsBackButtonVisible="Collapsed" SelectionChanged="navigationView_SelectionChanged" />
-        <Frame x:Name="frame" Grid.Column="1" Source="Pages/HomePage.xaml"  />
+        
+        
+        <Grid Grid.Row="1">
+            <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF10A;" HorizontalAlignment="Left"/>
+            <ListBox x:Name="navigationViewListBox" HorizontalAlignment="Center">
+                <ListBox.Resources>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Style.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="0"/>
+
+                            </Style>
+                        </Style.Resources>
+                    </Style>
+                </ListBox.Resources>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid  Height="25">
+                            <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="{Binding}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF10B;" HorizontalAlignment="Right"/>
+        </Grid>
+
+         
+       
+        <Frame x:Name="frame" Grid.Row="2" Source="Pages/HomePage.xaml"  />
 
     </Grid>
 

@@ -61,17 +61,9 @@ namespace Everything_Handhelds_Tool
 
         public void SetNavigationMenuItemSource()
         {
-            navigationView.MenuItemsSource = new NavigationViewMenuItems();
+            navigationViewListBox.ItemsSource = new NavigationViewMenuItems();
         }
 
-        private void navigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
-        {
-     
-            if (navigationView.SelectedItem != null)
-            {
-                NavigationViewItem nvi = navigationView.SelectedItem as NavigationViewItem;
-                frame.Source = new Uri($"\\Pages\\{nvi.Tag.ToString()}.xml");
-            }
-        }
+       
     }
 }

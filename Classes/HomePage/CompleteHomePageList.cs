@@ -14,21 +14,24 @@ namespace Everything_Handhelds_Tool.Models.DefaultModels
     //This is the user configuration list of user controls that has usercontrol, name in langauge, and whether to display it
     public class CompleteHomePageList : List<HomePageItem>
     {
-        public Dictionary<string, bool> displayUserControls { get; set; } = new Dictionary<string, bool>()
-        {
-            {"TDP_Slider", true },
-            {"TDP_Slider2", true },
-       
-        };
-
+          
         public CompleteHomePageList() 
         {
-            foreach(KeyValuePair<string,bool>kvp in displayUserControls)
+            UpdateList();
+        }
+        public void UpdateList()
+        {
+            List<string> controls = new DefaultCompleteHomePageList();
+
+            foreach (string control in controls)
             {
-                this.Add(new HomePageItem() { UserControlName= kvp.Key, UserControlVisible= kvp.Value, UserControlDisplayName= "TDP_Slider" });
+                if (this.Find(hpi => hpi.UserControlName == control) == null)
+                {
+                    this.Add(new HomePageItem() { UserControlName = control, UserControlVisible = false, UserControlDisplayName = "TDP_Slider" });
+                }
+                
             }
         }
-
         public void SaveToXML()
         {
             XML_Management.Save_XML("UserConfiguration\\HomePage\\HomePage.xml", "CompleteHomePageList", this);

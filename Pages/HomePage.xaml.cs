@@ -28,10 +28,6 @@ namespace Everything_Handhelds_Tool.Pages
         {
             CompleteHomePageList chpl = (CompleteHomePageList)XML_Management.Load_XML("UserConfiguration\\HomePage\\HomePage.xml", "CompleteHomePageList");
 
-            
-
-         
-
             foreach (HomePageItem hpi in chpl)
             {
                 hpi.UserControlVisible = false;
