@@ -26,15 +26,15 @@
                 <TextBlock x:Name="timeStatusBar" FontSize="30" />
             </Viewbox>
             <ui:FontIcon x:Name="controllerStatusBarIcon" Style="{StaticResource statusBarIcons}" Glyph="&#xE7FC;"  />
-            <ui:FontIcon x:Name="chargingStatusBarIcon" Style="{StaticResource statusBarIcons}" Glyph="&#xE83E;" Margin="6,0,0,4" />
-            <ui:FontIcon x:Name="batteryStatusBarIcon" Style="{StaticResource statusBarIcons}" Glyph="&#xE83F;"  />
+            <ui:FontIcon x:Name="wifiStatusBarIcon" Style="{StaticResource statusBarIcons}" Glyph="&#xE701;" FontSize="25" Margin="6,0,0,4" />
+            <ui:FontIcon x:Name="ethernetStatusBarIcon" Style="{StaticResource statusBarIcons}" Glyph="&#xE839;" FontSize="25" />
+            <ui:FontIcon x:Name="noInternetStatusBarIcon" Style="{StaticResource statusBarIcons}" Glyph="&#xF384;"  FontSize="25"/>
+            <ui:FontIcon x:Name="chargingStatusBarIcon" Style="{StaticResource statusBarIcons}" Glyph="&#xE83E;" FontSize="35" Margin="6,0,0,4" />
+            <ui:FontIcon x:Name="batteryStatusBarIcon" Style="{StaticResource statusBarIcons}" Glyph="&#xE83F;" FontSize="35" Margin="6,0,0,4" />
             <Viewbox MaxHeight="25" Margin="0,0,6,0" Name="viewBoxBatteryPercentage" >
                 <TextBlock x:Name="batteryPercentageStatusBar" FontSize="30"/>
             </Viewbox>
-            <ui:FontIcon x:Name="wifiStatusBarIcon" Style="{StaticResource statusBarIcons}" Glyph="&#xE701;"  />
-            <ui:FontIcon x:Name="ethernetStatusBarIcon" Style="{StaticResource statusBarIcons}" Glyph="&#xE839;"  />
-            <ui:FontIcon x:Name="noInternetStatusBarIcon" Style="{StaticResource statusBarIcons}" Glyph="&#xF384;"  />
-        
+            
         </StackPanel>
 
         <Grid Grid.Row="1" Margin="6,0,6,0">
