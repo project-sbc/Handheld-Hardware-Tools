@@ -1,0 +1,19 @@
+﻿<Window x:Class="Everything_Handhelds_Tool.OSK"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Everything_Handhelds_Tool"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Background="Transparent"
+        Title="OSK" Height="300" Width="800">
+    <Grid HorizontalAlignment="Stretch">
+        <Canvas HorizontalAlignment="Left" Height="300" Width="300" >
+            <Ellipse Height="300" Width="300" IsHitTestVisible="True" Fill="Blue" />
+        </Canvas>
+        <Canvas HorizontalAlignment="Right" Height="300" Width="300">
+            <Ellipse Height="300" Width="300" IsHitTestVisible="True" Fill="Blue" />
+        </Canvas>
+    </Grid>
+</Window>
