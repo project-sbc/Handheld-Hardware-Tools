@@ -16,6 +16,7 @@ using Microsoft.Win32;
 using System.Windows.Threading;
 using Everything_Handhelds_Tool.Classes.Models;
 using System.Globalization;
+using System.Net.NetworkInformation;
 
 namespace Everything_Handhelds_Tool
 {
@@ -46,6 +47,7 @@ namespace Everything_Handhelds_Tool
             //update time and power status
             UpdateTime();
             UpdatePowerStatusBar();
+            UpdateNetworkStatus();
         }
         #region Set up
         public void SetNavigationMenuItemSource()
@@ -76,6 +78,46 @@ namespace Everything_Handhelds_Tool
         {
             UpdateTime();
             UpdatePowerStatusBar();
+            UpdateNetworkStatus();
+        }
+        private void UpdateNetworkStatus()
+        {
+            
+            //Gets internet status to display on overlay
+            NetworkInterface[] networkCards = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces();
+            foreach (NetworkInterface networkCard in networkCards)
+            {
+                if (networkCard.OperationalStatus == OperationalStatus.Up)
+                {
+                    if (networkCard.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
+                    {
+                        if (ethernetStatusBarIcon.Visibility == Visibility.Collapsed)
+                        {
+                            ethernetStatusBarIcon.Visibility = Visibility.Visible;
+                        }
+                        if (noInternetStatusBarIcon.Visibility == Visibility.Visible) { noInternetStatusBarIcon.Visibility = Visibility.Collapsed; }
+                        return;
+                    }
+                    if (networkCard.NetworkInterfaceType == NetworkInterfaceType.Wireless80211)
+                    {
+                        if (wifiStatusBarIcon.Visibility == Visibility.Collapsed)
+                        {
+                            wifiStatusBarIcon.Visibility = Visibility.Visible;
+                        }
+                        if (noInternetStatusBarIcon.Visibility == Visibility.Visible) { noInternetStatusBarIcon.Visibility = Visibility.Collapsed; }
+                        return;
+                    }
+                }
+            }
+            noInternetStatusBarIcon.Visibility = Visibility.Visible;
+            if (wifiStatusBarIcon.Visibility == Visibility.Visible)
+            {
+                wifiStatusBarIcon.Visibility = Visibility.Collapsed;
+            }
+            if (ethernetStatusBarIcon.Visibility == Visibility.Visible)
+            {
+                ethernetStatusBarIcon.Visibility = Visibility.Collapsed;
+            }
         }
         private void UpdateTime()
         {
