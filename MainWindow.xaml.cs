@@ -26,7 +26,6 @@ namespace Everything_Handhelds_Tool
     public partial class MainWindow : Window
     {
         
-
         public MainWindow()
         {
             InitializeComponent();
@@ -40,14 +39,8 @@ namespace Everything_Handhelds_Tool
             //subscribe to events
             SubscribeEvents();
 
-            //start statusbar dispatcher timer
-            StartStatusBarDispatcherTimer();
-
-
-            //update time and power status
-            UpdateTime();
-            UpdatePowerStatusBar();
-            UpdateNetworkStatus();
+            //update status bar values and start dispatcher timer for statusbar
+            SetUpStatusBarStartDispatcherTimer();
         }
         #region Set up
         public void SetNavigationMenuItemSource()
@@ -67,8 +60,12 @@ namespace Everything_Handhelds_Tool
         #endregion
         #region status bar updates
         private DispatcherTimer statusBarDispatcherTimer = new DispatcherTimer();
-        private void StartStatusBarDispatcherTimer()
+        private void SetUpStatusBarStartDispatcherTimer()
         {
+            UpdateTime();
+            UpdatePowerStatusBar();
+            UpdateNetworkStatus();
+
             statusBarDispatcherTimer.Interval = new TimeSpan(0, 0, 6);
             statusBarDispatcherTimer.Tick += StatusBarDispatcherTimer_Tick;
             statusBarDispatcherTimer.Start();
@@ -207,7 +204,8 @@ namespace Everything_Handhelds_Tool
             //stop dispatcher timer for status bar
             statusBarDispatcherTimer.Stop();
 
-
+            //Write log to tell app is closing
+            Log_Writer.writeLog("App closing");
         }
         private void UnsubscribeEvents()
         {

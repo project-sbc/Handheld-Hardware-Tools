@@ -9,11 +9,36 @@
         Background="Transparent"
         Title="OSK" Height="300" Width="800">
     <Grid HorizontalAlignment="Stretch">
-        <Canvas HorizontalAlignment="Left" Height="300" Width="300" >
-            <Ellipse Height="300" Width="300" IsHitTestVisible="True" Fill="Blue" />
-        </Canvas>
-        <Canvas HorizontalAlignment="Right" Height="300" Width="300">
-            <Ellipse Height="300" Width="300" IsHitTestVisible="True" Fill="Blue" />
-        </Canvas>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Name="btn0" Grid.Row="1" Grid.Column="4"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  BorderBrush="White"  />
+            <Button Name="btn1" Grid.Row="0" Grid.Column="4"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="White"  />
+            <Button Name="btn2" Grid.Row="0" Grid.Column="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  BorderBrush="White"  />
+            <Button Name="btn3" Grid.Row="0" Grid.Column="2"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  BorderBrush="White"  />
+            <Button Name="btn4" Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  BorderBrush="White"  />
+            <Button Name="btn5" Grid.Row="0" Grid.Column="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  BorderBrush="White"  />
+            <Button Name="btn6" Grid.Row="1" Grid.Column="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  BorderBrush="White"  />
+            <Button Name="btn7" Grid.Row="2" Grid.Column="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  BorderBrush="White"  />
+            <Button Name="btn8" Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  BorderBrush="White"  />
+            <Button Name="btn9" Grid.Row="2" Grid.Column="2"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  BorderBrush="White"  />
+            <Button Name="btn10" Grid.Row="2" Grid.Column="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  BorderBrush="White"  />
+            <Button Name="btn11" Grid.Row="2" Grid.Column="4"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  BorderBrush="White"  />
+            <Button Name="btn12" Grid.Row="1" Grid.Column="2"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  BorderBrush="White"  />
+            <Button Name="btn13" Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  BorderBrush="White"  />
+            <Button Name="btn14" Grid.Row="1" Grid.Column="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  BorderBrush="White"  />
+        </Grid>
+        
+
     </Grid>
 </Window>
