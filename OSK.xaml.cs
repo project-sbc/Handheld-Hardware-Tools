@@ -1,4 +1,5 @@
 ﻿using Everything_Handhelds_Tool.Classes;
+using Everything_Handhelds_Tool.Classes.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,12 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WindowsInput;
+using WindowsInput.Native;
 
 namespace Everything_Handhelds_Tool
 {
@@ -25,33 +29,55 @@ namespace Everything_Handhelds_Tool
         ControllerInputOSK inputOSK = new ControllerInputOSK();
         Button currentHighlightButtonLeft;
         Button currentHighlightButtonRight;
+        private Dictionary<int, Button> keyboardIndexToButtonLeft = new Dictionary<int, Button>();
+        private Dictionary<int, Button> keyboardIndexToButtonRight = new Dictionary<int, Button>();
+        Classes.Models.Keyboard keyboard = new QWERTYKeyboard();
+
+        InputSimulator inputSimulator = new InputSimulator();
+        List<VirtualKeyCode> vkcChord = new List<VirtualKeyCode>();
         public OSK()
         {
             InitializeComponent();
+
+            SetLocation();
 
             inputOSK.buttonPressEvent.controllerJoystickEventOSK += ButtonPressEvent_controllerJoystickEventOSK;
             inputOSK.buttonPressEvent.controllerInputEventOSK += ButtonPressEvent_controllerInputEventOSK;
 
             AddButtonsToDictionary();
 
+            currentHighlightButtonLeft = btnL12;
+            currentHighlightButtonRight = btnR12;
+
             LoadLeftKeyboardDisplayText();
             LoadRightKeyboardDisplayText();
         }
+        private void SetLocation()
+        {
+            this.Width = SystemParameters.FullPrimaryScreenWidth;
+            this.Height = Math.Round(SystemParameters.FullPrimaryScreenHeight * 0.35,0);
+            this.Top = SystemParameters.FullPrimaryScreenHeight - Math.Round(SystemParameters.FullPrimaryScreenHeight * 0.35, 0);
+        }
+
+
+
         private void LoadLeftKeyboardDisplayText()
         {
-            foreach (KeyValuePair<int,string> kvp in leftKeyboardLowerAlpha)
+            foreach (KeyValuePair<int,VirtualKeyCodeDisplayCharacter> kvp in keyboard.leftKeyboard)
             {
                 Button button = keyboardIndexToButtonLeft[kvp.Key];
-                button.Content = kvp.Value;
+                VirtualKeyCodeDisplayCharacter character = kvp.Value;
+                button.Content = character.DisplayCharacter;
             }
         }
 
         private void LoadRightKeyboardDisplayText()
         {
-            foreach (KeyValuePair<int, string> kvp in rightKeyboardLowerAlpha)
+            foreach (KeyValuePair<int, VirtualKeyCodeDisplayCharacter> kvp in keyboard.rightKeyboard)
             {
                 Button button = keyboardIndexToButtonRight[kvp.Key];
-                button.Content = kvp.Value;
+                VirtualKeyCodeDisplayCharacter character = kvp.Value;
+                button.Content = character.DisplayCharacter;
             }
         }
         private void AddButtonsToDictionary()
@@ -91,25 +117,20 @@ namespace Everything_Handhelds_Tool
 
         private void ButtonPressEvent_controllerInputEventOSK(object? sender, controllerInputEventArgsOSK e)
         {
-            
+            if (e.Action == "LeftShoulder") { currentHighlightButtonLeft.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent)); }
+            if (e.Action == "RightShoulder") { currentHighlightButtonRight.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent)); }
+            if (e.Action == "X") { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.BACK); }
+            if (e.Action == "Y") { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.SPACE); }
         }
 
-        private Dictionary<int, string> leftKeyboardLowerAlpha = new Dictionary<int, string>()
-        {
-            {0, "g" }, {1, "t"}, {2, "r"}, {3, "e"},{4, "w"},{5, "q"}, {6, "a"}, {7, "z"}, {8, "x"}, {9, "c"}, {10, "v"}, {11, "b"}, {12, "d"}, {13, "s"}, {14, "f"}
-        };
-        private Dictionary<int, string> rightKeyboardLowerAlpha = new Dictionary<int, string>()
-        {
-            {0, ";" }, {1, "p"}, {2, "o"}, {3, "i"},{4, "u"},{5, "y"}, {6, "h"}, {7, "n"}, {8, "m"}, {9, ","}, {10, "."}, {11, "?"}, {12, "k"}, {13, "j"}, {14, "l"}
-        };
+
         private Dictionary<int, int> keyboardAngleToIndex = new Dictionary<int, int>()
         {
-           // {15, 0 }, {45 ,1}, {75, 2}, {105 , 3}, {135, 4}, {165, 5}, {195, 6}, {225, 7}, {255, 8}, {285, 9}, {315, 10}, {345, 11}, {360, 0}
+           //old set up before i made the cardinals only 10 degrees wide {15, 0 }, {45 ,1}, {75, 2}, {105 , 3}, {135, 4}, {165, 5}, {195, 6}, {225, 7}, {255, 8}, {285, 9}, {315, 10}, {345, 11}, {360, 0}
             {5, 0 }, {45 ,1}, {85, 2}, {95 , 3}, {135, 4}, {175, 5}, {185, 6}, {225, 7}, {265, 8}, {275, 9}, {315, 10}, {355, 11}, {360, 0}
         };
 
-        private Dictionary<int, Button> keyboardIndexToButtonLeft = new Dictionary<int, Button>();
-        private Dictionary<int, Button> keyboardIndexToButtonRight = new Dictionary<int, Button>();
+
 
         private int ReturnButtonZoneIndex(double x, double y)
         {
@@ -172,7 +193,7 @@ namespace Everything_Handhelds_Tool
             {
                 if (newHighlightButtonLeft != currentHighlightButtonLeft)
                 {
-                    currentHighlightButtonLeft.Background = Brushes.Transparent;
+                    currentHighlightButtonLeft.Background = Brushes.Gray;
                     currentHighlightButtonLeft = newHighlightButtonLeft;
                     currentHighlightButtonLeft.Background = Brushes.Blue;
                 }
@@ -188,7 +209,7 @@ namespace Everything_Handhelds_Tool
             {
                 if (newHighlightButtonRight != currentHighlightButtonRight)
                 {
-                    currentHighlightButtonRight.Background = Brushes.Transparent;
+                    currentHighlightButtonRight.Background = Brushes.Gray;
                     currentHighlightButtonRight = newHighlightButtonRight;
                     currentHighlightButtonRight.Background = Brushes.Blue;
                 }
@@ -201,6 +222,39 @@ namespace Everything_Handhelds_Tool
 
         }
 
-        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            int index = Int32.Parse(button.Name.Substring(4, button.Name.Length - 4));
+            string keyboardSide = button.Name.Substring(0, 4);
+            VirtualKeyCode virtualKeyCode;
+            int indexButton = -1;
+            switch(keyboardSide)
+            {
+                case "btnL":
+                    indexButton = keyboardIndexToButtonLeft.FirstOrDefault(x => x.Value == button).Key;
+                    virtualKeyCode =(VirtualKeyCode)((VirtualKeyCodeDisplayCharacter)keyboard.leftKeyboard[indexButton]).vkc;
+                    SendVirtualKeyCode(virtualKeyCode);
+                    break;
+                case "btnR":
+                    indexButton = keyboardIndexToButtonRight.FirstOrDefault(x => x.Value == button).Key;
+                    virtualKeyCode = (VirtualKeyCode)((VirtualKeyCodeDisplayCharacter)keyboard.rightKeyboard[indexButton]).vkc;
+                    SendVirtualKeyCode(virtualKeyCode);
+                    break;
+                default:
+
+                    break;
+            }
+
+
+        }
+
+        private void SendVirtualKeyCode(VirtualKeyCode virtualKeyCode)
+        {
+            inputSimulator.Keyboard.KeyDown(virtualKeyCode);
+            inputSimulator.Keyboard.KeyUp(virtualKeyCode);
+        }
+
     }
+  
 }

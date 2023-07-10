@@ -6,15 +6,31 @@
         xmlns:local="clr-namespace:Everything_Handhelds_Tool"
         mc:Ignorable="d"
         WindowStyle="None"
-        Background="white"
-        Title="OSK" Height="300" Width="1000">
-    <Grid HorizontalAlignment="Stretch">
+        AllowsTransparency="True"
+        Background="Transparent"
+        Left="0"
+        Topmost="True"
+        Focusable="False"
+        Title="OSK" Height="220" Width="1000">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Gray" />
+            <Setter Property="BorderBrush" Value="White" />
+            <Setter Property="BorderThickness" Value="3" />
+            <Setter Property="FontSize" Value="37" />
+            <Setter Property="Opacity" Value=".80" />
+            <EventSetter Event="Click" Handler="Button_Click" />
+        </Style>
+    </Window.Resources>
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="120*" />
+            <ColumnDefinition Width="39*" />
+            <ColumnDefinition Width="120*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="1" Background="Transparent" >
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -44,7 +60,7 @@
             <Button Name="btnL14" Grid.Row="1" Grid.Column="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  BorderBrush="White"  />
         </Grid>
 
-        <Grid Grid.Column="2">
+        <Grid Grid.Column="3" Background="Transparent">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
