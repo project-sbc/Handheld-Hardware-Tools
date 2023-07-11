@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Everything_Handhelds_Tool.Models.DefaultModels
 {
-    public class DefaultCompleteHomePageList : List<string>
+    public class DefaultCompleteHomePageList : Dictionary<string, bool>
     {
         //complete list for home page items, this gets updated when new controls are added
         public DefaultCompleteHomePageList()
         {
-            this.Add("TDP_Slider");
+            this.Add("TDP_Slider", true);
         }
 
     }

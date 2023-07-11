@@ -30,13 +30,27 @@ namespace Everything_Handhelds_Tool.Pages
 
             foreach (HomePageItem hpi in chpl)
             {
-                hpi.UserControlVisible = false;
+                if (hpi.UserControlVisible)
+                {
+                    stackPanel.Children.Add(ReturnUserControlByName(hpi.UserControlName));
+                }
+                
                 
             }
             
             chpl.SaveToXML();
         }
+        private UserControl ReturnUserControlByName(string name)
+        {
+            switch(name)
+            {
+                case "TDP_Slider":
+                    return new TDP_Slider();
 
+                default:
+                    return null;
+            }
+        }
         public override void HandleControllerInput(string action)
         {
            

@@ -16,7 +16,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Background="Tan" x:Name="stackPanel" Grid.Row="1" Width="450" Height="700"  />
+        <StackPanel  x:Name="stackPanel" Grid.Row="1" Width="450" Height="700"  />
 
     </Grid>
 </classes:ControllerPage>

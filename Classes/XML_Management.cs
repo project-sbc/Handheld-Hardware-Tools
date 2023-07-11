@@ -68,6 +68,7 @@ namespace Everything_Handhelds_Tool.Classes
                         case "CompleteHomePageList":
                             xmls = new XmlSerializer(typeof(CompleteHomePageList));
                             objObject = ((CompleteHomePageList)xmls.Deserialize(sr));
+                            ((CompleteHomePageList)objObject).UpdateList();
                             break;
                     }
 
@@ -82,6 +83,7 @@ namespace Everything_Handhelds_Tool.Classes
                 {
                     case "CompleteHomePageList":
                         objObject =  new CompleteHomePageList();
+                        ((CompleteHomePageList)objObject).UpdateList();
                         break;
                 }
             }
