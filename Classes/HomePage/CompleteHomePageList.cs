@@ -22,7 +22,10 @@ namespace Everything_Handhelds_Tool.Models.DefaultModels
         
         public void UpdateList()
         {
-    
+            //This routine grabs the default COMPLETE list of all controls called DefaultCompleteHomePageList
+            //Compares to the current list and adds any new ones as needed.
+            //if any new lines get added listUpdated becomes true and then it gets saved at the end
+            bool listUpdated = false;
             Dictionary<string, bool> controls = new DefaultCompleteHomePageList();
 
             foreach (KeyValuePair<string, bool> control in controls)
@@ -31,9 +34,13 @@ namespace Everything_Handhelds_Tool.Models.DefaultModels
                 if (this.Find(hpi => hpi.UserControlName == control.Key) == null)
                 {
                     this.Add(new HomePageItem() { UserControlName = control.Key, UserControlVisible =control.Value, UserControlDisplayName = "TDP_Slider" });
+                    listUpdated= true;
                 }
                 
             }
+
+            //if listUpdated is true then save
+            if (listUpdated) { SaveToXML(); }
         }
 
         

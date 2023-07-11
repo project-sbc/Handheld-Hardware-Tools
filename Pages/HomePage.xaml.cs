@@ -33,9 +33,7 @@ namespace Everything_Handhelds_Tool.Pages
                 if (hpi.UserControlVisible)
                 {
                     stackPanel.Children.Add(ReturnUserControlByName(hpi.UserControlName));
-                }
-                
-                
+                }   
             }
             
             chpl.SaveToXML();
