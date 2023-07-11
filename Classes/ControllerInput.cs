@@ -17,7 +17,7 @@ namespace Everything_Handhelds_Tool.Classes
         public MouseMode mouseMode = null;
         public ControllerMapper controllerMapper = null;
         public ButtonPressEvent buttonPressEvent = new ButtonPressEvent();
-        private Controller? controller;
+        public Controller? controller;
 
         //Variable to stop events in the case of programming a hot key
         public bool suspendEventsForProgramming { get; set; } = false;

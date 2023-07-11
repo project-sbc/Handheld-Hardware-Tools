@@ -75,7 +75,31 @@ namespace Everything_Handhelds_Tool
         {
             UpdateTime();
             UpdatePowerStatusBar();
-            UpdateNetworkStatus();
+            UpdateNetworkStatus();  
+        }
+        private void UpdateControllerStatus()
+        {
+            if (controllerInput != null)
+            {
+                if (controllerInput.controller != null)
+                {
+                    if (controllerInput.controller.IsConnected)
+                    {
+                        if (controllerStatusBarIcon.Visibility == Visibility.Collapsed)
+                        {
+                            controllerStatusBarIcon.Visibility = Visibility.Visible;
+                        }
+                      
+                    }
+                    else
+                    {
+                        if (controllerStatusBarIcon.Visibility == Visibility.Visible)
+                        {
+                            controllerStatusBarIcon.Visibility = Visibility.Collapsed;
+                        }
+                    }
+                }
+            }
         }
         private void UpdateNetworkStatus()
         {
