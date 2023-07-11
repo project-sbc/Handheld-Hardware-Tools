@@ -15,13 +15,15 @@
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Background" Value="Gray" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Margin" Value="1" />
             <Setter Property="BorderBrush" Value="White" />
-            <Setter Property="BorderThickness" Value="3" />
             <Setter Property="FontSize" Value="37" />
-            <Setter Property="Opacity" Value=".80" />
+            <Setter Property="Opacity" Value=".7" />
             <EventSetter Event="Click" Handler="Button_Click" />
         </Style>
     </Window.Resources>
+   
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />

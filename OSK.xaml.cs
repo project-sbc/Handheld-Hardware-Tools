@@ -41,16 +41,16 @@ namespace Everything_Handhelds_Tool
 
             SetLocation();
 
-            inputOSK.buttonPressEvent.controllerJoystickEventOSK += ButtonPressEvent_controllerJoystickEventOSK;
-            inputOSK.buttonPressEvent.controllerInputEventOSK += ButtonPressEvent_controllerInputEventOSK;
-
             AddButtonsToDictionary();
 
-            currentHighlightButtonLeft = btnL12;
-            currentHighlightButtonRight = btnR12;
+            HighlightButton(btnL12);
+            HighlightButton(btnR12);
 
             LoadLeftKeyboardDisplayText();
             LoadRightKeyboardDisplayText();
+
+            inputOSK.buttonPressEvent.controllerJoystickEventOSK += ButtonPressEvent_controllerJoystickEventOSK;
+            inputOSK.buttonPressEvent.controllerInputEventOSK += ButtonPressEvent_controllerInputEventOSK;
         }
         private void SetLocation()
         {
@@ -181,6 +181,24 @@ namespace Everything_Handhelds_Tool
             return buttonIndex;
         }
 
+        private void HighlightButton(Button button)
+        {
+            button.Opacity = 1;
+            button.Background = Brushes.Gray;
+            if (button.Name.Contains("btnL"))
+            {
+                currentHighlightButtonLeft = button;
+            }
+            else
+            {
+                currentHighlightButtonRight = button;
+            }
+        }
+        private void UnhighlightButton(Button button)
+        {
+            button.Opacity = 0.7;
+            button.Background = Brushes.Gray;
+        }
         private void ButtonPressEvent_controllerJoystickEventOSK(object? sender, controllerJoystickEventArgsOSK e)
         {
             //left stick inputs first
@@ -189,37 +207,25 @@ namespace Everything_Handhelds_Tool
 
 
             Button newHighlightButtonLeft = keyboardIndexToButtonLeft[leftButtonIndex];
-            if (currentHighlightButtonLeft != null)
+            if (currentHighlightButtonLeft != newHighlightButtonLeft)
             {
                 if (newHighlightButtonLeft != currentHighlightButtonLeft)
                 {
-                    currentHighlightButtonLeft.Background = Brushes.Gray;
-                    currentHighlightButtonLeft = newHighlightButtonLeft;
-                    currentHighlightButtonLeft.Background = Brushes.Blue;
+                    UnhighlightButton(currentHighlightButtonLeft);
+                    HighlightButton(newHighlightButtonLeft);
                 }
             }
-            else
-            {
-                currentHighlightButtonLeft = newHighlightButtonLeft;
-                currentHighlightButtonLeft.Background = Brushes.Blue;
-            }
-
+          
             Button newHighlightButtonRight = keyboardIndexToButtonRight[rightButtonIndex];
-            if (currentHighlightButtonRight != null)
+            if (currentHighlightButtonRight != newHighlightButtonRight)
             {
                 if (newHighlightButtonRight != currentHighlightButtonRight)
                 {
-                    currentHighlightButtonRight.Background = Brushes.Gray;
-                    currentHighlightButtonRight = newHighlightButtonRight;
-                    currentHighlightButtonRight.Background = Brushes.Blue;
+                    UnhighlightButton(currentHighlightButtonRight);
+                    HighlightButton(newHighlightButtonRight);
                 }
             }
-            else
-            {
-                currentHighlightButtonRight = newHighlightButtonRight;
-                currentHighlightButtonRight.Background = Brushes.Blue;
-            }
-
+      
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -245,8 +251,6 @@ namespace Everything_Handhelds_Tool
 
                     break;
             }
-
-
         }
 
         private void SendVirtualKeyCode(VirtualKeyCode virtualKeyCode)
