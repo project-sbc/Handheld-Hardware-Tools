@@ -65,6 +65,7 @@ namespace Everything_Handhelds_Tool
             UpdateTime();
             UpdatePowerStatusBar();
             UpdateNetworkStatus();
+            UpdateControllerStatus();
 
             statusBarDispatcherTimer.Interval = new TimeSpan(0, 0, 6);
             statusBarDispatcherTimer.Tick += StatusBarDispatcherTimer_Tick;
@@ -76,30 +77,44 @@ namespace Everything_Handhelds_Tool
             UpdateTime();
             UpdatePowerStatusBar();
             UpdateNetworkStatus();  
+            UpdateControllerStatus();
         }
         private void UpdateControllerStatus()
         {
-            if (controllerInput != null)
+            if (controllerInput == null)
             {
-                if (controllerInput.controller != null)
+                controllerStatusBarIcon.Visibility = Visibility.Collapsed;
+                return;
+            }
+            else
+            {
+                if (controllerInput.controller == null)
+                {
+                    controllerStatusBarIcon.Visibility = Visibility.Collapsed;
+                    return;
+                }
+                else
                 {
                     if (controllerInput.controller.IsConnected)
                     {
                         if (controllerStatusBarIcon.Visibility == Visibility.Collapsed)
                         {
                             controllerStatusBarIcon.Visibility = Visibility.Visible;
+                            return;
                         }
-                      
+
                     }
                     else
                     {
                         if (controllerStatusBarIcon.Visibility == Visibility.Visible)
                         {
                             controllerStatusBarIcon.Visibility = Visibility.Collapsed;
+                            return;
                         }
                     }
                 }
             }
+          
         }
         private void UpdateNetworkStatus()
         {
