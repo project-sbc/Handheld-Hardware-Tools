@@ -184,7 +184,7 @@ namespace Everything_Handhelds_Tool
         private void HighlightButton(Button button)
         {
             button.Opacity = 1;
-            button.Background = Brushes.Gray;
+            button.Background = System.Windows.Media.Brushes.Gray;
             if (button.Name.Contains("btnL"))
             {
                 currentHighlightButtonLeft = button;
@@ -197,7 +197,7 @@ namespace Everything_Handhelds_Tool
         private void UnhighlightButton(Button button)
         {
             button.Opacity = 0.7;
-            button.Background = Brushes.Gray;
+            button.Background = System.Windows.Media.Brushes.Gray;
         }
         private void ButtonPressEvent_controllerJoystickEventOSK(object? sender, controllerJoystickEventArgsOSK e)
         {

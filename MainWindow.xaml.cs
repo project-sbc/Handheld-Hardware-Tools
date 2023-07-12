@@ -17,15 +17,18 @@ using System.Windows.Threading;
 using Everything_Handhelds_Tool.Classes.Models;
 using System.Globalization;
 using System.Net.NetworkInformation;
+using System.Windows.Interop;
 
 namespace Everything_Handhelds_Tool
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+    
     public partial class MainWindow : Window
     {
-        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -41,6 +44,9 @@ namespace Everything_Handhelds_Tool
 
             //update status bar values and start dispatcher timer for statusbar
             SetUpStatusBarStartDispatcherTimer();
+
+            //set location
+            SetAppLocationHeight();
         }
         #region Set up
         public void SetNavigationMenuItemSource()
@@ -54,8 +60,18 @@ namespace Everything_Handhelds_Tool
             controllerInput.buttonPressEvent.controllerInputEvent += HandleControllerInputTopLevel;
             //subscribe to power changed (to update status bar)
             SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
+
+
         }
-       
+      
+        private void SetAppLocationHeight()
+        {
+
+            WpfScreen wpfScreen = WpfScreen.GetScreenFrom(this);
+            this.Height = wpfScreen.DeviceBounds.Height;
+            this.Top = 0;
+            this.Left = 0;
+        }
 
         #endregion
         #region status bar updates
