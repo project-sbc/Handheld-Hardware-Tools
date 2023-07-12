@@ -18,8 +18,10 @@
         >
     <Grid >
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"  />
-            <RowDefinition Height="50"  />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="1" />
+            <RowDefinition Height="40"  />
+            <RowDefinition Height="1" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -39,7 +41,10 @@
             
         </StackPanel>
 
-        <Grid Grid.Row="1" Margin="6,0,6,0">
+        <Grid Grid.Row="1" Background="Black" />
+        <Grid Grid.Row="3" Background="Black" />
+
+        <Grid Grid.Row="2" Margin="6,0,6,0">
             <ui:FontIcon   FontFamily="Segoe MDL2 Assets" Glyph="&#xF10A;" HorizontalAlignment="Left">
                 <ui:FontIcon.Style>
                     <Style>
@@ -51,7 +56,7 @@
                     </Style>
                 </ui:FontIcon.Style>
             </ui:FontIcon>
-            <ListBox x:Name="navigationViewListBox" HorizontalAlignment="Center">
+            <ListBox x:Name="navigationViewListBox" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" >
                 <ListBox.Resources>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="Background" Value="Transparent" />
@@ -86,7 +91,7 @@
 
          
        
-        <Frame x:Name="frame" Grid.Row="2" Source="Pages/HomePage.xaml"  />
+        <Frame x:Name="frame" Grid.Row="4" Source="Pages/HomePage.xaml"  />
 
     </Grid>
 
