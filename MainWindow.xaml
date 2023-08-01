@@ -25,7 +25,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="6,0,6,0">
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="6,0,6,0" >
             <Viewbox MaxHeight="25" Margin="0,0,6,0" >
                 <TextBlock x:Name="timeStatusBar" FontSize="30" />
             </Viewbox>
@@ -91,7 +91,7 @@
 
          
        
-        <Frame x:Name="frame" Grid.Row="4" Source="Pages/HomePage.xaml"  />
+        <Frame x:Name="frame" Grid.Row="4" Source="Pages/HomePage.xaml" HorizontalAlignment="Stretch"   />
 
     </Grid>
 

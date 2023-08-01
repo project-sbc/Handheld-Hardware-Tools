@@ -4,10 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Everything_Handhelds_Tool.UserControls.HomePageUserControls"
-             xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"
-             mc:Ignorable="d" 
-            d:DesignHeight="100" d:DesignWidth="100">
-    <Border Name="border" BorderBrush="Blue">
-        <TextBlock Text="Hello" />
-    </Border>
+             xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes" xmlns:ui="http://schemas.modernwpf.com/2019"
+                               mc:Ignorable="d" 
+            d:DesignHeight="63"  >
+    <Grid>
+        <Border Name="border" BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Stretch">
+            <DockPanel>
+                <ui:FontIcon x:Name="controllerStatusBarIcon" FontSize="30" Margin="8,0,8,0" Glyph="&#xEC4A;" VerticalAlignment="Center" DockPanel.Dock="Left"  />
+                <Viewbox Height="30" VerticalAlignment="Center" DockPanel.Dock="Top" HorizontalAlignment="Left" >
+                    <TextBlock Text="TDP"  />
+                </Viewbox>
+
+                <Slider x:Name="control" Minimum="5" Maximum="60" Margin="0,0,15,0" />
+            </DockPanel>
+        </Border>
+    </Grid>
+  
 </classes:ControllerUserControl>

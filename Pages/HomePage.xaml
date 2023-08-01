@@ -7,16 +7,19 @@
          xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"
        xmlns:ui="http://schemas.modernwpf.com/2019"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="500"
-      Title="HomePage">
+      d:DesignHeight="700" 
+      Title="HomePage" >
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-        <StackPanel  x:Name="stackPanel" Grid.Row="1" Width="450" Height="700"  />
+        <Viewbox Height="30" VerticalAlignment="Center" DockPanel.Dock="Top" HorizontalAlignment="Left" >
+            <TextBlock Text="TDP"  />
+        </Viewbox>
+        <StackPanel  x:Name="stackPanel" Grid.Row="1" HorizontalAlignment="Stretch" Height="700"  />
 
     </Grid>
 </classes:ControllerPage>
