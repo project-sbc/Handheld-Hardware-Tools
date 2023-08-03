@@ -13,8 +13,7 @@
         ui:TitleBar.ExtendViewIntoTitleBar="True"
         ui:TitleBar.IsBackButtonVisible="False"
         ui:ThemeManager.IsThemeAware="True"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib" Closing="Window_Closing"
+ Closing="Window_Closing"
         >
     <Grid >
         <Grid.RowDefinitions>

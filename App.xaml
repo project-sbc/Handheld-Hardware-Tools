@@ -7,30 +7,13 @@
         <Application.Resources>
             <ResourceDictionary>
                 <ResourceDictionary.MergedDictionaries>
-                <ui:ThemeResources>
-                    <ui:ThemeResources.ThemeDictionaries>
-                        <ResourceDictionary x:Key="Light"  ui:ThemeDictionary.Key="Light">
-                            <ResourceDictionary.MergedDictionaries>
-                           
-                               
-                                <ResourceDictionary Source="/ModernWpf;component/ThemeResources/Light.xaml" />
-                            </ResourceDictionary.MergedDictionaries>
-                        </ResourceDictionary>
-                        <ResourceDictionary x:Key="Dark">
-                            <ResourceDictionary.MergedDictionaries>
-                              
-                                <ResourceDictionary Source="/ModernWpf;component/ThemeResources/Dark.xaml" />
-                            </ResourceDictionary.MergedDictionaries>
-                         
-                        </ResourceDictionary>
-                    </ui:ThemeResources.ThemeDictionaries>
-                </ui:ThemeResources>
-                    <ui:XamlControlsResources />
-                    <ResourceDictionary Source="/StringResources/StringResources.xaml" />
-                <ResourceDictionary Source="/Styles/ControlStyle.xaml" />
-                <!-- Other merged dictionaries here -->
-                </ResourceDictionary.MergedDictionaries>
-                <!-- Other app resources here -->
+                <ui:ThemeResources />
+                <ui:XamlControlsResources />
+                <ResourceDictionary Source="/StringResources/StringResources.xaml" />
+                    <ResourceDictionary Source="/Styles/ControlStyle.xaml" />
+                    <!-- Other merged dictionaries here -->
+                 </ResourceDictionary.MergedDictionaries>
+                    <!-- Other app resources here -->
             </ResourceDictionary>
         </Application.Resources>
     </Application>

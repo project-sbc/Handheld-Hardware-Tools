@@ -1,9 +1,9 @@
-﻿using Everything_Handhelds_Tool.Classes;
+﻿using ControlzEx.Theming;
+using Everything_Handhelds_Tool.Classes;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
 using Everything_Handhelds_Tool.Classes.Models;
 using Everything_Handhelds_Tool.Models.DefaultModels;
 using Everything_Handhelds_Tool.UserControls.HomePageUserControls;
-using ModernWpf.Controls;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -20,7 +20,7 @@ namespace Everything_Handhelds_Tool.Pages
         public HomePage()
         {
             InitializeComponent();
-
+          
             AddUserControlsToStackPanel();
         }
 

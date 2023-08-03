@@ -24,6 +24,7 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
         public TDP_Slider()
         {
             InitializeComponent();
+
         }
 
 

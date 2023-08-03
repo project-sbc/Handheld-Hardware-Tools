@@ -1,13 +1,5 @@
 ﻿using Everything_Handhelds_Tool.Models;
-using ModernWpf;
-using ModernWpf.Controls;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using Everything_Handhelds_Tool.Classes;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
@@ -18,6 +10,7 @@ using Everything_Handhelds_Tool.Classes.Models;
 using System.Globalization;
 using System.Net.NetworkInformation;
 using System.Windows.Interop;
+using ControlzEx.Theming;
 
 namespace Everything_Handhelds_Tool
 {
@@ -47,6 +40,7 @@ namespace Everything_Handhelds_Tool
 
             //set location
             SetAppLocationHeight();
+
         }
         #region Set up
         public void SetNavigationMenuItemSource()
@@ -67,10 +61,10 @@ namespace Everything_Handhelds_Tool
         private void SetAppLocationHeight()
         {
 
-            WpfScreen wpfScreen = WpfScreen.GetScreenFrom(this);
-            this.Height = wpfScreen.DeviceBounds.Height;
-            this.Top = 0;
-            this.Left = 0;
+            //WpfScreen wpfScreen = WpfScreen.GetScreenFrom(this);
+            //this.Height = wpfScreen.DeviceBounds.Height;
+            //this.Top = 0;
+           // this.Left = 0;
         }
 
         #endregion

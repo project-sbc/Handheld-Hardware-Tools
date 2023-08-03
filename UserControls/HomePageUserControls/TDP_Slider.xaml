@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Everything_Handhelds_Tool.UserControls.HomePageUserControls"
              xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes" xmlns:ui="http://schemas.modernwpf.com/2019"
                                mc:Ignorable="d" 
-            d:DesignHeight="63"  >
+            Height="70"  >
     <Grid>
         <Border Name="border" BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Stretch">
             <DockPanel>

@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Media;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
 using Everything_Handhelds_Tool.Models.DefaultModels;
-using ModernWpf.Controls;
 
 namespace Everything_Handhelds_Tool.Classes
 {
