@@ -10,7 +10,7 @@ using Everything_Handhelds_Tool.Classes.Models;
 using System.Globalization;
 using System.Net.NetworkInformation;
 using System.Windows.Interop;
-using ControlzEx.Theming;
+using Wpf.Ui.Controls;
 
 namespace Everything_Handhelds_Tool
 {
@@ -19,7 +19,7 @@ namespace Everything_Handhelds_Tool
     /// </summary>
     /// 
     
-    public partial class MainWindow : Window
+    public partial class MainWindow : UiWindow
     {
 
         public MainWindow()
@@ -63,8 +63,8 @@ namespace Everything_Handhelds_Tool
 
             //WpfScreen wpfScreen = WpfScreen.GetScreenFrom(this);
             //this.Height = wpfScreen.DeviceBounds.Height;
-            //this.Top = 0;
-           // this.Left = 0;
+            this.Top = 0;
+            this.Left = 0;
         }
 
         #endregion
@@ -137,10 +137,7 @@ namespace Everything_Handhelds_Tool
                 {
                     if (networkCard.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
                     {
-                        if (ethernetStatusBarIcon.Visibility == Visibility.Collapsed)
-                        {
-                            ethernetStatusBarIcon.Visibility = Visibility.Visible;
-                        }
+                        
                         if (noInternetStatusBarIcon.Visibility == Visibility.Visible) { noInternetStatusBarIcon.Visibility = Visibility.Collapsed; }
                         return;
                     }
@@ -160,10 +157,7 @@ namespace Everything_Handhelds_Tool
             {
                 wifiStatusBarIcon.Visibility = Visibility.Collapsed;
             }
-            if (ethernetStatusBarIcon.Visibility == Visibility.Visible)
-            {
-                ethernetStatusBarIcon.Visibility = Visibility.Collapsed;
-            }
+            
         }
         private void UpdateTime()
         {
@@ -265,8 +259,12 @@ namespace Everything_Handhelds_Tool
 
 
         }
+
         #endregion
 
-      
+        private void TitleBar_CloseClicked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
