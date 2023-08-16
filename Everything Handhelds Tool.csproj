@@ -24,4 +24,10 @@
     <PackageReference Include="WPF-UI" Version="2.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="UserControls\HomePageUserControls\TDP_Slider_Copy.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>

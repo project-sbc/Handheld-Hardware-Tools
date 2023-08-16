@@ -55,14 +55,14 @@ namespace Everything_Handhelds_Tool
             //subscribe to power changed (to update status bar)
             SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
 
-
         }
       
         private void SetAppLocationHeight()
         {
 
-            //WpfScreen wpfScreen = WpfScreen.GetScreenFrom(this);
-            //this.Height = wpfScreen.DeviceBounds.Height;
+            WpfScreen wpfScreen = WpfScreen.GetScreenFrom(this);
+            this.MinHeight = wpfScreen.DeviceBounds.Height*0.6;
+            this.Height = wpfScreen.DeviceBounds.Height*0.6;
             this.Top = 0;
             this.Left = 0;
         }
@@ -77,7 +77,7 @@ namespace Everything_Handhelds_Tool
             UpdateNetworkStatus();
             UpdateControllerStatus();
 
-            statusBarDispatcherTimer.Interval = new TimeSpan(0, 0, 6);
+            statusBarDispatcherTimer.Interval = new TimeSpan(0, 0, 5);
             statusBarDispatcherTimer.Tick += StatusBarDispatcherTimer_Tick;
             statusBarDispatcherTimer.Start();
         }
@@ -262,9 +262,24 @@ namespace Everything_Handhelds_Tool
 
         #endregion
 
-        private void TitleBar_CloseClicked(object sender, RoutedEventArgs e)
+        private void navigationViewListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
+            if (navigationViewListBox.SelectedItem != null)
+            {
+                Wpf.Ui.Common.SymbolRegular symbolIcon = (Wpf.Ui.Common.SymbolRegular)navigationViewListBox.SelectedItem;
+                switch (symbolIcon) 
+                {
+                    case Wpf.Ui.Common.SymbolRegular.Home12:
+                        frame.Source = new Uri("Pages/HomePage.xaml", UriKind.Relative);
 
+                    break;
+                    
+
+                    default: break;
+                
+                }
+            }
+    
         }
     }
 }

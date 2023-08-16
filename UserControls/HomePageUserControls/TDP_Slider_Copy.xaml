@@ -1,4 +1,4 @@
-﻿<classes:ControllerUserControl x:Class="Everything_Handhelds_Tool.UserControls.HomePageUserControls.TDP_Slider"
+﻿<classes:ControllerUserControl x:Class="Everything_Handhelds_Tool.UserControls.HomePageUserControls.TDP_Slider_Copy"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,8 +7,8 @@
              xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                                mc:Ignorable="d" 
             Height="85"  >
-    <ui:Card VerticalAlignment="Center" x:Name="border" Background="{DynamicResource PageCard}"  >
-      
+    <ui:Card VerticalAlignment="Center" x:Name="border" Background="#66EDEDED"  >
+
         <DockPanel >
             <ui:SymbolIcon x:Name="controllerStatusBarIcon" Symbol="ArrowForwardDownLightning24" FontSize="30" Margin="8,0,8,0"  VerticalAlignment="Center" DockPanel.Dock="Left"  />
             <Viewbox Height="30" VerticalAlignment="Center" DockPanel.Dock="Top" HorizontalAlignment="Left" >

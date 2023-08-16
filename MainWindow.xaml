@@ -11,6 +11,9 @@
         Title="Everything Handhelds Tool" 
         SizeToContent="Height"
         Width="500"
+        MinHeight="600"
+        
+             AllowsTransparency="True"
       
  Closing="Window_Closing"
         >
@@ -19,90 +22,104 @@
         
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="45"  />
+            <RowDefinition Height="72"  />
             <RowDefinition Height="40"  />
             <RowDefinition Height="*" />
 
             <RowDefinition Height="45" />
         </Grid.RowDefinitions>
-        <ui:TitleBar ShowMaximize="False" ShowMinimize="False" CloseClicked="TitleBar_CloseClicked" >
 
-        </ui:TitleBar>
+        <Border Background="{Binding ElementName=statusInfoCard, Path=Background}" CornerRadius="4">
+            <DockPanel  >
+
+                <ui:TitleBar   ShowMaximize="False" DockPanel.Dock="Top"  ShowMinimize="True"  >
+                    
+                </ui:TitleBar>
 
 
 
-
-        <Grid Grid.Row="1" Margin="6,0,6,0">
-            <ui:SymbolIcon   FontFamily="Segoe MDL2 Assets"  HorizontalAlignment="Left">
-                <ui:SymbolIcon.Style>
-                    <Style>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=controllerStatusBarIcon, Path=Visibility}" Value="Collapsed">
-                                <Setter Property="Button.Visibility" Value="Collapsed"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ui:SymbolIcon.Style>
-            </ui:SymbolIcon>
-            <ListBox x:Name="navigationViewListBox" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" >
-                <ListBox.Resources>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="Background" Value="Transparent" />
-                        <Style.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="0"/>
-
+                <Grid Grid.Row="1" Margin="6,0,6,0" DockPanel.Dock="Bottom">
+                    <ui:SymbolIcon   FontFamily="Segoe MDL2 Assets"  HorizontalAlignment="Left">
+                        <ui:SymbolIcon.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=controllerStatusBarIcon, Path=Visibility}" Value="Collapsed">
+                                        <Setter Property="Button.Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
                             </Style>
-                        </Style.Resources>
-                    </Style>
-                </ListBox.Resources>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid  Height="25">
-                            <ui:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="{Binding}"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            <ui:SymbolIcon FontFamily="Segoe MDL2 Assets"  HorizontalAlignment="Right">
-                <ui:SymbolIcon.Style>
-                    <Style>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=controllerStatusBarIcon, Path=Visibility}" Value="Collapsed">
-                                <Setter Property="Button.Visibility" Value="Collapsed"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ui:SymbolIcon.Style>
-            </ui:SymbolIcon>
-        </Grid>
+                        </ui:SymbolIcon.Style>
+                    </ui:SymbolIcon>
 
-         
+
+                    <ListView x:Name="navigationViewListBox"  HorizontalAlignment="Center" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="navigationViewListBox_SelectionChanged"  >
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"></StackPanel>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid  Height="25">
+                                    <ui:SymbolIcon FontFamily="Segoe MDL2 Assets" FontSize="25" Symbol="{Binding}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListView>
+
+
+
+                    <ui:SymbolIcon FontFamily="Segoe MDL2 Assets"  HorizontalAlignment="Right">
+                        <ui:SymbolIcon.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=controllerStatusBarIcon, Path=Visibility}" Value="Collapsed">
+                                        <Setter Property="Button.Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ui:SymbolIcon.Style>
+                    </ui:SymbolIcon>
+                </Grid>
+            </DockPanel>
+        </Border>
+      
+
+      
+
+
        
-        <Frame x:Name="frame" Grid.Row="2" Source="Pages/HomePage.xaml" HorizontalAlignment="Stretch"   />
 
-        <ui:Card Grid.Row="3" >
-            <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="6,-7,6,-4" >
-                <Viewbox MaxHeight="25"  Margin="0,0,6,0" >
+
+
+
+
+
+
+
+        <Frame x:Name="frame" Grid.Row="2"  HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="6" />
+
+        <ui:Card Grid.Row="3" x:Name="statusInfoCard" >
+
+            <DockPanel  Grid.Row="3" Margin="6,-7,6,-4" >
+                <Viewbox MaxHeight="25" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,0,6,0" >
                     <TextBlock x:Name="timeStatusBar" FontSize="30" />
                 </Viewbox>
 
                 <ui:SymbolIcon x:Name="controllerStatusBarIcon"  Symbol="XboxController48" FontSize="23" Filled="True"  />
                 <ui:SymbolIcon x:Name="wifiStatusBarIcon" Symbol="Wifi120" FontSize="23" Filled="True" Margin="6,0,0,4" Visibility="Visible" />
                 <ui:SymbolIcon x:Name="noInternetStatusBarIcon" Symbol="WifiOff20" FontSize="23" Filled="True" Margin="6,0,0,4" Visibility="Visible" />
-                <ui:SymbolIcon x:Name="chargingStatusBarIcon" Symbol="BatteryCharge20" FontSize="23" Filled="True" Margin="6,0,0,4" Visibility="Visible" />
+                <ui:SymbolIcon x:Name="chargingStatusBarIcon" Symbol="BatteryCharge20" FontSize="23" Filled="True" Margin="9,0,0,4" Visibility="Visible" />
                 <ui:SymbolIcon x:Name="batteryStatusBarIcon" Symbol="Battery020" FontSize="23" Filled="False" Margin="6,0,0,4" Visibility="Visible" />
 
-                <Viewbox MaxHeight="25" Margin="0,0,6,0" Name="viewBoxBatteryPercentage" >
-                    <TextBlock x:Name="batteryPercentageStatusBar" FontSize="30"/>
+                <Viewbox MaxHeight="25" Margin="0,0,6,0" DockPanel.Dock="Left" HorizontalAlignment="Left" Name="viewBoxBatteryPercentage" >
+                    <TextBlock x:Name="batteryPercentageStatusBar" HorizontalAlignment="Left" FontSize="30"/>
                 </Viewbox>
 
-            </StackPanel>
+            </DockPanel>
 
         </ui:Card>
-
-
-        <ui:InfoBar Grid.Row="2" IsOpen="True" Message="Hello" VerticalAlignment="Bottom" />
+        <ui:InfoBar Grid.Row="2" VerticalAlignment="Bottom" />
 
     </Grid>
 
