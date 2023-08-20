@@ -19,9 +19,9 @@ namespace Everything_Handhelds_Tool
     /// </summary>
     /// 
     
-    public partial class MainWindow : UiWindow
+    public partial class MainWindow : UiWindow 
     {
-
+ 
         public MainWindow()
         {
             InitializeComponent();
@@ -37,9 +37,6 @@ namespace Everything_Handhelds_Tool
 
             //update status bar values and start dispatcher timer for statusbar
             SetUpStatusBarStartDispatcherTimer();
-
-            //set location
-            SetAppLocationHeight();
 
         }
         #region Set up
@@ -59,12 +56,12 @@ namespace Everything_Handhelds_Tool
       
         private void SetAppLocationHeight()
         {
+    
+            this.Height = 1050;
+            this.MinHeight = 1050;
 
-            WpfScreen wpfScreen = WpfScreen.GetScreenFrom(this);
-            this.MinHeight = wpfScreen.DeviceBounds.Height*0.6;
-            this.Height = wpfScreen.DeviceBounds.Height*0.6;
-            this.Top = 0;
-            this.Left = 0;
+             
+            
         }
 
         #endregion
@@ -84,6 +81,7 @@ namespace Everything_Handhelds_Tool
 
         private void StatusBarDispatcherTimer_Tick(object? sender, EventArgs e)
         {
+
             UpdateTime();
             UpdatePowerStatusBar();
             UpdateNetworkStatus();  
@@ -280,6 +278,13 @@ namespace Everything_Handhelds_Tool
                 }
             }
     
+        }
+
+        private void UiWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            //set location
+            SetAppLocationHeight();
+
         }
     }
 }

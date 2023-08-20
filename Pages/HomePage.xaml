@@ -5,26 +5,31 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Everything_Handhelds_Tool"
          xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"
-       xmlns:ui="http://schemas.modernwpf.com/2019"
+ xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"  
       mc:Ignorable="d" 
         xmlns:uc="clr-namespace:Everything_Handhelds_Tool.UserControls.HomePageUserControls"
-      Title="HomePage" >
+      Title="HomePage"     
+             
+                        
+                        >
 
-    <Grid>
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
-            <RowDefinition Height="*" />
+            <RowDefinition  />
            
        
         </Grid.RowDefinitions>
         <Viewbox Height="30" VerticalAlignment="Center" DockPanel.Dock="Top" HorizontalAlignment="Left" >
             <TextBlock Text="TDP"  />
         </Viewbox>
-        <StackPanel  x:Name="stackPanel" Grid.Row="1" HorizontalAlignment="Stretch" >
+        <ui:DynamicScrollViewer Grid.Row="1"  VerticalScrollBarVisibility="Auto">
+            <StackPanel  x:Name="stackPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
 
-            <uc:TDP_Slider/>
-            <uc:TDP_Slider_Copy/>
-        </StackPanel>
+
+            </StackPanel>
+        </ui:DynamicScrollViewer>
+       
 
     </Grid>
 </classes:ControllerPage>

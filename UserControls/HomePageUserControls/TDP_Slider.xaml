@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:Everything_Handhelds_Tool.UserControls.HomePageUserControls"
              xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                                mc:Ignorable="d" 
-            Height="85"  >
-    <ui:Card VerticalAlignment="Center" x:Name="border" Background="{DynamicResource PageCard}"  >
+            Height="85"  Margin="0,0,0,3">
+    <ui:Card VerticalAlignment="Center" x:Name="border" BorderBrush="Transparent"  BorderThickness="2">
       
         <DockPanel >
             <ui:SymbolIcon x:Name="controllerStatusBarIcon" Symbol="ArrowForwardDownLightning24" FontSize="30" Margin="8,0,8,0"  VerticalAlignment="Center" DockPanel.Dock="Left"  />
