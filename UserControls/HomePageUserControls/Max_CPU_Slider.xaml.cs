@@ -24,7 +24,6 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
         public Max_CPU_Slider()
         {
             InitializeComponent();
-
         }
 
 
@@ -46,4 +45,6 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
 
 
     }
+   
+
 }

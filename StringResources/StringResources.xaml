@@ -8,7 +8,8 @@
     <system:String x:Key="MainWindow_NavigationViewMenuItem_Home">Home</system:String>
     <system:String x:Key="Usercontrol_TDP">TDP</system:String>
     <system:String x:Key="Usercontrol_TDP2">Boost TDP</system:String>
-
+    <system:String x:Key="Usercontrol_MaxCPUFrequency">Set Max CPU Frequency</system:String>
+    <system:String x:Key="Usercontrol_CPUTurbo">CPU Turbo</system:String>
 
 
 
@@ -52,7 +53,7 @@
     <system:String x:Key="Usercontrol_EPP">EPP</system:String>
     <system:String x:Key="Usercontrol_FPSLimit">FPS Limit</system:String>
     <system:String x:Key="Usercontrol_ActiveCores">Active CPU Cores</system:String>
-    <system:String x:Key="Usercontrol_MaxCPUFrequency">Max CPU</system:String>
+ 
     <system:String x:Key="Usercontrol_GPUCLK">GPU Clock</system:String>
     <system:String x:Key="Usercontrol_HotKeyAction">Action</system:String>
     <system:String x:Key="Usercontrol_HotKeyType">Input Method</system:String>
