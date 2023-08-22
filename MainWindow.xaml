@@ -14,14 +14,15 @@
         WindowStyle="None"
         AllowsTransparency="True"
         SizeToContent="Height"
+
         Height="800"
         Loaded="UiWindow_Loaded"
         Closing="Window_Closing"
- 
+
         >
-    <Grid >
-            
-        
+    <Grid Margin="0,8,0,8" >
+
+
         <Grid.RowDefinitions>
 
             <RowDefinition Height="72"  />
@@ -32,12 +33,12 @@
         </Grid.RowDefinitions>
 
         <Border Background="{Binding ElementName=statusInfoCard, Path=Background}" CornerRadius="4">
-            
-            
+
+
             <DockPanel  >
 
                 <ui:TitleBar   ShowMaximize="False" DockPanel.Dock="Top"  ShowMinimize="True"  >
-                    
+
                 </ui:TitleBar>
 
 
@@ -125,6 +126,7 @@
         <ui:InfoBar Grid.Row="2" VerticalAlignment="Bottom" />
 
     </Grid>
+
 
 
 

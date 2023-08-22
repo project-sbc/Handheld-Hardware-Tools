@@ -1,4 +1,4 @@
-﻿<classes:ControllerUserControl x:Class="Everything_Handhelds_Tool.UserControls.HomePageUserControls.TDP_Slider"
+﻿<classes:ControllerUserControl x:Class="Everything_Handhelds_Tool.UserControls.HomePageUserControls.TDP_Boost_Slider"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,20 +6,22 @@
              xmlns:local="clr-namespace:Everything_Handhelds_Tool.UserControls.HomePageUserControls"
              xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                                mc:Ignorable="d" 
-            Height="90"  Margin="0,0,0,3">
-    <ui:Card VerticalAlignment="Center" x:Name="border" BorderBrush="Transparent"  BorderThickness="2">
-      
-        <DockPanel >
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,-5,0,0">
+            Height="Auto"  Margin="0,0,0,3">
+    <ui:CardExpander  VerticalAlignment="Top" x:Name="border" BorderBrush="Transparent"  BorderThickness="2" ExpandDirection="Down" >
+        <ui:CardExpander.Header>
+            <DockPanel   Margin="0">
                 <ui:SymbolIcon x:Name="controllerStatusBarIcon" Symbol="DeveloperBoardLightning20" FontSize="30" Margin="0,0,8,0"  VerticalAlignment="Top"   />
-                <Viewbox Height="30" VerticalAlignment="Top" DockPanel.Dock="Top" HorizontalAlignment="Left" >
-                    <TextBlock Text="{DynamicResource Usercontrol_TDP}"  />
+                <Viewbox Height="30" VerticalAlignment="Top"  HorizontalAlignment="Left" >
+                    <TextBlock Text="{DynamicResource Usercontrol_TDP2}"  />
                 </Viewbox>
-            </StackPanel>
+                <ui:ToggleSwitch IsChecked="{Binding Path=IsExpanded, ElementName=border}" HorizontalAlignment="Right" Margin="0,0,20,0"/>
+            </DockPanel>
+        </ui:CardExpander.Header>
+        <DockPanel >
            
 
-            <Slider x:Name="control" Minimum="5" Maximum="60" Margin="5,5,5,0" />
+            <Slider x:Name="control" Minimum="5" Maximum="60" Margin="5,-18,5,0" />
         </DockPanel>
-    </ui:Card>
+    </ui:CardExpander>
 
 </classes:ControllerUserControl>

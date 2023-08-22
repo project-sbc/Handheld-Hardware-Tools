@@ -24,4 +24,13 @@
     <PackageReference Include="WPF-UI" Version="2.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="UserControls\HomePageUserControls\Max_CPU_Slider.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\HomePageUserControls\TDP_Boost_Slider.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>

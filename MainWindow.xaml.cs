@@ -236,7 +236,7 @@ namespace Everything_Handhelds_Tool
 
         }
         #endregion
-        #region Closing
+        #region ClosingEvents
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //unsubscribe to all events to make sure it doesn't keep the app open
@@ -280,11 +280,14 @@ namespace Everything_Handhelds_Tool
     
         }
 
+
+        #region LoadedEvent
         private void UiWindow_Loaded(object sender, RoutedEventArgs e)
         {
             //set location
             SetAppLocationHeight();
-
         }
+
+        #endregion
     }
 }

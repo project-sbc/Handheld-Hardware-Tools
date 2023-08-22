@@ -24,6 +24,7 @@ namespace Everything_Handhelds_Tool.Models.DefaultModels
         public DefaultHomePageList()
         {
             this.Add("TDP_Slider");
+            this.Add("TDP__Boost_Slider");
         }
 
     }

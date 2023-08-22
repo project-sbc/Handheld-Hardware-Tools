@@ -6,6 +6,15 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <system:String x:Key="MainWindow_NavigationViewMenuItem_Home">Home</system:String>
+    <system:String x:Key="Usercontrol_TDP">TDP</system:String>
+    <system:String x:Key="Usercontrol_TDP2">Boost TDP</system:String>
+
+
+
+
+    <!-- THIS IS THE DIVIDER-->
+
+
     <system:String x:Key="MainWindow_NavigationViewMenuItem_Profiles">Profiles</system:String>
     <system:String x:Key="MainWindow_NavigationViewMenuItem_Actions">Actions</system:String>
     <system:String x:Key="MainWindow_NavigationViewMenuItem_AppLauncher">App Launcher</system:String>
@@ -13,12 +22,6 @@
     <system:String x:Key="MainWindow_NavigationViewMenuItem_Settings">Settings</system:String>
     <system:String x:Key="MainWindow_NavigationViewMenuItem_Information">Information</system:String>
 
-
-
-
-
-
-    <!-- THIS IS THE DIVIDER-->
 
     <system:String x:Key="MainWindow_NavigationView_MouseMode">Mouse Mode</system:String>
 
@@ -45,8 +48,7 @@
     <system:String x:Key="Usercontrol_VolumeMute">Volume Mute</system:String>
     <system:String x:Key="Usercontrol_Resolution">Resolution</system:String>
     <system:String x:Key="Usercontrol_RefreshRate">Refresh Rate</system:String>
-    <system:String x:Key="Usercontrol_TDP">TDP</system:String>
-    <system:String x:Key="Usercontrol_TDP2">Boost TDP</system:String>
+
     <system:String x:Key="Usercontrol_EPP">EPP</system:String>
     <system:String x:Key="Usercontrol_FPSLimit">FPS Limit</system:String>
     <system:String x:Key="Usercontrol_ActiveCores">Active CPU Cores</system:String>
