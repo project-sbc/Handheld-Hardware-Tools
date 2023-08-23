@@ -9,7 +9,7 @@
     <system:String x:Key="Usercontrol_TDP">TDP</system:String>
     <system:String x:Key="Usercontrol_TDP2">Boost TDP</system:String>
     <system:String x:Key="Usercontrol_MaxCPUFrequency">Set Max CPU Frequency</system:String>
-    <system:String x:Key="Usercontrol_CPUTurbo">CPU Turbo</system:String>
+    <system:String x:Key="Usercontrol_CPUTurbo">CPU Turbo Boost</system:String>
 
 
 

@@ -21,7 +21,7 @@ namespace Everything_Handhelds_Tool.Pages
         {
             InitializeComponent();
           
-            AddUserControlsToStackPanel();
+            //AddUserControlsToStackPanel();
         }
 
         public void AddUserControlsToStackPanel()
@@ -55,6 +55,9 @@ namespace Everything_Handhelds_Tool.Pages
         {
            
         }
+        public override void ControlToPage()
+        {
 
+        }
     }
 }

@@ -9,8 +9,8 @@
              xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:everything_handhelds_tool="clr-namespace:Everything_Handhelds_Tool"
                                mc:Ignorable="d" 
             Height="Auto"  Margin="0,0,0,3">
-    <ui:CardExpander  VerticalAlignment="Top" x:Name="border" BorderBrush="Transparent"  BorderThickness="2" ExpandDirection="Down" >
-        <ui:CardExpander.Header>
+    <ui:CardExpander  VerticalAlignment="Top" x:Name="border"  BorderBrush="Transparent"  BorderThickness="2" ExpandDirection="Down" >
+        <ui:CardExpander.Header >
             <DockPanel   Margin="0">
                 <ui:SymbolIcon x:Name="controllerStatusBarIcon" Symbol="DeveloperBoard20" FontSize="30" Margin="0,0,8,0"  VerticalAlignment="Top"   />
                 <Viewbox Height="30" VerticalAlignment="Top"  HorizontalAlignment="Left" >

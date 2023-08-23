@@ -25,7 +25,7 @@
 
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="72"  />
+            <RowDefinition Height="32"  />
 
             <RowDefinition   Height="*"/>
 
@@ -43,49 +43,7 @@
 
 
 
-                <Grid Grid.Row="1" Margin="6,0,6,0" DockPanel.Dock="Bottom">
-                    <ui:SymbolIcon   FontFamily="Segoe MDL2 Assets"  HorizontalAlignment="Left">
-                        <ui:SymbolIcon.Style>
-                            <Style>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=controllerStatusBarIcon, Path=Visibility}" Value="Collapsed">
-                                        <Setter Property="Button.Visibility" Value="Collapsed"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ui:SymbolIcon.Style>
-                    </ui:SymbolIcon>
-
-
-                    <ListView x:Name="navigationViewListBox" SelectedIndex="0"  HorizontalAlignment="Center" VerticalAlignment="Top"  SelectionChanged="navigationViewListBox_SelectionChanged"  >
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal"></StackPanel>
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid  Height="25">
-                                    <ui:SymbolIcon FontFamily="Segoe MDL2 Assets" FontSize="25" Symbol="{Binding}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListView>
-
-
-
-                    <ui:SymbolIcon FontFamily="Segoe MDL2 Assets"  HorizontalAlignment="Right">
-                        <ui:SymbolIcon.Style>
-                            <Style>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=controllerStatusBarIcon, Path=Visibility}" Value="Collapsed">
-                                        <Setter Property="Button.Visibility" Value="Collapsed"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ui:SymbolIcon.Style>
-                    </ui:SymbolIcon>
-                </Grid>
+             
             </DockPanel>
         </Border>
 
@@ -96,7 +54,30 @@
 
 
         <Grid Grid.Row="1" VerticalAlignment="Stretch" >
-            <ui:Card   Margin="6,0,6,0"  VerticalAlignment="Stretch" VerticalContentAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="45" />
+                <ColumnDefinition />
+                
+            </Grid.ColumnDefinitions>
+            
+            <ListView x:Name="navigationViewListBox" SelectedIndex="0" Width="40"  HorizontalAlignment="Center" VerticalAlignment="Top"  SelectionChanged="navigationViewListBox_SelectionChanged"  >
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"></StackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="45" Margin="0,0,0,0" >
+                            <ui:SymbolIcon FontFamily="Segoe MDL2 Assets" FontSize="30"  Symbol="{Binding}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListView>
+
+
+
+            <ui:Card   Margin="6,0,6,0" Grid.Column="1"  VerticalAlignment="Stretch" VerticalContentAlignment="Top">
                 <Frame x:Name="frame"   HorizontalAlignment="Stretch"   />
             </ui:Card>
         </Grid>
