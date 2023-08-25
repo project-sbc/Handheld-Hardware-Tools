@@ -55,7 +55,7 @@ namespace Everything_Handhelds_Tool.Pages
         {
            
         }
-        public override void ControlToPage()
+        public override void ReturnControlToPage()
         {
 
         }

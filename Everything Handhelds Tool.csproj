@@ -8,6 +8,7 @@
     <UseWPF>true</UseWPF>
 	  <UseWindowsForms>true</UseWindowsForms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>everything handheld tool icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,6 +16,10 @@
     <EmbeddedResource Remove="Messenger\**" />
     <None Remove="Messenger\**" />
     <Page Remove="Messenger\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="everything handheld tool icon.ico" />
   </ItemGroup>
 
   <ItemGroup>

@@ -12,6 +12,6 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
     public class ControllerPage : UiPage
     {
         public virtual void HandleControllerInput(string action) { }
-        public virtual void ControlToPage() { }
+        public virtual void ReturnControlToPage() { }
     }
 }
