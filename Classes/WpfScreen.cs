@@ -10,6 +10,9 @@ using System.Drawing;
 
 namespace Everything_Handhelds_Tool.Classes
 {
+
+    //This class is used in the main window to get the resolution of the screen so the window can be
+    //positioned appropriately
     public class WpfScreen
     {
         public static IEnumerable<WpfScreen> AllScreens()

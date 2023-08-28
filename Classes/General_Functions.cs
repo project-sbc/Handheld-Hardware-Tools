@@ -9,7 +9,8 @@ namespace Everything_Handhelds_Tool.Classes
 {
     public static class General_Functions
     {
-        public static double getWindowHeight(Window window)
+        //Collection of classes used throughout the program
+        public static double GetWindowHeight(Window window)
         {
             //Function to get height of window accounting for dpi scaling, set default height to 720
             double height = 720;
@@ -27,6 +28,14 @@ namespace Everything_Handhelds_Tool.Classes
 
             return height;
 
+        }
+
+        public static string GetCPUManufacturer()
+        {
+            string cpuManufacturer = "";
+
+
+            return cpuManufacturer;
         }
 
     }

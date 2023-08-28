@@ -14,16 +14,16 @@ using Wpf.Ui.Controls;
 
 namespace Everything_Handhelds_Tool
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    /// 
+    
     
     public partial class MainWindow : UiWindow 
     {
- 
+        
         public MainWindow()
         {
+            //
+
+
             InitializeComponent();
 
             //Write log to tell app is open

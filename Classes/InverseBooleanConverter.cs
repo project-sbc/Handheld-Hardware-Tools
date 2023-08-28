@@ -9,6 +9,11 @@ using System.Windows.Markup;
 
 namespace Everything_Handhelds_Tool.Classes.Converters
 {
+    //this class is used for elements on the mainwindow in the XAML
+    //for example, a card expander tied to a toggle switch, if i want
+    //the toggle switch to be the opposite of the card expander's isexpanded property
+    //i can  use this to invert it without using C# in the control's page
+
     [ValueConversion(typeof(bool), typeof(bool))]
     public class InverseBooleanConverter : MarkupExtension, IValueConverter
     {
