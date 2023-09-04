@@ -16,12 +16,14 @@ namespace Everything_Handhelds_Tool.Pages
     /// </summary>
     public partial class HomePage : ControllerPage
     {
-       
+        
         public HomePage()
         {
             InitializeComponent();
-          
-            //AddUserControlsToStackPanel();
+
+            virtualStackPanel = stackPanel;
+
+            AddUserControlsToStackPanel();
         }
 
         public void AddUserControlsToStackPanel()
@@ -34,13 +36,16 @@ namespace Everything_Handhelds_Tool.Pages
             {
                 if (hpi.UserControlVisible)
                 {
-                    stackPanel.Children.Add(ReturnUserControlByName(hpi.UserControlName));
+                    ControllerUserControl controllerUserControl = ReturnUserControlByName(hpi.UserControlName);
+                    stackPanel.Children.Add(controllerUserControl);
+                    userControls.Add(controllerUserControl);
                 }   
             }
             
+
             chpl.SaveToXML();
         }
-        private UserControl ReturnUserControlByName(string name)
+        private ControllerUserControl ReturnUserControlByName(string name)
         {
             switch(name)
             {
@@ -51,10 +56,7 @@ namespace Everything_Handhelds_Tool.Pages
                     return null;
             }
         }
-        public override void HandleControllerInput(string action)
-        {
-           
-        }
+       
         public override void ReturnControlToPage()
         {
 

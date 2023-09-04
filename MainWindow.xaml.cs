@@ -11,6 +11,8 @@ using System.Globalization;
 using System.Net.NetworkInformation;
 using System.Windows.Interop;
 using Wpf.Ui.Controls;
+using Everything_Handhelds_Tool.Classes.Devices;
+using System.Windows.Media.Effects;
 
 namespace Everything_Handhelds_Tool
 {
@@ -18,10 +20,14 @@ namespace Everything_Handhelds_Tool
     
     public partial class MainWindow : UiWindow 
     {
-        
+
+        Device device;
+
         public MainWindow()
         {
-            //
+            //Get the device type
+            Device_Management device_Management = new Device_Management();
+            device = device_Management.device;
 
 
             InitializeComponent();
@@ -56,7 +62,7 @@ namespace Everything_Handhelds_Tool
       
         private void SetAppLocationHeight()
         {
-            Double height = General_Functions.getWindowHeight(this);
+            Double height = General_Functions.GetWindowHeight(this);
             this.Height = height * 0.98;
             this.MinHeight = height * 0.98;
             this.Top = height * 0.01;
@@ -210,12 +216,19 @@ namespace Everything_Handhelds_Tool
         #endregion
         #region Controller Navigation
         public ControllerInput controllerInput = new ControllerInput();
+        //controllerNavigateWindow determines if input stays on window level or gets passed down
         public bool controllerNavigateWindow = true;
 
-        private void SetControllerNavigateWindow(bool navigateValue)
+        public void SetControllerNavigateWindow(bool navigateValue)
         {
             //set the controllerNavigateWindow from page level
             controllerNavigateWindow= navigateValue;
+            if (!controllerNavigateWindow )
+            {
+                ControllerPage a = (ControllerPage)frame.Content;
+                a.HandleControllerInput("Highlight First Control");
+            }
+            
         }
 
         private void HandleControllerInputTopLevel(object? sender, controllerInputEventArgs e)
@@ -232,7 +245,22 @@ namespace Everything_Handhelds_Tool
         }
         private void HandleControllerInput(string action)
         {
+            switch(action)
+            {
+                case "B":
 
+                    break;
+                case "DPadUp":
+                    General_Functions.NavigateListView(navigationViewListBox, action);
+                    break;
+                case "DPadDown":
+                    General_Functions.NavigateListView(navigationViewListBox, action);
+                    break;
+                case "A":
+                    SetControllerNavigateWindow(false);
+                    break;
+                default: break;
+            }
         }
         #endregion
         #region ClosingEvents

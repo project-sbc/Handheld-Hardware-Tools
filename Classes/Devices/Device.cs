@@ -10,9 +10,12 @@ namespace Everything_Handhelds_Tool.Classes.Devices
     {
         //Base class for the device constructor
 
+
         public bool deviceFanControlCapable { get; set; } = false;
         public bool deviceGyroControlCapable { get; set; } = false;
         public string deviceName { get; set; } = string.Empty;
+        public string cpuName { get; set; } = string.Empty;
+        public string mchBar { get; set; } = string.Empty;
         public virtual bool ManualFanControlEnabled() 
         {
             //This will return false for any device that doesnt have fan control
@@ -26,12 +29,5 @@ namespace Everything_Handhelds_Tool.Classes.Devices
 
     }
 
-    public class Device_Management
-    {
-        public Device DeviceSelector()
-        {
-            string cpuManufacturer = 
-
-        }
-    }
+    
 }

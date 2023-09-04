@@ -20,6 +20,30 @@
         Closing="Window_Closing"
 
         >
+    <Window.Resources>
+     
+        <Style x:Key="_ListBoxItemStyle" TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="_Border"
+                                Padding="2"
+                                CornerRadius="7"
+                                SnapsToDevicePixels="true">
+                            <ui:SymbolIcon Name="icon" FontFamily="Segoe MDL2 Assets" FontSize="35"  Symbol="{Binding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="_Border" Property="Background" Value="White"/>
+                                <Setter TargetName="icon" Property="Foreground" Value="Black"/>
+                            </Trigger>
+                          
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid Margin="0,8,0,8" >
 
         <Grid.ColumnDefinitions>
@@ -62,25 +86,19 @@
         </DockPanel>
 
 
-
-
-        <ui:Card Grid.Row="1"   Margin="6,0,6,0" Grid.Column="1"  VerticalAlignment="Stretch" VerticalContentAlignment="Top">
+        <ui:Card Grid.Row="1"  Name="cardBorder"   Margin="6,0,6,0" Grid.Column="1"  VerticalAlignment="Stretch" VerticalContentAlignment="Top">
+            
             <Frame x:Name="frame"   HorizontalAlignment="Stretch"   />
         </ui:Card>
 
-        <ListView x:Name="navigationViewListBox" Grid.Row="1"  SelectedIndex="0" Width="40" Margin="4,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"  SelectionChanged="navigationViewListBox_SelectionChanged"  >
+        <ListView x:Name="navigationViewListBox" Grid.Row="1" ItemContainerStyle="{DynamicResource _ListBoxItemStyle}"  SelectedIndex="0" Width="40" Margin="4,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"  SelectionChanged="navigationViewListBox_SelectionChanged"  >
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical"></StackPanel>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid Height="45" Margin="0,0,0,0" >
-                        <ui:SymbolIcon FontFamily="Segoe MDL2 Assets" FontSize="30"  Symbol="{Binding}"/>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
+           
+            
         </ListView>
 
 

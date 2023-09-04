@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Everything_Handhelds_Tool.Classes
 {
@@ -30,12 +31,41 @@ namespace Everything_Handhelds_Tool.Classes
 
         }
 
-        public static string GetCPUManufacturer()
+      
+
+        public static void NavigateListView(ListView listView, string action)
         {
-            string cpuManufacturer = "";
+            //if no items exist end routine
+            if (listView.Items.Count == 0) { return; }
+            if (listView.SelectedIndex == -1)
+            {
+                //if index is -1 then nothing is selected, go to index 0
+                listView.SelectedIndex = 0;
+                return;
+            }
+            if (action == "DPadUp" || action == "DPadLeft")
+            {
+                if (listView.SelectedIndex > 0)
+                {
+                    listView.SelectedIndex = listView.SelectedIndex - 1;
+                }
+                else
+                {
+                    listView.SelectedIndex = listView.Items.Count-1;
+                }
+            }
+            if (action == "DPadDown" || action == "DPadRight")
+            {
+                if (listView.SelectedIndex < listView.Items.Count-1)
+                {
+                    listView.SelectedIndex = listView.SelectedIndex + 1;
+                }
+                else
+                {
+                    listView.SelectedIndex = 0;
+                }
+            }
 
-
-            return cpuManufacturer;
         }
 
     }

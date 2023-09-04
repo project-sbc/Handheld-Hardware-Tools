@@ -25,6 +25,8 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
         {
             InitializeComponent();
 
+            uiCard = border;
+
         }
 
 
@@ -33,16 +35,7 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
         
         
         }
-        public override void HighlightControl() 
-        {
-            
         
-        }
-        public override void UnhighlightControl() 
-        {
-        
-        
-        }
 
 
     }
