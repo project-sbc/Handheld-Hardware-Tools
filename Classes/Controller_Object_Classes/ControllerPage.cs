@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+
 using Wpf.Ui.Controls;
 
 namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
@@ -24,41 +25,47 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                 {
                     case "B":
                         //This returns navigation to the window, so unhighlight the active control and send SetControllerNavigateWindow to true
-                        UnhighlightUserControl(highlightedUserControl);
-                      
+                        UnhighlightUserControl();
+                        ReturnControlToWindow();
                         break;
                     case "Highlight First Control":
                         //This is when the page first gains controller input, highlight the first UC to show it has control
                         highlightedUserControl = 0;
-                        HighlightUserControl(highlightedUserControl);
+                        HighlightUserControl();
                         break;
                     case "A":
                         controllerNavigatePage = false;
                         break;
-                    case "DPadUp":
-                        controllerNavigatePage = false;
+                    case "DPadUp" or "DPadDown":
+                        HandleUserControlNavigation(action);
                         break;
-                    case "DPadDown":
-                        controllerNavigatePage = false;
-                        break;
+                   
                     default: break;
                 }
             }
             else
             {
-                if (userControls.Count > 0)
-                {
-                    if (userControls[highlightedUserControl] != null)
-                    {
-                        ControllerUserControl controllerUserControl = userControls[highlightedUserControl];
-                        controllerUserControl.HandleControllerInput(action);
-                    }
-                }
+                //if controllerNavigatePage is false, send the input to the usercontrol level
+                SendControllerInputToUserControl(action);
             }
 
           
 
         }
+
+        public void SendControllerInputToUserControl(string action)
+        {
+            //make sure the highlighted usercontrol isnt null then send command
+            if (userControls.Count > 0)
+            {
+                if (userControls[highlightedUserControl] != null)
+                {
+                    ControllerUserControl controllerUserControl = userControls[highlightedUserControl];
+                    controllerUserControl.HandleControllerInput(action);
+                }
+            }
+        }
+
         public void ReturnControlToPage() 
         {
             //call this routine from the usercontrol to return to page control
@@ -70,10 +77,34 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
  
         //set in page cs to the stackpanel
         public StackPanel virtualStackPanel;
+        public ScrollViewer scrollViewer;
         public void HandleUserControlNavigation(string action) 
         {
-
-
+            //handles moving up an down in stack panel. also moves to screen so that the scrollviewer adjusts
+            UnhighlightUserControl();
+            if (action == "DPadUp")
+            {
+                if (highlightedUserControl > 0) 
+                { //subtract 1 if > 0, otherwise go to bottom of stackpanel
+                    highlightedUserControl -= 1;
+                }
+                else
+                {
+                    highlightedUserControl = userControls.Count - 1;
+                }
+            }
+            else
+            {
+                if (highlightedUserControl < userControls.Count -1)
+                { //add 1 if < total controls - 1, otherwise go to top of stackpanel
+                    highlightedUserControl += 1;
+                }
+                else
+                {
+                    highlightedUserControl = 0;
+                }
+            }
+            HighlightUserControl();
         }
 
         public void ReturnControlToWindow()
@@ -81,26 +112,27 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
             MainWindow wnd = (MainWindow)Application.Current.MainWindow;
             wnd.SetControllerNavigateWindow(true);
         }
-        public void HighlightUserControl(int index)
+        public void HighlightUserControl()
         {
             //sends highlight command to usercontrol
             if (userControls.Count> 0)
             {
-                if (userControls[index] != null)
+                if (userControls[highlightedUserControl] != null)
                 {
-                    ControllerUserControl controllerUserControl = userControls[index];
+                    ControllerUserControl controllerUserControl = userControls[highlightedUserControl];
                     controllerUserControl.HighlightControl();
+                    controllerUserControl.BringIntoView();
                 }
             }
         }
-        public void UnhighlightUserControl(int index)
+        public void UnhighlightUserControl()
         {
             //sends unhighlight command to usercontrol
             if (userControls.Count > 0)
             {
-                if (userControls[index] != null)
+                if (userControls[highlightedUserControl] != null)
                 {
-                    ControllerUserControl controllerUserControl = userControls[index];
+                    ControllerUserControl controllerUserControl = userControls[highlightedUserControl];
                     controllerUserControl.UnhighlightControl();
                 }
             }

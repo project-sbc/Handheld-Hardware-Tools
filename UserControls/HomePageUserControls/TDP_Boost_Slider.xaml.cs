@@ -24,24 +24,7 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
         public TDP_Boost_Slider()
         {
             InitializeComponent();
-
-        }
-
-
-        public override void HandleControllerInput(string action) 
-        { 
-        
-        
-        }
-        public override void HighlightControl() 
-        {
-            
-        
-        }
-        public override void UnhighlightControl() 
-        {
-        
-        
+            borderControl = border;
         }
 
 

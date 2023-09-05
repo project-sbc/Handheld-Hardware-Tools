@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Forms.Integration;
 
 namespace Everything_Handhelds_Tool.Pages
 {
@@ -22,28 +23,42 @@ namespace Everything_Handhelds_Tool.Pages
             InitializeComponent();
 
             virtualStackPanel = stackPanel;
-
+            
             AddUserControlsToStackPanel();
         }
 
         public void AddUserControlsToStackPanel()
         {
-            //Get the XML list from the UserConfiguration folder for what controls go on the home page
-            CompleteHomePageList chpl = (CompleteHomePageList)XML_Management.Load_XML("UserConfiguration\\HomePage\\HomePage.xml", "CompleteHomePageList");
-
-            //loop through and add the usercontrols
-            foreach (HomePageItem hpi in chpl)
+            //IM GOING TO MAKE THIS SECTION SIMPLE. IM GOING TO SIDELINE THE CUSTOM ARRANGEMENT AND WILL ADD IT BACK LATER
+            //FOR NOW IM JUST GOING TO MANUALLY ADD USERCONTROLS ON XAML LEVEL
+            if (false)
             {
-                if (hpi.UserControlVisible)
-                {
-                    ControllerUserControl controllerUserControl = ReturnUserControlByName(hpi.UserControlName);
-                    stackPanel.Children.Add(controllerUserControl);
-                    userControls.Add(controllerUserControl);
-                }   
-            }
-            
+                //Get the XML list from the UserConfiguration folder for what controls go on the home page
+                CompleteHomePageList chpl = (CompleteHomePageList)XML_Management.Load_XML("UserConfiguration\\HomePage\\HomePage.xml", "CompleteHomePageList");
 
-            chpl.SaveToXML();
+                //loop through and add the usercontrols
+                foreach (HomePageItem hpi in chpl)
+                {
+                    if (hpi.UserControlVisible)
+                    {
+                        ControllerUserControl controllerUserControl = ReturnUserControlByName(hpi.UserControlName);
+                        stackPanel.Children.Add(controllerUserControl);
+                        userControls.Add(controllerUserControl);
+                    }
+                }
+
+
+                chpl.SaveToXML();
+            }
+            else
+            {
+                foreach(UserControl child in stackPanel.Children )
+                {
+                    userControls.Add((ControllerUserControl)child);
+                }
+            }
+
+           
         }
         private ControllerUserControl ReturnUserControlByName(string name)
         {
@@ -57,9 +72,6 @@ namespace Everything_Handhelds_Tool.Pages
             }
         }
        
-        public override void ReturnControlToPage()
-        {
-
-        }
+       
     }
 }

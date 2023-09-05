@@ -24,25 +24,11 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
         public Max_CPU_Slider()
         {
             InitializeComponent();
+            borderControl = border;
         }
 
 
-        public override void HandleControllerInput(string action) 
-        { 
-        
-        
-        }
-        public override void HighlightControl() 
-        {
-            
-        
-        }
-        public override void UnhighlightControl() 
-        {
-        
-        
-        }
-
+    
 
     }
    

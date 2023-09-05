@@ -11,20 +11,38 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
 {
     public class ControllerUserControl : UserControl
     {
-        public Card uiCard;
+        public Object borderControl;
         public virtual void HandleControllerInput(string action) { }
         public virtual void HighlightControl() 
         { 
-            if (uiCard != null)
+            if (borderControl != null) 
             {
-                uiCard.BorderBrush = System.Windows.Media.Brushes.White;
+                if (borderControl is Wpf.Ui.Controls.Card)
+                {
+                    Card card = (Card)borderControl;
+                    card.BorderBrush = System.Windows.Media.Brushes.White;
+                }
+                if (borderControl is Wpf.Ui.Controls.CardExpander)
+                {
+                    CardExpander card = (CardExpander)borderControl;
+                    card.BorderBrush = System.Windows.Media.Brushes.White;
+                }
             }
         }
         public virtual void UnhighlightControl() 
         {
-            if (uiCard != null)
+            if (borderControl != null)
             {
-                uiCard.BorderBrush = System.Windows.Media.Brushes.Transparent;
+                if (borderControl is Wpf.Ui.Controls.Card)
+                {
+                    Card card = (Card)borderControl;
+                    card.BorderBrush = System.Windows.Media.Brushes.Transparent;
+                }
+                if (borderControl is Wpf.Ui.Controls.CardExpander)
+                {
+                    CardExpander card = (CardExpander)borderControl;
+                    card.BorderBrush = System.Windows.Media.Brushes.Transparent;
+                }
             }
         }
         public void ReturnControlToPage() 

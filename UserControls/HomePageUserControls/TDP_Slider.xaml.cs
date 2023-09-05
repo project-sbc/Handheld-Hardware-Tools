@@ -25,7 +25,7 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
         {
             InitializeComponent();
 
-            uiCard = border;
+            borderControl = border;
 
         }
 
