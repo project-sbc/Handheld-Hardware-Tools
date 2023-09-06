@@ -12,6 +12,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
     public class ControllerUserControl : UserControl
     {
         public Object borderControl;
+        public Object mainControl;
         public virtual void HandleControllerInput(string action) { }
         public virtual void HighlightControl() 
         { 
@@ -29,6 +30,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                 }
             }
         }
+
         public virtual void UnhighlightControl() 
         {
             if (borderControl != null)
@@ -50,7 +52,6 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
             MainWindow wnd = (MainWindow)Application.Current.MainWindow;
             ControllerPage controllerPage = wnd.frame.Content as ControllerPage;
             controllerPage.ReturnControlToPage();
-
         }
 
     }
