@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
 
@@ -41,4 +42,6 @@ namespace Everything_Handhelds_Tool.Classes.Converters
 
         #endregion
     }
+
+
 }

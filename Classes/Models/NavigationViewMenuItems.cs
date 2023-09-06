@@ -11,8 +11,7 @@ namespace Everything_Handhelds_Tool.Models
         {
             this.Add(Wpf.Ui.Common.SymbolRegular.Home12);
             this.Add(Wpf.Ui.Common.SymbolRegular.XboxController16);
-            this.Add(Wpf.Ui.Common.SymbolRegular.XboxController16);
-            this.Add(Wpf.Ui.Common.SymbolRegular.XboxController16);
+
 
 
         }

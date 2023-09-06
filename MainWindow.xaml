@@ -6,18 +6,20 @@
         xmlns:local="clr-namespace:Everything_Handhelds_Tool"
        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         mc:Ignorable="d"
+              xmlns:Converter="clr-namespace:Everything_Handhelds_Tool.Classes.Converters"
         Title="Everything Handhelds Tool" 
         Left="0"
         Top="0"
+        x:Name="mainWindow"
         Topmost="True"
-        Width="500"
+        Width="550"
         WindowStyle="None"
         AllowsTransparency="True"
         SizeToContent="Height"
 
         Height="800"
         Loaded="UiWindow_Loaded"
-        Closing="Window_Closing"
+        Closing="Window_Closing" StateChanged="mainWindow_StateChanged"
 
         >
     <Window.Resources>
@@ -58,10 +60,22 @@
 
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
-
+        <ui:NotifyIcon
+                Grid.Row="0"
+                x:Name="notifyIcon"
+                FocusOnLeftClick="True"
+                Visibility="Visible"
+                MenuOnRightClick="True"
+                TooltipText="WPF UI">
+            <ui:NotifyIcon.Menu>
+                <ContextMenu >
+                    <MenuItem Header="Menu item 1" />
+                </ContextMenu>
+            </ui:NotifyIcon.Menu>
+        </ui:NotifyIcon>
         <DockPanel  Grid.Column="1">
 
-            <ui:TitleBar   ShowMaximize="False" DockPanel.Dock="Top"  ShowMinimize="True"  >
+            <ui:TitleBar   ShowMaximize="False" DockPanel.Dock="Top" MinimizeClicked="TitleBar_MinimizeClicked"  ShowMinimize="True"  >
 
             </ui:TitleBar>
             <DockPanel  Margin="15,-37,100,0"  >

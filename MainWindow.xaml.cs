@@ -13,6 +13,7 @@ using System.Windows.Interop;
 using Wpf.Ui.Controls;
 using Everything_Handhelds_Tool.Classes.Devices;
 using System.Windows.Media.Effects;
+using Wpf.Ui.Controls.Interfaces;
 
 namespace Everything_Handhelds_Tool
 {
@@ -86,12 +87,17 @@ namespace Everything_Handhelds_Tool
 
         private void StatusBarDispatcherTimer_Tick(object? sender, EventArgs e)
         {
-
+            //Tick for updating status bar. Separate from updatestatusbar routine so it can be updated independent of the timer
+            UpdateStatusBar();
+        }
+        private void UpdateStatusBar()
+        {
             UpdateTime();
             UpdatePowerStatusBar();
-            UpdateNetworkStatus();  
+            UpdateNetworkStatus();
             UpdateControllerStatus();
         }
+
         private void UpdateControllerStatus()
         {
             if (controllerInput == null)
@@ -248,7 +254,7 @@ namespace Everything_Handhelds_Tool
             switch(action)
             {
                 case "B":
-
+                    ToggleWindow();
                     break;
                 case "DPadUp":
                     General_Functions.NavigateListView(navigationViewListBox, action);
@@ -316,5 +322,58 @@ namespace Everything_Handhelds_Tool
         }
 
         #endregion
+
+        #region ToggleWindow
+        private void TasksToggleWindowOpen()
+        {
+            //Tasks to do when window is reopening
+
+            //update status bar because timer takes 5 seconds to update
+            UpdateStatusBar();
+
+            //Resume statusbar update timer
+            statusBarDispatcherTimer.Start();
+
+            //set location height
+            SetAppLocationHeight();
+
+            //set app to normal state and visible
+            this.Show();
+
+        }
+        private void TasksToggleWindowClosed()
+        {
+            //Tasks to do when window is hiding
+                        
+            //Stop statusbar update timer
+            statusBarDispatcherTimer.Stop();
+
+            //set app to hidden
+            this.Visibility = Visibility.Hidden;
+                       
+        }
+        public void ToggleWindow()
+        {
+            if (this.Visibility == Visibility.Hidden || this.WindowState == WindowState.Minimized)
+            {
+                TasksToggleWindowOpen();
+            }
+            else
+            {
+                TasksToggleWindowClosed();
+            }
+        }
+
+        #endregion
+
+        private void mainWindow_StateChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TitleBar_MinimizeClicked(object sender, RoutedEventArgs e)
+        {
+            ToggleWindow();
+        }
     }
 }

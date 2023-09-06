@@ -14,8 +14,7 @@ namespace Everything_Handhelds_Tool.Classes
     public class ControllerInput
     {
         //add profiles to perform either mouse or controller mapping
-        public MouseMode mouseMode = null;
-        public ControllerMapper controllerMapper = null;
+
         public ButtonPressEvent buttonPressEvent = new ButtonPressEvent();
         public Controller? controller;
 
