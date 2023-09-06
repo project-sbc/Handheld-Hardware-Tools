@@ -78,6 +78,8 @@ namespace Everything_Handhelds_Tool
             UpdateTime();
             UpdatePowerStatusBar();
             UpdateNetworkStatus();
+
+
             UpdateControllerStatus();
 
             statusBarDispatcherTimer.Interval = new TimeSpan(0, 0, 5);
