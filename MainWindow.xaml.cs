@@ -22,7 +22,8 @@ namespace Everything_Handhelds_Tool
     public partial class MainWindow : UiWindow 
     {
 
-        Device device;
+        public Device device;
+        public Settings settings = Load_Settings.LoadSettings();
 
         public MainWindow()
         {
