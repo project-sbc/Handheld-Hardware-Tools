@@ -368,12 +368,8 @@ namespace Everything_Handhelds_Tool
 
         #endregion
 
-        private void mainWindow_StateChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void TitleBar_MinimizeClicked(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             ToggleWindow();
         }

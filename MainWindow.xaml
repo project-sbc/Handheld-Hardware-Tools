@@ -19,7 +19,7 @@
 
         Height="800"
         Loaded="UiWindow_Loaded"
-        Closing="Window_Closing" StateChanged="mainWindow_StateChanged"
+        Closing="Window_Closing" 
 
         >
     <Window.Resources>
@@ -75,11 +75,17 @@
         </ui:NotifyIcon>
         <DockPanel  Grid.Column="1">
 
-            <ui:TitleBar   ShowMaximize="False" DockPanel.Dock="Top" MinimizeClicked="TitleBar_MinimizeClicked"  ShowMinimize="True"  >
 
-            </ui:TitleBar>
-            <DockPanel  Margin="15,-37,100,0"  >
-                <Viewbox MaxHeight="25" DockPanel.Dock="Right" HorizontalAlignment="Right"  >
+            <DockPanel  Margin="15,-7,15,0"  >
+                
+       
+
+                <Button DockPanel.Dock="Right" Click="Button_Click">
+                    <ui:SymbolIcon x:Name="hideIcon"  Symbol="ArrowExit20" FontSize="23" Filled="False"  Visibility="Visible" />
+
+                </Button>
+
+                <Viewbox MaxHeight="25" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,0,20,0"  >
                     <TextBlock x:Name="timeStatusBar" FontSize="30" />
                 </Viewbox>
 
