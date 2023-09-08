@@ -35,8 +35,13 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
         
         
         }
-        
 
+        private void ControllerUserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (1==1)
+            {
 
+            }
+        }
     }
 }

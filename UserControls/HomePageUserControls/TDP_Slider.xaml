@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Everything_Handhelds_Tool.UserControls.HomePageUserControls"
              xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                                mc:Ignorable="d" 
-            Height="90"  Margin="0,0,0,3">
+            Height="90"  Margin="0,0,0,3" Unloaded="ControllerUserControl_Unloaded">
     <ui:Card VerticalAlignment="Center" x:Name="border" BorderBrush="Transparent"  BorderThickness="2">
       
         <DockPanel >

@@ -297,24 +297,17 @@ namespace Everything_Handhelds_Tool
 
         private void navigationViewListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if (navigationViewListBox.SelectedItem != null)
-            {
-                Wpf.Ui.Common.SymbolRegular symbolIcon = (Wpf.Ui.Common.SymbolRegular)navigationViewListBox.SelectedItem;
-                switch (symbolIcon) 
-                {
-                    case Wpf.Ui.Common.SymbolRegular.Home12:
-                        frame.Source = new Uri("Pages/HomePage.xaml", UriKind.Relative);
-
-                    break;
-                    
-
-                    default: break;
-                
-                }
-            }
-    
+            LoadPageInFrame();   
         }
 
+        private void LoadPageInFrame()
+        {
+            if (navigationViewListBox.SelectedItem != null)
+            {
+                NavigationViewMenuItem nvmi = (NavigationViewMenuItem)navigationViewListBox.SelectedItem;
+                frame.Source = nvmi.uri;
+            }
+        }
 
         #region LoadedEvent
         private void UiWindow_Loaded(object sender, RoutedEventArgs e)
@@ -339,6 +332,9 @@ namespace Everything_Handhelds_Tool
             //set location height
             SetAppLocationHeight();
 
+            //Reload last page
+            LoadPageInFrame();
+
             //set app to normal state and visible
             this.Show();
 
@@ -350,6 +346,9 @@ namespace Everything_Handhelds_Tool
             //Stop statusbar update timer
             statusBarDispatcherTimer.Stop();
 
+            //unload page from frame so it needs to be reloaded
+            frame.Source = null;
+            
             //set app to hidden
             this.Visibility = Visibility.Hidden;
                        
