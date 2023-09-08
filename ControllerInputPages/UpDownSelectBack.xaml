@@ -1,0 +1,21 @@
+﻿<Page x:Class="Everything_Handhelds_Tool.ControllerInputPages.UpDownSelectBack"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Everything_Handhelds_Tool.ControllerInputPages"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      mc:Ignorable="d" 
+      d:DesignHeight="40" 
+
+      Title="UpDownSelectBack">
+
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,30,0">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock VerticalAlignment="Center" Style="{StaticResource controllerInputIcons}" Text="&#xEDE3;"    />
+            <Viewbox Height="20" VerticalAlignment="Center" Margin="10,0,0,0">
+                <TextBlock Text="Select" Foreground="White"  />
+            </Viewbox>
+        </StackPanel>
+    </StackPanel>
+</Page>

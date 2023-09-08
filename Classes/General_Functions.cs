@@ -34,8 +34,19 @@ namespace Everything_Handhelds_Tool.Classes
 
         public static Uri TranslateIconToPageURI(SymbolRegular icon)
         {
+            Uri uri = new Uri("Pages\\HomePage.xaml", UriKind.Relative);
+            switch (icon)
+            {
+                case SymbolRegular.Home16:
+                    //no need to explicitly say home, its the default
+                    break;
 
-            return new Uri("Pages\\HomePage.xaml", UriKind.Relative);
+                default:
+
+                    break;
+            }
+
+            return uri;
         }
       
 

@@ -125,6 +125,7 @@
 
         <ui:InfoBar Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" />
 
+        <Frame x:Name="frameControllerInput" Grid.Row="2" Grid.Column="1"   HorizontalAlignment="Stretch"  />
     </Grid>
 
 

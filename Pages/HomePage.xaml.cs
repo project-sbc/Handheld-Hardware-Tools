@@ -29,36 +29,23 @@ namespace Everything_Handhelds_Tool.Pages
 
         public void AddUserControlsToStackPanel()
         {
-            //IM GOING TO MAKE THIS SECTION SIMPLE. IM GOING TO SIDELINE THE CUSTOM ARRANGEMENT AND WILL ADD IT BACK LATER
-            //FOR NOW IM JUST GOING TO MANUALLY ADD USERCONTROLS ON XAML LEVEL
-            if (false)
+            //Get the XML list from the UserConfiguration folder for what controls go on the home page
+            CompleteHomePageList chpl = (CompleteHomePageList)XML_Management.Load_XML("UserConfiguration\\HomePage\\HomePage.xml", "CompleteHomePageList");
+
+            //loop through and add the usercontrols
+            foreach (HomePageItem hpi in chpl)
             {
-                //Get the XML list from the UserConfiguration folder for what controls go on the home page
-                CompleteHomePageList chpl = (CompleteHomePageList)XML_Management.Load_XML("UserConfiguration\\HomePage\\HomePage.xml", "CompleteHomePageList");
-
-                //loop through and add the usercontrols
-                foreach (HomePageItem hpi in chpl)
+                if (hpi.UserControlVisible)
                 {
-                    if (hpi.UserControlVisible)
-                    {
-                        ControllerUserControl controllerUserControl = ReturnUserControlByName(hpi.UserControlName);
-                        stackPanel.Children.Add(controllerUserControl);
-                        userControls.Add(controllerUserControl);
-                    }
-                }
-
-
-                chpl.SaveToXML();
-            }
-            else
-            {
-                foreach(UserControl child in stackPanel.Children )
-                {
-                    userControls.Add((ControllerUserControl)child);
+                    ControllerUserControl controllerUserControl = ReturnUserControlByName(hpi.UserControlName);
+                    stackPanel.Children.Add(controllerUserControl);
+                    userControls.Add(controllerUserControl);
                 }
             }
 
-           
+
+            chpl.SaveToXML();
+
         }
         private ControllerUserControl ReturnUserControlByName(string name)
         {
@@ -66,6 +53,10 @@ namespace Everything_Handhelds_Tool.Pages
             {
                 case "TDP_Slider":
                     return new TDP_Slider();
+                case "TDP_Boost_Slider":
+                    return new TDP_Boost_Slider();
+                case "Max_CPU_Slider":
+                    return new Max_CPU_Slider();
 
                 default:
                     return null;

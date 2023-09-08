@@ -35,6 +35,8 @@ namespace Everything_Handhelds_Tool
 
             InitializeComponent();
 
+            frameControllerInput.Source = new Uri("ControllerInputPages\\UpDownSelectBack.xaml", UriKind.Relative);
+
             //Write log to tell app is open
             Log_Writer.writeLog("App started");
 
@@ -307,10 +309,7 @@ namespace Everything_Handhelds_Tool
         {
             if (navigationViewListBox.SelectedItem != null)
             {
-
-                SymbolRegular icon = (Wpf.Ui.Common.SymbolRegular)navigationViewListBox.SelectedItem;
-
-                frame.Source = General_Functions.TranslateIconToPageURI(icon);
+                frame.Source = General_Functions.TranslateIconToPageURI((Wpf.Ui.Common.SymbolRegular)navigationViewListBox.SelectedItem);
             }
         }
 

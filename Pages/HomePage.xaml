@@ -24,9 +24,7 @@
 
         <ScrollViewer Grid.Row="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Auto">
             <StackPanel  x:Name="stackPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                <uc:TDP_Slider/>
-                <uc:TDP_Boost_Slider/>
-                <uc:Max_CPU_Slider/>
+              
 
             </StackPanel>
         </ScrollViewer>

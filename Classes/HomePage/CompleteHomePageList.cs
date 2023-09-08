@@ -15,8 +15,7 @@ namespace Everything_Handhelds_Tool.Models.DefaultModels
     //This is the user configuration list of user controls that has usercontrol, name in langauge, and whether to display it
     public class CompleteHomePageList : List<HomePageItem>
     {
-
-        
+                
         public void UpdateList()
         {
             //This routine grabs the default COMPLETE list of all controls called DefaultCompleteHomePageList

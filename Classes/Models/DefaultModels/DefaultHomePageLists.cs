@@ -14,18 +14,10 @@ namespace Everything_Handhelds_Tool.Models.DefaultModels
         public DefaultCompleteHomePageList()
         {
             this.Add("TDP_Slider", true);
+            this.Add("TDP_Boost_Slider", true);
+            this.Add("Max_CPU_Slider", true);
         }
 
     }
 
-    public class DefaultHomePageList : List<string>
-    {
-        //Default list for home page if there is none in the user configuration folder
-        public DefaultHomePageList()
-        {
-            this.Add("TDP_Slider");
-            this.Add("TDP__Boost_Slider");
-        }
-
-    }
 }

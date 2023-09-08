@@ -3,7 +3,7 @@
                  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
    >
 
-    <Style TargetType="ui:FontIcon" x:Key="statusBarIcons">
+    <Style TargetType="TextBlock" x:Key="controllerInputIcons">
         <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
         <Setter Property="FontSize" Value="28"/>
         <Setter Property="Margin" Value="6,0,0,0" />
