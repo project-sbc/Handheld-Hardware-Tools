@@ -6,15 +6,13 @@ using Wpf.Ui.Controls;
 
 namespace Everything_Handhelds_Tool.Models
 {
-    public class NavigationViewMenuItems : List<NavigationViewMenuItem>
+    public class NavigationViewMenuItems : List<Wpf.Ui.Common.SymbolRegular>
     {
         public NavigationViewMenuItems()
         {
-            NavigationViewMenuItem nvmi1 = new NavigationViewMenuItem();
-            nvmi1.symbolIcon = Wpf.Ui.Common.SymbolRegular.Home12;
-            nvmi1.uri = new System.Uri("Pages/HomePage.xaml", System.UriKind.Relative);
-            this.Add(nvmi1);
-            
+            this.Add(Wpf.Ui.Common.SymbolRegular.XboxConsole20);
+            this.Add(Wpf.Ui.Common.SymbolRegular.XboxConsole20);
+ 
         }
     }
 }

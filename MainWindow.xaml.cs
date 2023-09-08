@@ -14,6 +14,7 @@ using Wpf.Ui.Controls;
 using Everything_Handhelds_Tool.Classes.Devices;
 using System.Windows.Media.Effects;
 using Wpf.Ui.Controls.Interfaces;
+using Wpf.Ui.Common;
 
 namespace Everything_Handhelds_Tool
 {
@@ -51,6 +52,7 @@ namespace Everything_Handhelds_Tool
         public void SetNavigationMenuItemSource()
         {
             navigationViewListBox.ItemsSource = new NavigationViewMenuItems();
+            navigationViewListBox.Items.Refresh();
         }
 
         private void SubscribeEvents()
@@ -305,8 +307,10 @@ namespace Everything_Handhelds_Tool
         {
             if (navigationViewListBox.SelectedItem != null)
             {
-                NavigationViewMenuItem nvmi = (NavigationViewMenuItem)navigationViewListBox.SelectedItem;
-                frame.Source = nvmi.uri;
+
+                SymbolRegular icon = (Wpf.Ui.Common.SymbolRegular)navigationViewListBox.SelectedItem;
+
+                frame.Source = General_Functions.TranslateIconToPageURI(icon);
             }
         }
 
@@ -315,6 +319,7 @@ namespace Everything_Handhelds_Tool
         {
             //set location
             SetAppLocationHeight();
+
         }
 
         #endregion

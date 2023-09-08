@@ -8,6 +8,7 @@
         mc:Ignorable="d"
               xmlns:Converter="clr-namespace:Everything_Handhelds_Tool.Classes.Converters"
         Title="Everything Handhelds Tool" 
+            
         Left="0"
         Top="0"
         x:Name="mainWindow"
@@ -23,8 +24,28 @@
 
         >
     <Window.Resources>
-     
-        
+        <Style x:Key="_ListBoxItemStyle" TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="_Border"
+                                Padding="2"
+                                CornerRadius="7"
+                                SnapsToDevicePixels="true">
+                            <ui:SymbolIcon Name="icon" FontFamily="Segoe MDL2 Assets" FontSize="35"  Symbol="{Binding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="_Border" Property="Background" Value="White"/>
+                                <Setter TargetName="icon" Property="Foreground" Value="Black"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Window.Resources>
     <Grid Margin="0,8,0,8" >
 
@@ -91,43 +112,15 @@
             <Frame x:Name="frame"   HorizontalAlignment="Stretch"   />
         </ui:Card>
 
+
+
         <ListView x:Name="navigationViewListBox" Grid.Row="1" ItemContainerStyle="{DynamicResource _ListBoxItemStyle}"   SelectedIndex="0" Width="40" Margin="4,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"  SelectionChanged="navigationViewListBox_SelectionChanged"  >
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical"></StackPanel>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border Name="_Border"
-                                Padding="2"
-                                CornerRadius="7"
-                                SnapsToDevicePixels="true">
-                        <ui:SymbolIcon Name="icon" FontFamily="Segoe MDL2 Assets" FontSize="35"  Symbol="{Binding symbolIcon}"/>
-                    </Border>
-                    <DataTemplate.Triggers>
-                        <Trigger Property="IsSelected" Value="true">
-                            <Setter TargetName="_Border" Property="Background" Value="White"/>
-                            <Setter TargetName="icon" Property="Foreground" Value="Black"/>
-                        </Trigger>
-
-                    </DataTemplate.Triggers>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            <Style TargetType="ListBoxItem">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate >
-               
-                            <ControlTemplate.Triggers>
-                               
-
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-        </ListView>
+         </ListView>
 
 
         <ui:InfoBar Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" />

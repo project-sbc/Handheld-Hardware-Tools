@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Wpf.Ui.Common;
 
 namespace Everything_Handhelds_Tool.Classes
 {
@@ -31,9 +32,14 @@ namespace Everything_Handhelds_Tool.Classes
 
         }
 
+        public static Uri TranslateIconToPageURI(SymbolRegular icon)
+        {
+
+            return new Uri("Pages\\HomePage.xaml", UriKind.Relative);
+        }
       
 
-        public static void NavigateListView(ListView listView, string action)
+        public static void NavigateListView(ListBox listView, string action)
         {
             //if no items exist end routine
             if (listView.Items.Count == 0) { return; }

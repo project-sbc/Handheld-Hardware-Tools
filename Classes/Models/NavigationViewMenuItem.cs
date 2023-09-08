@@ -9,15 +9,10 @@ namespace Everything_Handhelds_Tool.Classes.Models
 {
     public class NavigationViewMenuItem
     {
-        public Wpf.Ui.Common.SymbolRegular symbolIcon;
+        public Wpf.Ui.Common.SymbolRegular symbolIcon = Wpf.Ui.Common.SymbolRegular.AccessTime20;
         public Uri uri;
-        public Border border
-
-        public NavigationViewMenuItem() 
-        {
-            border.
-        
-        }
+        public int width = 10;
+     
 
     }
 }
