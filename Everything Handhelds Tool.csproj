@@ -30,6 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="ControllerInstructionPages\SelectHide.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\HomePageUserControls\Max_CPU_Slider.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

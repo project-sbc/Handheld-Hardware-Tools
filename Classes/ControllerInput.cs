@@ -16,7 +16,11 @@ namespace Everything_Handhelds_Tool.Classes
         //add profiles to perform either mouse or controller mapping
 
         public ButtonPressEvent buttonPressEvent = new ButtonPressEvent();
+        public ControllerConnectionChangedEvent controllerConnectionChangedEvent = new ControllerConnectionChangedEvent();
         public Controller? controller;
+        //   wasControllerConnected is a previous state condition used to determine when the controller was connected to not connected
+        // it helps fire the controllerConnectionChangedEvent
+        private bool wasControllerConnected = false;
 
         //Variable to stop events in the case of programming a hot key
         public bool suspendEventsForProgramming { get; set; } = false;
@@ -80,7 +84,7 @@ namespace Everything_Handhelds_Tool.Classes
                     continousInputPrevious = continousInputCurrent;
 
                     //sleep for 10 ms to match approx. 100 Hz refresh of controller
-                    await Task.Delay(2);
+                    await Task.Delay(10);
                     //watch.Stop();
                     //Debug.WriteLine($"Total Execution Time: {watch.ElapsedMilliseconds} ms");
                 }
@@ -162,11 +166,18 @@ namespace Everything_Handhelds_Tool.Classes
         }
 
 
-        private void GetConnectedController()
+        private async void GetConnectedController()
         {
             //this loops through all 4 controller slots and attempts to connect to one. If not, sleeps and starts searching again.
             try
             {
+                //if controller is not null and already connected then return
+                if (controller != null)
+                {
+                    if (controller.IsConnected) { return; }
+
+                }
+
                 List<UserIndex> userIndexControllers = new List<UserIndex>() { UserIndex.One, UserIndex.Two, UserIndex.Three, UserIndex.Four };
 
             connectController:
@@ -176,12 +187,24 @@ namespace Everything_Handhelds_Tool.Classes
                     Controller newController = new Controller(ui);
                     if (newController != null)
                     {
-                        if (newController.IsConnected) { controller = newController; return; }
+                        if (newController.IsConnected) 
+                        { 
+                            controller = newController;
+                            wasControllerConnected = true;
+                            controllerConnectionChangedEvent.raiseControllerConnectionChanged(true);
+                            return; 
+                        }
                     }
                 }
 
+                if (wasControllerConnected)
+                {
+                    wasControllerConnected = false;
+                    controllerConnectionChangedEvent.raiseControllerConnectionChanged(false);
+                }
+
                 //if nothing connected and isn't null then we wait a few seconds and try again
-                Thread.Sleep(3000);
+                Task.Delay(4000).Wait();
                 goto connectController;
 
             }
@@ -221,4 +244,25 @@ namespace Everything_Handhelds_Tool.Classes
         }
     }
 
+    public class ControllerConnectionChangedEvent
+    {
+
+        public event EventHandler<controllerConnectionChangedEventArgs> controllerConnectionChangedEvent;
+
+        public void raiseControllerConnectionChanged(bool connected)
+        {
+            System.Windows.Application.Current.Dispatcher.BeginInvoke(() =>
+            {
+                controllerConnectionChangedEvent?.Invoke(this, new controllerConnectionChangedEventArgs(connected));
+            });
+        }
+    }
+    public class controllerConnectionChangedEventArgs : EventArgs
+    {
+        public bool Connected { get; set; }
+        public controllerConnectionChangedEventArgs(bool connected)
+        {
+            this.Connected = connected;
+        }
+    }
 }

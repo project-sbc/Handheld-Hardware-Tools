@@ -13,6 +13,23 @@
 
 
 
+    <system:String x:Key="Instruction_Toggle">TOGGLE</system:String>
+    <system:String x:Key="Instruction_Confirm">CONFIRM</system:String>
+    <system:String x:Key="Instruction_Close">CLOSE</system:String>
+    <system:String x:Key="Instruction_Arrange">ARRANGE</system:String>
+    <system:String x:Key="Instruction_Back">BACK</system:String>
+    <system:String x:Key="Instruction_Select">SELECT</system:String>
+    <system:String x:Key="Instruction_Edit">EDIT</system:String>
+    <system:String x:Key="Instruction_Delete">DELETE</system:String>
+    <system:String x:Key="Instruction_Add">NEW</system:String>
+    <system:String x:Key="Instruction_Save">SAVE</system:String>
+    <system:String x:Key="Instruction_Apply">APPLY</system:String>
+    <system:String x:Key="Instruction_Duplicate">DUPLICATE</system:String>
+    <system:String x:Key="Instruction_Launch">LAUNCH</system:String>
+
+
+
+
     <!-- THIS IS THE DIVIDER-->
 
 
@@ -119,20 +136,6 @@
     <system:String x:Key="Usercontrol_Light">Light</system:String>
 
 
-    <system:String x:Key="Instruction_Toggle">TOGGLE</system:String>
-    <system:String x:Key="Instruction_Confirm">CONFIRM</system:String>
-    <system:String x:Key="Instruction_Close">CLOSE</system:String>
-    <system:String x:Key="Instruction_Arrange">ARRANGE</system:String>
-    <system:String x:Key="Instruction_Back">BACK</system:String>
-    <system:String x:Key="Instruction_Select">SELECT</system:String>
-    <system:String x:Key="Instruction_Edit">EDIT</system:String>
-    <system:String x:Key="Instruction_Delete">DELETE</system:String>
-    <system:String x:Key="Instruction_Add">NEW</system:String>
-    <system:String x:Key="Instruction_Save">SAVE</system:String>
-    <system:String x:Key="Instruction_Apply">APPLY</system:String>
-    <system:String x:Key="Instruction_Duplicate">DUPLICATE</system:String>
-    <system:String x:Key="Instruction_Launch">LAUNCH</system:String>
-  
         
   
 
