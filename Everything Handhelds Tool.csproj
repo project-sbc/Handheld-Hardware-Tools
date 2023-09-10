@@ -19,7 +19,122 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\AMD\ADLX\ADLX_3DSettings.dll" />
+    <None Remove="Resources\AMD\ADLX\ADLX_AutoTuning.dll" />
+    <None Remove="Resources\AMD\ADLX\ADLX_PerformanceMetrics.dll" />
+    <None Remove="Resources\AMD\ADLX\kernel32.dll" />
+    <None Remove="Resources\AMD\ADLX\ucrtbased.dll" />
+    <None Remove="Resources\AMD\ADLX\vcruntime140d.dll" />
+    <None Remove="Resources\AMD\ADLX\vcruntime140_1d.dll" />
+    <None Remove="Resources\AMD\RyzenAdj\inpoutx64.dll" />
+    <None Remove="Resources\AMD\RyzenAdj\libryzenadj.dll" />
+    <None Remove="Resources\AMD\RyzenAdj\ryzenadj.exe" />
+    <None Remove="Resources\AMD\RyzenAdj\WinRing0x64.dll" />
+    <None Remove="Resources\AMD\RyzenAdj\WinRing0x64.sys" />
+    <None Remove="Resources\EC\EC.exe" />
+    <None Remove="Resources\EC\WinRing0x64.sys" />
+    <None Remove="Resources\HyaticePowerPlan\HyaticePowerPlan.pow" />
+    <None Remove="Resources\Intel\KX\KX.exe" />
+    <None Remove="Resources\Intel\MSR\msr-cmd.exe" />
+    <None Remove="Resources\Intel\MSR\winio-drv.exe" />
+    <None Remove="Resources\Intel\MSR\WinIo32.dll" />
+    <None Remove="Resources\Intel\MSR\WinIo32.sys" />
+    <None Remove="Resources\Intel\MSR\WinIo64.dll" />
+    <None Remove="Resources\Intel\MSR\WinIo64.sys" />
+    <None Remove="Resources\Intel\MSR\WinRing0x64.dll" />
+    <None Remove="Resources\Intel\MSR\WinRing0x64.sys" />
+    <None Remove="Resources\QRes\QRes.exe" />
+    <None Remove="Resources\RTSS\RTSSHooks64.dll" />
+    <None Remove="Resources\RTSS\RTSSSharedMemoryNET.dll" />
+    <None Remove="Resources\SetDPI\SetDpi.exe" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="everything handheld tool icon.ico" />
+    <Content Include="Resources\AMD\ADLX\ADLX_3DSettings.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\AMD\ADLX\ADLX_AutoTuning.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\AMD\ADLX\ADLX_PerformanceMetrics.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\AMD\ADLX\kernel32.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\AMD\ADLX\ucrtbased.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\AMD\ADLX\vcruntime140d.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\AMD\ADLX\vcruntime140_1d.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\AMD\RyzenAdj\inpoutx64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\AMD\RyzenAdj\libryzenadj.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\AMD\RyzenAdj\ryzenadj.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\AMD\RyzenAdj\WinRing0x64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\AMD\RyzenAdj\WinRing0x64.sys">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\EC\EC.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\EC\WinRing0x64.sys">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\HyaticePowerPlan\HyaticePowerPlan.pow">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Intel\KX\KX.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Intel\MSR\msr-cmd.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Intel\MSR\winio-drv.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Intel\MSR\WinIo32.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Intel\MSR\WinIo32.sys">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Intel\MSR\WinIo64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Intel\MSR\WinIo64.sys">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Intel\MSR\WinRing0x64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Intel\MSR\WinRing0x64.sys">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\QRes\QRes.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\RTSS\RTSSHooks64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\RTSS\RTSSSharedMemoryNET.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\SetDPI\SetDpi.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

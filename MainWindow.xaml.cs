@@ -18,8 +18,7 @@ using Wpf.Ui.Common;
 
 namespace Everything_Handhelds_Tool
 {
-    
-    
+        
     public partial class MainWindow : UiWindow 
     {
 
@@ -28,13 +27,18 @@ namespace Everything_Handhelds_Tool
 
         public MainWindow()
         {
-            //Get the device type
-            Device_Management device_Management = new Device_Management();
-            device = device_Management.device;
-
+            //Get the device type (i.e. win max 2, one x fly, etc)
+            device = new Device_Management().device;
 
             InitializeComponent();
+            //run start up
+            InitializeRoutines();
 
+        }
+        #region Set up
+
+        public void InitializeRoutines()
+        {
             frameControllerInput.Source = new Uri("ControllerInputPages\\UpDownSelectBack.xaml", UriKind.Relative);
 
             //Write log to tell app is open
@@ -48,9 +52,8 @@ namespace Everything_Handhelds_Tool
 
             //update status bar values and start dispatcher timer for statusbar
             SetUpStatusBarStartDispatcherTimer();
-
         }
-        #region Set up
+
         public void SetNavigationMenuItemSource()
         {
             navigationViewListBox.ItemsSource = new NavigationViewMenuItems();

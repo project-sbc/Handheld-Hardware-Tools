@@ -21,6 +21,9 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
     /// </summary>
     public partial class TDP_Slider : ControllerUserControl
     {
+
+        private bool tdpValueLoaded = false;
+
         public TDP_Slider()
         {
             InitializeComponent();
@@ -32,8 +35,7 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
 
         public override void HandleControllerInput(string action) 
         { 
-        
-        
+                    
         }
 
         private void ControllerUserControl_Unloaded(object sender, RoutedEventArgs e)
