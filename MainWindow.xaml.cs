@@ -37,8 +37,6 @@ namespace Everything_Handhelds_Tool
         }
         #region Set up
 
-        public void InitializeRoutines()
-        {
             frameControllerInput.Source = new Uri("ControllerInputPages\\UpDownSelectBack.xaml", UriKind.Relative);
 
             //Write log to tell app is open
@@ -66,9 +64,12 @@ namespace Everything_Handhelds_Tool
             controllerInput.buttonPressEvent.controllerInputEvent += HandleControllerInputTopLevel;
             //subscribe to power changed (to update status bar)
             SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
-
+            //subscribe to controller connection changed event
+            controllerInput.controllerConnectionChangedEvent.controllerConnectionChangedEvent += HandleControllerConnectionChanged;
         }
       
+
+
         private void SetAppLocationHeight()
         {
             Double height = General_Functions.GetWindowHeight(this);
@@ -247,6 +248,11 @@ namespace Everything_Handhelds_Tool
             
         }
 
+        private void HandleControllerConnectionChanged(object sender, controllerConnectionChangedEventArgs e)
+        {
+            if (e.Connected) { SetControllerInputPage("SelectHide"); }
+            else { SetControllerInputPage(""); }
+        }
         private void HandleControllerInputTopLevel(object? sender, controllerInputEventArgs e)
         {
             if (!controllerNavigateWindow)
@@ -379,6 +385,25 @@ namespace Everything_Handhelds_Tool
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ToggleWindow();
+        }
+
+        public void SetControllerInputPage(string pageName)
+        {
+            Uri uri = null;
+
+            switch (pageName)
+            {
+                case "SelectBack":
+                    uri = new Uri("ControllerInstructionPages\\SelectBack.xaml", UriKind.Relative);
+                    break;
+                case "SelectHide":
+                    uri = new Uri("ControllerInstructionPages\\SelectHide.xaml", UriKind.Relative);
+                    break;
+                default:
+                    break;
+            }
+
+            frameControllerInput.Source = uri;
         }
     }
 }
