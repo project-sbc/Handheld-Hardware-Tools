@@ -49,6 +49,15 @@ namespace Everything_Handhelds_Tool.Classes
             return uri;
         }
       
+        public static void ChangeControllerInputPage(string pageName)
+        {
+            //serves as a intermediary function to mainwindow 
+            if (Application.Current.MainWindow != null)
+            {
+                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                mainWindow.SetControllerInputPage(pageName);
+            }
+        }
 
         public static void NavigateListView(ListBox listView, string action)
         {

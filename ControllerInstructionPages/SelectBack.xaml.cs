@@ -18,9 +18,9 @@ namespace Everything_Handhelds_Tool.ControllerInputPages
     /// <summary>
     /// Interaction logic for UpDownSelectBack.xaml
     /// </summary>
-    public partial class UpDownSelectBack : Page
+    public partial class SelectBack : Page
     {
-        public UpDownSelectBack()
+        public SelectBack()
         {
             InitializeComponent();
         }
