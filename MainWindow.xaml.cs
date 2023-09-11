@@ -36,11 +36,11 @@ namespace Everything_Handhelds_Tool
 
         }
         #region Set up
-
-            frameControllerInput.Source = new Uri("ControllerInputPages\\UpDownSelectBack.xaml", UriKind.Relative);
+        private void InitializeRoutines() 
+        { 
 
             //Write log to tell app is open
-            Log_Writer.writeLog("App started");
+            Log_Writer.Instance.writeLog("Start Main Window");
 
             //set nav menu items from model
             SetNavigationMenuItemSource();
@@ -295,7 +295,7 @@ namespace Everything_Handhelds_Tool
             statusBarDispatcherTimer.Stop();
 
             //Write log to tell app is closing
-            Log_Writer.writeLog("App closing");
+            Log_Writer.Instance.writeLog("App closing");
         }
         private void UnsubscribeEvents()
         {

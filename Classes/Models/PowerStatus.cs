@@ -26,7 +26,7 @@ namespace Everything_Handhelds_Tool.Classes.Models
             }
             catch(Exception ex)
             {
-                Log_Writer.writeLog("Error in get power status; " + ex.Message, "PS01");
+                Log_Writer.Instance.writeLog("Error in get power status; " + ex.Message, "PS01");
             }
            
         }

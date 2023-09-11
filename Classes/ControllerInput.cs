@@ -38,7 +38,7 @@ namespace Everything_Handhelds_Tool.Classes
         {
             try
             {
-                Log_Writer.writeLog("Starting MainControllerThreadLoop");
+                Log_Writer.Instance.writeLog("Starting MainControllerThreadLoop");
                 GetConnectedController();
 
                 Gamepad currentGamepadState = controller.GetState().Gamepad;
@@ -88,11 +88,11 @@ namespace Everything_Handhelds_Tool.Classes
                     //watch.Stop();
                     //Debug.WriteLine($"Total Execution Time: {watch.ElapsedMilliseconds} ms");
                 }
-                Log_Writer.writeLog("Ending MainControllerThreadLoop");
+                Log_Writer.Instance.writeLog("Ending MainControllerThreadLoop");
             }
             catch (Exception ex)
             {
-                Log_Writer.writeLog("Error in main controller thread; " + ex.Message, "CI02");
+                Log_Writer.Instance.writeLog("Error in main controller thread; " + ex.Message, "CI02");
             }
         }
         private int HandleContinousInput(string continuousInputCurrent, string continuousInputPrevious, int counter)
@@ -159,7 +159,7 @@ namespace Everything_Handhelds_Tool.Classes
             }
             catch (Exception ex)
             {
-                Log_Writer.writeLog("Error in main controller thread - dpad input handler; " + ex.Message, "CI03");
+                Log_Writer.Instance.writeLog("Error in main controller thread - dpad input handler; " + ex.Message, "CI03");
             }
 
             return "";
@@ -210,7 +210,7 @@ namespace Everything_Handhelds_Tool.Classes
             }
             catch (Exception ex)
             {
-                Log_Writer.writeLog("Connecting to controller; " + ex.Message, "CI01");
+                Log_Writer.Instance.writeLog("Connecting to controller; " + ex.Message, "CI01");
             }
 
         }

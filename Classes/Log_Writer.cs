@@ -9,25 +9,29 @@ using System.Windows;
 
 namespace Everything_Handhelds_Tool
 {
-    public static class Log_Writer
+    public class Log_Writer
     {
+        private static Log_Writer _instance = null;
 
-        public static string BaseDir = AppDomain.CurrentDomain.BaseDirectory;
-        public static Object objLock = new Object();
-        public static void writeLog(string newLog, string errorNum = "")
+
+        private static readonly object lockObj = new object();
+
+        private string appDir = AppDomain.CurrentDomain.BaseDirectory;
+
+        private Log_Writer()
+        {
+
+        }
+        public void writeLog(string newLog, string errorNum = "")
         {
             try
             {
-                lock (objLock)
+                if (!File.Exists(appDir + "\\Logs\\application_log.txt")) { createLogFile(); }
+                using (StreamWriter w = File.AppendText(appDir + "\\Logs\\application_log.txt"))
                 {
-                    if (!File.Exists(BaseDir + "\\Logs\\application_log.txt")) { createLogFile(); }
-                    using (StreamWriter w = File.AppendText(BaseDir + "\\Logs\\application_log.txt"))
-                    {
-                        if (errorNum != "") { newLog = "Error " + errorNum + ": " + newLog; }
+                    if (errorNum != "") { newLog = "Error " + errorNum + ": " + newLog; }
 
-                        Log(newLog, w);
-
-                    }
+                    Log(newLog, w);
 
                 }
             }
@@ -39,7 +43,7 @@ namespace Everything_Handhelds_Tool
 
 
         }
-        public static void Log(string logMessage, TextWriter w)
+        private void Log(string logMessage, TextWriter w)
         {
             try
             {
@@ -48,18 +52,42 @@ namespace Everything_Handhelds_Tool
             }
             catch { }
         }
-        public static void createLogFile()
+        private void createLogFile()
         {
             try
             {
-                if (!Directory.Exists(BaseDir + "\\Logs")) { System.IO.Directory.CreateDirectory(BaseDir + "\\Logs"); }
-                if (!File.Exists(BaseDir + "\\Logs\\application_log.txt")) { File.CreateText(BaseDir + "\\Logs\\application_log.txt"); Thread.Sleep(300); }
-   
-                
+                if (!Directory.Exists(appDir + "\\Logs")) { System.IO.Directory.CreateDirectory(appDir + "\\Logs"); }
+                if (!File.Exists(appDir + "\\Logs\\application_log.txt")) { File.CreateText(appDir + "\\Logs\\application_log.txt"); Thread.Sleep(300); }
+
+
             }
             catch { }
 
         }
+        public static Log_Writer Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (lockObj)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new Log_Writer();
+                        }
+                    }
+                }
+
+
+
+                return _instance;
+            }
+        }
+
 
     }
+
+
+   
 }
