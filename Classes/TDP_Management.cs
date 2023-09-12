@@ -10,19 +10,10 @@ namespace Everything_Handhelds_Tool.Classes
     public class TDP_Management
     {
         private static TDP_Management _instance = null;
-     
-
         private static readonly object lockObj = new object();
-
-        private string appDir = AppDomain.CurrentDomain.BaseDirectory;
-
-        private int tdp = 15;
-
         private TDP_Management()
         {
-
         }
-
         public static TDP_Management Instance
         {
             get
@@ -37,13 +28,13 @@ namespace Everything_Handhelds_Tool.Classes
                         }
                     }
                 }
-
-              
-
                 return _instance;
             }
         }
 
+        //Start the actual code and not just singleton stuff
+        private string appDir = AppDomain.CurrentDomain.BaseDirectory;
+        private int tdp = 15;
         public int ReadTDP()
         {
             Debug.WriteLine(tdp.ToString());

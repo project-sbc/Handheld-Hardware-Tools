@@ -8,25 +8,60 @@ using System.Xml.Serialization;
 
 namespace Everything_Handhelds_Tool.Classes
 {
-    public static class Load_Settings
+
+
+
+
+    public class Load_Settings
     {
-        public static object lockObjectSettings = new object();
-        public static Settings LoadSettings()
+        private static Load_Settings _instance = null;
+        private static readonly object lockObj = new object();
+        private Load_Settings()
         {
-            lock (lockObjectSettings)
+        }
+        public static Load_Settings Instance
+        {
+            get
             {
-                if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "Settings\\Settings.xml"))
+                if (_instance == null)
                 {
-                    using (StreamReader sr = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "Settings\\Settings.xml"))
+                    lock (lockObj)
                     {
-                        XmlSerializer xmls = new XmlSerializer(typeof(Settings));
-                        return xmls.Deserialize(sr) as Settings;
+                        if (_instance == null)
+                        {
+                            _instance = new Load_Settings();
+                        }
                     }
                 }
+                return _instance;
+            }
+        }
+        public void SaveSettings(Settings settings)
+        {
+            //Remember this is in a singleton and it prevents multithread access so no need to make this routine thread safe
+            //create directory for settings if it doesnt exist
+            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "Settings"))
+            {
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "Settings");
+            }
+            //then save settings
+            using (StreamWriter sw = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "Settings\\Settings.xml"))
+            {
+                XmlSerializer xmls = new XmlSerializer(typeof(Settings));
+                xmls.Serialize(sw, this);
             }
 
-
-
+        }
+        public Settings LoadSettings()
+        {
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "Settings\\Settings.xml"))
+            {
+                using (StreamReader sr = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "Settings\\Settings.xml"))
+                {
+                    XmlSerializer xmls = new XmlSerializer(typeof(Settings));
+                    return xmls.Deserialize(sr) as Settings;
+                }
+            }
             Settings newSettings = new Settings();
             return newSettings;
         }
@@ -35,26 +70,9 @@ namespace Everything_Handhelds_Tool.Classes
     public class Settings
     {
         public string language { get; set; } = "English";
-
-
-        public void Save()
-        {
-            //use lock to prevent multiple threads from using stream writer which will cause an error
-            lock (Load_Settings.lockObjectSettings)
-            {
-                if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "Settings"))
-                {
-                    Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "Settings");
-                }
-
-                using (StreamWriter sw = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "Settings\\Settings.xml"))
-                {
-                    XmlSerializer xmls = new XmlSerializer(typeof(Settings));
-                    xmls.Serialize(sw, this);
-                }
-            }
-
-        }
+        public int defaultTDP { get; set; } = 15;
+        public int maxTDP { get; set; } = 30;
+       
     }
    
 }
