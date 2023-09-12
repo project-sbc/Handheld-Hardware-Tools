@@ -22,7 +22,7 @@
             </StackPanel>
            
 
-            <Slider x:Name="control" Minimum="5" Maximum="60" Margin="5,5,5,0" />
+            <Slider x:Name="control" Minimum="5" Maximum="60" Margin="5,5,5,0" Thumb.DragCompleted="control_DragCompleted" Thumb.DragStarted="control_DragStarted" />
         </DockPanel>
     </ui:Card>
 

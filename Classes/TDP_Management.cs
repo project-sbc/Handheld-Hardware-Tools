@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace Everything_Handhelds_Tool.Classes
         private static readonly object lockObj = new object();
 
         private string appDir = AppDomain.CurrentDomain.BaseDirectory;
+
+        private int tdp = 15;
 
         private TDP_Management()
         {
@@ -41,6 +44,16 @@ namespace Everything_Handhelds_Tool.Classes
             }
         }
 
-       
+        public int ReadTDP()
+        {
+            Debug.WriteLine(tdp.ToString());
+            return tdp;
+        }
+
+        public void changeTDP(int value)
+        {
+            tdp = value;
+
+        }
     }
 }

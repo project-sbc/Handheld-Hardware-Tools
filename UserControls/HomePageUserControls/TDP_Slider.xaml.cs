@@ -1,4 +1,5 @@
-﻿using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
+﻿using Everything_Handhelds_Tool.Classes;
+using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +24,14 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
     {
 
         private bool tdpValueLoaded = false;
-
+        private bool dragStarted = false;
         public TDP_Slider()
         {
             InitializeComponent();
 
             borderControl = border;
+
+            control.Value = TDP_Management.Instance.ReadTDP();
 
         }
 
@@ -41,6 +44,27 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
         private void ControllerUserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void control_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        {
+            dragStarted = false;
+            ChangeTDP();
+        }
+
+        private void control_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
+        {
+            dragStarted = true;
+        }
+
+        private void ReadTDP()
+        {
+            int tdp = TDP_Management.Instance.ReadTDP();
+        }
+        private void ChangeTDP()
+        {
+            int tdp = (int)Math.Round(control.Value, 0);
+            TDP_Management.Instance.changeTDP(tdp);
         }
     }
 }
