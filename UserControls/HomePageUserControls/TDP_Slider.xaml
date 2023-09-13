@@ -10,19 +10,23 @@
     <ui:Card VerticalAlignment="Center" x:Name="border" BorderBrush="Transparent"  BorderThickness="2">
       
         <DockPanel >
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,-5,0,0">
+            <DockPanel  DockPanel.Dock="Top" Margin="0,-5,0,0">
                 <ui:SymbolIcon x:Name="controllerStatusBarIcon" Symbol="DeveloperBoardLightning20" FontSize="30" Margin="0,0,8,0"  VerticalAlignment="Top"   />
-                <Viewbox Height="30" VerticalAlignment="Top"  HorizontalAlignment="Left" >
+                <Viewbox Height="30" VerticalAlignment="Center"  HorizontalAlignment="Left" >
                     <TextBlock Text="{DynamicResource Usercontrol_TDP}"  />
                 </Viewbox>
 
-                
-                
-                
-            </StackPanel>
-           
+                <Viewbox Height="30" VerticalAlignment="Center" HorizontalAlignment="Right"  DockPanel.Dock="Right" >
 
-            <Slider x:Name="control" Minimum="5" Maximum="60" Margin="5,5,5,0" Thumb.DragCompleted="control_DragCompleted" Thumb.DragStarted="control_DragStarted" />
+                    <TextBlock Text="{Binding ElementName=control, Path=Value,StringFormat= '\{0\} W'}" />
+
+                </Viewbox>
+
+
+            </DockPanel>
+
+           
+            <Slider x:Name="control" Minimum="5" Maximum="35" IsSnapToTickEnabled="True" TickFrequency="1" Margin="5,5,5,0" Thumb.DragCompleted="control_DragCompleted" Thumb.DragStarted="control_DragStarted" />
         </DockPanel>
     </ui:Card>
 

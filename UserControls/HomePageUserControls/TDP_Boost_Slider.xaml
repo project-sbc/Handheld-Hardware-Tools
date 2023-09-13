@@ -9,19 +9,31 @@
             Height="Auto"  Margin="0,0,0,3">
     <ui:CardExpander  VerticalAlignment="Top" x:Name="border" BorderBrush="Transparent"  BorderThickness="2" ExpandDirection="Down" >
         <ui:CardExpander.Header>
-            <DockPanel   Margin="0">
+            <DockPanel   >
                 <ui:SymbolIcon x:Name="controllerStatusBarIcon" Symbol="DeveloperBoardLightning20" FontSize="30" Margin="0,0,8,0"  VerticalAlignment="Top"   />
-                <Viewbox Height="30" VerticalAlignment="Top"  HorizontalAlignment="Left" >
-                    <TextBlock Text="{DynamicResource Usercontrol_TDP2}"  />
+                <Viewbox Height="30" VerticalAlignment="Center"  HorizontalAlignment="Left" >
+                    <TextBlock  Text="{DynamicResource Usercontrol_TDP2}"  />
                 </Viewbox>
-                <ui:ToggleSwitch IsChecked="{Binding Path=IsExpanded, ElementName=border}" HorizontalAlignment="Right" Margin="0,0,20,0"/>
+                <ui:ToggleSwitch IsChecked="{Binding Path=IsExpanded, ElementName=border}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0" DockPanel.Dock="Right"/>
+
+               
+               
             </DockPanel>
         </ui:CardExpander.Header>
-        <DockPanel >
-           
+        <Grid Height="30" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Viewbox   Grid.Column="1" VerticalAlignment="Top" >
 
-            <Slider x:Name="control" Minimum="5" Maximum="60" Margin="5,-18,5,0" />
-        </DockPanel>
+                <TextBlock VerticalAlignment="Top"  Text="{Binding ElementName=control, Path=Value,StringFormat= '\{0\} W'}" />
+
+            </Viewbox>
+
+
+            <Slider  x:Name="control" Grid.Column="0" VerticalAlignment="Center" Minimum="5"  Maximum="35" HorizontalAlignment="Stretch"  IsSnapToTickEnabled="True" TickFrequency="1" Margin="5,-18,5,0" Thumb.DragCompleted="control_DragCompleted" Thumb.DragStarted="control_DragStarted" />
+        </Grid>
     </ui:CardExpander>
 
 </classes:ControllerUserControl>

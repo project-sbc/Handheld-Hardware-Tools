@@ -29,12 +29,24 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
         {
             InitializeComponent();
 
+            //set virtual border
             borderControl = border;
 
-            control.Value = TDP_Management.Instance.ReadTDP();
+            //set control
+           ConfigureControl();
 
         }
 
+
+        private void ConfigureControl()
+        {
+            Settings settings = Load_Settings.Instance.LoadSettings();
+
+            control.Maximum = settings.maxTDP;
+            control.Minimum = settings.minTDP;
+
+            control.Value = TDP_Management.Instance.ReadTDP();
+        }
 
         public override void HandleControllerInput(string action) 
         { 

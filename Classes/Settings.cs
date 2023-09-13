@@ -9,9 +9,6 @@ using System.Xml.Serialization;
 namespace Everything_Handhelds_Tool.Classes
 {
 
-
-
-
     public class Load_Settings
     {
         private static Load_Settings _instance = null;
@@ -72,6 +69,7 @@ namespace Everything_Handhelds_Tool.Classes
         public string language { get; set; } = "English";
         public int defaultTDP { get; set; } = 15;
         public int maxTDP { get; set; } = 30;
+        public int minTDP { get; set; } = 5;
        
     }
    

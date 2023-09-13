@@ -23,8 +23,7 @@ namespace Everything_Handhelds_Tool
     {
 
         public Device device;
-        public Settings settings = Load_Settings.LoadSettings();
-
+        
         public MainWindow()
         {
             //Get the device type (i.e. win max 2, one x fly, etc)

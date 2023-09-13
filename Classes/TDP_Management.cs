@@ -9,6 +9,7 @@ namespace Everything_Handhelds_Tool.Classes
 {
     public class TDP_Management
     {
+
         private static TDP_Management _instance = null;
         private static readonly object lockObj = new object();
         private TDP_Management()
@@ -31,6 +32,8 @@ namespace Everything_Handhelds_Tool.Classes
                 return _instance;
             }
         }
+
+
 
         //Start the actual code and not just singleton stuff
         private string appDir = AppDomain.CurrentDomain.BaseDirectory;

@@ -1,4 +1,5 @@
-﻿using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
+﻿using Everything_Handhelds_Tool.Classes;
+using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +25,30 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
         public TDP_Boost_Slider()
         {
             InitializeComponent();
+            //set virtual border
             borderControl = border;
+
+            //set control
+            ConfigureControl();
+        }
+        private void ConfigureControl()
+        {
+            Settings settings = Load_Settings.Instance.LoadSettings();
+
+            control.Maximum = settings.maxTDP;
+            control.Minimum = settings.minTDP;
+
+            control.Value = TDP_Management.Instance.ReadTDP();
         }
 
+        private void control_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        {
 
+        }
+
+        private void control_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
+        {
+
+        }
     }
 }
