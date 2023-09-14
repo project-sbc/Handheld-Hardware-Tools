@@ -41,6 +41,9 @@ namespace Everything_Handhelds_Tool
             //Write log to tell app is open
             Log_Writer.Instance.writeLog("Start Main Window");
 
+            //tdp start up
+
+
             //set nav menu items from model
             SetNavigationMenuItemSource();
 

@@ -60,7 +60,15 @@ namespace Everything_Handhelds_Tool.Classes.Motherboard_Info
             }
             return "";
         }
-
+        public string CPUName()
+        {
+            if (processorNameRegistry != null)
+            {
+                //return cpu name like AMD 6800U
+                return processorNameRegistry.ToString();
+            }
+            return "";
+        }
         public string MCHBar()
         {
             if (processorNameRegistry != null)

@@ -18,8 +18,7 @@ namespace Everything_Handhelds_Tool.Classes.Devices
             string manufacturer = motherboard_Info.Manufacturer().ToUpper();
             string product = motherboard_Info.Product().ToUpper();
             string cpuType = motherboard_Info.CPUType();
-
-
+           
             Device handheldDevice = null;
 
             switch (manufacturer)
@@ -116,7 +115,9 @@ namespace Everything_Handhelds_Tool.Classes.Devices
                     }
                     break;
             }
-
+            device.cpuType = cpuType;
+            device.mchBar = motherboard_Info.MCHBar(); 
+            device.cpuName = motherboard_Info.CPUName(); 
 
             device = handheldDevice;
         }
