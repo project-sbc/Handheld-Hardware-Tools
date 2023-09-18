@@ -38,7 +38,7 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
             control.Maximum = settings.maxTDP;
             control.Minimum = settings.minTDP;
 
-            control.Value = TDP_Management.Instance.ReadTDP();
+            control.Value = TDP_Management.Instance.ReadAndReturnBoostTDP();
         }
 
         private void control_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)

@@ -6,8 +6,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 
 namespace Everything_Handhelds_Tool.Classes
 {
@@ -43,33 +45,34 @@ namespace Everything_Handhelds_Tool.Classes
         private string appDir = AppDomain.CurrentDomain.BaseDirectory;
         private int tdpSustained = 15;
         private int tdpBoost = 15;
-        public int[] ReadTDP(bool read)
+
+        public int ReadAndReturnSustainedTDP()
         {
-            int[] tdps = new int[2];
+            ReadTDP();
+            return tdpSustained;
+        }
+        public int ReadAndReturnBoostTDP()
+        {
+            ReadTDP();
+            return tdpBoost;
+        }
+        private void ReadTDP()
+        {
             Device device = ((MainWindow)Application.Current.MainWindow).device;
             if (device.cpuType == "AMD")
             {
-                return ReadAMDTDP();
+                ReadAMDTDP();
             }
-
-            return tdps;
         }
 
-        private int[] ReadAMDTDP()
+        private void ReadAMDTDP()
         {
-            int[] tdps = new int[2];
-            string ryzenAdj = appDir + "\\Resources\\AMD\\RyzenAdj\\ryzenadj.exe";
-            string command = " -i";
-
-            string result = (new Run_CLI()).RunCommand(command, true, ryzenAdj);
-            return AMDParseTDP(result);
+            string result = (new Run_CLI()).RunCommand(" -i", true, appDir + "\\Resources\\AMD\\RyzenAdj\\ryzenadj.exe");
+            AMDParseTDP(result);
         }
 
-        private int[] AMDParseTDP(string result)
+        private void AMDParseTDP(string result)
         {
-            int[] tdps = new int[2];
-            tdps[0] = -1;
-            tdps[1] = -1;
             using (StringReader reader = new StringReader(result))
             {
                 string line;
@@ -79,38 +82,68 @@ namespace Everything_Handhelds_Tool.Classes
                     double n = 0;
                     if (line.Contains("STAPM LIMIT"))
                     {
-
-                        tdp = line;
-                        tdp = tdp.Replace("|", "");
-                        tdp = tdp.Replace("STAPM LIMIT", "");
-                        tdp = tdp.Replace(" ", "");
-                        tdp = tdp.Replace("stapm-limit", "");
+                        tdp = line.Replace("|", "").Replace("STAPM LIMIT", "").Replace(" ", "").Replace("stapm-limit", "");
                         tdp = tdp.Substring(0, tdp.IndexOf("."));
-                        tdps[0] = (int)Math.Round(Convert.ToDouble(tdp), 0);
-
+                        tdpSustained = (int)Math.Round(Convert.ToDouble(tdp), 0);
                     }
                     if (line.Contains("PPT LIMIT SLOW"))
                     {
-                        tdp = line;
-                        tdp = tdp.Replace("|", "");
-                        tdp = tdp.Replace("PPT LIMIT SLOW", "");
-                        tdp = tdp.Replace(" ", "");
-                        tdp = tdp.Replace("slow-limit", "");
+                        tdp = line.Replace("|", "").Replace("PPT LIMIT SLOW", "").Replace(" ", "").Replace("slow-limit", "");
                         tdp = tdp.Substring(0, tdp.IndexOf("."));
-                        tdps[1] = (int)Math.Round(Convert.ToDouble(tdp), 0);
-                        return tdps;
+                        tdpBoost = (int)Math.Round(Convert.ToDouble(tdp), 0);
                     }
                 }
             }
+        }
 
-            return tdps;
-        } 
 
-        public void changeTDP(int value)
+
+        public void ChangeSustainedTDP(int value)
         {
 
 
-            tdp = value;
+            tdpSustained = value;
+
+        }
+
+        private void ChangeAMDTDP()
+        {
+            string processRyzenAdj = "";
+            string result = "";
+            string commandArguments = "";
+            try
+            {
+                processRyzenAdj = appDir + "\\Resources\\AMD\\RyzenAdj\\ryzenadj.exe";
+
+                //set the limits one at a time to prevent crash or glitches, put 30 ms delay to prevent errors
+                commandArguments = " --stapm-limit=" + (pl1TDP * 1000).ToString();
+                result = new Run_CLI.
+                Thread.Sleep(30);
+                commandArguments = " --slow-limit=" + (pl2TDP * 1000).ToString();
+                result = Run_CLI.Run_CLI.RunCommand(commandArguments, true, processRyzenAdj);
+                Thread.Sleep(30);
+                commandArguments = " --fast-limit=" + (pl2TDP * 1000).ToString();
+                result = Run_CLI.Run_CLI.RunCommand(commandArguments, true, processRyzenAdj);
+                Thread.Sleep(30);
+                commandArguments = " --apu-slow-limit=" + (pl1TDP * 1000).ToString();
+                result = Run_CLI.Run_CLI.RunCommand(commandArguments, true, processRyzenAdj);
+                Thread.Sleep(30);
+
+
+            }
+           
+        }
+
+        public void ChangeSustainedBoostTDP(int tdp1,  int tdp2)
+        {
+
+
+        }
+        public void ChangeBoostTDP(int value)
+        {
+
+
+            tdpBoost = value;
 
         }
     }

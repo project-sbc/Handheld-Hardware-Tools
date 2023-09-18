@@ -45,7 +45,7 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
             control.Maximum = settings.maxTDP;
             control.Minimum = settings.minTDP;
 
-            control.Value = TDP_Management.Instance.ReadTDP();
+            control.Value = TDP_Management.Instance.ReadAndReturnSustainedTDP();
         }
 
         public override void HandleControllerInput(string action) 
@@ -71,12 +71,12 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
 
         private void ReadTDP()
         {
-            int tdp = TDP_Management.Instance.ReadTDP();
+            int tdp = TDP_Management.Instance.ReadAndReturnSustainedTDP();
         }
         private void ChangeTDP()
         {
             int tdp = (int)Math.Round(control.Value, 0);
-            TDP_Management.Instance.changeTDP(tdp);
+            //TDP_Management.Instance.changeTDP(tdp);
         }
     }
 }

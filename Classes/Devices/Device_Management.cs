@@ -115,9 +115,9 @@ namespace Everything_Handhelds_Tool.Classes.Devices
                     }
                     break;
             }
-            device.cpuType = cpuType;
-            device.mchBar = motherboard_Info.MCHBar(); 
-            device.cpuName = motherboard_Info.CPUName(); 
+            handheldDevice.cpuType = cpuType;
+            handheldDevice.mchBar = motherboard_Info.MCHBar();
+            handheldDevice.cpuName = motherboard_Info.CPUName(); 
 
             device = handheldDevice;
         }
