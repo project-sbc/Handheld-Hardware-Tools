@@ -45,7 +45,7 @@ namespace Everything_Handhelds_Tool.Classes
             using (StreamWriter sw = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "Settings\\Settings.xml"))
             {
                 XmlSerializer xmls = new XmlSerializer(typeof(Settings));
-                xmls.Serialize(sw, this);
+                xmls.Serialize(sw, settings);
             }
 
         }
