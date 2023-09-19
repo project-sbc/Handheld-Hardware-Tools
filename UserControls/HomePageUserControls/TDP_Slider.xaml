@@ -26,7 +26,7 @@
             </DockPanel>
 
            
-            <Slider x:Name="control" Minimum="5" Maximum="35" IsSnapToTickEnabled="True" TickFrequency="1" Margin="5,5,5,0" Thumb.DragCompleted="control_DragCompleted" Thumb.DragStarted="control_DragStarted" />
+            <Slider x:Name="control" Minimum="5" Maximum="35" IsSnapToTickEnabled="True" Interval="1" TickFrequency="1" Margin="5,5,5,0" Thumb.DragCompleted="control_DragCompleted" Thumb.DragStarted="control_DragStarted" />
         </DockPanel>
     </ui:Card>
 

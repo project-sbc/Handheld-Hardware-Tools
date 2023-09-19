@@ -32,6 +32,9 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
             //set virtual border
             borderControl = border;
 
+            //main control
+            mainControl = control;
+
             //set control
            ConfigureControl();
 
@@ -61,7 +64,7 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
         private void control_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
             dragStarted = false;
-            ChangeTDP();
+            ControlChangeValueHandler();
         }
 
         private void control_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
@@ -73,7 +76,7 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
         {
             int tdp = TDP_Management.Instance.ReadAndReturnSustainedTDP();
         }
-        private void ChangeTDP()
+        public override void ControlChangeValueHandler()
         {
             int tdp = (int)Math.Round(control.Value, 0);
             //TDP_Management.Instance.changeTDP(tdp);

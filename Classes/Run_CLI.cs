@@ -8,6 +8,29 @@ namespace Everything_Handhelds_Tool.Classes
 {
     public class Run_CLI
     {
+        private static Run_CLI _instance = null;
+        private static readonly object lockObj = new object();
+        private Run_CLI()
+        {
+        }
+        public static Run_CLI Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (lockObj)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new Run_CLI();
+                        }
+                    }
+                }
+                return _instance;
+            }
+        }
+
         public string RunCommand(string arguments, bool readOutput, string processName = "cmd.exe", int waitExit = 6000, bool runasadmin = true)
         {
             //Runs CLI, if readOutput is true then returns output
