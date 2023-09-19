@@ -99,31 +99,47 @@ namespace Everything_Handhelds_Tool.Classes
 
         public void ValidateTDPChange(int tdp1, int tdp2)
         {
-            //this makes sure you dont set tdp2 less than tdp1 and compares to settings and just makes the values line up
-            if (tdp1 > tdp2) { tdp1 = tdpSustained; }
+            //this makes sure you dont exceed min or max values
+            Settings settings = Load_Settings.Instance.LoadSettings();
+
+            if (tdp1 > settings.maxTDP) { tdp1 = settings.maxTDP; }
+            if (tdp1 < settings.minTDP) { tdp1 = settings.minTDP; }
+            if (tdp2 > settings.maxTDP) { tdp2 = settings.maxTDP; }
+            if (tdp2 < settings.minTDP) { tdp2 = settings.minTDP ; }
+
+            ChangeTDP(tdp1, tdp2);
         }
+
+        private void ChangeTDP(int tdp1, int tdp2)
+        {
+            ///keep below for the moment
+            Device device = ((MainWindow)Application.Current.MainWindow).device;
+            if (device.cpuType == "AMD")
+            {
+                ChangeAMDTDP(tdp1,tdp2);
+            }
+            if (device.cpuType == "Intel")
+            {
+
+            }
+
+        }
+
         public void ChangeBoostTDP(int value)
         {//feeder routine for just boost tdp change
+            if (tdpSustained > value) { tdpSustained = value; }
             ValidateTDPChange(tdpSustained, value);
         }
         public void ChangeSustainedBoostTDP(int tdp1, int tdp2)
         {//feeder routine for both sustained and boost tdp
+            if (tdp1 > tdp2) { tdp1 = tdp2; }
             ValidateTDPChange(tdp1, tdp2);
         }
 
         public void ChangeSustainedTDP(int value)
         {//feeder routine for sustained tdp
+            if (value > tdpBoost) { tdpBoost = value; }
             ValidateTDPChange(value, tdpBoost);
-
-            ///keep below for the moment
-            Device device = ((MainWindow)Application.Current.MainWindow).device;
-            if (device.cpuType == "AMD")
-            {
-                ChangeAMDTDP();
-            }
-
-            tdpSustained = value;
-
         }
 
         private void ChangeAMDTDP(int pl1TDP, int pl2TDP)

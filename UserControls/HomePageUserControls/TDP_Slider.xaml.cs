@@ -79,7 +79,7 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
         public override void ControlChangeValueHandler()
         {
             int tdp = (int)Math.Round(control.Value, 0);
-            //TDP_Management.Instance.changeTDP(tdp);
+            TDP_Management.Instance.ChangeSustainedTDP(tdp);
         }
     }
 }

@@ -60,6 +60,7 @@ namespace Everything_Handhelds_Tool.Classes
                 }
             }
             Settings newSettings = new Settings();
+            SaveSettings(newSettings);
             return newSettings;
         }
     }
