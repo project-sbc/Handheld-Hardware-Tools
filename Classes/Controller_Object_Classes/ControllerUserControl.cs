@@ -22,16 +22,17 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                     Slider slider = mainControl as Slider;
                     switch(action)
                     {
-                        case "Right":
+                        case "DPadRight":
                             slider.Value = slider.Value + slider.Interval; 
                             break;
-                        case "Left":
+                        case "DPadLeft":
                             slider.Value = slider.Value - slider.Interval;
                             break;
                         case "A":
                             ControlChangeValueHandler();
                             break;
                         case "B":
+                            ControlChangeValueHandler();
                             ReturnControlToPage();
                             break;
 

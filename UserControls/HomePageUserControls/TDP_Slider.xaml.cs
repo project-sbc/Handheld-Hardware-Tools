@@ -51,14 +51,11 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
             control.Value = TDP_Management.Instance.ReadAndReturnSustainedTDP();
         }
 
-        public override void HandleControllerInput(string action) 
-        { 
-                    
-        }
+     
 
         private void ControllerUserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            
+            ControlChangeValueHandler();
         }
 
         private void control_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
