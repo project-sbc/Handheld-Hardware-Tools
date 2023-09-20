@@ -112,8 +112,6 @@ namespace Everything_Handhelds_Tool.Classes
 
         #endregion
 
-
-
         #region EPP
         private int EPP = 0;
      
@@ -138,6 +136,61 @@ namespace Everything_Handhelds_Tool.Classes
             PowercfgChangeValueHandler(epp.ToString(), "PERFEPP");
             PowercfgChangeValueHandler(epp.ToString(), "PERFEPP1");
             EPP = epp;
+        }
+
+        #endregion
+
+        #region cpu clock speed set
+        private int maxCPUClock = 0;
+        private bool turboEnabled = true;
+        public bool ReadAndReturnCPUClockStatus()
+        {
+            //this routine checks max cpu clock and cpu processor speed to determine if max cpu is
+            //unlimited and if turbo is disabled
+            ReadMaxCPUClock();
+            ReadTurboEnabled();
+            if (turboEnabled && maxCPUClock == 0) { return true; }
+            else { return false; }
+        }
+
+        public int ReadAndReturnMaxCPUClock()
+        {
+            ReadMaxCPUClock();
+            return maxCPUClock;
+        }
+
+        private void ReadMaxCPUClock()
+        {
+            string result = Run_CLI.Instance.RunCommand(" -Q SCHEME_CURRENT sub_processor PROCFREQMAX", true, "C:\\windows\\system32\\powercfg.exe", 1000).Trim();
+            int value = PowercfgResultHandler(result);
+            maxCPUClock = value;
+        }
+        private void ReadTurboEnabled()
+        {
+            string result = Run_CLI.Instance.RunCommand(" -Q SCHEME_CURRENT sub_processor PROCTHROTTLEMAX", true, "C:\\windows\\system32\\powercfg.exe", 1000).Trim();
+            int value = PowercfgResultHandler(result);
+            if (value < 100)
+            {
+                turboEnabled = false;
+            }
+            else
+            {
+                turboEnabled = true;
+            }
+        }
+        public void ChangeMaxCPUClock(int value)
+        {
+            PowercfgChangeValueHandler(value.ToString(), "PROCFREQMAX");
+            maxCPUClock = value;
+        }
+        public void ChangeTurboEnabledState(bool value)
+        {
+            //Convert the bool value of enabling turbo to either 100% state for allow turbo
+            //or 99% state to disable turbo
+            int sendValue = 100;
+            if (!value) { sendValue = 99; }
+            PowercfgChangeValueHandler(sendValue.ToString(), "PROCTHROTTLEMAX");
+            turboEnabled = value;
         }
 
         #endregion
