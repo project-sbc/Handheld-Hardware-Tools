@@ -67,7 +67,7 @@
                 FocusOnLeftClick="True"
                 Visibility="Visible"
                 MenuOnRightClick="True"
-                TooltipText="WPF UI">
+                TooltipText="WPF UI" LeftClick="notifyIcon_LeftClick">
             <ui:NotifyIcon.Menu>
                 <ContextMenu >
                     <MenuItem Header="Menu item 1" />

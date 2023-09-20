@@ -407,5 +407,10 @@ namespace Everything_Handhelds_Tool
 
             frameControllerInput.Source = uri;
         }
+
+        private void notifyIcon_LeftClick(NotifyIcon sender, RoutedEventArgs e)
+        {
+            ToggleWindow();
+        }
     }
 }
