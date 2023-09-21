@@ -146,7 +146,8 @@ namespace Everything_Handhelds_Tool.Classes
         public bool ReadAndReturnCPUClockStatus()
         {
             //this routine checks max cpu clock and cpu processor speed to determine if max cpu is
-            //unlimited and if turbo is disabled
+            //unlimited and if turbo is enabled or disabled
+
             ReadMaxCPUClock();
             ReadTurboEnabled();
             if (turboEnabled && maxCPUClock == 0) { return true; }
@@ -180,6 +181,11 @@ namespace Everything_Handhelds_Tool.Classes
         }
         public void ChangeMaxCPUClock(int value)
         {
+            //when setting the max cpu clock, make sure the procthrottle max isn't 99% or less
+            //this will mess with clock limits above the base cpu frequency
+            //so call both a max cpu clock AND set procthrottlemax to 100% so that doesnt accidentally limit us
+
+            PowercfgChangeValueHandler("100", "PROCTHROTTLEMAX");
             PowercfgChangeValueHandler(value.ToString(), "PROCFREQMAX");
             maxCPUClock = value;
         }
@@ -187,8 +193,13 @@ namespace Everything_Handhelds_Tool.Classes
         {
             //Convert the bool value of enabling turbo to either 100% state for allow turbo
             //or 99% state to disable turbo
+            //MAKE SURE PROCFREQMAX IS 0!!!! changing processor max frequency is one step below enable disable turbo
+            //That will be a separate call the user will make afterward
+            //setting procthrottlemax to 99 will disable turbo regardless of max proc freq so just leave max proc freq out
+            //by setting to 0
             int sendValue = 100;
             if (!value) { sendValue = 99; }
+            PowercfgChangeValueHandler("0", "PROCFREQMAX");
             PowercfgChangeValueHandler(sendValue.ToString(), "PROCTHROTTLEMAX");
             turboEnabled = value;
         }
