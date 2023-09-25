@@ -22,6 +22,7 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
     /// </summary>
     public partial class TDP_Boost_Slider : ControllerUserControl
     {
+        private bool dragStarted = false;
         public TDP_Boost_Slider()
         {
             InitializeComponent();
@@ -43,12 +44,26 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
 
         private void control_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
-
+            dragStarted = false;
+            ControlChangeValueHandler();
         }
-
+        private void ControllerUserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            ControlChangeValueHandler();
+        }
         private void control_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
         {
+            dragStarted = true;
+        }
 
+        private void ReadTDP()
+        {
+            int tdp = TDP_Management.Instance.ReadAndReturnSustainedTDP();
+        }
+        public override void ControlChangeValueHandler()
+        {
+            int tdp = (int)Math.Round(control.Value, 0);
+            TDP_Management.Instance.ChangeBoostTDP(tdp);
         }
     }
 }

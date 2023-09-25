@@ -23,7 +23,6 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
     public partial class TDP_Slider : ControllerUserControl
     {
 
-        private bool tdpValueLoaded = false;
         private bool dragStarted = false;
         public TDP_Slider()
         {

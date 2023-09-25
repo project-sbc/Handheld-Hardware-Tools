@@ -15,25 +15,23 @@
                     <TextBlock  Text="{DynamicResource Usercontrol_TDP2}"  />
                 </Viewbox>
                 <ui:ToggleSwitch IsChecked="{Binding Path=IsExpanded, ElementName=border}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0" DockPanel.Dock="Right"/>
-
-               
+              
                
             </DockPanel>
         </ui:CardExpander.Header>
-        <Grid Height="30" VerticalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Viewbox   Grid.Column="1" VerticalAlignment="Top" >
+        <DockPanel  Height="30" Margin="0,-10,0,0">
+            <Slider  x:Name="control" Grid.Column="0" VerticalAlignment="Bottom" Minimum="5" Width="330" Maximum="35" HorizontalAlignment="Stretch"  IsSnapToTickEnabled="True" TickFrequency="1" Margin="5,-18,5,0" Thumb.DragCompleted="control_DragCompleted" Thumb.DragStarted="control_DragStarted" />
 
-                <TextBlock VerticalAlignment="Top"  Text="{Binding ElementName=control, Path=Value,StringFormat= '\{0\} W'}" />
+            <Viewbox   Grid.Column="1"   Margin="0,0,0,0" HorizontalAlignment="Right">
+
+                <TextBlock  Text="{Binding ElementName=control, Path=Value,StringFormat= '\{0\} W'}" />
 
             </Viewbox>
 
 
-            <Slider  x:Name="control" Grid.Column="0" VerticalAlignment="Center" Minimum="5"  Maximum="35" HorizontalAlignment="Stretch"  IsSnapToTickEnabled="True" TickFrequency="1" Margin="5,-18,5,0" Thumb.DragCompleted="control_DragCompleted" Thumb.DragStarted="control_DragStarted" />
-        </Grid>
+         
+        </DockPanel>
+       
     </ui:CardExpander>
 
 </classes:ControllerUserControl>

@@ -13,34 +13,9 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
     {
         public Object borderControl;
         public Object mainControl;
-        public virtual void HandleControllerInput(string action) 
-        { 
-            if (mainControl != null)
-            {
-                if (mainControl is Slider)
-                {
-                    Slider slider = mainControl as Slider;
-                    switch(action)
-                    {
-                        case "DPadRight":
-                            slider.Value = slider.Value + slider.Interval; 
-                            break;
-                        case "DPadLeft":
-                            slider.Value = slider.Value - slider.Interval;
-                            break;
-                        case "A":
-                            ControlChangeValueHandler();
-                            break;
-                        case "B":
-                            ControlChangeValueHandler();
-                            ReturnControlToPage();
-                            break;
+        public Object toggleSwitch;
 
-                        default:break; 
-                    }
-                }
-            }
-        }
+      
         public virtual void ControlChangeValueHandler() { }
         public virtual void HighlightControl() 
         { 
@@ -82,5 +57,58 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
             controllerPage.ReturnControlToPage();
         }
 
+
+        #region handling controller input
+        public virtual void HandleControllerInput(string action)
+        {
+            if (mainControl != null)
+            {
+                if (toggleSwitch != null)
+                {
+                    ToggleSwitch tS = toggleSwitch as ToggleSwitch;
+                    if (tS.IsChecked == true)
+                    {
+                        MainControlInputHandlerSwitchBoard(action);
+                    }
+                }
+                else 
+                {
+                    MainControlInputHandlerSwitchBoard(action);
+                }
+            }
+        }
+        private void MainControlInputHandlerSwitchBoard(string action)
+        {
+            switch (mainControl.GetType().ToString())
+            {
+                case "Slider":
+                    HandleSliderInput(action);
+                    break;
+
+            }
+        }
+        private void HandleSliderInput(string action)
+        {
+            Slider slider = mainControl as Slider;
+            switch (action)
+            {
+                case "DPadRight":
+                    slider.Value = slider.Value + slider.Interval;
+                    break;
+                case "DPadLeft":
+                    slider.Value = slider.Value - slider.Interval;
+                    break;
+                case "A":
+                    ControlChangeValueHandler();
+                    break;
+                case "B":
+                    ControlChangeValueHandler();
+                    ReturnControlToPage();
+                    break;
+
+                default: break;
+            }
+        }
+        #endregion
     }
 }
