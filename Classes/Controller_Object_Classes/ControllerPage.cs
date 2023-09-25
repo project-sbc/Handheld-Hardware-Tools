@@ -38,6 +38,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                         break;
                     case "A":
                         controllerNavigatePage = false;
+                        SelectUserControl();
                         break;
                     case "DPadUp" or "DPadDown":
                         HandleUserControlNavigation(action);
@@ -124,6 +125,19 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                 {
                     ControllerUserControl controllerUserControl = userControls[highlightedUserControl];
                     controllerUserControl.HighlightControl();
+                    controllerUserControl.BringIntoView();
+                }
+            }
+        }
+        public void SelectUserControl()
+        {
+            //sends highlight command to usercontrol
+            if (userControls.Count > 0)
+            {
+                if (userControls[highlightedUserControl] != null)
+                {
+                    ControllerUserControl controllerUserControl = userControls[highlightedUserControl];
+                    controllerUserControl.SelectControl();
                     controllerUserControl.BringIntoView();
                 }
             }

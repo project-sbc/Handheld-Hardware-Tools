@@ -28,7 +28,8 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
             InitializeComponent();
             //set virtual border
             borderControl = border;
-
+            mainControl = control;
+            toggleSwitchControl = toggleSwitch;
             //set control
             ConfigureControl();
         }

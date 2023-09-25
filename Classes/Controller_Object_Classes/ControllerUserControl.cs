@@ -13,13 +13,29 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
     {
         public Object borderControl;
         public Object mainControl;
-        public Object toggleSwitch;
+        public Object toggleSwitchControl;
 
       
         public virtual void ControlChangeValueHandler() { }
         public virtual void HighlightControl() 
         { 
             if (borderControl != null) 
+            {
+                if (borderControl is Wpf.Ui.Controls.Card)
+                {
+                    Card card = (Card)borderControl;
+                    card.BorderBrush = System.Windows.Media.Brushes.Gray;
+                }
+                if (borderControl is Wpf.Ui.Controls.CardExpander)
+                {
+                    CardExpander card = (CardExpander)borderControl;
+                    card.BorderBrush = System.Windows.Media.Brushes.Gray;
+                }
+            }
+        }
+        public virtual void SelectControl()
+        {
+            if (borderControl != null)
             {
                 if (borderControl is Wpf.Ui.Controls.Card)
                 {
@@ -33,7 +49,6 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                 }
             }
         }
-
         public virtual void UnhighlightControl() 
         {
             if (borderControl != null)
@@ -52,9 +67,11 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
         }
         public void ReturnControlToPage() 
         {
+            HighlightControl();
             MainWindow wnd = (MainWindow)Application.Current.MainWindow;
             ControllerPage controllerPage = wnd.frame.Content as ControllerPage;
             controllerPage.ReturnControlToPage();
+            
         }
 
 
@@ -63,9 +80,14 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
         {
             if (mainControl != null)
             {
-                if (toggleSwitch != null)
+                if (action == "B")
                 {
-                    ToggleSwitch tS = toggleSwitch as ToggleSwitch;
+                    ReturnControlToPage();
+                }
+
+                if (toggleSwitchControl != null)
+                {
+                    ToggleSwitch tS = toggleSwitchControl as ToggleSwitch;
                     if (tS.IsChecked == true)
                     {
                         MainControlInputHandlerSwitchBoard(action);
@@ -79,13 +101,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
         }
         private void MainControlInputHandlerSwitchBoard(string action)
         {
-            switch (mainControl.GetType().ToString())
-            {
-                case "Slider":
-                    HandleSliderInput(action);
-                    break;
-
-            }
+            if (mainControl is Slider) { HandleSliderInput(action); }
         }
         private void HandleSliderInput(string action)
         {
@@ -103,7 +119,6 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                     break;
                 case "B":
                     ControlChangeValueHandler();
-                    ReturnControlToPage();
                     break;
 
                 default: break;
