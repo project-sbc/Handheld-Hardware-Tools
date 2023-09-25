@@ -9,18 +9,22 @@
       mc:Ignorable="d" 
         xmlns:uc="clr-namespace:Everything_Handhelds_Tool.UserControls.HomePageUserControls"
       Title="HomePage"     
-             
+                 xmlns:UpperCase="clr-namespace:Everything_Handhelds_Tool.Classes.Converters"
                         
                         >
 
     <Grid >
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="40" />
             <RowDefinition  />
            
        
         </Grid.RowDefinitions>
-       
+        <Viewbox  VerticalAlignment="Top" HorizontalAlignment="Left"   >
+
+            <TextBlock Text="HOME" />
+
+        </Viewbox>
 
         <ScrollViewer Grid.Row="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Auto">
             <StackPanel  x:Name="stackPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
