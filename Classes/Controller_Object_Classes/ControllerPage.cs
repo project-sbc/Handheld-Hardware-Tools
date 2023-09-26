@@ -28,13 +28,13 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                         UnhighlightUserControl();
                         ReturnControlToWindow();
                         //change controller input to SelectHide for window control
-                        General_Functions.ChangeControllerInputPage("SelectHide");
+                        General_Functions.ChangeControllerInstructionPage("SelectHide");
                         break;
                     case "Highlight First Control":
                         //This is when the page first gains controller input, highlight the first UC to show it has control
                         highlightedUserControl = 0;
                         HighlightUserControl();
-                        General_Functions.ChangeControllerInputPage("SelectBack");
+                        General_Functions.ChangeControllerInstructionPage("SelectBack");
                         break;
                     case "A":
                         controllerNavigatePage = false;
@@ -74,6 +74,8 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
         {
             //call this routine from the usercontrol to return to page control
             controllerNavigatePage = true;
+            //put controller instruction back
+            General_Functions.ChangeControllerInstructionPage("SelectBack");
         }
         public List<ControllerUserControl> userControls = new List<ControllerUserControl>();
 

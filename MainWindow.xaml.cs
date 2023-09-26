@@ -391,19 +391,31 @@ namespace Everything_Handhelds_Tool
 
         public void SetControllerInputPage(string pageName)
         {
+            //Sets the controller instruction on the bottom of the page
+            //If controller is not connected the uri should be null to make the instruction disappear
             Uri uri = null;
-
-            switch (pageName)
+            //if the controller icon, which updates based on controller connection, is visible, then change instruction
+            if (controllerStatusBarIcon.Visibility == Visibility.Visible)
             {
-                case "SelectBack":
-                    uri = new Uri("ControllerInstructionPages\\SelectBack.xaml", UriKind.Relative);
-                    break;
-                case "SelectHide":
-                    uri = new Uri("ControllerInstructionPages\\SelectHide.xaml", UriKind.Relative);
-                    break;
-                default:
-                    break;
+                switch (pageName)
+                {
+                    case "SelectBack":
+                        uri = new Uri("ControllerInstructionPages\\SelectBack.xaml", UriKind.Relative);
+                        break;
+                    case "SelectHide":
+                        uri = new Uri("ControllerInstructionPages\\SelectHide.xaml", UriKind.Relative);
+                        break;
+                    case "ChangeBack":
+                        uri = new Uri("ControllerInstructionPages\\ChangeBack.xaml", UriKind.Relative);
+                        break;
+                    case "ToggleBack":
+                        uri = new Uri("ControllerInstructionPages\\ToggleBack.xaml", UriKind.Relative);
+                        break;
+                    default:
+                        break;
+                }
             }
+         
 
             frameControllerInput.Source = uri;
         }

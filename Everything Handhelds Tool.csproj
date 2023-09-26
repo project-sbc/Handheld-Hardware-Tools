@@ -145,6 +145,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="ControllerInstructionPages\ChangeBack.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ControllerInstructionPages\ToggleBack.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ControllerInstructionPages\SelectHide.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -154,6 +160,12 @@
     <Compile Update="UserControls\HomePageUserControls\TDP_Boost_Slider.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="ControllerInstructionPages\ChangeBack.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

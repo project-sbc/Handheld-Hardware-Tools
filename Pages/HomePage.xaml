@@ -20,11 +20,15 @@
            
        
         </Grid.RowDefinitions>
-        <Viewbox  VerticalAlignment="Top" HorizontalAlignment="Left"   >
+        <StackPanel Orientation="Horizontal" >
+            <ui:SymbolIcon Symbol="Home16" Filled="True" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" Margin="0,0,10,0"  FontSize="33"/>
+            <Viewbox   VerticalAlignment="Bottom" HorizontalAlignment="Left"   >
 
-            <TextBlock Text="HOME" />
+                <TextBlock VerticalAlignment="Bottom"  Text="HOME" />
 
-        </Viewbox>
+            </Viewbox>
+        </StackPanel>
+       
 
         <ScrollViewer Grid.Row="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Auto">
             <StackPanel  x:Name="stackPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >

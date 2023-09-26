@@ -17,6 +17,8 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
 
       
         public virtual void ControlChangeValueHandler() { }
+
+        public virtual void ChangeMainWindowControllerInstructionPage() { }
         public virtual void HighlightControl() 
         { 
             if (borderControl != null) 
@@ -47,6 +49,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                     CardExpander card = (CardExpander)borderControl;
                     card.BorderBrush = System.Windows.Media.Brushes.White;
                 }
+                ChangeMainWindowControllerInstructionPage();
             }
         }
         public virtual void UnhighlightControl() 

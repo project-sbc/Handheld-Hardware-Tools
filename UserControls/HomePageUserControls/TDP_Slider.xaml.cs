@@ -38,7 +38,10 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
            ConfigureControl();
 
         }
-
+        public override void ChangeMainWindowControllerInstructionPage()
+        {
+            General_Functions.ChangeControllerInstructionPage("ChangeBack");
+        }
 
         private void ConfigureControl()
         {

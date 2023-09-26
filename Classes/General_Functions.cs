@@ -49,7 +49,7 @@ namespace Everything_Handhelds_Tool.Classes
             return uri;
         }
       
-        public static void ChangeControllerInputPage(string pageName)
+        public static void ChangeControllerInstructionPage(string pageName)
         {
             //serves as a intermediary function to mainwindow 
             if (Application.Current.MainWindow != null)

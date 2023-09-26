@@ -66,5 +66,10 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
             int tdp = (int)Math.Round(control.Value, 0);
             TDP_Management.Instance.ChangeBoostTDP(tdp);
         }
+
+        public override void ChangeMainWindowControllerInstructionPage()
+        {
+            General_Functions.ChangeControllerInstructionPage("ToggleBack");
+        }
     }
 }
