@@ -20,6 +20,7 @@
     <Style TargetType="Border" x:Key="userControlBorder" >
         <Setter Property="BorderThickness" Value="2" />
         <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="CornerRadius" Value="5"/>
     </Style>
 
     <!--#endregion-->

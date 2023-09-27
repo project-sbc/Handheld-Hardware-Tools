@@ -7,7 +7,7 @@
              xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                                mc:Ignorable="d" 
             Height="Auto"  Margin="0,0,0,3">
-    <Border x:Name="border" BorderThickness="2" BorderBrush="Transparent" CornerRadius="5" >
+    <Border x:Name="border" Style="{StaticResource userControlBorder}" >
         <ui:CardExpander  VerticalAlignment="Top" x:Name="card"  ExpandDirection="Down" >
             <ui:CardExpander.Header >
                 <DockPanel   >
