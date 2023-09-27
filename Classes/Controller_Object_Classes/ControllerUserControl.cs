@@ -24,15 +24,10 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
         { 
             if (borderControl != null) 
             {
-                if (borderControl is Wpf.Ui.Controls.Card)
+                if (borderControl is Border)
                 {
-                    Card card = (Card)borderControl;
-                    card.BorderBrush = System.Windows.Media.Brushes.Gray;
-                }
-                if (borderControl is Wpf.Ui.Controls.CardExpander)
-                {
-                    CardExpander card = (CardExpander)borderControl;
-                    card.BorderBrush = System.Windows.Media.Brushes.Gray;
+                    Border border = (Border)borderControl;
+                    border.BorderBrush = System.Windows.Media.Brushes.Gray;
                 }
             }
         }
@@ -40,15 +35,10 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
         {
             if (borderControl != null)
             {
-                if (borderControl is Wpf.Ui.Controls.Card)
+                if (borderControl is Border)
                 {
-                    Card card = (Card)borderControl;
-                    card.BorderBrush = System.Windows.Media.Brushes.White;
-                }
-                if (borderControl is Wpf.Ui.Controls.CardExpander)
-                {
-                    CardExpander card = (CardExpander)borderControl;
-                    card.BorderBrush = System.Windows.Media.Brushes.White;
+                    Border border = (Border)borderControl;
+                    border.BorderBrush = System.Windows.Media.Brushes.White;
                 }
                 ChangeMainWindowControllerInstructionPage();
             }
@@ -57,15 +47,10 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
         {
             if (borderControl != null)
             {
-                if (borderControl is Wpf.Ui.Controls.Card)
+                if (borderControl is Border)
                 {
-                    Card card = (Card)borderControl;
-                    card.BorderBrush = System.Windows.Media.Brushes.Transparent;
-                }
-                if (borderControl is Wpf.Ui.Controls.CardExpander)
-                {
-                    CardExpander card = (CardExpander)borderControl;
-                    card.BorderBrush = System.Windows.Media.Brushes.Transparent;
+                    Border border = (Border)borderControl;
+                    border.BorderBrush = System.Windows.Media.Brushes.Transparent;
                 }
             }
         }
@@ -95,6 +80,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                     if (action == "X")
                     {
                         tS.IsChecked = !tS.IsChecked;
+                        ChangeMainWindowControllerInstructionPage();
                     }
                     else
                     {

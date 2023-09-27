@@ -151,10 +151,10 @@
     <Compile Update="ControllerInstructionPages\ToggleBack.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="ControllerInstructionPages\SelectHide.xaml.cs">
+    <Compile Update="ControllerInstructionPages\ChangeToggleBack.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserControls\HomePageUserControls\Max_CPU_Slider.xaml.cs">
+    <Compile Update="ControllerInstructionPages\SelectHide.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UserControls\HomePageUserControls\TDP_Boost_Slider.xaml.cs">

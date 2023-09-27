@@ -32,7 +32,7 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
             borderControl = border;
 
             //main control
-            mainControl = control;
+            mainControl = slider;
 
             //set control
            ConfigureControl();
@@ -47,10 +47,10 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
         {
             Settings settings = Load_Settings.Instance.LoadSettings();
 
-            control.Maximum = settings.maxTDP;
-            control.Minimum = settings.minTDP;
+            slider.Maximum = settings.maxTDP;
+            slider.Minimum = settings.minTDP;
 
-            control.Value = TDP_Management.Instance.ReadAndReturnSustainedTDP();
+            slider.Value = TDP_Management.Instance.ReadAndReturnSustainedTDP();
         }
 
      
@@ -77,7 +77,7 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
         }
         public override void ControlChangeValueHandler()
         {
-            int tdp = (int)Math.Round(control.Value, 0);
+            int tdp = (int)Math.Round(slider.Value, 0);
             TDP_Management.Instance.ChangeSustainedTDP(tdp);
         }
     }

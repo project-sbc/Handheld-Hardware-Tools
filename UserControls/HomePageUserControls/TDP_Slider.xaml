@@ -7,27 +7,30 @@
              xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                                mc:Ignorable="d" 
             Height="90"  Margin="0,0,0,3" Unloaded="ControllerUserControl_Unloaded">
-    <ui:Card VerticalAlignment="Center" x:Name="border" BorderBrush="Transparent"  BorderThickness="2">
-      
-        <DockPanel >
-            <DockPanel  DockPanel.Dock="Top" Margin="0,-5,0,0">
-                <ui:SymbolIcon x:Name="controllerStatusBarIcon" Symbol="DeveloperBoardLightning20" FontSize="30" Margin="0,0,8,0"  VerticalAlignment="Top"   />
-                <Viewbox Height="30" VerticalAlignment="Center"  HorizontalAlignment="Left" >
-                    <TextBlock Text="{DynamicResource Usercontrol_TDP}"  />
-                </Viewbox>
+    <Border Style="{StaticResource userControlBorder}" Name="border">
+        <ui:Card VerticalAlignment="Center" x:Name="card" >
 
-                <Viewbox Height="30" VerticalAlignment="Center" HorizontalAlignment="Right"  DockPanel.Dock="Right" >
+            <DockPanel >
+                <DockPanel  DockPanel.Dock="Top" Margin="0,-5,0,0">
+                    <ui:SymbolIcon x:Name="controllerStatusBarIcon" Symbol="DeveloperBoardLightning20" FontSize="30" Margin="0,0,8,0"  VerticalAlignment="Top"   />
+                    <Viewbox Height="30" VerticalAlignment="Center"  HorizontalAlignment="Left" >
+                        <TextBlock Text="{DynamicResource Usercontrol_TDP}"  />
+                    </Viewbox>
 
-                    <TextBlock Text="{Binding ElementName=control, Path=Value,StringFormat= '\{0\} W'}" />
+                    <Viewbox Height="30" VerticalAlignment="Center" HorizontalAlignment="Right"  DockPanel.Dock="Right" >
 
-                </Viewbox>
+                        <TextBlock Text="{Binding ElementName=slider, Path=Value,StringFormat= '\{0\} W'}" />
+
+                    </Viewbox>
 
 
+                </DockPanel>
+
+
+                <Slider x:Name="slider" Minimum="5" Maximum="35" IsSnapToTickEnabled="True" Interval="1" TickFrequency="1" Margin="5,5,5,0" Thumb.DragCompleted="control_DragCompleted" Thumb.DragStarted="control_DragStarted" />
             </DockPanel>
+        </ui:Card>
 
-           
-            <Slider x:Name="control" Minimum="5" Maximum="35" IsSnapToTickEnabled="True" Interval="1" TickFrequency="1" Margin="5,5,5,0" Thumb.DragCompleted="control_DragCompleted" Thumb.DragStarted="control_DragStarted" />
-        </DockPanel>
-    </ui:Card>
-
+    </Border>
+    
 </classes:ControllerUserControl>

@@ -1,5 +1,4 @@
-﻿using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,23 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
+namespace Everything_Handhelds_Tool.ControllerInputPages
 {
     /// <summary>
-    /// Interaction logic for TDP_Slider.xaml
+    /// Interaction logic for UpDownSelectBack.xaml
     /// </summary>
-    public partial class Max_CPU_Slider : ControllerUserControl
+    public partial class ChangeToggleBack : Page
     {
-        public Max_CPU_Slider()
+        public ChangeToggleBack()
         {
             InitializeComponent();
-            borderControl = border;
         }
-
-
-    
-
     }
-   
-
 }

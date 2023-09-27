@@ -69,7 +69,14 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
 
         public override void ChangeMainWindowControllerInstructionPage()
         {
-            General_Functions.ChangeControllerInstructionPage("ToggleBack");
+            if (toggleSwitch.IsChecked == true)
+            {
+                General_Functions.ChangeControllerInstructionPage("ChangeToggleBack");
+            }
+            else
+            {
+                General_Functions.ChangeControllerInstructionPage("ToggleBack");
+            }
         }
     }
 }

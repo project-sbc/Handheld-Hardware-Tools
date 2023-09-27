@@ -7,31 +7,34 @@
              xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                                mc:Ignorable="d" 
             Height="Auto"  Margin="0,0,0,3">
-    <ui:CardExpander  VerticalAlignment="Top" x:Name="border" BorderBrush="Transparent"  BorderThickness="2" ExpandDirection="Down" >
-        <ui:CardExpander.Header>
-            <DockPanel   >
-                <ui:SymbolIcon x:Name="controllerStatusBarIcon" Symbol="DeveloperBoardLightning20" FontSize="30" Margin="0,0,8,0"  VerticalAlignment="Top"   />
-                <Viewbox Height="30" VerticalAlignment="Center"  HorizontalAlignment="Left" >
-                    <TextBlock  Text="{DynamicResource Usercontrol_TDP2}"  />
+    <Border x:Name="border" BorderThickness="2" BorderBrush="Transparent" CornerRadius="5" >
+        <ui:CardExpander  VerticalAlignment="Top" x:Name="card"  ExpandDirection="Down" >
+            <ui:CardExpander.Header >
+                <DockPanel   >
+                    <ui:SymbolIcon x:Name="controllerStatusBarIcon" Symbol="DeveloperBoardLightning20" FontSize="30" Margin="0,0,8,0"  VerticalAlignment="Top"   />
+                    <Viewbox Height="30" VerticalAlignment="Center"  HorizontalAlignment="Left" >
+                        <TextBlock  Text="{DynamicResource Usercontrol_TDP2}"  />
+                    </Viewbox>
+                    <ui:ToggleSwitch x:Name="toggleSwitch" IsChecked="{Binding Path=IsExpanded, ElementName=card}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0" DockPanel.Dock="Right"/>
+
+
+                </DockPanel>
+            </ui:CardExpander.Header>
+            <DockPanel  Height="30" Margin="0,-10,0,0">
+                <Slider  x:Name="control" Grid.Column="0" Interval="1" VerticalAlignment="Bottom" Minimum="5" Width="330" Maximum="35" HorizontalAlignment="Stretch"  IsSnapToTickEnabled="True" TickFrequency="1" Margin="5,-18,5,0" Thumb.DragCompleted="control_DragCompleted" Thumb.DragStarted="control_DragStarted" />
+
+                <Viewbox   Grid.Column="1"   Margin="0,0,0,0" HorizontalAlignment="Right">
+
+                    <TextBlock  Text="{Binding ElementName=control, Path=Value,StringFormat= '\{0\} W'}" />
+
                 </Viewbox>
-                <ui:ToggleSwitch x:Name="toggleSwitch" IsChecked="{Binding Path=IsExpanded, ElementName=border}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0" DockPanel.Dock="Right"/>
-              
-               
+
+
+
             </DockPanel>
-        </ui:CardExpander.Header>
-        <DockPanel  Height="30" Margin="0,-10,0,0">
-            <Slider  x:Name="control" Grid.Column="0" Interval="1" VerticalAlignment="Bottom" Minimum="5" Width="330" Maximum="35" HorizontalAlignment="Stretch"  IsSnapToTickEnabled="True" TickFrequency="1" Margin="5,-18,5,0" Thumb.DragCompleted="control_DragCompleted" Thumb.DragStarted="control_DragStarted" />
 
-            <Viewbox   Grid.Column="1"   Margin="0,0,0,0" HorizontalAlignment="Right">
-
-                <TextBlock  Text="{Binding ElementName=control, Path=Value,StringFormat= '\{0\} W'}" />
-
-            </Viewbox>
-
-
-         
-        </DockPanel>
-       
-    </ui:CardExpander>
+        </ui:CardExpander>
+    </Border>
+   
 
 </classes:ControllerUserControl>

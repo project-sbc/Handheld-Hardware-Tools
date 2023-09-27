@@ -408,6 +408,9 @@ namespace Everything_Handhelds_Tool
                     case "ChangeBack":
                         uri = new Uri("ControllerInstructionPages\\ChangeBack.xaml", UriKind.Relative);
                         break;
+                    case "ChangeToggleBack":
+                        uri = new Uri("ControllerInstructionPages\\ChangeToggleBack.xaml", UriKind.Relative);
+                        break;
                     case "ToggleBack":
                         uri = new Uri("ControllerInstructionPages\\ToggleBack.xaml", UriKind.Relative);
                         break;

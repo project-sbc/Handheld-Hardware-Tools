@@ -38,8 +38,12 @@ namespace Everything_Handhelds_Tool.Pages
                 if (hpi.UserControlVisible)
                 {
                     ControllerUserControl controllerUserControl = ReturnUserControlByName(hpi.UserControlName);
-                    stackPanel.Children.Add(controllerUserControl);
-                    userControls.Add(controllerUserControl);
+                    if (controllerUserControl != null)
+                    {
+                        stackPanel.Children.Add(controllerUserControl);
+                        userControls.Add(controllerUserControl);
+                    }
+
                 }
             }
 
@@ -55,9 +59,7 @@ namespace Everything_Handhelds_Tool.Pages
                     return new TDP_Slider();
                 case "TDP_Boost_Slider":
                     return new TDP_Boost_Slider();
-                case "Max_CPU_Slider":
-                    return new Max_CPU_Slider();
-
+               
                 default:
                     return null;
             }
