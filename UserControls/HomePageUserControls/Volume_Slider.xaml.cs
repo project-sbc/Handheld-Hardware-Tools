@@ -39,7 +39,7 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
             if (volume >= 0)
             {
                 control.Value = volume;
-                toggleSwitch.IsChecked = Volume_Management.Instance.ReadAndReturnVolumeMute();
+                toggleSwitch.IsChecked = !Volume_Management.Instance.ReadAndReturnVolumeMute();
                 
             }
             else
@@ -71,25 +71,30 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
             //set mute
             if (toggleSwitch.IsChecked == true)
             {
-                Volume_Management.Instance.SetMasterVolumeMute(true);
+                
             }
             else
             {
-                Volume_Management.Instance.SetMasterVolumeMute(false);
+                
             }
 
         }
 
         public override void ChangeMainWindowControllerInstructionPage()
         {
-            if (toggleSwitch.IsChecked == true)
-            {
-                General_Functions.ChangeControllerInstructionPage("ChangeToggleBack");
-            }
-            else
-            {
-                General_Functions.ChangeControllerInstructionPage("ToggleBack");
-            }
+            General_Functions.ChangeControllerInstructionPage("ChangeToggleBack");
+        }
+
+        private void toggleSwitch_Checked(object sender, RoutedEventArgs e)
+        {
+            Volume_Management.Instance.SetMasterVolumeMute(false);
+            statusIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Speaker216;
+        }
+
+        private void toggleSwitch_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Volume_Management.Instance.SetMasterVolumeMute(true);
+            statusIcon.Symbol = Wpf.Ui.Common.SymbolRegular.SpeakerMute16;
         }
     }
 }

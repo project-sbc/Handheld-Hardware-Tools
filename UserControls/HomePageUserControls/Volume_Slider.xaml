@@ -15,13 +15,13 @@
                     <Viewbox Height="30" VerticalAlignment="Center"  HorizontalAlignment="Left" >
                         <TextBlock  Text="{DynamicResource Usercontrol_Volume}"  />
                     </Viewbox>
-                    <ui:ToggleSwitch x:Name="toggleSwitch"  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0" DockPanel.Dock="Right"/>
+                    <ui:ToggleSwitch x:Name="toggleSwitch"  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0" DockPanel.Dock="Right" Checked="toggleSwitch_Checked" Unchecked="toggleSwitch_Unchecked"   />
 
 
                 </DockPanel>
             </ui:CardExpander.Header>
             <DockPanel  Height="30" Margin="0,-10,0,0">
-                <Slider  x:Name="control" Grid.Column="0" Interval="1" VerticalAlignment="Bottom" Minimum="5" Width="330" Maximum="35" HorizontalAlignment="Stretch"  IsSnapToTickEnabled="True" TickFrequency="1" Margin="5,-18,5,0" Thumb.DragCompleted="control_DragCompleted" Thumb.DragStarted="control_DragStarted" />
+                <Slider  x:Name="control" Grid.Column="0" Interval="5" VerticalAlignment="Bottom" Minimum="0" Width="330" Maximum="100" HorizontalAlignment="Stretch"  IsSnapToTickEnabled="True" TickFrequency="1" Margin="5,-18,5,0" Thumb.DragCompleted="control_DragCompleted" Thumb.DragStarted="control_DragStarted" />
 
                 <Viewbox   Grid.Column="1"   Margin="0,0,0,0" HorizontalAlignment="Right">
 

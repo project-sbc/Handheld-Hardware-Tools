@@ -61,6 +61,8 @@ namespace Everything_Handhelds_Tool.Pages
                     return new TDP_Boost_Slider();
                 case "Brightness_Slider":
                     return new Brightness_Slider();
+                case "Volume_Slider":
+                    return new Volume_Slider();
                 default:
                     return null;
             }
