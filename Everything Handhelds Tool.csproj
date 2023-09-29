@@ -157,6 +157,9 @@
     <Compile Update="ControllerInstructionPages\SelectHide.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControls\HomePageUserControls\Volume_Slider.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\HomePageUserControls\TDP_Boost_Slider.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

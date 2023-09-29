@@ -43,6 +43,12 @@ namespace Everything_Handhelds_Tool.Classes
             GetMasterVolume();
             return volume;
         }
+
+        public bool ReadAndReturnVolumeMute()
+        {
+            GetMasterVolumeMute();
+            return volumeMuted;
+        }
         #region Master Volume Manipulation
 
         /// <summary>
