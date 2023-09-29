@@ -15,7 +15,7 @@ namespace Everything_Handhelds_Tool.Models.DefaultModels
         {
             this.Add("TDP_Slider", true);
             this.Add("TDP_Boost_Slider", true);
-            this.Add("Max_CPU_Slider", true);
+            this.Add("Brightness_Slider", true);
         }
 
     }

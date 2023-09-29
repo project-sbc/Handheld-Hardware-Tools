@@ -42,7 +42,7 @@ namespace Everything_Handhelds_Tool.Models.DefaultModels
         
         public void SaveToXML()
         {
-            XML_Management.Save_XML("UserConfiguration\\HomePage\\HomePage.xml", "CompleteHomePageList", this);
+            XML_Management.Instance.Save_XML("UserConfiguration\\HomePage\\HomePage.xml", "CompleteHomePageList", this);
         }
 
     }

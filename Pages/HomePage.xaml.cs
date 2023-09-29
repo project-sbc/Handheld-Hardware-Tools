@@ -30,7 +30,7 @@ namespace Everything_Handhelds_Tool.Pages
         public void AddUserControlsToStackPanel()
         {
             //Get the XML list from the UserConfiguration folder for what controls go on the home page
-            CompleteHomePageList chpl = (CompleteHomePageList)XML_Management.Load_XML("UserConfiguration\\HomePage\\HomePage.xml", "CompleteHomePageList");
+            CompleteHomePageList chpl = (CompleteHomePageList)XML_Management.Instance.Load_XML("UserConfiguration\\HomePage\\HomePage.xml", "CompleteHomePageList");
 
             //loop through and add the usercontrols
             foreach (HomePageItem hpi in chpl)
@@ -59,7 +59,8 @@ namespace Everything_Handhelds_Tool.Pages
                     return new TDP_Slider();
                 case "TDP_Boost_Slider":
                     return new TDP_Boost_Slider();
-               
+                case "Brightness_Slider":
+                    return new Brightness_Slider();
                 default:
                     return null;
             }

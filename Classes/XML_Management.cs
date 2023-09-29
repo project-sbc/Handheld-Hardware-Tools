@@ -9,17 +9,41 @@ using System.Xml.Serialization;
 
 namespace Everything_Handhelds_Tool.Classes
 {
-    public static class XML_Management
+    public class XML_Management
     {
-        private static string directory = AppDomain.CurrentDomain.BaseDirectory;
-        private static object lockObject = new object();
+        private static XML_Management _instance = null;
+        private static readonly object lockObj = new object();
+        private XML_Management()
+        {
+        }
+        public static XML_Management Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (lockObj)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new XML_Management();
+                        }
+                    }
+                }
+                return _instance;
+            }
+        }
 
-        public static void Save_XML(string folderFileName, string objType, object objClass)
+
+        public string directory = AppDomain.CurrentDomain.BaseDirectory;
+        private object lockObject = new object();
+
+        public void Save_XML(string folderFileName, string objType, object objClass)
         {
             CheckDirectoryExistsOrCreate(directory + folderFileName);
             WriteXMLToFile(folderFileName, objType, objClass);
         }
-        private static void CheckDirectoryExistsOrCreate(string folder)
+        private void CheckDirectoryExistsOrCreate(string folder)
         {
             //checks for directory, if it doesnt exist make it. FIrst check for upperfolder UserConfiguration then check for next level folder
             if (!Directory.Exists(directory + "UserConfiguration"))
@@ -31,7 +55,7 @@ namespace Everything_Handhelds_Tool.Classes
                 Directory.CreateDirectory(Path.GetDirectoryName(folder));
             }
         }
-        private static void WriteXMLToFile(string folderFileName, string objType, object objClass)
+        private void WriteXMLToFile(string folderFileName, string objType, object objClass)
         {
             lock (lockObject)
             {
@@ -52,7 +76,7 @@ namespace Everything_Handhelds_Tool.Classes
             }
         }
 
-        public static object Load_XML(string folderFileName, string objType)
+        public object Load_XML(string folderFileName, string objType)
         {
             string filePath = directory + folderFileName;
             object objObject = null;

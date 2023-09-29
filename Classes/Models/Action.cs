@@ -9,7 +9,7 @@ namespace Everything_Handhelds_Tool.Classes.Models
     public class Action
     {
         string actionName;
-        string 
+   
 
 
     }

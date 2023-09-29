@@ -20,11 +20,11 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
     /// <summary>
     /// Interaction logic for TDP_Slider.xaml
     /// </summary>
-    public partial class TDP_Slider : ControllerUserControl
+    public partial class Brightness_Slider : ControllerUserControl
     {
 
         private bool dragStarted = false;
-        public TDP_Slider()
+        public Brightness_Slider()
         {
             InitializeComponent();
 
@@ -45,12 +45,11 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
 
         private void ConfigureControl()
         {
-            Settings settings = Load_Settings.Instance.LoadSettings();
-
-            slider.Maximum = settings.maxTDP;
-            slider.Minimum = settings.minTDP;
-
-            slider.Value = TDP_Management.Instance.ReadAndReturnSustainedTDP();
+            if (Brightness_Management.Instance.IsDisplayBrightnessControllable())
+            {
+                slider.Value = Brightness_Management.Instance.ReturnBrightness();
+            }
+            else { this.Visibility = Visibility.Collapsed; }
         }
 
      
@@ -71,11 +70,11 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
             dragStarted = true;
         }
 
-     
+      
         public override void ControlChangeValueHandler()
         {
-            int tdp = (int)Math.Round(slider.Value, 0);
-            TDP_Management.Instance.ChangeSustainedTDP(tdp);
+            int brightness = (int)Math.Round(slider.Value, 0);
+            Brightness_Management.Instance.SetBrightness(brightness);
         }
     }
 }
