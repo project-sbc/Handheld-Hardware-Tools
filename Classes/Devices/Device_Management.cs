@@ -45,7 +45,7 @@ namespace Everything_Handhelds_Tool.Classes.Devices
                     switch (product)
                     {
                         case "ONEXPLAYER 2 ARP23":
-                            //handheldDevice = new OneXPlayer2();
+                            handheldDevice = new ON_One_X_Player_2();
                             break;
                         case "V01":
                             //handheldDevice = new OneXPlayerMiniAMD();
