@@ -33,6 +33,8 @@ namespace Everything_Handhelds_Tool
             //run start up
             InitializeRoutines();
 
+
+            Wifi_Management.Instance.StartWifi();
         }
         #region Set up
         private void InitializeRoutines() 
