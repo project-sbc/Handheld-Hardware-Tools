@@ -48,6 +48,7 @@
     <None Remove="Resources\RTSS\RTSSHooks64.dll" />
     <None Remove="Resources\RTSS\RTSSSharedMemoryNET.dll" />
     <None Remove="Resources\SetDPI\SetDpi.exe" />
+    <None Remove="Resources\WifiDirect\WiFiDirectLegacyAP.exe" />
     <None Remove="Resources\WifiDirect\WiFiDirectLegacyAPDemo.exe" />
   </ItemGroup>
 
@@ -137,10 +138,7 @@
     <Content Include="Resources\SetDPI\SetDpi.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Resources\WifiDirect\WiFiDirectLegacyAPDemo.exe">
+    <Content Include="Resources\WifiDirect\WiFiDirectLegacyAP.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
