@@ -32,6 +32,7 @@
 
         <ScrollViewer Grid.Row="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Auto">
             <StackPanel  x:Name="stackPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <uc:CloseProgram_Button />
                 <uc:ShutDown_Button/>
                 <uc:Restart_Button/>
             </StackPanel>

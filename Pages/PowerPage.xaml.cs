@@ -29,13 +29,9 @@ namespace Everything_Handhelds_Tool.Pages
 
         private void AddControlsToArray()
         {
-            foreach (object child in stackPanel.Children)
-            {
-                if (child != null)
-                {
-                    userControls.Add((ControllerUserControl)child);
-                }
-            }
+            //There is a general function that searches the stack panel and adds to the list of ControllerUserControls. It makes sure
+            //visibility isn't collapsed too
+            userControls= General_Functions.SearchStackPanelReturnArray(stackPanel);
         }
 
 

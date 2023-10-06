@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -94,6 +95,30 @@ namespace Everything_Handhelds_Tool.Classes
                     listView.SelectedIndex = 0;
                 }
             }
+
+        }
+
+
+        public static List<ControllerUserControl> SearchStackPanelReturnArray(StackPanel stackPanel)
+        {
+            List<ControllerUserControl> controllerUserControls = new List<ControllerUserControl>();
+
+            if (stackPanel != null)
+            {
+                foreach(object child in stackPanel.Children)
+                {
+                    ControllerUserControl controllerUserControl = (ControllerUserControl)child;
+                    if (controllerUserControl.Visibility == Visibility.Visible)
+                    {
+                        controllerUserControls.Add(controllerUserControl);
+                    }
+
+                }
+            }
+
+
+            return controllerUserControls;
+
 
         }
 
