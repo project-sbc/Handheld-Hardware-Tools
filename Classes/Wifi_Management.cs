@@ -41,11 +41,17 @@ namespace Everything_Handhelds_Tool.Classes
         private string appDir = AppDomain.CurrentDomain.BaseDirectory;
         public void StartWifi()
         {
-            
+            CheckAPExeIsRunning();
+            S
+        }
+
+        private void StartWifiExe()
+        {
+            //If wifiDirectProcess is null use this to start the wifi process
             if (wifiDirectProcess == null)
             {
                 ProcessStartInfo psf = new System.Diagnostics.ProcessStartInfo();
-                psf.FileName = appDir + "\\Resources\\WifiDirect\\WifiDirectLegacyAPDemo.exe";
+                psf.FileName = appDir + "\\Resources\\WifiDirect\\WifiDirectLegacyAP.exe";
                 psf.WindowStyle = ProcessWindowStyle.Hidden;
                 psf.CreateNoWindow = true;
                 psf.UseShellExecute = false;
@@ -57,6 +63,20 @@ namespace Everything_Handhelds_Tool.Classes
             SendConsoleCommand("ssid EverythingHandheldsWifi");
             SendConsoleCommand("password everythinghandhelds");
             SendConsoleCommand("start");
+        }
+
+        public bool IsWifiRunning()
+        {
+            CheckAPExeIsRunning();
+            if (wifiDirectProcess != null) { return true; } else { return false; }
+        }
+        private void CheckAPExeIsRunning()
+        {
+            Process[] pname = Process.GetProcessesByName("WiFiDirectLegacyAP");
+            if (pname.Length > 0)
+            {
+                wifiDirectProcess = pname[0];
+            }
         }
 
         private void SendConsoleCommand(string message)
