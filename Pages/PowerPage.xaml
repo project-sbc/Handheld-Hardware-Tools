@@ -1,0 +1,42 @@
+﻿<classes:ControllerPage x:Class="Everything_Handhelds_Tool.Pages.PowerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Everything_Handhelds_Tool"
+         xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"
+ xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"  
+      mc:Ignorable="d" 
+        xmlns:uc="clr-namespace:Everything_Handhelds_Tool.UserControls.PowerPageUserControls"
+      Title="HomePage"     
+                 xmlns:UpperCase="clr-namespace:Everything_Handhelds_Tool.Classes.Converters"
+                        
+                        >
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition  />
+           
+       
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" >
+            <ui:SymbolIcon Symbol="Home16" Filled="True" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" Margin="0,0,10,0"  FontSize="33"/>
+            <Viewbox   VerticalAlignment="Bottom" HorizontalAlignment="Left"   >
+
+                <TextBlock VerticalAlignment="Bottom"  Text="HOME" />
+
+            </Viewbox>
+        </StackPanel>
+       
+
+        <ScrollViewer Grid.Row="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Auto">
+            <StackPanel  x:Name="stackPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <uc:ShutDown_Button/>
+                <uc:Restart_Button/>
+            </StackPanel>
+        </ScrollViewer>
+       
+
+    </Grid>
+</classes:ControllerPage>

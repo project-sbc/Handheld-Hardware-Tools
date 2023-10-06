@@ -42,7 +42,28 @@ namespace Everything_Handhelds_Tool.Classes
         public void StartWifi()
         {
             CheckAPExeIsRunning();
-            S
+            if (wifiDirectProcess == null)
+            {
+                StartWifiExe();
+            }
+            else
+            {
+                if (!CheckAPExeStatus())
+                {
+                    StartWifiExe();
+                }
+            }
+         
+        }
+
+        public void StopWifi() 
+        {
+            if (wifiDirectProcess != null)
+            {
+                SendConsoleCommand("stop");
+                SendConsoleCommand("exit");
+            }
+
         }
 
         private void StartWifiExe()
@@ -72,16 +93,41 @@ namespace Everything_Handhelds_Tool.Classes
         }
         private void CheckAPExeIsRunning()
         {
-            Process[] pname = Process.GetProcessesByName("WiFiDirectLegacyAP");
-            if (pname.Length > 0)
+            if (wifiDirectProcess == null) 
             {
-                wifiDirectProcess = pname[0];
+                Process[] pname = Process.GetProcessesByName("WiFiDirectLegacyAP");
+                if (pname.Length > 0)
+                {
+                    foreach( Process proc in pname)
+                    {
+                        proc.Kill();
+                    }
+                }
+
+            }
+           
+        }
+
+        private bool CheckAPExeStatus()
+        {
+            if (SendAndReadConsoleCommand("status") == "True")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
         private void SendConsoleCommand(string message)
         {
             wifiDirectProcess.StandardInput.WriteLine(message);
+        }
+        private string SendAndReadConsoleCommand(string message)
+        {
+            wifiDirectProcess.StandardInput.WriteLine(message);
+            return wifiDirectProcess.StandardOutput.ReadToEnd();
         }
 
         [DllImport("kernel32.dll")]

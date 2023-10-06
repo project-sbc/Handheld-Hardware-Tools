@@ -41,6 +41,9 @@ namespace Everything_Handhelds_Tool.Classes
                     //no need to explicitly say home, its the default
                     break;
 
+                case SymbolRegular.Power20:
+                    uri = new Uri("Pages\\PowerPage.xaml", UriKind.Relative);
+                    break;
                 default:
 
                     break;
