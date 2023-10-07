@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Everything_Handhelds_Tool.Classes.Models
+namespace Everything_Handhelds_Tool.Classes.Actions
 {
-    public class Action
+    public static class Action_Management
     {
-        string actionName;
-   
+
+
 
 
     }

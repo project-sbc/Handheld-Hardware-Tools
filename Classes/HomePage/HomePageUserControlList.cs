@@ -61,4 +61,11 @@ namespace Everything_Handhelds_Tool.Classes.HomePage
 
     }
 
+    public class HomePageItem
+    {
+        public string UserControlName { get; set; }
+        public bool UserControlVisible { get; set; }
+        public string UserControlDisplayName { get; set; }
+    }
+
 }
