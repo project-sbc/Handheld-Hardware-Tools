@@ -21,11 +21,11 @@ namespace Everything_Handhelds_Tool.UserControls.PowerPageUserControls
     /// <summary>
     /// Interaction logic for TDP_Slider.xaml
     /// </summary>
-    public partial class ShutDown_Button : ControllerUserControl
+    public partial class HideEHT_Button : ControllerUserControl
     {
 
       
-        public ShutDown_Button()
+        public HideEHT_Button()
         {
             InitializeComponent();
 
@@ -35,7 +35,7 @@ namespace Everything_Handhelds_Tool.UserControls.PowerPageUserControls
             //main control
             mainControl = button;
 
-            
+        
         }
         public override void ChangeMainWindowControllerInstructionPage()
         {
@@ -44,10 +44,9 @@ namespace Everything_Handhelds_Tool.UserControls.PowerPageUserControls
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            var psisd = new ProcessStartInfo("shutdown", "/s /t 0");
-            psisd.CreateNoWindow = true;
-            psisd.UseShellExecute = false;
-            Process.Start(psisd);
+            MainWindow mW = (MainWindow)Application.Current.MainWindow;
+            if (mW != null) { mW.ToggleWindow(); }
+   
         }
     }
 }
