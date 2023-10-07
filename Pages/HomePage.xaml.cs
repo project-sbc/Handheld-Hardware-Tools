@@ -1,8 +1,8 @@
 ﻿
 using Everything_Handhelds_Tool.Classes;
+using Everything_Handhelds_Tool.Classes.HomePage;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
 using Everything_Handhelds_Tool.Classes.Models;
-using Everything_Handhelds_Tool.Models.DefaultModels;
 using Everything_Handhelds_Tool.UserControls.HomePageUserControls;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -30,7 +30,7 @@ namespace Everything_Handhelds_Tool.Pages
         public void AddUserControlsToStackPanel()
         {
             //Get the XML list from the UserConfiguration folder for what controls go on the home page
-            CompleteHomePageList chpl = (CompleteHomePageList)XML_Management.Instance.Load_XML("UserConfiguration\\HomePage\\HomePage.xml", "CompleteHomePageList");
+            HomePageUserControlList chpl = (HomePageUserControlList)XML_Management.Instance.Load_XML("UserConfiguration\\HomePage\\HomePage.xml", "CompleteHomePageList");
 
             //loop through and add the usercontrols
             foreach (HomePageItem hpi in chpl)

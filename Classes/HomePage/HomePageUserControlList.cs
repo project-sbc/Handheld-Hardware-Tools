@@ -10,10 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Everything_Handhelds_Tool.Models.DefaultModels
+namespace Everything_Handhelds_Tool.Classes.HomePage
 {
     //This is the user configuration list of user controls that has usercontrol, name in langauge, and whether to display it
-    public class CompleteHomePageList : List<HomePageItem>
+    public class HomePageUserControlList : List<HomePageItem>
     {
                 
         public void UpdateList()
@@ -42,8 +42,23 @@ namespace Everything_Handhelds_Tool.Models.DefaultModels
         
         public void SaveToXML()
         {
-            XML_Management.Instance.Save_XML("UserConfiguration\\HomePage\\HomePage.xml", "CompleteHomePageList", this);
+            XML_Management.Instance.Save_XML("UserConfiguration\\HomePage\\HomePageUserControlList.xml", "HomePageUserControlList", this);
         }
 
     }
+
+    public class DefaultCompleteHomePageList : Dictionary<string, bool>
+    {
+        //complete list for home page items, this gets updated when new controls are added
+        public DefaultCompleteHomePageList()
+        {
+            this.Add("TDP_Slider", true);
+            this.Add("TDP_Boost_Slider", true);
+            this.Add("Brightness_Slider", true);
+            this.Add("Volume_Slider", true);
+
+        }
+
+    }
+
 }

@@ -3,7 +3,6 @@ using System;
 using System.Windows;
 using Everything_Handhelds_Tool.Classes;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
-using Everything_Handhelds_Tool.Models.DefaultModels;
 using Microsoft.Win32;
 using System.Windows.Threading;
 using Everything_Handhelds_Tool.Classes.Models;

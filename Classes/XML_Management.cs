@@ -1,4 +1,4 @@
-﻿using Everything_Handhelds_Tool.Models.DefaultModels;
+﻿using Everything_Handhelds_Tool.Classes.HomePage;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -63,9 +63,9 @@ namespace Everything_Handhelds_Tool.Classes
                 XmlSerializer xmls = null;
                 switch (objType)
                 {
-                    case "CompleteHomePageList":
-                        xmls = new XmlSerializer(typeof(CompleteHomePageList));
-                        CompleteHomePageList objCM = (CompleteHomePageList)objClass;
+                    case "HomePageUserControlList":
+                        xmls = new XmlSerializer(typeof(HomePageUserControlList));
+                        HomePageUserControlList objCM = (HomePageUserControlList)objClass;
                         xmls.Serialize(sw, objCM);
                         objCM = null;
                         break;
@@ -89,10 +89,10 @@ namespace Everything_Handhelds_Tool.Classes
 
                     switch (objType)
                     {
-                        case "CompleteHomePageList":
-                            xmls = new XmlSerializer(typeof(CompleteHomePageList));
-                            objObject = ((CompleteHomePageList)xmls.Deserialize(sr));
-                            ((CompleteHomePageList)objObject).UpdateList();
+                        case "HomePageUserControlList":
+                            xmls = new XmlSerializer(typeof(HomePageUserControlList));
+                            objObject = ((HomePageUserControlList)xmls.Deserialize(sr));
+                            ((HomePageUserControlList)objObject).UpdateList();
                             break;
                     }
 
@@ -105,9 +105,9 @@ namespace Everything_Handhelds_Tool.Classes
                 //make new object for it
                 switch (objType)
                 {
-                    case "CompleteHomePageList":
-                        objObject =  new CompleteHomePageList();
-                        ((CompleteHomePageList)objObject).UpdateList();
+                    case "HomePageUserControlList":
+                        objObject =  new HomePageUserControlList();
+                        ((HomePageUserControlList)objObject).UpdateList();
                         break;
                 }
             }
