@@ -15,6 +15,7 @@ using System.Windows.Media.Effects;
 using Wpf.Ui.Controls.Interfaces;
 using Wpf.Ui.Common;
 using Everything_Handhelds_Tool.Classes.Actions;
+using Action = Everything_Handhelds_Tool.Classes.Actions.Action;
 
 namespace Everything_Handhelds_Tool
 {
@@ -37,9 +38,14 @@ namespace Everything_Handhelds_Tool
 
 
             //TRIAL FOR ACTION TDP CHANGE
-            Change_TDP action = new Change_TDP();
-            action.arguments.Add("-2");
+            Action action = new Cycle_TDP();
+            action.arguments.Add("8");
+            action.arguments.Add("18");
+            action.arguments.Add("22");
+
             action.OnActivate();
+            action.OnActivate();
+
         }
         #region Set up
         private void InitializeRoutines() 

@@ -22,6 +22,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
                 if (arguments[0].ToString().Contains("-"))
                 {
                     Int32.TryParse(arguments[0].Substring(1, arguments[0].Length - 1), out changeTDP);
+                    changeTDP = -changeTDP;
                 }
                 else
                 {
