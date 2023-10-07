@@ -274,13 +274,10 @@ namespace Everything_Handhelds_Tool
                 case "B":
                     ToggleWindow();
                     break;
-                case "DPadUp":
+                case "DPadUp" or "DPadDown":
                     General_Functions.NavigateListView(navigationViewListBox, action);
                     break;
-                case "DPadDown":
-                    General_Functions.NavigateListView(navigationViewListBox, action);
-                    break;
-                case "A":
+                case "A" or "DPadRight":
                     SetControllerNavigateWindow(false);
                     break;
                 default: break;

@@ -2,6 +2,7 @@
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,6 +42,13 @@ namespace Everything_Handhelds_Tool.UserControls.PowerPageUserControls
             General_Functions.ChangeControllerInstructionPage("SelectBack");
         }
 
-
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            var psi = new ProcessStartInfo("shutdown", "/r /t 0");
+            psi.CreateNoWindow = true;
+            psi.UseShellExecute = false;
+            Process.Start(psi);
+   
+        }
     }
 }
