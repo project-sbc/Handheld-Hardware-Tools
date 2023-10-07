@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Everything_Handhelds_Tool.Classes.Actions
 {
@@ -14,20 +16,24 @@ namespace Everything_Handhelds_Tool.Classes.Actions
     //Action model is for general use, there will be a display model below for the action panel page
     public class Action
     {
-        //action dispaly name is language specific
-        string actionDisplayName;
-        //action name is programming specific
-        string actionName;
-        bool displayInActionPanel;
+        //action name is programming specific, display name will be generated at runtime based on language selected
+        public int ID;
+        public string actionName;
+        public bool displayInActionPanel;
 
 
+
+        public List<string> arguments;
 
 
 
 
 
         //This routine is going to be the onclick event
-        public virtual void OnClick() { }
+        public virtual void OnActivate() { }
+
+
+       
     }
 
 
@@ -37,6 +43,25 @@ namespace Everything_Handhelds_Tool.Classes.Actions
 
 
 
+    }
+
+
+    public class DefaultActionItemList: List<DefaultActionItem>
+    {
+        public DefaultActionItemList()   
+        {
+            new DefaultActionItem() { actionName = "Change_TDP", displayName = "Change TDP" };
+            new DefaultActionItem() { actionName = "Cycle_TDP", displayName = "Cycle TDP" };
+            new DefaultActionItem() { actionName = "Toggle_Wifi", displayName = "Toggle Wifi" };
+
+        }
+    }
+
+
+    public class DefaultActionItem
+    {
+        public string displayName;
+        public string actionName;
     }
 
 }
