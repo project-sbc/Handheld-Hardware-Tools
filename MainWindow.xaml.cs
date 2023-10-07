@@ -38,7 +38,7 @@ namespace Everything_Handhelds_Tool
 
             //TRIAL FOR ACTION TDP CHANGE
             Change_TDP action = new Change_TDP();
-            action.arguments.Add("2");
+            action.arguments.Add("-2");
             action.OnActivate();
         }
         #region Set up

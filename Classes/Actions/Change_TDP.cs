@@ -19,7 +19,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
             {
                 int changeTDP = 0;
                 int currentTDP = TDP_Management.Instance.ReadAndReturnSustainedTDP();
-                if (!arguments[0].ToString().Contains("-"))
+                if (arguments[0].ToString().Contains("-"))
                 {
                     Int32.TryParse(arguments[0].Substring(1, arguments[0].Length - 1), out changeTDP);
                 }
