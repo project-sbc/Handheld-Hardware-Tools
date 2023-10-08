@@ -12,7 +12,7 @@ using Wpf.Ui.Controls;
 
 namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
 {
-    public class ControllerPage : UiPage
+    public class ControllerWrapPanelPage : ControllerPage
     {
         //controllerNavigatePage is a bool to determine if actions go to usercontrol or stay at page level
         public bool controllerNavigatePage = true;
@@ -39,10 +39,10 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                     case "A":
                         controllerNavigatePage = false;
                         SelectUserControl();
+                        SendControllerInputToUserControl(action);
                         break;
-                    case "DPadUp" or "DPadDown":
+                    case "DPadUp" or "DPadDown" or "DPadLeft" or "DPadRight":
                         HandleUserControlNavigation(action);
-
                         break;
                    
                     default: break;
@@ -84,7 +84,6 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
  
         //set in page cs to the stackpanel
         public StackPanel virtualStackPanel;
-        public WrapPanel virtualWrapPanel;
         public ScrollViewer scrollViewer;
         public void HandleUserControlNavigation(string action) 
         {

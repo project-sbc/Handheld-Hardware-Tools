@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Forms.Integration;
+using System;
 
 namespace Everything_Handhelds_Tool.Pages
 {
@@ -20,10 +21,15 @@ namespace Everything_Handhelds_Tool.Pages
         
         public HomePage()
         {
-            InitializeComponent();
+            //Move initilize components to sub routine and async it to make pages feel smoother
+            Dispatcher.BeginInvoke(new Action(() => Initialize()));
 
+        }
+
+        private void Initialize()
+        {
+            InitializeComponent();
             virtualStackPanel = stackPanel;
-            
             AddUserControlsToStackPanel();
         }
 

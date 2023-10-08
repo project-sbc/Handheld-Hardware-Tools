@@ -11,7 +11,7 @@ namespace Everything_Handhelds_Tool.Models
         public NavigationViewMenuItems()
         {
             this.Add(Wpf.Ui.Common.SymbolRegular.Home16);
-            this.Add(Wpf.Ui.Common.SymbolRegular.XboxConsole20);
+            this.Add(Wpf.Ui.Common.SymbolRegular.FlashPlay20);
 
             this.Add(Wpf.Ui.Common.SymbolRegular.Power20);
  

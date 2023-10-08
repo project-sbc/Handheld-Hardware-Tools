@@ -5,6 +5,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Wpf.Ui.Common;
+using Wpf.Ui.Controls;
 
 namespace Everything_Handhelds_Tool.Classes.Actions
 {
@@ -40,9 +42,20 @@ namespace Everything_Handhelds_Tool.Classes.Actions
 
     public class ActionPanelItem
     {
+        public Action action;
+        public SymbolRegular symbolIcon = new SymbolRegular();
+        public string displayText;
 
+        public void InitActionPanelItem(Action importAction)
+        {
+            action = importAction;
+            if (importAction is Change_TDP)
+            {
+                symbolIcon = Wpf.Ui.Common.SymbolRegular.Flash20;
+                displayText = "Change TDP";
+            }
 
-
+        }
     }
 
 
