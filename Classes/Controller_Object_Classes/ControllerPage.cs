@@ -86,7 +86,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
         public StackPanel virtualStackPanel;
         public WrapPanel virtualWrapPanel;
         public ScrollViewer scrollViewer;
-        public void HandleUserControlNavigation(string action) 
+        public virtual void HandleUserControlNavigation(string action) 
         {
             //handles moving up an down in stack panel. also moves to screen so that the scrollviewer adjusts
             UnhighlightUserControl();

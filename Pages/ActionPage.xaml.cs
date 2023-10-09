@@ -6,7 +6,7 @@ using Everything_Handhelds_Tool.Classes.Models;
 using Everything_Handhelds_Tool.UserControls.HomePageUserControls;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
+using System;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,19 +24,24 @@ namespace Everything_Handhelds_Tool.Pages
         
         public ActionPage()
         {
-            InitializeComponent();
+            //Move initilize components to sub routine and async it to make pages feel smoother
+            Dispatcher.BeginInvoke(new System.Action(() => Initialize()));
 
-            AddActionsToPanel();
-           
         }
 
-        private void AddActionsToPanel()
+        private void Initialize()
         {
+            InitializeComponent();
+            virtualWrapPanel = wrapPanel;
 
-            
-
+            AddControlsToArray();
         }
-
+        private void AddControlsToArray()
+        {
+            //There is a general function that searches the wrap panel and adds to the list of ControllerUserControls. It makes sure
+            //visibility isn't collapsed too
+            userControls = General_Functions.SearchWrapPanelReturnArray(wrapPanel);
+        }
 
 
     }

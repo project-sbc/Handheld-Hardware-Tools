@@ -126,6 +126,27 @@ namespace Everything_Handhelds_Tool.Classes
 
 
         }
+        public static List<ControllerUserControl> SearchWrapPanelReturnArray(WrapPanel wrapPanel)
+        {
+            List<ControllerUserControl> controllerUserControls = new List<ControllerUserControl>();
 
+            if (wrapPanel != null)
+            {
+                foreach (object child in wrapPanel.Children)
+                {
+                    ControllerUserControl controllerUserControl = (ControllerUserControl)child;
+                    if (controllerUserControl.Visibility == Visibility.Visible)
+                    {
+                        controllerUserControls.Add(controllerUserControl);
+                    }
+
+                }
+            }
+
+
+            return controllerUserControls;
+
+
+        }
     }
 }

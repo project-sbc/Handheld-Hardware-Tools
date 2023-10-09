@@ -6,12 +6,12 @@
              xmlns:local="clr-namespace:Everything_Handhelds_Tool.UserControls.PowerPageUserControls"
              xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                                mc:Ignorable="d" 
-            Height="152" Width="152"  Margin="0,0,0,3" >
+            Height="144" Width="144"  Margin="2" >
     <Border Style="{StaticResource userControlBorder}" Name="border">
-        <Button  x:Name="button" Width="Auto"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" Click="button_Click">
-            <DockPanel HorizontalAlignment="Left" >
-                <ui:SymbolIcon x:Name="controllerStatusBarIcon" Symbol="DeveloperBoardLightning20" FontSize="30" Margin="0,0,18,0"  VerticalAlignment="Center" DockPanel.Dock="Left" HorizontalContentAlignment="Left" HorizontalAlignment="Left" />
-                <Viewbox Height="10" VerticalAlignment="Center"  HorizontalAlignment="Stretch" DockPanel.Dock="Right" >
+        <Button   x:Name="button" Width="Auto"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Click="button_Click">
+            <DockPanel Height="120" VerticalAlignment="Center"    >
+                <ui:SymbolIcon x:Name="controllerStatusBarIcon" Symbol="DeveloperBoardLightning20" FontSize="70" DockPanel.Dock="Top"   VerticalContentAlignment="Top"  HorizontalAlignment="Center" />
+                <Viewbox Height="20"   HorizontalAlignment="Center"  >
                     <TextBlock Text="Everything Handhelds Tool"  />
                 </Viewbox>
             </DockPanel>

@@ -14,10 +14,8 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
 {
     public class ControllerWrapPanelPage : ControllerPage
     {
-        //controllerNavigatePage is a bool to determine if actions go to usercontrol or stay at page level
-        public bool controllerNavigatePage = true;
-
-        public virtual void HandleControllerInput(string action) 
+       
+        public override void HandleControllerInput(string action) 
         {
             if (controllerNavigatePage)
             {               
@@ -37,8 +35,6 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                         General_Functions.ChangeControllerInstructionPage("SelectBack");
                         break;
                     case "A":
-                        controllerNavigatePage = false;
-                        SelectUserControl();
                         SendControllerInputToUserControl(action);
                         break;
                     case "DPadUp" or "DPadDown" or "DPadLeft" or "DPadRight":
@@ -57,39 +53,13 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
           
 
         }
-
-        public void SendControllerInputToUserControl(string action)
-        {
-            //make sure the highlighted usercontrol isnt null then send command
-            if (userControls.Count > 0)
-            {
-                if (userControls[highlightedUserControl] != null)
-                {
-                    ControllerUserControl controllerUserControl = userControls[highlightedUserControl];
-                    controllerUserControl.HandleControllerInput(action);
-                }
-            }
-        }
-
-        public void ReturnControlToPage() 
-        {
-            //call this routine from the usercontrol to return to page control
-            controllerNavigatePage = true;
-            //put controller instruction back
-            General_Functions.ChangeControllerInstructionPage("SelectBack");
-        }
-        public List<ControllerUserControl> userControls = new List<ControllerUserControl>();
-
-        public int highlightedUserControl = -1;
+         
  
-        //set in page cs to the stackpanel
-        public WrapPanel virtualWrapPanel;
-        public ScrollViewer scrollViewer;
-        public void HandleUserControlNavigation(string action) 
+        public override void HandleUserControlNavigation(string action) 
         {
             //handles moving up an down in stack panel. also moves to screen so that the scrollviewer adjusts
             UnhighlightUserControl();
-            if (action == "DPadUp")
+            if (action == "DPadLeft")
             {
                 if (highlightedUserControl > 0) 
                 { //subtract 1 if > 0, otherwise go to bottom of stackpanel
@@ -100,7 +70,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                     highlightedUserControl = userControls.Count - 1;
                 }
             }
-            else
+            if (action == "DPadRight")
             {
                 if (highlightedUserControl < userControls.Count -1)
                 { //add 1 if < total controls - 1, otherwise go to top of stackpanel
@@ -111,51 +81,55 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                     highlightedUserControl = 0;
                 }
             }
+            if (action == "DPadDown")
+            {
+                //REMEMBER THIS IS WRAP PANEL WHERE UP AND DOWN MOVE 3 OBJECTS AT A TIME
+                //If highlightedUserControl is more than 3 away from the end, just move 3
+                if (highlightedUserControl < (userControls.Count - 3))
+                { 
+                    highlightedUserControl += 3;
+                }
+                else
+                {
+                    //if the highlightedUserControl is on the last one, move to the beginning
+                    //OTHERWISE, move to the last control regardless if its 3,2, or 1 away
+                    if (highlightedUserControl == (userControls.Count - 1))
+                    {
+                        highlightedUserControl = 0;
+                    }
+                    else
+                    {
+                        highlightedUserControl = userControls.Count - 1;
+                    }
+                    
+                }
+            }
+            if (action == "DPadUp")
+            {
+                //REMEMBER THIS IS WRAP PANEL WHERE UP AND DOWN MOVE 3 OBJECTS AT A TIME
+                //If highlightedUserControl is more than 3 away from the beginning, just move 3
+                if (highlightedUserControl > 2)
+                { 
+                    highlightedUserControl -= 3;
+                }
+                else
+                {
+                    //if the highlightedUserControl is on the first one, move to the end which is usercontrols.count - 1
+                    //OTHERWISE, move to the first control regardless if its 3,2, or 1 away
+                    if (highlightedUserControl == 0)
+                    {
+                        highlightedUserControl = userControls.Count-1;
+                    }
+                    else
+                    {
+                        highlightedUserControl = 0;
+                    }
+
+                }
+            }
             HighlightUserControl();
         }
 
-        public void ReturnControlToWindow()
-        {
-            MainWindow wnd = (MainWindow)Application.Current.MainWindow;
-            wnd.SetControllerNavigateWindow(true);
-        }
-        public void HighlightUserControl()
-        {
-            //sends highlight command to usercontrol
-            if (userControls.Count> 0)
-            {
-                if (userControls[highlightedUserControl] != null)
-                {
-                    ControllerUserControl controllerUserControl = userControls[highlightedUserControl];
-                    controllerUserControl.HighlightControl();
-                    controllerUserControl.BringIntoView();
-                }
-            }
-        }
-        public void SelectUserControl()
-        {
-            //sends highlight command to usercontrol
-            if (userControls.Count > 0)
-            {
-                if (userControls[highlightedUserControl] != null)
-                {
-                    ControllerUserControl controllerUserControl = userControls[highlightedUserControl];
-                    controllerUserControl.SelectControl();
-                    controllerUserControl.BringIntoView();
-                }
-            }
-        }
-        public void UnhighlightUserControl()
-        {
-            //sends unhighlight command to usercontrol
-            if (userControls.Count > 0 && highlightedUserControl > -1)
-            {
-                if (userControls[highlightedUserControl] != null)
-                {
-                    ControllerUserControl controllerUserControl = userControls[highlightedUserControl];
-                    controllerUserControl.UnhighlightControl();
-                }
-            }
-        }
+       
     }
 }
