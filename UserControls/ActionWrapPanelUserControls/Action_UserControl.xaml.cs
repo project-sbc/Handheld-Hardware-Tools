@@ -21,11 +21,11 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
     /// <summary>
     /// Interaction logic for TDP_Slider.xaml
     /// </summary>
-    public partial class Change_TDP_AUC : ControllerUserControl
+    public partial class Action_UserControl : ControllerUserControl
     {
-
+        public Everything_Handhelds_Tool.Classes.Actions.Action action = null;
       
-        public Change_TDP_AUC()
+        public Action_UserControl(Everything_Handhelds_Tool.Classes.Actions.Action action)
         {
             InitializeComponent();
 
@@ -35,6 +35,8 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
             //main control
             mainControl = button;
 
+            //Configure text and symbol to match the action
+            
         
         }
         public override void ChangeMainWindowControllerInstructionPage()
@@ -42,9 +44,32 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
             General_Functions.ChangeControllerInstructionPage("SelectBack");
         }
 
+        private void ConfigureTextAndSymbol()
+        {
+            switch(action.actionName)
+            {
+                case "Change_TDP":
+                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
+
+                    break;
+                case "Cycle_TDP":
+                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
+                    break;
+                case "":
+
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (action != null)
+            {
+                action.OnActivate();
+            }
    
         }
     }

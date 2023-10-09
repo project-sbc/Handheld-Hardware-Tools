@@ -30,11 +30,7 @@
 
         <ScrollViewer Grid.Row="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Auto">
             <WrapPanel  x:Name="wrapPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                <uc:Change_TDP_AUC/>
-                <uc:Change_TDP_AUC/>
-                <uc:Change_TDP_AUC/>
-                <uc:Change_TDP_AUC/>
-                <uc:Change_TDP_AUC/>
+               
               
 
             </WrapPanel>
