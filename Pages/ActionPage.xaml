@@ -7,7 +7,9 @@
                         xmlns:currentpage="clr-namespace:Everything_Handhelds_Tool.Pages"
                         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                         mc:Ignorable="d"
-                        Title="HomePage">
+                        Title="HomePage"
+                                   xmlns:uc="clr-namespace:Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls"
+                                 >
 
     <Grid >
         <Grid.RowDefinitions>
@@ -27,10 +29,12 @@
 
 
         <ScrollViewer Grid.Row="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Auto">
-            <StackPanel  x:Name="stackPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-             
+            <WrapPanel  x:Name="wrapPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <uc:Change_TDP_AUC/>
+                <uc:Change_TDP_AUC/>
+                <uc:Change_TDP_AUC/>
 
-            </StackPanel>
+            </WrapPanel>
         </ScrollViewer>
 
 

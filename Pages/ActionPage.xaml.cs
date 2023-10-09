@@ -21,7 +21,7 @@ namespace Everything_Handhelds_Tool.Pages
     /// </summary>
     public partial class ActionPage : ControllerWrapPanelPage
     {
-        public List<ActionPanelItem> actions = new List<ActionPanelItem>();
+        
         public ActionPage()
         {
             InitializeComponent();

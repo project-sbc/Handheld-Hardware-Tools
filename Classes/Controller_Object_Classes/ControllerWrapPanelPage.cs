@@ -83,7 +83,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
         public int highlightedUserControl = -1;
  
         //set in page cs to the stackpanel
-        public StackPanel virtualStackPanel;
+        public WrapPanel virtualWrapPanel;
         public ScrollViewer scrollViewer;
         public void HandleUserControlNavigation(string action) 
         {
