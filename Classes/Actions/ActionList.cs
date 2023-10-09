@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Everything_Handhelds_Tool.Classes.Actions
 {
-    public class Action_List : List<Action>
+    public class ActionList : List<Action>
     {
 
 

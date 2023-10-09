@@ -1,4 +1,5 @@
-﻿using Everything_Handhelds_Tool.Classes.HomePage;
+﻿using Everything_Handhelds_Tool.Classes.Actions;
+using Everything_Handhelds_Tool.Classes.HomePage;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,8 +39,10 @@ namespace Everything_Handhelds_Tool.Classes
         public string directory = AppDomain.CurrentDomain.BaseDirectory;
         private object lockObject = new object();
 
-        public void Save_XML(string folderFileName, string objType, object objClass)
+        public void SaveXML(string folderFileName, string objType, object objClass)
         {
+            //objClass is the object being saved i.e. Settings
+            //objType is the type of object
             CheckDirectoryExistsOrCreate(directory + folderFileName);
             WriteXMLToFile(folderFileName, objType, objClass);
         }
@@ -69,6 +72,19 @@ namespace Everything_Handhelds_Tool.Classes
                         xmls.Serialize(sw, objCM);
                         objCM = null;
                         break;
+                    case "Settings":
+                        xmls = new XmlSerializer(typeof(Settings));
+                        Settings objSettings = (Settings)objClass;
+                        xmls.Serialize(sw, objSettings);
+                        objCM = null;
+                        break;
+                    case "ActionList":
+                        xmls = new XmlSerializer(typeof(ActionList));
+                        ActionList objAL = (ActionList)objClass;
+                        xmls.Serialize(sw, objAL);
+                        objCM = null;
+                        break;
+                        
                 }
                 sw.Dispose();
                 xmls = null;
@@ -76,7 +92,7 @@ namespace Everything_Handhelds_Tool.Classes
             }
         }
 
-        public object Load_XML(string folderFileName, string objType)
+        public object LoadXML(string folderFileName, string objType)
         {
             string filePath = directory + folderFileName;
             object objObject = null;
@@ -94,6 +110,14 @@ namespace Everything_Handhelds_Tool.Classes
                             objObject = ((HomePageUserControlList)xmls.Deserialize(sr));
                             ((HomePageUserControlList)objObject).UpdateList();
                             break;
+                        case "Settings":
+                            xmls = new XmlSerializer(typeof(Settings));
+                            objObject = ((Settings)xmls.Deserialize(sr));
+                            break;
+                        case "ActionList":
+                            xmls = new XmlSerializer(typeof(ActionList));
+                            objObject = ((Settings)xmls.Deserialize(sr));
+                            break;
                     }
 
                     sr.Dispose();
@@ -109,6 +133,14 @@ namespace Everything_Handhelds_Tool.Classes
                         objObject =  new HomePageUserControlList();
                         ((HomePageUserControlList)objObject).UpdateList();
                         break;
+                    case "Settings":
+                        objObject = new Settings();
+                        break;
+                    case "ActionList":
+                        objObject = new ActionList();
+                        break;
+
+                        
                 }
             }
             return objObject;

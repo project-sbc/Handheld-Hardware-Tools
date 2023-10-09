@@ -42,7 +42,7 @@ namespace Everything_Handhelds_Tool.Classes.HomePage
         
         public void SaveToXML()
         {
-            XML_Management.Instance.Save_XML("UserConfiguration\\HomePage\\HomePageUserControlList.xml", "HomePageUserControlList", this);
+            XML_Management.Instance.SaveXML("UserConfiguration\\HomePage\\HomePageUserControlList.xml", "HomePageUserControlList", this);
         }
 
     }

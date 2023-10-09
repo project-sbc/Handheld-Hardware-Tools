@@ -45,7 +45,8 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
 
         private void ConfigureControl()
         {
-            Settings settings = Load_Settings.Instance.LoadSettings();
+            Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings\\Settings.xml", "Settings");
+
 
             slider.Maximum = settings.maxTDP;
             slider.Minimum = settings.minTDP;

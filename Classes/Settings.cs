@@ -9,14 +9,14 @@ using System.Xml.Serialization;
 namespace Everything_Handhelds_Tool.Classes
 {
 
-    public class Load_Settings
+    public class Load_Settings666
     {
-        private static Load_Settings _instance = null;
+        private static Load_Settings666 _instance = null;
         private static readonly object lockObj = new object();
-        private Load_Settings()
+        private Load_Settings666()
         {
         }
-        public static Load_Settings Instance
+        public static Load_Settings666 Instance
         {
             get
             {
@@ -26,7 +26,7 @@ namespace Everything_Handhelds_Tool.Classes
                     {
                         if (_instance == null)
                         {
-                            _instance = new Load_Settings();
+                            _instance = new Load_Settings666();
                         }
                     }
                 }

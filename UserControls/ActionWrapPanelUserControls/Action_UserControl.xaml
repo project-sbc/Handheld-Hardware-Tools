@@ -6,17 +6,17 @@
              xmlns:local="clr-namespace:Everything_Handhelds_Tool.UserControls.PowerPageUserControls"
              xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                                mc:Ignorable="d" 
-            Height="144" Width="144"  Margin="2" >
+            Height="130" Width="130"  Margin="6" >
     <Border Style="{StaticResource userControlBorder}" Name="border">
         <Button   x:Name="button" Width="Auto"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Click="button_Click">
-            <DockPanel Height="120" VerticalAlignment="Center"    >
-                <ui:SymbolIcon x:Name="symbolIcon" Symbol="DeveloperBoardLightning20" FontSize="70" DockPanel.Dock="Top"   VerticalContentAlignment="Top"  HorizontalAlignment="Center" />
+            <DockPanel Height="100" VerticalAlignment="Center"    >
+                <ui:SymbolIcon x:Name="symbolIcon" Symbol="DeveloperBoardLightning20" FontSize="50" DockPanel.Dock="Top"   VerticalContentAlignment="Top"  HorizontalAlignment="Center" />
 
                 <StackPanel>
-                    <Viewbox Height="20"   HorizontalAlignment="Center"  >
+                    <Viewbox Height="18"   HorizontalAlignment="Center"  >
                         <TextBlock x:Name="textBlock" Text="Change TDP +3"  />
                     </Viewbox>
-                    <Viewbox Height="20"   HorizontalAlignment="Center"  >
+                    <Viewbox Height="18"   HorizontalAlignment="Center"  >
                         <TextBlock x:Name="textBlock2"  />
                     </Viewbox>
                 </StackPanel>

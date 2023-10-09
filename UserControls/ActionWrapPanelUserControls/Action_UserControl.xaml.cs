@@ -25,7 +25,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
     {
         public Everything_Handhelds_Tool.Classes.Actions.Action action = null;
       
-        public Action_UserControl(Everything_Handhelds_Tool.Classes.Actions.Action action)
+        public Action_UserControl(Everything_Handhelds_Tool.Classes.Actions.Action newAction)
         {
             InitializeComponent();
 
@@ -35,8 +35,10 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
             //main control
             mainControl = button;
 
+            action = newAction;
+
             //Configure text and symbol to match the action
-            
+            ConfigureTextAndSymbol();
         
         }
         public override void ChangeMainWindowControllerInstructionPage()
@@ -50,7 +52,8 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
             {
                 case "Change_TDP":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
-
+                    textBlock.Text = "Change TDP";
+                    textBlock2.Text = action.arguments[0].ToString();
                     break;
                 case "Cycle_TDP":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
