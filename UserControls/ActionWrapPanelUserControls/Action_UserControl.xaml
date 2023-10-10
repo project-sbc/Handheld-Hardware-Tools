@@ -6,22 +6,29 @@
              xmlns:local="clr-namespace:Everything_Handhelds_Tool.UserControls.PowerPageUserControls"
              xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                                mc:Ignorable="d" 
-            Height="130" Width="130"  Margin="6" >
+            Height="100" Width="148"  Margin="2" >
     <Border Style="{StaticResource userControlBorder}" Name="border">
         <Button   x:Name="button" Width="Auto"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Click="button_Click">
-            <DockPanel Height="100" VerticalAlignment="Center"    >
-                <ui:SymbolIcon x:Name="symbolIcon" Symbol="DeveloperBoardLightning20" FontSize="50" DockPanel.Dock="Top"   VerticalContentAlignment="Top"  HorizontalAlignment="Center" />
+            <Grid     >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="70" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="55" />
+                    <RowDefinition Height="27" />
+                </Grid.RowDefinitions>
+                <ui:SymbolIcon x:Name="symbolIcon" Symbol="DeveloperBoardLightning20" FontSize="50" DockPanel.Dock="Left"  />
 
-                <StackPanel>
-                    <Viewbox Height="18"   HorizontalAlignment="Center"  >
-                        <TextBlock x:Name="textBlock" Text="Change TDP +3"  />
-                    </Viewbox>
-                    <Viewbox Height="18"   HorizontalAlignment="Center"  >
-                        <TextBlock x:Name="textBlock2"  />
-                    </Viewbox>
-                </StackPanel>
-             
-            </DockPanel>
+                <Viewbox Height="25" Grid.Column="1"   HorizontalAlignment="Center"  >
+                    <TextBlock x:Name="textBlock" Text="15 W"  />
+                </Viewbox>
+
+                <Viewbox Height="25" Grid.Row="1" Grid.ColumnSpan="2"   HorizontalAlignment="Center"  >
+                    <TextBlock x:Name="textBlock2" Text="this is a w did i do"  />
+                </Viewbox>
+
+            </Grid>
             
 
         </Button>

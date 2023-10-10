@@ -29,7 +29,7 @@
 
 
         <ScrollViewer Grid.Row="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Auto">
-            <WrapPanel  x:Name="wrapPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,6,0"  >
+            <WrapPanel  x:Name="wrapPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0"  >
                
               
 

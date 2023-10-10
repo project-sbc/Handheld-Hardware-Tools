@@ -51,6 +51,11 @@ namespace Everything_Handhelds_Tool.Pages
             wrapPanel.Children.Add(new Action_UserControl(action));
             wrapPanel.Children.Add(new Action_UserControl(action));
             wrapPanel.Children.Add(new Action_UserControl(action));
+            wrapPanel.Children.Add(new Action_UserControl(action));
+            wrapPanel.Children.Add(new Action_UserControl(action));
+            wrapPanel.Children.Add(new Action_UserControl(action));
+            wrapPanel.Children.Add(new Action_UserControl(action));
+            wrapPanel.Children.Add(new Action_UserControl(action));
 
             userControls = General_Functions.SearchWrapPanelReturnArray(wrapPanel);
         }
