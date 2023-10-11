@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Threading;
 
 namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
@@ -16,7 +17,8 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
         }
         public override void OnActivate()
         {
-            Dispatcher.CurrentDispatcher.Invoke(() => ActionTask());
+            Application.Current.Dispatcher.Invoke(() => ActionTask());
+      
            
         }
 
