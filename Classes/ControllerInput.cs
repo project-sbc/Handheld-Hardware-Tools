@@ -22,6 +22,7 @@ namespace Everything_Handhelds_Tool.Classes
         // it helps fire the controllerConnectionChangedEvent
         private bool wasControllerConnected = false;
 
+       
 
         //Variable to stop events in the case of programming a hot key
         public bool suspendEventsForProgramming { get; set; } = false;

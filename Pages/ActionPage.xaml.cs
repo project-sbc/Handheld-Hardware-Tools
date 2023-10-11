@@ -40,11 +40,11 @@ namespace Everything_Handhelds_Tool.Pages
             //There is a general function that searches the wrap panel and adds to the list of ControllerUserControls. It makes sure
             //visibility isn't collapsed too
 
-            ActionList actions = (ActionList)XML_Management.Instance.LoadXML("Actions\\Actions.xml", "ActionList");
+            ActionList actions = (ActionList)XML_Management.Instance.LoadXML("UserConfiguration\\Actions\\Actions.xml", "ActionList");
 
 
             //test trial for an action
-            Classes.Actions.Action action = new Classes.Actions.Change_TDP();
+            Classes.Actions.Action action = new Classes.Actions.ActionClass.Change_TDP();
             action.arguments.Add("3");
             actions.Add(action);
 

@@ -6,12 +6,21 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <system:String x:Key="MainWindow_NavigationViewMenuItem_Home">Home</system:String>
+    <system:String x:Key="MainWindow_NavigationViewMenuItem_Actions">Actions</system:String>
+    <system:String x:Key="MainWindow_NavigationViewMenuItem_Power">Power</system:String>
+        
+        
     <system:String x:Key="Usercontrol_TDP">TDP</system:String>
     <system:String x:Key="Usercontrol_TDP2">Boost TDP</system:String>
     <system:String x:Key="Usercontrol_MaxCPUFrequency">Set Max CPU Frequency</system:String>
     <system:String x:Key="Usercontrol_CPUTurbo">CPU Turbo Boost</system:String>
-
-
+    <system:String x:Key="Usercontrol_Brightness">Brightness</system:String>
+    <system:String x:Key="Usercontrol_CloseEHT">Close Everything Handheld Tools</system:String>
+    <system:String x:Key="Usercontrol_HideEHT">Hide Everything Handheld Tools</system:String>
+    <system:String x:Key="Usercontrol_CloseProgram">Close - </system:String>
+    <system:String x:Key="Usercontrol_ShutdownPC">Shut Down PC</system:String>
+    <system:String x:Key="Usercontrol_RestartPC">Restart PC</system:String>
+        
 
     <system:String x:Key="Instruction_Toggle">TOGGLE</system:String>
     <system:String x:Key="Instruction_Confirm">CONFIRM</system:String>
@@ -26,7 +35,8 @@
     <system:String x:Key="Instruction_Apply">APPLY</system:String>
     <system:String x:Key="Instruction_Duplicate">DUPLICATE</system:String>
     <system:String x:Key="Instruction_Launch">LAUNCH</system:String>
-
+    <system:String x:Key="Instruction_Change">CHANGE</system:String>
+    <system:String x:Key="Instruction_ToggleMode">TOGGLE MODE</system:String>
 
 
 
@@ -34,7 +44,7 @@
 
 
     <system:String x:Key="MainWindow_NavigationViewMenuItem_Profiles">Profiles</system:String>
-    <system:String x:Key="MainWindow_NavigationViewMenuItem_Actions">Actions</system:String>
+
     <system:String x:Key="MainWindow_NavigationViewMenuItem_AppLauncher">App Launcher</system:String>
     <system:String x:Key="MainWindow_NavigationViewMenuItem_CustomizeHome">Customize Home</system:String>
     <system:String x:Key="MainWindow_NavigationViewMenuItem_Settings">Settings</system:String>
@@ -61,7 +71,7 @@
 
     <system:String x:Key="Usercontrol_Wifi">Wi-Fi</system:String>
     <system:String x:Key="Usercontrol_Bluetooth">Bluetooth</system:String>
-    <system:String x:Key="Usercontrol_Brightness">Brightness</system:String>
+
     <system:String x:Key="Usercontrol_Volume">Volume</system:String>
     <system:String x:Key="Usercontrol_VolumeMute">Volume Mute</system:String>
     <system:String x:Key="Usercontrol_Resolution">Resolution</system:String>
@@ -167,7 +177,8 @@
     <system:String x:Key="ContextMenu_Hide">Hide</system:String>
     <system:String x:Key="ContextMenu_Close">Close</system:String>
     <system:String x:Key="ContextMenu_ShutDownPC">Shut Down PC</system:String>
-
+    <system:String x:Key="UserControl_Shutdown">Shut Down</system:String>
+    <system:String x:Key="UserControl_FanControl">Fan Control</system:String>
 
 <!-- new 27mar2023-->
     <system:String x:Key="MainWindow_NavigationView_Power">Power</system:String>
@@ -176,11 +187,9 @@
     <system:String x:Key="UserControl_CloseActiveProgram">Close Program</system:String>
     <system:String x:Key="UserControl_HideHCP">Hide HCP</system:String>
     <system:String x:Key="UserControl_CloseHCP">Close HCP</system:String>
-    <system:String x:Key="UserControl_RestartPC">Restart PC</system:String>
+
     <system:String x:Key="UserControl_Restart">Restart</system:String>
-    <system:String x:Key="UserControl_ShutdownPC">Shut Down PC</system:String>
-    <system:String x:Key="UserControl_Shutdown">Shut Down</system:String>
-    <system:String x:Key="UserControl_FanControl">Fan Control</system:String>
+
 
         <!--new 01Apr2023-->
     <system:String x:Key="Hotkeys_Action_Desktop">Go To Desktop</system:String>
@@ -239,8 +248,7 @@
     <system:String x:Key="Usercontrol_FanCurrentFanSpeed">Current Fan Speed:</system:String>
     <system:String x:Key="Usercontrol_AutostartFan">Autostart Fan Control</system:String>
     <system:String x:Key="Usercontrol_FanSettings">Fan Settings</system:String>
-    <system:String x:Key="Instruction_Change">CHANGE</system:String>
-    <system:String x:Key="Instruction_ToggleMode">TOGGLE MODE</system:String>
+
     <system:String x:Key="Hotkeys_Type_None">None</system:String>
         
         

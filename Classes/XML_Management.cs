@@ -94,6 +94,11 @@ namespace Everything_Handhelds_Tool.Classes
 
         public object LoadXML(string folderFileName, string objType)
         {
+            //folder file names are 
+            //         UserConfiguration\\HomePage\\HomePageUserControlList.xml
+            //         UserConfiguration\\Actions\\Actions.xml
+            //         UserConfiguration\\Settings\\Settings.xml
+
             string filePath = directory + folderFileName;
             object objObject = null;
             if (File.Exists(filePath))

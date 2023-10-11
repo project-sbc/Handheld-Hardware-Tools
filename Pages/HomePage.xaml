@@ -24,7 +24,7 @@
             <ui:SymbolIcon Symbol="Home16" Filled="True" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" Margin="0,0,10,0"  FontSize="33"/>
             <Viewbox   VerticalAlignment="Bottom" HorizontalAlignment="Left"   >
 
-                <TextBlock VerticalAlignment="Bottom"  Text="HOME" />
+                <TextBlock VerticalAlignment="Bottom"  Text="{DynamicResource MainWindow_NavigationViewMenuItem_Home}" />
 
             </Viewbox>
         </StackPanel>

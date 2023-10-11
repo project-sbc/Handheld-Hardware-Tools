@@ -13,7 +13,7 @@ namespace Everything_Handhelds_Tool.Models
             this.Add(Wpf.Ui.Common.SymbolRegular.Home16);
             this.Add(Wpf.Ui.Common.SymbolRegular.FlashPlay20);
 
-            this.Add(Wpf.Ui.Common.SymbolRegular.Power20);
+            this.Add(Wpf.Ui.Common.SymbolRegular.WindowSettings20);
  
         }
     }

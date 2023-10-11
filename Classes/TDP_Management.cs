@@ -100,7 +100,7 @@ namespace Everything_Handhelds_Tool.Classes
         public void ValidateTDPChange(int tdp1, int tdp2)
         {
             //this makes sure you dont exceed min or max values
-            Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings\\Settings.xml","Settings");
+            Settings settings = (Settings)XML_Management.Instance.LoadXML("UserConfiguration\\Settings\\Settings.xml", "Settings");
 
             if (tdp1 > settings.maxTDP) { tdp1 = settings.maxTDP; }
             if (tdp1 < settings.minTDP) { tdp1 = settings.minTDP; }

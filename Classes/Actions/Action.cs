@@ -24,7 +24,8 @@ namespace Everything_Handhelds_Tool.Classes.Actions
         public int ID;
         public string actionName;
         public bool displayInActionPanel;
-
+        public string hotkeyType = "";
+        public string hotKey = "";
         public List<string> arguments;
 
         //This routine is going to be the onclick event
@@ -42,9 +43,26 @@ namespace Everything_Handhelds_Tool.Classes.Actions
         //This is default action item list that is used during creating a new action item
         public DefaultActionItemList()   
         {
-            new DefaultActionItem() { actionName = "Change_TDP", displayName = "Change TDP" };
-            new DefaultActionItem() { actionName = "Cycle_TDP", displayName = "Cycle TDP" };
-            new DefaultActionItem() { actionName = "Toggle_Wifi", displayName = "Toggle Wifi" };
+            new DefaultActionItem() { actionName = "Change_TDP", displayName = "" };
+            new DefaultActionItem() { actionName = "Cycle_TDP", displayName = "" };
+            new DefaultActionItem() { actionName = "Toggle_Wifi", displayName = "" };
+            new DefaultActionItem() { actionName = "Toggle_BT", displayName = "" };
+            new DefaultActionItem() { actionName = "Toggle_QAM", displayName = "" };
+            new DefaultActionItem() { actionName = "Auto_TDP", displayName = "" };
+            new DefaultActionItem() { actionName = "Toggle_Controller_Keyboard", displayName = "" };
+            new DefaultActionItem() { actionName = "Toggle_Windows_Keyboard", displayName = "" };
+            new DefaultActionItem() { actionName = "Toggle_Volume_Mute", displayName = "" };
+            new DefaultActionItem() { actionName = "Toggle_Microphone_Mute", displayName = "" };
+            new DefaultActionItem() { actionName = "Open_Steam_Big_Picture", displayName = "" };
+            new DefaultActionItem() { actionName = "Open_Playnite", displayName = "" };
+            new DefaultActionItem() { actionName = "Change_Brightness", displayName = "" };
+            new DefaultActionItem() { actionName = "Cycle_Brightness", displayName = "" };
+            new DefaultActionItem() { actionName = "Change_Volume", displayName = "" };
+            new DefaultActionItem() { actionName = "Cycle_Volume", displayName = "" };
+            new DefaultActionItem() { actionName = "Show_Desktop", displayName = "" };
+            new DefaultActionItem() { actionName = "Toggle_AMD_RSR", displayName = "" };
+            new DefaultActionItem() { actionName = "Cycle_Resolution_Mode", displayName = "" };
+            new DefaultActionItem() { actionName = "Cycle_Refresh_Mode", displayName = "" };
 
         }
     }

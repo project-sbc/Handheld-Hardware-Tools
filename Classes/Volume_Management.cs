@@ -38,7 +38,7 @@ namespace Everything_Handhelds_Tool.Classes
         public int volume = -1;
         public bool volumeMuted = true;
 
-        public int ReturnVolume()
+        public int ReadAndReturnVolume()
         {
             GetMasterVolume();
             return volume;

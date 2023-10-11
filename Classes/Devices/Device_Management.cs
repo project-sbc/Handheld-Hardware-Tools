@@ -28,6 +28,7 @@ namespace Everything_Handhelds_Tool.Classes.Devices
                     {
                         case "G1618-04":
                             //win 4 6800U
+                            handheldDevice = new GPD_Win_4();
                             break;
                         case "G1619-04":
                             //win max 2 6800u
@@ -37,6 +38,7 @@ namespace Everything_Handhelds_Tool.Classes.Devices
                             //win max 2 intel
                             break;
                     }
+
 
 
                     break;

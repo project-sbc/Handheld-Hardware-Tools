@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Everything_Handhelds_Tool.Classes.Actions
+namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
 {
-    public class Change_TDP: Action
+    public class Change_TDP : Action
     {
-        public Change_TDP() 
+        public Change_TDP()
         {
             actionName = "Change_TDP";
             arguments = new List<string>();
@@ -21,15 +21,15 @@ namespace Everything_Handhelds_Tool.Classes.Actions
                 int currentTDP = TDP_Management.Instance.ReadAndReturnSustainedTDP();
                 if (arguments[0].ToString().Contains("-"))
                 {
-                    Int32.TryParse(arguments[0].Substring(1, arguments[0].Length - 1), out changeTDP);
+                    int.TryParse(arguments[0].Substring(1, arguments[0].Length - 1), out changeTDP);
                     changeTDP = -changeTDP;
                 }
                 else
                 {
-                    Int32.TryParse(arguments[0], out changeTDP);
+                    int.TryParse(arguments[0], out changeTDP);
                 }
 
-                TDP_Management.Instance.ChangeSustainedTDP(currentTDP + changeTDP);
+                TDP_Management.Instance.ChangeSustainedBoostTDP(currentTDP + changeTDP, currentTDP + changeTDP);
             }
         }
     }
