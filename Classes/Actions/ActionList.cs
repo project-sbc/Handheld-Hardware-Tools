@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -12,7 +14,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
     {
         public ActionList()
         {
-            this.Add(new Action() { ID = 1, actionName = "Toggle_QAM", hotkeyType="Controller", hotKey= "772" });
+            this.Add(new Change_TDP(new List<string> { "6"}) { ID = 1, hotkeyType="Controller", hotKey= "772" });
         }
 
 
@@ -36,4 +38,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
         }
 
     }
+
+   
+
 }

@@ -1,4 +1,5 @@
-﻿using Everything_Handhelds_Tool.Models;
+﻿using Everything_Handhelds_Tool.Classes.Actions;
+using Everything_Handhelds_Tool.Models;
 using SharpDX.XInput;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Threading;
 
 namespace Everything_Handhelds_Tool.Classes
 {
@@ -22,7 +24,8 @@ namespace Everything_Handhelds_Tool.Classes
         // it helps fire the controllerConnectionChangedEvent
         private bool wasControllerConnected = false;
 
-       
+        public Dictionary<ushort, Actions.Action> controllerHotKeyDictionary = new Dictionary<ushort, Actions.Action>();
+
 
         //Variable to stop events in the case of programming a hot key
         public bool suspendEventsForProgramming { get; set; } = false;
@@ -33,6 +36,8 @@ namespace Everything_Handhelds_Tool.Classes
             controllerThread.IsBackground = true;
             controllerThread.Name = "ControllerThread";
             controllerThread.Priority = ThreadPriority.Highest;
+
+           
             controllerThread.Start();
         }
 
@@ -41,6 +46,11 @@ namespace Everything_Handhelds_Tool.Classes
             try
             {
                 Log_Writer.Instance.writeLog("Starting MainControllerThreadLoop");
+
+                //get action list for hotkey values
+                ActionList actionList = ((ActionList)XML_Management.Instance.LoadXML("UserConfiguration\\Actions\\Actions.xml", "ActionList"));
+                controllerHotKeyDictionary = actionList.ReturnControllerActionHotKeyList();
+
                 GetConnectedController();
 
                 Gamepad currentGamepadState = controller.GetState().Gamepad;
@@ -58,37 +68,72 @@ namespace Everything_Handhelds_Tool.Classes
                     currentGamepadState = controller.GetState().Gamepad;
                     //reset continousInputCurrent
                     continousInputCurrent = "";
-                    foreach (GamepadButtonFlags gbf in gamepadButtonFlags)
+
+
+                    //check for ushort hotkey combo press from action list
+                    if (controllerHotKeyDictionary.Count > 0)
                     {
-                        if (gbf.ToString().Contains("DPad"))
+                        //this converts controller button presses to unique ushort value
+                        ushort currentButtonCombo = (ushort)currentGamepadState.Buttons;
+
+                        //if the value exists WE ONLY DO THE ACTION, NOTHING ELSE and repeat the while loop
+
+                        //If the value doesn't exist, we continue on like normal. This is important because we dont want to register other button presses 
+                        //that might mess up a hot key aciton like opening the menu, you could accidentally send a action
+                        //Good example is LB+RB+Dpad, the last dpad press could translate into the open QAM action
+                        if (controllerHotKeyDictionary.ContainsKey(currentButtonCombo))
                         {
-                            //call routine to send controller input events and track for continous input for any dpad input
-                            string result = HandleDPadInput(gbf, currentGamepadState, previousGamepadState);
-                            if (result != "") { continousInputCurrent = result; }
+                            Actions.Action action;
+                            if (controllerHotKeyDictionary.TryGetValue(currentButtonCombo, out action))
+                            {
+                                action.OnActivate();
+                                
+                            }
                         }
                         else
                         {
-                            if (currentGamepadState.Buttons.HasFlag(gbf) && !previousGamepadState.Buttons.HasFlag(gbf))
+                            //this is the normal business routine
+                            
+                            foreach (GamepadButtonFlags gbf in gamepadButtonFlags)
                             {
-                                //raise event for button press
-                                buttonPressEvent.raiseControllerInput(gbf.ToString());
+                                if (gbf.ToString().Contains("DPad"))
+                                {
+                                    //call routine to send controller input events and track for continous input for any dpad input
+                                    string result = HandleDPadInput(gbf, currentGamepadState, previousGamepadState);
+                                    if (result != "") { continousInputCurrent = result; }
+                                }
+                                else
+                                {
+                                    if (currentGamepadState.Buttons.HasFlag(gbf) && !previousGamepadState.Buttons.HasFlag(gbf))
+                                    {
+                                        //raise event for button press
+                                        buttonPressEvent.raiseControllerInput(gbf.ToString());
+                                    }
+                                }
+
                             }
+
+
+                            //call routine that handles continous input controller input events and counts usage
+                            continousInputCounter = HandleContinousInput(continousInputCurrent, continousInputPrevious, continousInputCounter);
+
+                            //set previous states to current for reference
+                            previousGamepadState = currentGamepadState;
+                            continousInputPrevious = continousInputCurrent;
+
+                            //sleep for 10 ms to match approx. 100 Hz refresh of controller
+                            await Task.Delay(10);
+                            //watch.Stop();
+                            //Debug.WriteLine($"Total Execution Time: {watch.ElapsedMilliseconds} ms");
+
+
+
+
                         }
-                       
+
                     }
 
-                    
-                    //call routine that handles continous input controller input events and counts usage
-                    continousInputCounter = HandleContinousInput(continousInputCurrent, continousInputPrevious, continousInputCounter);
-
-                    //set previous states to current for reference
-                    previousGamepadState = currentGamepadState;
-                    continousInputPrevious = continousInputCurrent;
-
-                    //sleep for 10 ms to match approx. 100 Hz refresh of controller
-                    await Task.Delay(10);
-                    //watch.Stop();
-                    //Debug.WriteLine($"Total Execution Time: {watch.ElapsedMilliseconds} ms");
+                 
                 }
                 Log_Writer.Instance.writeLog("Ending MainControllerThreadLoop");
             }

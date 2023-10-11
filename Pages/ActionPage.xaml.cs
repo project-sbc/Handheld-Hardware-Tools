@@ -44,8 +44,8 @@ namespace Everything_Handhelds_Tool.Pages
 
 
             //test trial for an action
-            Classes.Actions.Action action = new Classes.Actions.ActionClass.Change_TDP();
-            action.arguments.Add("3");
+            Classes.Actions.Action action = new Classes.Actions.ActionClass.Change_TDP(new List<string> { "3"});
+    
             actions.Add(action);
 
             wrapPanel.Children.Add(new Action_UserControl(action));

@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
 {
     public class Change_TDP : Action
     {
-        public Change_TDP()
+        public Change_TDP(List<string> newArguments)
         {
             actionName = "Change_TDP";
-            arguments = new List<string>();
+            arguments = newArguments;
         }
         public override void OnActivate()
+        {
+            Dispatcher.CurrentDispatcher.Invoke(() => ActionTask());
+           
+        }
+
+        public void ActionTask()
         {
             if (arguments.Count > 0)
             {
