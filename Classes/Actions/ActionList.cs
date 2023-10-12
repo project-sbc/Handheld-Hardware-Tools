@@ -14,7 +14,12 @@ namespace Everything_Handhelds_Tool.Classes.Actions
     {
         public ActionList()
         {
-            this.Add(new Change_TDP(new List<string> { "6"}) { ID = 1, hotkeyType="Controller", hotKey= "772" });
+            
+        }
+
+        public void SaveToXML()
+        {
+            XML_Management.Instance.SaveXML("ActionList", this);
         }
 
 

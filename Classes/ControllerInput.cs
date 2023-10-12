@@ -1,4 +1,5 @@
 ﻿using Everything_Handhelds_Tool.Classes.Actions;
+using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
 using Everything_Handhelds_Tool.Models;
 using SharpDX.XInput;
 using System;
@@ -48,7 +49,12 @@ namespace Everything_Handhelds_Tool.Classes
                 Log_Writer.Instance.writeLog("Starting MainControllerThreadLoop");
 
                 //get action list for hotkey values
-                ActionList actionList = ((ActionList)XML_Management.Instance.LoadXML("UserConfiguration\\Actions\\Actions.xml", "ActionList"));
+                ActionList actionList = ((ActionList)XML_Management.Instance.LoadXML("ActionList"));
+
+                Actions.Action changeTDP = new Change_TDP();
+                changeTDP.arguments.Add("6");
+                actionList.Add(changeTDP);
+                actionList.SaveToXML();
                 controllerHotKeyDictionary = actionList.ReturnControllerActionHotKeyList();
 
                 GetConnectedController();

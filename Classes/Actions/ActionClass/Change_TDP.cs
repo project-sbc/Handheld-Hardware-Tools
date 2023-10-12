@@ -10,10 +10,11 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
 {
     public class Change_TDP : Action
     {
-        public Change_TDP(List<string> newArguments)
+       
+        public Change_TDP()
         {
             actionName = "Change_TDP";
-            arguments = newArguments;
+            
         }
         public override void OnActivate()
         {

@@ -39,10 +39,25 @@ namespace Everything_Handhelds_Tool.Classes
         public string directory = AppDomain.CurrentDomain.BaseDirectory;
         private object lockObject = new object();
 
-        public void SaveXML(string folderFileName, string objType, object objClass)
+        public void SaveXML(string objType, object objClass)
         {
             //objClass is the object being saved i.e. Settings
             //objType is the type of object
+            string folderFileName="";
+            switch (objType)
+            {
+                case "HomePageUserControlList":
+                    folderFileName = "UserConfiguration\\HomePage\\HomePageUserControlList.xml";
+                    break;
+                case "Settings":
+                    folderFileName = "UserConfiguration\\Settings\\Settings.xml";
+                    break;
+                case "ActionList":
+                    folderFileName = "UserConfiguration\\Actions\\Actions.xml";
+                    break;
+            }
+
+
             CheckDirectoryExistsOrCreate(directory + folderFileName);
             WriteXMLToFile(folderFileName, objType, objClass);
         }
@@ -92,14 +107,28 @@ namespace Everything_Handhelds_Tool.Classes
             }
         }
 
-        public object LoadXML(string folderFileName, string objType)
+        public object LoadXML(string objType)
         {
             //folder file names are 
             //         UserConfiguration\\HomePage\\HomePageUserControlList.xml
             //         UserConfiguration\\Actions\\Actions.xml
             //         UserConfiguration\\Settings\\Settings.xml
 
-            string filePath = directory + folderFileName;
+            string filePath = "";
+
+            switch (objType)
+            {
+                case "HomePageUserControlList":
+                    filePath = "UserConfiguration\\HomePage\\HomePageUserControlList.xml";
+                    break;
+                case "Settings":
+                    filePath = "UserConfiguration\\Settings\\Settings.xml";
+                    break;
+                case "ActionList":
+                    filePath = "UserConfiguration\\Actions\\Actions.xml";
+                    break;
+            }
+
             object objObject = null;
             if (File.Exists(filePath))
             {

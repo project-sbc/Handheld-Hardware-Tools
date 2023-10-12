@@ -36,7 +36,7 @@ namespace Everything_Handhelds_Tool.Pages
         public void AddUserControlsToStackPanel()
         {
             //Get the XML list from the UserConfiguration folder for what controls go on the home page
-            HomePageUserControlList chpl = (HomePageUserControlList)XML_Management.Instance.LoadXML("UserConfiguration\\HomePage\\HomePageUserControlList.xml", "HomePageUserControlList");
+            HomePageUserControlList chpl = (HomePageUserControlList)XML_Management.Instance.LoadXML("HomePageUserControlList");
 
             //loop through and add the usercontrols
             foreach (HomePageItem hpi in chpl)
