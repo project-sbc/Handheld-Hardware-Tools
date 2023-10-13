@@ -24,9 +24,12 @@
 
         
         <!-- actionusercontrol strings are for the action panel, and action strings are for editing/adding new controls-->
-    <system:String x:Key="ActionUserControl_ChangeTDP">Change TDP </system:String>
-    <system:String x:Key="Action_ChangeTDP">Change TDP</system:String>
+    <system:String x:Key="ActionUserControl_Change_TDP">Change TDP </system:String>
+    <system:String x:Key="Action_Change_TDP">Change TDP</system:String>
     <system:String x:Key="ActionUserControl_CycleTDP">Change TDP Mode</system:String>
+    <system:String x:Key="ActionUserControl_Toggle_WifiAP">Toggle Wifi AP</system:String>
+    <system:String x:Key="Action_Toggle_WifiAP">Toggle Wifi AP</system:String>
+        
     <system:String x:Key="ActionUserControl_Enabled">Enabled</system:String>
     <system:String x:Key="ActionUserControl_Disabled">Disabled</system:String>
 

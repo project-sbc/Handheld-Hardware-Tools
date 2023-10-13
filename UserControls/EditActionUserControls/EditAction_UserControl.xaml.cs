@@ -16,16 +16,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
+namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
 {
     /// <summary>
     /// Interaction logic for TDP_Slider.xaml
     /// </summary>
-    public partial class Action_UserControl : ControllerUserControl
+    public partial class EditAction_UserControl : ControllerUserControl
     {
         public Everything_Handhelds_Tool.Classes.Actions.Action action = null;
       
-        public Action_UserControl(Everything_Handhelds_Tool.Classes.Actions.Action newAction)
+        public EditAction_UserControl(Everything_Handhelds_Tool.Classes.Actions.Action newAction)
         {
             InitializeComponent();
 
@@ -48,20 +48,19 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
 
         private void ConfigureTextAndSymbol()
         {
-         
-            switch (action.actionName)
+            switch(action.actionName)
             {
                 case "Change_TDP":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
-                    textBlock.Text = TDP_Management.Instance.ReadAndReturnSustainedTDP().ToString() + " W";
-                    //override the first text assignment above, most of the
+                    textBlock2.Text = TDP_Management.Instance.ReadAndReturnSustainedTDP().ToString() + " W";
+
                     if (action.arguments[0].ToString().Contains("-"))
                     {
-                        textBlock.Text = Application.Current.Resources["Action_" + action.actionName].ToString() + action.arguments[0].ToString() + " W";
+                        textBlock.Text = Application.Current.Resources["Action_ChangeTDP"].ToString() + action.arguments[0].ToString() + " W";
                     }
                     else
                     {
-                        textBlock.Text = Application.Current.Resources["Action_Change_TDP"].ToString() + "+" + action.arguments[0].ToString() + " W";
+                        textBlock.Text = Application.Current.Resources["Action_ChangeTDP"].ToString() + "+" + action.arguments[0].ToString() + " W";
                     }
 
                     break;
