@@ -21,7 +21,7 @@
        
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" >
-            <ui:SymbolIcon Symbol="Settings20" Filled="True" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" Margin="0,0,10,0"  FontSize="33"/>
+            <ui:SymbolIcon Symbol="Router24" Filled="True" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" Margin="0,0,10,0"  FontSize="33"/>
             <Viewbox   VerticalAlignment="Bottom" HorizontalAlignment="Left"   >
 
                 <TextBlock VerticalAlignment="Bottom"  Text="{DynamicResource Usercontrol_LANWifiSettings}" />
@@ -32,7 +32,7 @@
 
         <ScrollViewer Grid.Row="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Auto">
             <StackPanel  x:Name="stackPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                <uc:LANWifiSettings_Button/>
+               
             </StackPanel>
         </ScrollViewer>
        

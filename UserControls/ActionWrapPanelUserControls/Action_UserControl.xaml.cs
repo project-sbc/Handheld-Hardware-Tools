@@ -58,8 +58,9 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
                 case "Cycle_TDP":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
                     break;
-                case "":
-
+                case "Toggle_WifiAP":
+                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Router24;
+                    textBlock.Text = "Toggle Wifi AP";
                     break;
                 default:
                     break;

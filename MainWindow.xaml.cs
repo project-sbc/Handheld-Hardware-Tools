@@ -16,6 +16,8 @@ using Wpf.Ui.Controls.Interfaces;
 using Wpf.Ui.Common;
 using Everything_Handhelds_Tool.Classes.Actions;
 using Action = Everything_Handhelds_Tool.Classes.Actions.Action;
+using System.Diagnostics;
+using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
 
 namespace Everything_Handhelds_Tool
 {
@@ -36,7 +38,8 @@ namespace Everything_Handhelds_Tool
 
 
 
-            //TRIAL FOR ACTION TDP CHANGE
+
+
 
 
         }

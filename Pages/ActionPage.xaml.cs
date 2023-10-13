@@ -43,19 +43,14 @@ namespace Everything_Handhelds_Tool.Pages
             ActionList actions = (ActionList)XML_Management.Instance.LoadXML("ActionList");
 
 
-            //test trial for an action
-            Classes.Actions.Action action = new Classes.Actions.ActionClass.Change_TDP();
-    
-            actions.Add(action);
 
-            wrapPanel.Children.Add(new Action_UserControl(action));
-            wrapPanel.Children.Add(new Action_UserControl(action));
-            wrapPanel.Children.Add(new Action_UserControl(action));
-            wrapPanel.Children.Add(new Action_UserControl(action));
-            wrapPanel.Children.Add(new Action_UserControl(action));
-            wrapPanel.Children.Add(new Action_UserControl(action));
-            wrapPanel.Children.Add(new Action_UserControl(action));
-            wrapPanel.Children.Add(new Action_UserControl(action));
+            foreach (Classes.Actions.Action action in actions)
+            {
+                wrapPanel.Children.Add(new Action_UserControl(action));
+            }
+
+            
+           
 
             userControls = General_Functions.SearchWrapPanelReturnArray(wrapPanel);
         }

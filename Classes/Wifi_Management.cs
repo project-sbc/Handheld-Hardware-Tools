@@ -62,6 +62,7 @@ namespace Everything_Handhelds_Tool.Classes
             {
                 SendConsoleCommand("stop");
                 SendConsoleCommand("exit");
+                wifiDirectProcess = null;
             }
 
         }
@@ -81,8 +82,11 @@ namespace Everything_Handhelds_Tool.Classes
                 wifiDirectProcess.StartInfo = psf;
                 wifiDirectProcess.Start();
             }
-            SendConsoleCommand("ssid EverythingHandheldsWifi");
-            SendConsoleCommand("password everythinghandhelds");
+
+            Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
+
+            SendConsoleCommand("ssid " + settings.ssidWifiAP);
+            SendConsoleCommand("password " + settings.passwordWifiAP);
             SendConsoleCommand("start");
         }
 

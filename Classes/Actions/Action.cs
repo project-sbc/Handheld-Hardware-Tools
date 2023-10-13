@@ -20,6 +20,9 @@ namespace Everything_Handhelds_Tool.Classes.Actions
 
     //Action model is for general use, there will be a display model below for the action panel page
     [XmlInclude(typeof(Change_TDP))]
+    [XmlInclude(typeof(Toggle_WifiAP))]
+    [XmlInclude(typeof(Cycle_TDP))]
+    [XmlInclude(typeof(Cycle_Volume))]
     public class Action
     {
         //action name is programming specific, display name will be generated at runtime based on language selected
@@ -28,7 +31,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
         public bool displayInActionPanel;
         public string hotkeyType = "";
         public string hotKey = "";
-        public List<string> arguments = new List<string>();
+        public List<string> arguments;
 
         //This routine is going to be the onclick event
         public virtual void OnActivate() { }
