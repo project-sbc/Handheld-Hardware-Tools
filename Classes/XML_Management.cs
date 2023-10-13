@@ -150,7 +150,7 @@ namespace Everything_Handhelds_Tool.Classes
                             break;
                         case "ActionList":
                             xmls = new XmlSerializer(typeof(ActionList));
-                            objObject = ((Settings)xmls.Deserialize(sr));
+                            objObject = ((ActionList)xmls.Deserialize(sr));
                             break;
                     }
 

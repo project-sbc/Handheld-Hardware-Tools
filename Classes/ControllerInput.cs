@@ -51,10 +51,7 @@ namespace Everything_Handhelds_Tool.Classes
                 //get action list for hotkey values
                 ActionList actionList = ((ActionList)XML_Management.Instance.LoadXML("ActionList"));
 
-                Actions.Action changeTDP = new Change_TDP();
-                changeTDP.arguments.Add("6");
-                actionList.Add(changeTDP);
-                actionList.SaveToXML();
+                
                 controllerHotKeyDictionary = actionList.ReturnControllerActionHotKeyList();
 
                 GetConnectedController();

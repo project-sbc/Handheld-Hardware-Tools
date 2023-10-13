@@ -8,8 +8,8 @@
     <system:String x:Key="MainWindow_NavigationViewMenuItem_Home">Home</system:String>
     <system:String x:Key="MainWindow_NavigationViewMenuItem_Actions">Actions</system:String>
     <system:String x:Key="MainWindow_NavigationViewMenuItem_Power">Power</system:String>
-        
-        
+    <system:String x:Key="MainWindow_NavigationViewMenuItem_Settings">Settings</system:String>
+
     <system:String x:Key="Usercontrol_TDP">TDP</system:String>
     <system:String x:Key="Usercontrol_TDP2">Boost TDP</system:String>
     <system:String x:Key="Usercontrol_MaxCPUFrequency">Set Max CPU Frequency</system:String>
@@ -20,6 +20,9 @@
     <system:String x:Key="Usercontrol_CloseProgram">Close - </system:String>
     <system:String x:Key="Usercontrol_ShutdownPC">Shut Down PC</system:String>
     <system:String x:Key="Usercontrol_RestartPC">Restart PC</system:String>
+
+
+    <system:String x:Key="Usercontrol_LANWifiSettings">Wifi AP Settings</system:String>
         
 
     <system:String x:Key="Instruction_Toggle">TOGGLE</system:String>
@@ -47,7 +50,7 @@
 
     <system:String x:Key="MainWindow_NavigationViewMenuItem_AppLauncher">App Launcher</system:String>
     <system:String x:Key="MainWindow_NavigationViewMenuItem_CustomizeHome">Customize Home</system:String>
-    <system:String x:Key="MainWindow_NavigationViewMenuItem_Settings">Settings</system:String>
+
     <system:String x:Key="MainWindow_NavigationViewMenuItem_Information">Information</system:String>
 
 
