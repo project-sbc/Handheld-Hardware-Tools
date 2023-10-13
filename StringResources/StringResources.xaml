@@ -20,10 +20,15 @@
     <system:String x:Key="Usercontrol_CloseProgram">Close - </system:String>
     <system:String x:Key="Usercontrol_ShutdownPC">Shut Down PC</system:String>
     <system:String x:Key="Usercontrol_RestartPC">Restart PC</system:String>
-
-
     <system:String x:Key="Usercontrol_LANWifiSettings">Wifi AP Settings</system:String>
+
         
+        <!-- actionusercontrol strings are for the action panel, and action strings are for editing/adding new controls-->
+    <system:String x:Key="ActionUserControl_ChangeTDP">Change TDP </system:String>
+    <system:String x:Key="Action_ChangeTDP">Change TDP</system:String>
+    <system:String x:Key="ActionUserControl_CycleTDP">Change TDP Mode</system:String>
+    <system:String x:Key="ActionUserControl_Enabled">Enabled</system:String>
+    <system:String x:Key="ActionUserControl_Disabled">Disabled</system:String>
 
     <system:String x:Key="Instruction_Toggle">TOGGLE</system:String>
     <system:String x:Key="Instruction_Confirm">CONFIRM</system:String>

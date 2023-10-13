@@ -46,6 +46,12 @@ namespace Everything_Handhelds_Tool.Classes
         private int tdpSustained = 15;
         private int tdpBoost = 15;
 
+        public int ReturnSustainedTDP()
+        {
+            //does not READ TDP just returns value
+            return tdpSustained;
+        }
+
         public int ReadAndReturnSustainedTDP()
         {
             ReadTDP();

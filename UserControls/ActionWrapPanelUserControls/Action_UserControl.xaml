@@ -18,14 +18,15 @@
                     <RowDefinition Height="55" />
                     <RowDefinition Height="27" />
                 </Grid.RowDefinitions>
-                <ui:SymbolIcon x:Name="symbolIcon" Symbol="DeveloperBoardLightning20" FontSize="50" DockPanel.Dock="Left"  />
+                <ui:SymbolIcon x:Name="symbolIcon" Symbol="DeveloperBoardLightning20" FontSize="50"   />
+                <ui:SymbolIcon x:Name="symbolIconDisabled" Symbol="Line20" FontSize="50" FontWeight="UltraBold"  Visibility="Hidden"     />
 
                 <Viewbox Height="25" Grid.Column="1"   HorizontalAlignment="Center"  >
-                    <TextBlock x:Name="textBlock" Text="15 W"  />
+                    <TextBlock x:Name="textBlock" Text=""  />
                 </Viewbox>
 
                 <Viewbox Height="25" Grid.Row="1" Grid.ColumnSpan="2"   HorizontalAlignment="Center"  >
-                    <TextBlock x:Name="textBlock2" Text="this is a w did i do"  />
+                    <TextBlock x:Name="textBlock2"   />
                 </Viewbox>
 
             </Grid>
