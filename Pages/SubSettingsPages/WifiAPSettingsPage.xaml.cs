@@ -2,6 +2,7 @@
 using Everything_Handhelds_Tool.Classes;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
 using Everything_Handhelds_Tool.Classes.Models;
+using Everything_Handhelds_Tool.UserControls.EditActionUserControls;
 using Everything_Handhelds_Tool.UserControls.HomePageUserControls;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,9 @@ namespace Everything_Handhelds_Tool.Pages
         {
             //There is a general function that searches the stack panel and adds to the list of ControllerUserControls. It makes sure
             //visibility isn't collapsed too
+            UserControl userControl = new EditAction_UserControl(new Classes.Actions.ActionClass.Change_TDP());
+            stackPanel.Children.Add(userControl);
+
             userControls= General_Functions.SearchStackPanelReturnArray(stackPanel);
         }
 

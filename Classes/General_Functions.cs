@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -33,8 +34,18 @@ namespace Everything_Handhelds_Tool.Classes
 
         }
 
+        public static void ChangeFramePageMainWindow(string uri)
+        {
+
+            //use this to access sub setting pages from outside the mainwindow navigation menu, like wifi AP settings page
+            MainWindow window = (MainWindow)Application.Current.MainWindow;
+            Uri uriLink = new Uri(uri, UriKind.RelativeOrAbsolute);
+            window.LoadPageInFrameExternal(uriLink);
+        }
+
         public static Uri TranslateIconToPageURI(SymbolRegular icon)
         {
+            //translates navigation menu symbol to corresponding URI for mainwindow navigation
             Uri uri = new Uri("Pages\\HomePage.xaml", UriKind.Relative);
             switch (icon)
             {
@@ -62,7 +73,7 @@ namespace Everything_Handhelds_Tool.Classes
       
         public static void ChangeControllerInstructionPage(string pageName)
         {
-            //serves as a intermediary function to mainwindow 
+            //serves as a intermediary function to mainwindow from different usercontrols and pages to update controller instructions
             if (Application.Current.MainWindow != null)
             {
                 MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
@@ -72,6 +83,8 @@ namespace Everything_Handhelds_Tool.Classes
 
         public static void NavigateListView(ListBox listView, string action)
         {
+            //this is just a general listview navigation routine to reduce code in other areas
+
             //if no items exist end routine
             if (listView.Items.Count == 0) { return; }
             if (listView.SelectedIndex == -1)

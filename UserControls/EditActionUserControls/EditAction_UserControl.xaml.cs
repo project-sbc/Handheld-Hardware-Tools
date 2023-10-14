@@ -33,7 +33,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             borderControl = border;
 
             //main control
-            mainControl = button;
+            mainControl = null;
 
             action = newAction;
 
@@ -52,36 +52,15 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             {
                 case "Change_TDP":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
-                    textBlock2.Text = TDP_Management.Instance.ReadAndReturnSustainedTDP().ToString() + " W";
-
-                    if (action.arguments[0].ToString().Contains("-"))
-                    {
-                        textBlock.Text = Application.Current.Resources["Action_ChangeTDP"].ToString() + action.arguments[0].ToString() + " W";
-                    }
-                    else
-                    {
-                        textBlock.Text = Application.Current.Resources["Action_ChangeTDP"].ToString() + "+" + action.arguments[0].ToString() + " W";
-                    }
-
+                   
                     break;
                 case "Cycle_TDP":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
-                    textBlock2.Text = TDP_Management.Instance.ReadAndReturnSustainedTDP().ToString() + " W";
-                    textBlock.Text = Application.Current.Resources["Action_CycleTDP"].ToString();
+                 
                     break;
                 case "Toggle_WifiAP":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Router24;
-                    textBlock2.Text = "Toggle Wifi AP";
-                    if (Wifi_Management.Instance.IsWifiRunning()) 
-                    { 
-                        symbolIconDisabled.Visibility = Visibility.Hidden; 
-                        textBlock.Text = Application.Current.Resources["Action_Enabled"].ToString();
-                    }
-                    else
-                    {
-                        symbolIconDisabled.Visibility = Visibility.Visible;
-                        textBlock.Text = Application.Current.Resources["Action_Disabled"].ToString();
-                    }
+                  
                     break;
                 default:
                     break;
@@ -91,34 +70,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            if (action != null)
-            {
-                action.OnActivate();
-
-                switch (action.actionName)
-                {
-                    case "Change_TDP":
-                        textBlock2.Text = TDP_Management.Instance.ReadAndReturnSustainedTDP().ToString() + " W";
-                        break;
-                    case "Cycle_TDP":
-                        symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
-                        break;
-                    case "Toggle_WifiAP":
-                        if (symbolIconDisabled.Visibility == Visibility.Visible)
-                        {
-                            symbolIconDisabled.Visibility = Visibility.Hidden;
-                        }
-                        else
-                        {
-                            symbolIconDisabled.Visibility = Visibility.Visible;
-                        }
-                        
-                        break;
-                    default:
-                        break;
-                }
-
-            }
+            
    
         }
     }

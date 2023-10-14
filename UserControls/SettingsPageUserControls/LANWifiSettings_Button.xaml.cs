@@ -45,7 +45,7 @@ namespace Everything_Handhelds_Tool.UserControls.SettingsPageUserControls
         private void button_Click(object sender, RoutedEventArgs e)
         {
             //navigate to the specific settings page
-            
+            General_Functions.ChangeFramePageMainWindow("Pages\\SubSettingsPages\\WifiAPSettingsPage.xaml");
         }
     }
 }

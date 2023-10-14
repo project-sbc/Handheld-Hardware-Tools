@@ -334,11 +334,18 @@ namespace Everything_Handhelds_Tool
 
         private void LoadPageInFrame()
         {
+            //loads page in frame when navigation menu item changes
             if (navigationViewListBox.SelectedItem != null)
             {
                 frame.Source = General_Functions.TranslateIconToPageURI((Wpf.Ui.Common.SymbolRegular)navigationViewListBox.SelectedItem);
             }
         }
+
+        public void LoadPageInFrameExternal(Uri uri)
+        {
+            frame.Source = uri;
+        }
+
 
         #region LoadedEvent
         private void UiWindow_Loaded(object sender, RoutedEventArgs e)
