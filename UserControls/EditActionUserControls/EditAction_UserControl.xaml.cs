@@ -48,6 +48,23 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
 
         private void ConfigureTextAndSymbol()
         {
+            actionName.Text = Application.Current.Resources["Action_" + action.actionName].ToString();
+
+            if (action.hotkeyType == "")
+            {
+                symbolIconHotKey.Visibility = Visibility.Collapsed;
+                actionHotKey.Visibility = Visibility.Collapsed;
+            }
+
+            if (action.displayInActionPanel)
+            {
+                actionPanelVisible.Text = Application.Current.Resources["ActionUserControl_DisplayInPanel"].ToString();
+            }
+            else
+            {
+                actionPanelVisible.Text = Application.Current.Resources["ActionUserControl_HiddenInPanel"].ToString();
+            }
+
             switch(action.actionName)
             {
                 case "Change_TDP":

@@ -76,12 +76,12 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
                     if (Wifi_Management.Instance.IsWifiRunning()) 
                     { 
                         symbolIconDisabled.Visibility = Visibility.Hidden; 
-                        textBlock.Text = Application.Current.Resources["Action_Enabled"].ToString();
+                        textBlock.Text = Application.Current.Resources["ActionUserControl_Enabled"].ToString();
                     }
                     else
                     {
                         symbolIconDisabled.Visibility = Visibility.Visible;
-                        textBlock.Text = Application.Current.Resources["Action_Disabled"].ToString();
+                        textBlock.Text = Application.Current.Resources["ActionUserControl_Disabled"].ToString();
                     }
                     break;
                 default:

@@ -33,6 +33,9 @@
     <system:String x:Key="ActionUserControl_Enabled">Enabled</system:String>
     <system:String x:Key="ActionUserControl_Disabled">Disabled</system:String>
 
+    <system:String x:Key="ActionUserControl_DisplayInPanel">Displayed In Menu</system:String>
+    <system:String x:Key="ActionUserControl_HiddenInPanel">Hidden In Menu</system:String>
+
     <system:String x:Key="Instruction_Toggle">TOGGLE</system:String>
     <system:String x:Key="Instruction_Confirm">CONFIRM</system:String>
     <system:String x:Key="Instruction_Close">CLOSE</system:String>
