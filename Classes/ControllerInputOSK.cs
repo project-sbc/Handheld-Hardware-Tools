@@ -26,7 +26,7 @@ namespace Everything_Handhelds_Tool.Classes
         {
             Thread controllerThread = new Thread(MainControllerThreadLoop);
             controllerThread.IsBackground = true;
-            controllerThread.Name = "ControllerThread";
+            controllerThread.Name = "ControllerThreadOSK";
             controllerThread.Priority = ThreadPriority.Highest;
             controllerThread.Start();
         }

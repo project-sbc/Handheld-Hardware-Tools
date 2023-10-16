@@ -31,10 +31,43 @@ namespace Everything_Handhelds_Tool.Classes
 
 
         //Variable to stop events in the case of programming a hot key
-        public bool suspendEventsForHotKeyProgramming { get; set; } = false;
-        public bool suspendEventsForNewHotKeyList { get; set; } = false;
-        public bool suspendEventsForOSK { get; set; } = false;
+        private bool suspendEventsForHotKeyProgramming { get; set; } = false;
+        private bool suspendEventsForNewHotKeyList { get; set; } = false;
+        private bool suspendEventsForOSK { get; set; } = false;
 
+        public bool publicSuspendEventsForOSK
+        {
+            get
+            {
+                return suspendEventsForOSK;
+            }
+            set
+            {
+                suspendEventsForOSK = value;
+            }
+        }
+        public bool publicSuspendEventsForNewHotKeyList
+        {
+            get
+            {
+                return suspendEventsForNewHotKeyList;
+            }
+            set
+            {
+                suspendEventsForNewHotKeyList = value;
+            }
+        }
+        public bool publicSuspendEventsForHotKeyProgrammingt
+        {
+            get
+            {
+                return suspendEventsForHotKeyProgramming;
+            }
+            set
+            {
+                suspendEventsForHotKeyProgramming = value;
+            }
+        }
         public ControllerInput()
         {
             Thread controllerThread = new Thread(MainControllerThreadLoop);
@@ -141,6 +174,7 @@ namespace Everything_Handhelds_Tool.Classes
                             {
                                 suspendEventsForOSK = false;
                             }
+                            await Task.Delay(50);
                         }
                         if (suspendEventsForNewHotKeyList)
                         {
