@@ -5,9 +5,11 @@ using SharpDX.XInput;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Threading;
@@ -29,7 +31,9 @@ namespace Everything_Handhelds_Tool.Classes
 
 
         //Variable to stop events in the case of programming a hot key
-        public bool suspendEventsForProgramming { get; set; } = false;
+        public bool suspendEventsForHotKeyProgramming { get; set; } = false;
+        public bool suspendEventsForNewHotKeyList { get; set; } = false;
+        public bool suspendEventsForOSK { get; set; } = false;
 
         public ControllerInput()
         {
@@ -48,11 +52,6 @@ namespace Everything_Handhelds_Tool.Classes
             {
                 Log_Writer.Instance.writeLog("Starting MainControllerThreadLoop");
 
-                //get action list for hotkey values
-               // ActionList actionList = ((ActionList)XML_Management.Instance.LoadXML("ActionList"));
-
-                
-               // controllerHotKeyDictionary = actionList.ReturnControllerActionHotKeyList();
 
                 GetConnectedController();
 
@@ -62,71 +61,93 @@ namespace Everything_Handhelds_Tool.Classes
                 string continousInputPrevious = "";
                 int continousInputCounter = 0;
 
+                UpdateHotKeyDictionary();
+
                 while (this != null)
                 {
-                    //var watch = System.Diagnostics.Stopwatch.StartNew();
-                    //main controller thread is here. Start with getting controller
-                    GetConnectedController();
-
-                    currentGamepadState = controller.GetState().Gamepad;
-                    //reset continousInputCurrent
-                    continousInputCurrent = "";
 
 
-                    //check for ushort hotkey combo press from action list
-                    if (controllerHotKeyDictionary.Count > 0)
+                    if (!suspendEventsForHotKeyProgramming && !suspendEventsForNewHotKeyList && !suspendEventsForOSK)
                     {
-                        //this converts controller button presses to unique ushort value
-                        ushort currentButtonCombo = (ushort)currentGamepadState.Buttons;
+                        //var watch = System.Diagnostics.Stopwatch.StartNew();
+                        //main controller thread is here. Start with getting controller
+                        GetConnectedController();
 
-                        //if the value exists WE ONLY DO THE ACTION, NOTHING ELSE and repeat the while loop
+                        currentGamepadState = controller.GetState().Gamepad;
+                        //reset continousInputCurrent
+                        continousInputCurrent = "";
 
-                        //If the value doesn't exist, we continue on like normal. This is important because we dont want to register other button presses 
-                        //that might mess up a hot key aciton like opening the menu, you could accidentally send a action
-                        //Good example is LB+RB+Dpad, the last dpad press could translate into the open QAM action
-                        if (controllerHotKeyDictionary.ContainsKey(currentButtonCombo))
+
+                        //check for ushort hotkey combo press from action list
+                        if (controllerHotKeyDictionary.Count > 0)
                         {
-                            Actions.Action action;
-                            if (controllerHotKeyDictionary.TryGetValue(currentButtonCombo, out action))
+                            //this converts controller button presses to unique ushort value
+                            ushort currentButtonCombo = (ushort)currentGamepadState.Buttons;
+
+                            //if the value exists WE ONLY DO THE ACTION, NOTHING ELSE and repeat the while loop
+
+                            //If the value doesn't exist, we continue on like normal. This is important because we dont want to register other button presses 
+                            //that might mess up a hot key aciton like opening the menu, you could accidentally send a action
+                            //Good example is LB+RB+Dpad, the last dpad press could translate into the open QAM action
+                            if (controllerHotKeyDictionary.ContainsKey(currentButtonCombo))
                             {
-                                action.OnActivate();
-                                goto continueloop;
+                                Actions.Action action;
+                                if (controllerHotKeyDictionary.TryGetValue(currentButtonCombo, out action))
+                                {
+                                    action.OnActivate();
+                                    goto continueloop;
+                                }
                             }
+
                         }
-                       
-                    }
 
 
-                    //this is the normal business routine
+                        //this is the normal business routine after hotkey checking
 
-                    foreach (GamepadButtonFlags gbf in gamepadButtonFlags)
-                    {
-                        if (gbf.ToString().Contains("DPad"))
+                        foreach (GamepadButtonFlags gbf in gamepadButtonFlags)
                         {
-                            //call routine to send controller input events and track for continous input for any dpad input
-                            string result = HandleDPadInput(gbf, currentGamepadState, previousGamepadState);
-                            if (result != "") { continousInputCurrent = result; }
-                        }
-                        else
-                        {
-                            if (currentGamepadState.Buttons.HasFlag(gbf) && !previousGamepadState.Buttons.HasFlag(gbf))
+                            if (gbf.ToString().Contains("DPad"))
                             {
-                                //raise event for button press
-                                buttonPressEvent.raiseControllerInput(gbf.ToString());
+                                //call routine to send controller input events and track for continous input for any dpad input
+                                string result = HandleDPadInput(gbf, currentGamepadState, previousGamepadState);
+                                if (result != "") { continousInputCurrent = result; }
                             }
+                            else
+                            {
+                                if (currentGamepadState.Buttons.HasFlag(gbf) && !previousGamepadState.Buttons.HasFlag(gbf))
+                                {
+                                    //raise event for button press
+                                    buttonPressEvent.raiseControllerInput(gbf.ToString());
+                                }
+                            }
+
                         }
 
-                    }
 
-
-                    //call routine that handles continous input controller input events and counts usage
-                    continousInputCounter = HandleContinousInput(continousInputCurrent, continousInputPrevious, continousInputCounter);
+                        //call routine that handles continous input controller input events and counts usage
+                        continousInputCounter = HandleContinousInput(continousInputCurrent, continousInputPrevious, continousInputCounter);
 
 
                     continueloop:
-                    //set previous states to current for reference
-                    previousGamepadState = currentGamepadState;
-                    continousInputPrevious = continousInputCurrent;
+                        //set previous states to current for reference
+                        previousGamepadState = currentGamepadState;
+                        continousInputPrevious = continousInputCurrent;
+                    }
+                    else
+                    {
+                        if (suspendEventsForOSK)
+                        {
+                            if (!Application.Current.Windows.OfType<OSK>().Any())
+                            {
+                                suspendEventsForOSK = false;
+                            }
+                        }
+                        if (suspendEventsForNewHotKeyList)
+                        {
+                            UpdateHotKeyDictionary();
+                        }
+                    }
+
 
                     //sleep for 10 ms to match approx. 100 Hz refresh of controller
                     await Task.Delay(10);
@@ -142,6 +163,16 @@ namespace Everything_Handhelds_Tool.Classes
                 Log_Writer.Instance.writeLog("Error in main controller thread; " + ex.Message, "CI02");
             }
         }
+
+        private void UpdateHotKeyDictionary()
+        {
+            ActionList actions = (ActionList)XML_Management.Instance.LoadXML("ActionList");
+            
+            controllerHotKeyDictionary = actions.ReturnControllerActionHotKeyList();
+         
+
+        }
+
         private int HandleContinousInput(string continuousInputCurrent, string continuousInputPrevious, int counter)
         {
             //Routine checks to see if the same input (up down left right) has been going on for more than 39 times (390 ms)

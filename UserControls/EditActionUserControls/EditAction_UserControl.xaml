@@ -8,7 +8,7 @@
                                mc:Ignorable="d" 
             Height="Auto"  Margin="0,0,0,3" >
     <Border x:Name="border" Style="{StaticResource userControlBorder}" >
-        <ui:CardExpander  VerticalAlignment="Top" x:Name="card"  ExpandDirection="Down" IsExpanded="True" >
+        <ui:CardExpander  VerticalAlignment="Top" x:Name="card"  ExpandDirection="Down" >
             <ui:CardExpander.Header >
                 <DockPanel  >
                     

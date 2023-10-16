@@ -1,5 +1,6 @@
 ﻿using Everything_Handhelds_Tool.Classes;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
+using Everything_Handhelds_Tool.Pages;
 using SharpDX.XInput;
 using System;
 using System.Collections.Generic;
@@ -220,7 +221,12 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             {
                 switch (action)
                 {
-
+                    case "DPadUp":
+                        SendCommandToEditActionOverviewPage("MoveUp");
+                        break;
+                    case "DPadDown":
+                        SendCommandToEditActionOverviewPage("MoveDown");
+                        break;
                 }
             }
             else
@@ -231,6 +237,19 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                 }
             }
            
+
+        }
+
+        private void SendCommandToEditActionOverviewPage(string action)
+        {
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
+            EditActionOverviewPage editActionOverviewPage = mainWindow.frame.Content as EditActionOverviewPage;
+
+            if (editActionOverviewPage != null)
+            {
+                editActionOverviewPage.HandleUserControlInputs(this, action);
+            }
 
         }
 
@@ -246,12 +265,12 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
 
         private void btnMoveUp_Click(object sender, RoutedEventArgs e)
         {
-
+            SendCommandToEditActionOverviewPage("MoveUp");
         }
 
         private void btnMoveDown_Click(object sender, RoutedEventArgs e)
         {
-
+            SendCommandToEditActionOverviewPage("MoveDown");
         }
     }
 }

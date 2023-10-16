@@ -21,7 +21,7 @@ namespace Everything_Handhelds_Tool.Pages
     /// </summary>
     public partial class EditActionOverviewPage : ControllerPage
     {
-        
+
         public EditActionOverviewPage()
         {
             //Move initilize components to sub routine and async it to make pages feel smoother
@@ -55,6 +55,55 @@ namespace Everything_Handhelds_Tool.Pages
 
         }
 
+        public void HandleUserControlInputs(UserControl userControl, string action)
+        {
+            int ucIndex = stackPanel.Children.IndexOf(userControl);
+            if (ucIndex >= 0)
+            {
+                switch(action)
+                {
+                    case "MoveUp":
+                        if (ucIndex > 0)
+                        {
+                            if (ucIndex == highlightedUserControl)
+                            {
+                                highlightedUserControl = ucIndex - 1;
+                            }
+
+                            stackPanel.Children.Remove(userControl);
+                            stackPanel.Children.Insert(ucIndex-1,userControl);
+
+                            userControls.Remove((ControllerUserControl)userControl);
+                            userControls.Insert(ucIndex-1, (ControllerUserControl)userControl);
+
+                            
+                        }
+
+                        break;
+                    case "MoveDown":
+                        if (ucIndex < userControls.Count-1)
+                        {
+                            if (ucIndex == highlightedUserControl)
+                            {
+                                highlightedUserControl = ucIndex + 1;
+                            }
+
+                            stackPanel.Children.Remove(userControl);
+                            stackPanel.Children.Insert(ucIndex + 1, userControl);
+
+                            userControls.Remove((ControllerUserControl)userControl);
+                            userControls.Insert(ucIndex + 1, (ControllerUserControl)userControl);
+
+
+                        }
+
+                        break;
+
+                }
+
+
+            }
+        }
 
 
     }
