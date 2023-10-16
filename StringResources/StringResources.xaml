@@ -32,6 +32,11 @@
         
     <system:String x:Key="ActionUserControl_Enabled">Enabled</system:String>
     <system:String x:Key="ActionUserControl_Disabled">Disabled</system:String>
+        
+    <system:String x:Key="EditActionUserControl_Edit">Edit</system:String>
+    <system:String x:Key="EditActionUserControl_Delete">Delete</system:String>
+    <system:String x:Key="EditActionUserControl_MoveUp">Move Up</system:String>
+    <system:String x:Key="EditActionUserControl_MoveDown">Move Down</system:String>
 
     <system:String x:Key="ActionUserControl_DisplayInPanel">Displayed In Menu</system:String>
     <system:String x:Key="ActionUserControl_HiddenInPanel">Hidden In Menu</system:String>
@@ -54,7 +59,7 @@
 
 
 
-    <!-- THIS IS THE DIVIDER-->
+    <!-- THIS IS THE DIVIDER DO NOT CROSS THIS LINE PLEASE EVERYTHING BELOW IS NOT IN USE FOR THE NEW APP AND MUST BE BROUGHTUP-->
 
 
     <system:String x:Key="MainWindow_NavigationViewMenuItem_Profiles">Profiles</system:String>

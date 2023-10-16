@@ -1,6 +1,7 @@
 ﻿
 using Everything_Handhelds_Tool.Classes;
 using Everything_Handhelds_Tool.Classes.Actions;
+using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
 using Everything_Handhelds_Tool.Classes.Models;
 using Everything_Handhelds_Tool.UserControls.EditActionUserControls;
@@ -38,11 +39,11 @@ namespace Everything_Handhelds_Tool.Pages
         {
             ActionList actions = (ActionList)XML_Management.Instance.LoadXML("ActionList");
 
-            Classes.Actions.Action newAction = new Classes.Actions.Action();
+            Classes.Actions.Action newAction = new Change_TDP();
             newAction.arguments = new List<string>();
             newAction.arguments.Add("6");
             newAction.hotkeyType = "Controller";
-            newAction.hotKey = "A+B";
+            newAction.hotKey = "772";
             actions.Add(newAction);
 
             foreach(Classes.Actions.Action action in actions)
