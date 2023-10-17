@@ -38,11 +38,6 @@ namespace Everything_Handhelds_Tool
 
 
 
-            Toggle_EHT_OSK toggle_EHT_OSK = new Toggle_EHT_OSK();
-            toggle_EHT_OSK.OnActivate();
-
-
-
         }
         #region Set up
         private void InitializeRoutines() 

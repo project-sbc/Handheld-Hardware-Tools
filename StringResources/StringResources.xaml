@@ -20,7 +20,10 @@
     <system:String x:Key="Usercontrol_CloseProgram">Close - </system:String>
     <system:String x:Key="Usercontrol_ShutdownPC">Shut Down PC</system:String>
     <system:String x:Key="Usercontrol_RestartPC">Restart PC</system:String>
+        
+        
     <system:String x:Key="Usercontrol_LANWifiSettings">Wifi AP Settings</system:String>
+    <system:String x:Key="Usercontrol_EditActions">Edit Actions</system:String>
 
         
         <!-- actionusercontrol strings are for the action panel, and action strings are for editing/adding new controls-->

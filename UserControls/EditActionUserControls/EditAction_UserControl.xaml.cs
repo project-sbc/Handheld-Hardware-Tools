@@ -227,6 +227,9 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     case "DPadDown":
                         SendCommandToEditActionOverviewPage("MoveDown");
                         break;
+                    case "Delete":
+                        SendCommandToEditActionOverviewPage("Delete");
+                        break;
                 }
             }
             else
@@ -260,7 +263,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            SendCommandToEditActionOverviewPage("Delete");
         }
 
         private void btnMoveUp_Click(object sender, RoutedEventArgs e)

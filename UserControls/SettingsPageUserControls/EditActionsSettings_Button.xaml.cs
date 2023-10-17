@@ -1,5 +1,9 @@
 ﻿using Everything_Handhelds_Tool.Classes;
+using Everything_Handhelds_Tool.Classes.Actions;
+using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
+using Everything_Handhelds_Tool.Pages;
+using Everything_Handhelds_Tool.UserControls.EditActionUserControls;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,11 +25,11 @@ namespace Everything_Handhelds_Tool.UserControls.SettingsPageUserControls
     /// <summary>
     /// Interaction logic for TDP_Slider.xaml
     /// </summary>
-    public partial class LANWifiSettings_Button : ControllerUserControl
+    public partial class EditActionsSettings_Button : ControllerUserControl
     {
 
       
-        public LANWifiSettings_Button()
+        public EditActionsSettings_Button()
         {
             InitializeComponent();
 
@@ -45,7 +49,15 @@ namespace Everything_Handhelds_Tool.UserControls.SettingsPageUserControls
         private void button_Click(object sender, RoutedEventArgs e)
         {
             //navigate to the specific settings page
-            General_Functions.ChangeFramePageMainWindow("Pages\\SubSettingsPages\\WifiAPSettingsPage.xaml");
+            Classes.Actions.Action action = new Change_TDP();
+            action.arguments = new List<string>();  
+            action.arguments.Add("5");
+
+            Page page = new EditActionOverviewPage(action);
+
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow.frame.Content = page;
+
         }
     }
 }

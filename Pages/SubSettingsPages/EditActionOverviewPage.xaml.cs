@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Windows.Controls;
 using System.Windows.Forms.Integration;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -22,18 +23,28 @@ namespace Everything_Handhelds_Tool.Pages
     public partial class EditActionOverviewPage : ControllerPage
     {
 
-        public EditActionOverviewPage()
+        public EditActionOverviewPage(Classes.Actions.Action? action = null)
         {
             //Move initilize components to sub routine and async it to make pages feel smoother
-            Dispatcher.BeginInvoke(new System.Action(() => Initialize()));
+            Dispatcher.BeginInvoke(new System.Action(() => InitializeActions(action)));
 
+         
         }
 
-        private void Initialize()
+      
+
+        private void InitializeActions(Classes.Actions.Action? action = null)
         {
             InitializeComponent();
             virtualStackPanel = stackPanel;
             AddControlsToArray();
+
+            if (action != null)
+            {
+                UserControl userControl = new EditAction_UserControl(action);
+                stackPanel.Children.Add(userControl);
+                userControls.Add((ControllerUserControl)userControl);
+            }
         }
         private void AddControlsToArray()
         {
@@ -62,6 +73,13 @@ namespace Everything_Handhelds_Tool.Pages
             {
                 switch(action)
                 {
+                    case "Delete":
+                        stackPanel.Children.Remove(userControl);
+                        userControls.Remove((ControllerUserControl)userControl);
+                        highlightedUserControl = -1;
+                        ReturnControlToPage();
+                        break;
+
                     case "MoveUp":
                         if (ucIndex > 0)
                         {
