@@ -1,4 +1,4 @@
-﻿<classes:ControllerPage x:Class="Everything_Handhelds_Tool.Pages.EditActionOverviewPage"
+﻿<classes:ControllerPage x:Class="Everything_Handhelds_Tool.Pages.NewActionPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -21,24 +21,21 @@
        
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" >
-            <ui:SymbolIcon Symbol="Router24" Filled="True" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" Margin="0,0,10,0"  FontSize="33"/>
+            <ui:SymbolIcon Symbol="New20" Filled="True" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" Margin="0,0,10,0"  FontSize="33"/>
             <Viewbox   VerticalAlignment="Bottom" HorizontalAlignment="Left"   >
 
-                <TextBlock VerticalAlignment="Bottom"  Text="{DynamicResource Usercontrol_EditActions}" />
+                <TextBlock VerticalAlignment="Bottom"  Text="{DynamicResource Usercontrol_NewAction}" />
 
             </Viewbox>
 
-            <Button x:Name="newAction" Click="newAction_Click" >
-                <Viewbox     >
-                    <TextBlock  Text="{DynamicResource Usercontrol_NewAction}" />
-                </Viewbox>
-            </Button>
+          
         </StackPanel>
        
 
         <ScrollViewer Grid.Row="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Auto">
             <StackPanel  x:Name="stackPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-               
+                
+                
             </StackPanel>
         </ScrollViewer>
        

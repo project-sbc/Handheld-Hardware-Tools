@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.AccessControl;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms.Integration;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -21,13 +20,13 @@ namespace Everything_Handhelds_Tool.Pages
     /// <summary>
     /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class EditActionOverviewPage : ControllerPage
+    public partial class NewActionPage : ControllerPage
     {
 
-        public EditActionOverviewPage(Classes.Actions.Action? action = null)
+        public NewActionPage()
         {
             //Move initilize components to sub routine and async it to make pages feel smoother
-            Dispatcher.BeginInvoke(new System.Action(() => InitializeActions(action)));
+            Dispatcher.BeginInvoke(new System.Action(() => InitializeActions()));
 
          
         }
@@ -135,12 +134,6 @@ namespace Everything_Handhelds_Tool.Pages
             }
         }
 
-        private void newAction_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            System.Windows.Controls.Page page = new NewActionPage();
 
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-            mainWindow.frame.Content = page;
-        }
     }
 }
