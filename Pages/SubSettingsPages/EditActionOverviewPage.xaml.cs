@@ -50,19 +50,30 @@ namespace Everything_Handhelds_Tool.Pages
         {
             ActionList actions = (ActionList)XML_Management.Instance.LoadXML("ActionList");
 
-            Classes.Actions.Action newAction = new Change_TDP();
-            newAction.arguments = new List<string>();
-            newAction.arguments.Add("6");
-            newAction.hotkeyType = "Controller";
-            newAction.hotKey = "772";
-            actions.Add(newAction);
-
             foreach(Classes.Actions.Action action in actions)
             {
                 UserControl userControl = new EditAction_UserControl(action);
                 stackPanel.Children.Add(userControl);
                 userControls.Add((ControllerUserControl)userControl);
             }
+
+        }
+
+        private void SaveActionList()
+        {
+            //grabs all the actions from each control and then saves them to the XML
+            ActionList actions = new ActionList();
+
+            foreach (object child in stackPanel.Children)
+            {
+                if (child != null)
+                {
+                    EditAction_UserControl editAction_UserControl = (EditAction_UserControl)child;
+                    actions.Add(editAction_UserControl.action);
+                }
+            }
+
+            actions.SaveToXML();
 
         }
 

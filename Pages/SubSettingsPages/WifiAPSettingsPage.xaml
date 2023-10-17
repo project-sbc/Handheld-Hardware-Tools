@@ -7,7 +7,7 @@
          xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"
  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"  
       mc:Ignorable="d" 
-        xmlns:uc="clr-namespace:Everything_Handhelds_Tool.UserControls.SettingsPageUserControls"
+        xmlns:uc="clr-namespace:Everything_Handhelds_Tool.UserControls.SubPageUserControls.WifiAPSettingsPageUserControls"
       Title="HomePage"     
                  xmlns:UpperCase="clr-namespace:Everything_Handhelds_Tool.Classes.Converters"
                         
@@ -32,7 +32,8 @@
 
         <ScrollViewer Grid.Row="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Auto">
             <StackPanel  x:Name="stackPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-               
+                <uc:WifiAPSSID_Textbox/>
+                <uc:WifiAPPassword_Textbox/>
             </StackPanel>
         </ScrollViewer>
        

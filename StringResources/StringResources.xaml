@@ -23,6 +23,8 @@
         
         
     <system:String x:Key="Usercontrol_LANWifiSettings">Wifi AP Settings</system:String>
+    <system:String x:Key="Usercontrol_WifiAPSSID">Wifi AP SSID</system:String>
+    <system:String x:Key="Usercontrol_WifiAPPassword">Wifi AP Password</system:String>
     <system:String x:Key="Usercontrol_EditActions">Edit Actions</system:String>
 
         

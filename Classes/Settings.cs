@@ -22,6 +22,13 @@ namespace Everything_Handhelds_Tool.Classes
 
         public string ssidWifiAP { get; set; } = "EverythingHandheldsWifi";
         public string passwordWifiAP { get; set; } = "everythinghandhelds";
+
+
+        public void SaveToXML()
+        {
+            XML_Management.Instance.SaveXML("Settings", this);
+        }
+
     }
-   
+
 }
