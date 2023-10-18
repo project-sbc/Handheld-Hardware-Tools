@@ -22,7 +22,7 @@ namespace Everything_Handhelds_Tool.Pages
     /// </summary>
     public partial class NewActionPage : ControllerPage
     {
-
+        public Classes.Actions.Action action;
         public NewActionPage()
         {
             //Move initilize components to sub routine and async it to make pages feel smoother
