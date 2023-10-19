@@ -4,7 +4,7 @@ using Everything_Handhelds_Tool.Classes.Actions;
 using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
 using Everything_Handhelds_Tool.Classes.Models;
-using Everything_Handhelds_Tool.UserControls.EditActionUserControls;
+using Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls;
 using Everything_Handhelds_Tool.UserControls.HomePageUserControls;
 using System;
 using System.Collections.Generic;
@@ -41,7 +41,7 @@ namespace Everything_Handhelds_Tool.Pages
 
             if (action != null)
             {
-                UserControl userControl = new EditAction_UserControl(action);
+                UserControl userControl = new ActionOverview_UserControl(action);
                 stackPanel.Children.Add(userControl);
                 userControls.Add((ControllerUserControl)userControl);
             }
@@ -52,7 +52,7 @@ namespace Everything_Handhelds_Tool.Pages
 
             foreach(Classes.Actions.Action action in actions)
             {
-                UserControl userControl = new EditAction_UserControl(action);
+                UserControl userControl = new ActionOverview_UserControl(action);
                 stackPanel.Children.Add(userControl);
                 userControls.Add((ControllerUserControl)userControl);
             }
@@ -68,7 +68,7 @@ namespace Everything_Handhelds_Tool.Pages
             {
                 if (child != null)
                 {
-                    EditAction_UserControl editAction_UserControl = (EditAction_UserControl)child;
+                    ActionOverview_UserControl editAction_UserControl = (ActionOverview_UserControl)child;
                     actions.Add(editAction_UserControl.action);
                 }
             }

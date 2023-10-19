@@ -180,4 +180,8 @@
     </Page>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UserControls\NewActionUserControls\" />
+  </ItemGroup>
+
 </Project>

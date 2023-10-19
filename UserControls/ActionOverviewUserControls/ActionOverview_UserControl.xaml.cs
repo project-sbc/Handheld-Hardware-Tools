@@ -18,16 +18,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
+namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
 {
     /// <summary>
     /// Interaction logic for TDP_Slider.xaml
     /// </summary>
-    public partial class EditAction_UserControl : ControllerUserControl
+    public partial class ActionOverview_UserControl : ControllerUserControl
     {
         public Everything_Handhelds_Tool.Classes.Actions.Action action = null;
         public bool isMovingUserControlInStackPanel = false;
-        public EditAction_UserControl(Everything_Handhelds_Tool.Classes.Actions.Action newAction)
+        public ActionOverview_UserControl(Everything_Handhelds_Tool.Classes.Actions.Action newAction)
         {
             InitializeComponent();
 
