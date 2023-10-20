@@ -110,6 +110,14 @@ namespace Everything_Handhelds_Tool.Pages
                         }
 
                         break;
+                    case "Edit":
+                        ActionOverview_UserControl actionOverview_UserControl = (ActionOverview_UserControl)userControl;
+                        System.Windows.Controls.Page page = new EditActionPage(actionOverview_UserControl.action);
+
+                        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                        mainWindow.frame.Content = page;
+
+                        break;
                     case "MoveDown":
                         if (ucIndex < userControls.Count-1)
                         {
@@ -137,7 +145,7 @@ namespace Everything_Handhelds_Tool.Pages
 
         private void newAction_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            System.Windows.Controls.Page page = new NewActionPage();
+            System.Windows.Controls.Page page = new EditActionPage();
 
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.frame.Content = page;

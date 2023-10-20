@@ -230,6 +230,9 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
                     case "Delete":
                         SendCommandToEditActionOverviewPage("Delete");
                         break;
+                    case "A":
+                        SendCommandToEditActionOverviewPage("Edit");
+                        break;
                 }
             }
             else
@@ -258,7 +261,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            SendCommandToEditActionOverviewPage("Edit");
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)

@@ -43,40 +43,39 @@ namespace Everything_Handhelds_Tool.Classes.Actions
 
 
 
-    public class DefaultActionItemList: List<DefaultActionItem>
+    public class DefaultActionItemDictionary: Dictionary<string, string>
     {
         //This is default action item list that is used during creating a new action item
-        public DefaultActionItemList()   
+        public DefaultActionItemDictionary()   
         {
-            new DefaultActionItem() { actionName = "Change_TDP", displayName = "" };
-            new DefaultActionItem() { actionName = "Cycle_TDP", displayName = "" };
-            new DefaultActionItem() { actionName = "Toggle_Wifi", displayName = "" };
-            new DefaultActionItem() { actionName = "Toggle_BT", displayName = "" };
-            new DefaultActionItem() { actionName = "Toggle_QAM", displayName = "" };
-            new DefaultActionItem() { actionName = "Auto_TDP", displayName = "" };
-            new DefaultActionItem() { actionName = "Toggle_Controller_Keyboard", displayName = "" };
-            new DefaultActionItem() { actionName = "Toggle_Windows_Keyboard", displayName = "" };
-            new DefaultActionItem() { actionName = "Toggle_Volume_Mute", displayName = "" };
-            new DefaultActionItem() { actionName = "Toggle_Microphone_Mute", displayName = "" };
-            new DefaultActionItem() { actionName = "Open_Steam_Big_Picture", displayName = "" };
-            new DefaultActionItem() { actionName = "Open_Playnite", displayName = "" };
-            new DefaultActionItem() { actionName = "Change_Brightness", displayName = "" };
-            new DefaultActionItem() { actionName = "Cycle_Brightness", displayName = "" };
-            new DefaultActionItem() { actionName = "Change_Volume", displayName = "" };
-            new DefaultActionItem() { actionName = "Cycle_Volume", displayName = "" };
-            new DefaultActionItem() { actionName = "Show_Desktop", displayName = "" };
-            new DefaultActionItem() { actionName = "Toggle_AMD_RSR", displayName = "" };
-            new DefaultActionItem() { actionName = "Cycle_Resolution_Mode", displayName = "" };
-            new DefaultActionItem() { actionName = "Cycle_Refresh_Mode", displayName = "" };
+            this.Add("Change_TDP", Application.Current.Resources["Action_Change_TDP"].ToString());
+            this.Add("Cycle_TDP", Application.Current.Resources["Action_Cycle_TDP"].ToString());
+            //this.Add("Toggle_Wifi", Application.Current.Resources["Action_Toggle_Wifi"].ToString());
+            this.Add("Toggle_WifiAP", Application.Current.Resources["Action_Toggle_WifiAP"].ToString());
+            //this.Add("Toggle_BT", Application.Current.Resources["Action_Toggle_BT"].ToString());
+            //this.Add("Toggle_QAM", Application.Current.Resources["Action_Toggle_QAM"].ToString());
+
+
+            //new DefaultActionItem() { actionName = "Auto_TDP", displayName = "" };
+            //new DefaultActionItem() { actionName = "Toggle_Controller_Keyboard", displayName = "" };
+            //new DefaultActionItem() { actionName = "Toggle_Windows_Keyboard", displayName = "" };
+            //new DefaultActionItem() { actionName = "Toggle_Volume_Mute", displayName = "" };
+            //new DefaultActionItem() { actionName = "Toggle_Microphone_Mute", displayName = "" };
+            //new DefaultActionItem() { actionName = "Open_Steam_Big_Picture", displayName = "" };
+            //new DefaultActionItem() { actionName = "Open_Playnite", displayName = "" };
+            //new DefaultActionItem() { actionName = "Change_Brightness", displayName = "" };
+            //new DefaultActionItem() { actionName = "Cycle_Brightness", displayName = "" };
+            //new DefaultActionItem() { actionName = "Change_Volume", displayName = "" };
+            //new DefaultActionItem() { actionName = "Cycle_Volume", displayName = "" };
+            //new DefaultActionItem() { actionName = "Show_Desktop", displayName = "" };
+            //new DefaultActionItem() { actionName = "Toggle_AMD_RSR", displayName = "" };
+            //new DefaultActionItem() { actionName = "Cycle_Resolution_Mode", displayName = "" };
+            //new DefaultActionItem() { actionName = "Cycle_Refresh_Mode", displayName = "" };
 
         }
     }
 
-    public class DefaultActionItem
-    {
-        public string actionName;
-        public string displayName;
-    }
+   
   
 
 }
