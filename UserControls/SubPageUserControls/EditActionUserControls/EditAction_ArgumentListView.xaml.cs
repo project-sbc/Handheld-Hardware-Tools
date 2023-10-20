@@ -49,7 +49,6 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
         }
 
 
-        public Dictionary<string, string>actionDictionary = new DefaultActionItemDictionary();
         private void ConfigureControl(string actionName = "")
         {
           
@@ -59,7 +58,6 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
 
         public override void ControlChangeValueHandler()
         {
-            //set originalselectedindex to the NEW selected index to prevent accidental change when returning control to page (where it will reset to original if indexes dont match)
            
 
         }

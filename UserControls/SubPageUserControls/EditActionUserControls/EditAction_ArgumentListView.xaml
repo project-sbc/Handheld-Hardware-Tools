@@ -16,11 +16,12 @@
                         <TextBlock Text="{DynamicResource Usercontrol_ActionType}"  />
                     </Viewbox>
 
-                  
+
 
                 </DockPanel>
 
 
+                <ListView x:Name="listView"  Margin="5,5,5,0" Height="100"   />
             </DockPanel>
         </ui:Card>
 
