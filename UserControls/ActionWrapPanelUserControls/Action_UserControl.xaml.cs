@@ -55,13 +55,13 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
                     textBlock.Text = TDP_Management.Instance.ReadAndReturnSustainedTDP().ToString() + " W";
                     //override the first text assignment above, most of the
-                    if (action.arguments[0].ToString().Contains("-"))
+                    if (action.parameters[0].ToString().Contains("-"))
                     {
-                        textBlock.Text = Application.Current.Resources["Action_" + action.actionName].ToString() + action.arguments[0].ToString() + " W";
+                        textBlock.Text = Application.Current.Resources["Action_" + action.actionName].ToString() + action.parameters[0].ToString() + " W";
                     }
                     else
                     {
-                        textBlock.Text = Application.Current.Resources["Action_Change_TDP"].ToString() + "+" + action.arguments[0].ToString() + " W";
+                        textBlock.Text = Application.Current.Resources["Action_Change_TDP"].ToString() + "+" + action.parameters[0].ToString() + " W";
                     }
 
                     break;

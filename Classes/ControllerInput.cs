@@ -1,6 +1,7 @@
 ﻿using Everything_Handhelds_Tool.Classes.Actions;
 using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
 using Everything_Handhelds_Tool.Models;
+using Everything_Handhelds_Tool.Pages;
 using SharpDX.XInput;
 using System;
 using System.Collections.Generic;
@@ -168,17 +169,33 @@ namespace Everything_Handhelds_Tool.Classes
                     }
                     else
                     {
+                        await Task.Delay(100);
                         if (suspendEventsForOSK)
                         {
                             if (!Application.Current.Windows.OfType<OSK>().Any())
                             {
                                 suspendEventsForOSK = false;
                             }
-                            await Task.Delay(50);
                         }
                         if (suspendEventsForNewHotKeyList)
                         {
                             UpdateHotKeyDictionary();
+                            suspendEventsForNewHotKeyList = false;
+                        }
+                        if (suspendEventsForHotKeyProgramming)
+                        {
+                            //check to see if main window frame is still on edit action page
+                            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+                            if (mainWindow != null)
+                            {
+                                if (mainWindow.frame.Content != null)
+                                {
+                                    if (mainWindow.frame.Content is not EditActionPage)
+                                    {
+                                        suspendEventsForHotKeyProgramming = false;
+                                    }
+                                }
+                            }
                         }
                     }
 

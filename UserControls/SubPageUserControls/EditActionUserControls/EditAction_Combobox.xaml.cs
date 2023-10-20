@@ -86,9 +86,4 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
     }
 
 
-    public class DisplayAction
-    {
-        public string displayAction;
-        public string action;
-    }
 }

@@ -31,7 +31,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
         public bool displayInActionPanel;
         public string hotkeyType = "";
         public string hotKey = "";
-        public List<string> arguments;
+        public List<string> parameters;
 
         //This routine is going to be the onclick event
         public virtual void OnActivate() { }

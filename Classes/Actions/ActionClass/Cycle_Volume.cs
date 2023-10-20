@@ -11,19 +11,19 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
         public Cycle_Volume()
         {
             actionName = "Cycle_Volume";
-            arguments = new List<string>();
+            parameters = new List<string>();
         }
         public override void OnActivate()
         {
-            if (arguments.Count > 0)
+            if (parameters.Count > 0)
             {
                 int intVolume = Volume_Management.Instance.ReadAndReturnVolume();
                 string strVolume = intVolume.ToString();
 
-                int index = arguments.IndexOf(strVolume);
+                int index = parameters.IndexOf(strVolume);
                 //if the index is -1 that means it doesnt exist, start at the first tdp in the list
                 //if the index+1 = count that means we are at the end of the list and we need to go back to 0
-                if (index == -1 || index + 1 == arguments.Count)
+                if (index == -1 || index + 1 == parameters.Count)
                 {
                     index = 0;
                 }
@@ -32,7 +32,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
                     index = index + 1;
                 }
 
-                int.TryParse(arguments[index], out intVolume);
+                int.TryParse(parameters[index], out intVolume);
 
                 Volume_Management.Instance.SetMasterVolume(intVolume);
             }
