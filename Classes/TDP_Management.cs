@@ -53,7 +53,6 @@ namespace Everything_Handhelds_Tool.Classes
             //does not READ TDP just returns value
             return tdpSustained;
         }
-
         public int ReadAndReturnSustainedTDP()
         {
             ReadTDP();
@@ -90,6 +89,116 @@ namespace Everything_Handhelds_Tool.Classes
                 ReadIntelMSRTDP();
             }
         }
+        private string ConvertTDPToHexMMIO(int tdp)
+        {
+            //Convert integer TDP value to Hex for rw.exe
+            //Must use formula (TDP in watt   *1000/125) +32768 and convert to hex
+            try
+            {
+                int newTDP = (tdp * 1000 / 125) + 32768;
+                return newTDP.ToString("X");
+
+            }
+            catch (Exception ex)
+            {
+
+                return "Error";
+            }
+        }
+        private void RunIntelTDPChangeMMIOKX(int pl1TDP, int pl2TDP, string mchBar)
+        {
+            string processKX = "";
+            string hexPL1 = "";
+            string hexPL2 = "";
+            string commandArgumentsPL1 = "";
+            string commandArgumentsPL2 = "";
+            try
+            {
+
+                processKX = appDir + "\\Resources\\Intel\\KX\\KX.exe";
+                hexPL1 = ConvertTDPToHexMMIO(pl1TDP);
+                hexPL2 = ConvertTDPToHexMMIO(pl2TDP);
+                //Log_Writer.writeLog("Change TDP MMIO processKX=" + processKX + "; Hex PL1 PL2=" + hexPL1 + "," + hexPL2 );
+                if (hexPL1 != "Error" && hexPL2 != "Error" && mchBar != "")
+                {
+                    commandArgumentsPL1 = " /wrmem16 " + mchBar + "a0 0x" + hexPL1;
+                    //Log_Writer.writeLog("Change TDP MMIO commandargumentPL1=" + commandArgumentsPL1);
+                    Run_CLI.Instance.RunCommand(commandArgumentsPL1, true, processKX);
+                    Task.Delay(500);
+                    commandArgumentsPL2 = " /wrmem16 " + mchBar + "a4 0x" + hexPL2;
+                    //Log_Writer.writeLog("Change TDP MMIO commandargumentPL2=" + commandArgumentsPL2);
+                    Run_CLI.Instance.RunCommand(commandArgumentsPL2, true, processKX);
+                    //Log_Writer.writeLog("Change TDP MMIO complete");
+                    Task.Delay(100);
+                }
+            }
+            catch (Exception ex)
+            {
+             
+
+            }
+
+
+        }
+        private string ConvertTDPToHexMSR(int tdp)
+        {
+            //Convert integer TDP value to Hex for rw.exe
+            //Must use formula (TDP in watt   *1000/125) +32768 and convert to hex
+            try
+            {
+                int newTDP = (tdp * 8);
+                return newTDP.ToString("X");
+
+            }
+            catch (Exception ex)
+            {
+
+                return "Error";
+            }
+        }
+
+        private void RunIntelTDPChangeMSR(int pl1TDP, int pl2TDP)
+        {
+
+            string processMSR = "";
+            string hexPL1 = "";
+            string hexPL2 = "";
+            string commandArguments = "";
+            try
+            {
+
+                hexPL1 = ConvertTDPToHexMSR(pl1TDP);
+                hexPL2 = ConvertTDPToHexMSR(pl2TDP);
+
+                if (hexPL1 != "Error" && hexPL2 != "Error")
+                {
+                    if (hexPL1.Length < 3)
+                    {
+                        if (hexPL1.Length == 1) { hexPL1 = "00" + hexPL1; }
+                        if (hexPL1.Length == 2) { hexPL1 = "0" + hexPL1; }
+                    }
+                    if (hexPL2.Length < 3)
+                    {
+                        if (hexPL2.Length == 1) { hexPL2 = "00" + hexPL2; }
+                        if (hexPL2.Length == 2) { hexPL2 = "0" + hexPL2; }
+                    }
+
+                    commandArguments = " -s write 0x610 0x00438" + hexPL2 + " 0x00dd8" + hexPL1;
+                    processMSR = appDir + "\\Resources\\Intel\\MSR\\msr-cmd.exe";
+                    //Log_Writer.writeLog("Change TDP MSR processMSR=" + processMSR + "; Hex PL1 PL2=" + hexPL1 + "," + hexPL2);
+                    Run_CLI.Instance.RunCommand(commandArguments, false, processMSR);
+                    //Log_Writer.writeLog("Change TDP MSR complete");
+                    Task.Delay(100);
+                }
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+
+
+        }
 
         private void ReadIntelMSRTDP()
         {
@@ -102,10 +211,10 @@ namespace Everything_Handhelds_Tool.Classes
                 if (result != null)
                 {
                     //Log_Writer.writeLog("Read TDP MSR result=" + result);
-                    double dblPL1 = Convert.ToDouble(parseHexFromResultMSRConvertToTDP(result, true));
+                    double dblPL1 = Convert.ToDouble(ParseHexFromResultMSRConvertToTDP(result, true));
                     tdpSustained = (int)Math.Round(dblPL1,0);
 
-                    double dblPL2 = Convert.ToDouble(parseHexFromResultMSRConvertToTDP(result, false));
+                    double dblPL2 = Convert.ToDouble(ParseHexFromResultMSRConvertToTDP(result, false));
                     tdpBoost = (int)Math.Round(dblPL2, 0);
                     //Log_Writer.writeLog("Read TDP MSR PL1=" + dblPL1.ToString() + "; PL1=" + dblPL2.ToString());
                 }
@@ -116,7 +225,7 @@ namespace Everything_Handhelds_Tool.Classes
             
             }
         }
-        private string parseHexFromResultMSRConvertToTDP(string result, bool isPL1)
+        private string ParseHexFromResultMSRConvertToTDP(string result, bool isPL1)
         {
             int FindString = -1;
             string hexResult = "";
@@ -149,7 +258,6 @@ namespace Everything_Handhelds_Tool.Classes
 
 
         }
-
         private void ReadIntelMMIOTDP(string mchBar)
         {
             string processKX = "";
@@ -164,27 +272,26 @@ namespace Everything_Handhelds_Tool.Classes
                 if (mchBar != "")
                 {
                     commandArgumentsPL1 = " /rdmem16 " + mchBar + "a0";
-                    //Log_Writer.writeLog("Read TDP MMIO processKX=" + processKX + "; commandarugmentPL1=" + commandArgumentsPL1 );
+     
                     resultPL1 = Run_CLI.Instance.RunCommand(commandArgumentsPL1, true, processKX);
 
                     if (resultPL1 != null)
                     {
-                        //Log_Writer.writeLog("Read TDP MMIO resultpl1=" + resultPL1);
-                        double dblPL1 = Convert.ToDouble(parseHexFromResultMMIOConvertToTDPKX(resultPL1, true));
+
+                        double dblPL1 = Convert.ToDouble(ParseHexFromResultMMIOConvertToTDPKX(resultPL1, true));
                         tdpSustained = (int)Math.Round(dblPL1,0);
-                        //Log_Writer.writeLog("Read TDP MMIO pl1=" + dblPL1.ToString());
+
                     }
                     Task.Delay(300);
                     commandArgumentsPL2 = " /rdmem16 " + mchBar + "a4";
-                    //Log_Writer.writeLog("Read TDP MMIO processKX=" + processKX + "; commandarugmentPL2=" + commandArgumentsPL2);
+
               
                     resultPL2 = Run_CLI.Instance.RunCommand(commandArgumentsPL2, true, processKX);
                     if (resultPL2 != null)
                     {
-                        //Log_Writer.writeLog("Read TDP MMIO resultpl2=" + resultPL2);
-                        double dblPL2 = Convert.ToDouble(parseHexFromResultMMIOConvertToTDPKX(resultPL2, false));
+                    
+                        double dblPL2 = Convert.ToDouble(ParseHexFromResultMMIOConvertToTDPKX(resultPL2, false));
                         tdpBoost = (int)Math.Round(dblPL2, 0);
-                        //Log_Writer.writeLog("Read TDP MMIO pl2=" + dblPL2.ToString());
                     }
                 }
                 else
@@ -199,7 +306,7 @@ namespace Everything_Handhelds_Tool.Classes
 
             }
         }
-        private string parseHexFromResultMMIOConvertToTDPKX(string result, bool isPL1)
+        private string ParseHexFromResultMMIOConvertToTDPKX(string result, bool isPL1)
         {
             try
             {
@@ -312,7 +419,22 @@ namespace Everything_Handhelds_Tool.Classes
         #endregion
 
 
+        private void ChangeIntelTDP(int tdp1, int tdp2)
+        {
+            Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
 
+            if (settings.intelTDPType.Contains("MMIO"))
+            {
+                RunIntelTDPChangeMMIOKX(tdp1, tdp2, DeviceMCHBAR());
+            }
+            if (settings.intelTDPType.Contains("MSR"))
+            {
+                RunIntelTDPChangeMSR(tdp1, tdp2);
+            }
+
+
+
+        }
 
 
         public void ValidateTDPChange(int tdp1, int tdp2)
@@ -338,7 +460,7 @@ namespace Everything_Handhelds_Tool.Classes
             }
             if (device.cpuType == "Intel")
             {
-
+                ChangeIntelTDP(tdp1,tdp2);
             }
 
         }
