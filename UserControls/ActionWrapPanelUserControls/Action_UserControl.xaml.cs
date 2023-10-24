@@ -68,7 +68,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
                 case "Cycle_TDP":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
                     textBlock2.Text = TDP_Management.Instance.ReadAndReturnSustainedTDP().ToString() + " W";
-                    textBlock.Text = Application.Current.Resources["Action_CycleTDP"].ToString();
+                    textBlock.Text = Application.Current.Resources["Action_Cycle_TDP"].ToString();
                     break;
                 case "Toggle_WifiAP":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Router24;
@@ -102,7 +102,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
                         textBlock2.Text = TDP_Management.Instance.ReadAndReturnSustainedTDP().ToString() + " W";
                         break;
                     case "Cycle_TDP":
-                        symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
+                        textBlock2.Text = TDP_Management.Instance.ReadAndReturnSustainedTDP().ToString() + " W";
                         break;
                     case "Toggle_WifiAP":
                         if (symbolIconDisabled.Visibility == Visibility.Visible)

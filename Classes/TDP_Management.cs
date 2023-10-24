@@ -55,38 +55,38 @@ namespace Everything_Handhelds_Tool.Classes
         }
         public int ReadAndReturnSustainedTDP()
         {
-            ReadTDP();
+            ReadTDP("Sustained");
             return tdpSustained;
         }
         public int ReadAndReturnBoostTDP()
         {
-            ReadTDP();
+            ReadTDP("Boost");
             return tdpBoost;
         }
-        private void ReadTDP()
+        private void ReadTDP(string type)
         {
             Device device = ((MainWindow)Application.Current.MainWindow).device;
             if (device.cpuType == "AMD")
-            {
+            {//always read both sustained and boost on AMD, its fast
                 ReadAMDTDP();
             }
             if (device.cpuType == "Intel")
             {
-                ReadIntelTDP();
+                ReadIntelTDP(type);
             }
         }
 
-        private void ReadIntelTDP()
+        private void ReadIntelTDP(string type)
         {
             Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
             string mchBar = DeviceMCHBAR();
             if (settings.intelTDPType.Contains("MMIO"))
             {
-                ReadIntelMMIOTDP(mchBar);
+                ReadIntelMMIOTDP(mchBar, type);
             }
             else
             {
-                ReadIntelMSRTDP();
+                ReadIntelMSRTDP(type);
             }
         }
         private string ConvertTDPToHexMMIO(int tdp)
@@ -200,7 +200,7 @@ namespace Everything_Handhelds_Tool.Classes
 
         }
 
-        private void ReadIntelMSRTDP()
+        private void ReadIntelMSRTDP(string type)
         {
             try
             {
@@ -210,13 +210,14 @@ namespace Everything_Handhelds_Tool.Classes
                 string result = Run_CLI.Instance.RunCommand(commandArguments, true, processMSR);
                 if (result != null)
                 {
-                    //Log_Writer.writeLog("Read TDP MSR result=" + result);
+                    //MSR is FAST!! dont need to implement a sustained or boost read, both can be done at same time
                     double dblPL1 = Convert.ToDouble(ParseHexFromResultMSRConvertToTDP(result, true));
-                    tdpSustained = (int)Math.Round(dblPL1,0);
+                    tdpSustained = (int)Math.Round(dblPL1, 0);
 
                     double dblPL2 = Convert.ToDouble(ParseHexFromResultMSRConvertToTDP(result, false));
                     tdpBoost = (int)Math.Round(dblPL2, 0);
-                    //Log_Writer.writeLog("Read TDP MSR PL1=" + dblPL1.ToString() + "; PL1=" + dblPL2.ToString());
+
+
                 }
 
             }
@@ -258,7 +259,7 @@ namespace Everything_Handhelds_Tool.Classes
 
 
         }
-        private void ReadIntelMMIOTDP(string mchBar)
+        private void ReadIntelMMIOTDP(string mchBar, string type)
         {
             string processKX = "";
             string commandArgumentsPL1 = "";
@@ -271,32 +272,39 @@ namespace Everything_Handhelds_Tool.Classes
                 processKX = appDir + "\\Resources\\Intel\\KX\\KX.exe";
                 if (mchBar != "")
                 {
-                    commandArgumentsPL1 = " /rdmem16 " + mchBar + "a0";
-     
-                    resultPL1 = Run_CLI.Instance.RunCommand(commandArgumentsPL1, true, processKX);
-
-                    if (resultPL1 != null)
+                    if (type == "Sustained" || type == "Both")
                     {
+                        commandArgumentsPL1 = " /rdmem16 " + mchBar + "a0";
 
-                        double dblPL1 = Convert.ToDouble(ParseHexFromResultMMIOConvertToTDPKX(resultPL1, true));
-                        tdpSustained = (int)Math.Round(dblPL1,0);
+                        resultPL1 = Run_CLI.Instance.RunCommand(commandArgumentsPL1, true, processKX);
 
+                        if (resultPL1 != null)
+                        {
+
+                            double dblPL1 = Convert.ToDouble(ParseHexFromResultMMIOConvertToTDPKX(resultPL1, true));
+                            tdpSustained = (int)Math.Round(dblPL1, 0);
+
+                        }
                     }
-                    Task.Delay(300);
-                    commandArgumentsPL2 = " /rdmem16 " + mchBar + "a4";
-
-              
-                    resultPL2 = Run_CLI.Instance.RunCommand(commandArgumentsPL2, true, processKX);
-                    if (resultPL2 != null)
+                    if (type == "Both") { Task.Delay(300); }
+                  
+                    if (type == "Boost" || type == "Both")
                     {
-                    
-                        double dblPL2 = Convert.ToDouble(ParseHexFromResultMMIOConvertToTDPKX(resultPL2, false));
-                        tdpBoost = (int)Math.Round(dblPL2, 0);
+                        commandArgumentsPL2 = " /rdmem16 " + mchBar + "a4";
+
+                        resultPL2 = Run_CLI.Instance.RunCommand(commandArgumentsPL2, true, processKX);
+                        if (resultPL2 != null)
+                        {
+
+                            double dblPL2 = Convert.ToDouble(ParseHexFromResultMMIOConvertToTDPKX(resultPL2, false));
+                            tdpBoost = (int)Math.Round(dblPL2, 0);
+                        }
                     }
+                   
                 }
                 else
                 {
-                    
+                    //if mchbar is null
 
                 }
             }

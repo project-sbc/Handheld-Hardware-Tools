@@ -171,7 +171,7 @@ namespace Everything_Handhelds_Tool.Classes
                         objObject = new Settings();
                         break;
                     case "ActionList":
-                        objObject = new ActionList();
+                        objObject = new DefaultActionList();
                         break;
 
                         

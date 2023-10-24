@@ -10,6 +10,22 @@ using System.Xml.Linq;
 
 namespace Everything_Handhelds_Tool.Classes.Actions
 {
+    public class DefaultActionList:ActionList
+    {
+        public DefaultActionList() 
+        { 
+            Cycle_TDP cycle_TDP = new Cycle_TDP();
+            cycle_TDP.parameters = new List<string>();
+            cycle_TDP.parameters.Add("10");
+            cycle_TDP.parameters.Add("15");
+            cycle_TDP.parameters.Add("20");
+            this.Add(cycle_TDP);
+
+        
+        }
+    }
+
+
     public class ActionList : List<Action>
     {
         public ActionList()
