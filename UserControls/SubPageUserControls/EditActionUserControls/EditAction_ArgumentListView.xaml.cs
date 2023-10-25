@@ -26,7 +26,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
     {
 
 
-        public EditAction_ArgumentListView(string actionName = "")
+        public EditAction_ArgumentListView(Classes.Actions.Action action = null)
         {
             InitializeComponent();
 
@@ -40,7 +40,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             //get page's action details
 
             //set control
-           ConfigureControl(actionName);
+           ConfigureControl(action);
 
         }
         public override void ChangeMainWindowControllerInstructionPage()
@@ -49,12 +49,40 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
         }
 
 
-        private void ConfigureControl(string actionName = "")
+        public void ConfigureControl(Classes.Actions.Action action = null)
         {
-          
+            if (action != null)
+            {
+                switch (action.actionName)
+                {
+                    case "Change_TDP":
+
+                        break;
+                }
+
+            }
 
         }
               
+
+        private void UpdatePageActionWithSubControlValues()
+        {
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
+            if (mainWindow.frame.Content is EditActionPage)
+            {
+                EditActionPage editActionPage = mainWindow.frame.Content as EditActionPage;
+                if (editActionPage != null)
+                {
+                    if (editActionPage.action != null)
+                    {
+
+                    }
+                }
+            }
+
+        }
+
 
         public override void ControlChangeValueHandler()
         {

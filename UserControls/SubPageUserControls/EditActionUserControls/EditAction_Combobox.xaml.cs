@@ -37,8 +37,6 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             mainControl = comboBox;
 
 
-            //get page's action details
-
             //set control
            ConfigureControl(actionName);
 
@@ -57,12 +55,16 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                 comboBox.Items.Add(pair.Value);
                 if (actionName == pair.Key) 
                 { 
+                    //if the name of the action matches the default list's action then REMEMBER IT so we can highlight it
                     comboBox.SelectedIndex = comboBox.Items.Count - 1; 
                     originalSelectedIndex = comboBox.SelectedIndex;
                 }
             }
 
         }
+
+
+
 
         public override void ReturnControlToPage()
         {
@@ -82,6 +84,42 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             //set originalselectedindex to the NEW selected index to prevent accidental change when returning control to page (where it will reset to original if indexes dont match)
             originalSelectedIndex = comboBox.SelectedIndex; 
 
+        }
+
+        private void comboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            if (comboBox.SelectedIndex != originalSelectedIndex)
+            {
+                //the value has changed, lets update the page's action with the new action item
+                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
+                if (mainWindow.frame.Content is EditActionPage)
+                {
+                    EditActionPage editActionPage = mainWindow.frame.Content as EditActionPage;
+                    if (editActionPage != null)
+                    {
+                        if (editActionPage.action != null && comboBox.SelectedIndex > -1)
+                        {
+                            string actionLookup = actionDictionary.FirstOrDefault(o => o.Value == comboBox.SelectedValue).Key;
+
+                            Classes.Actions.Action newAction = null;
+                            switch (actionLookup)
+                            {
+                                case "Change_TDP":
+                                    newAction = new Classes.Actions.ActionClass.Change_TDP();
+
+                                    newAction.displayInActionPanel = editActionPage.action.displayInActionPanel;
+                                    newAction.hotKey = editActionPage.action.hotKey;
+                                    newAction.hotkeyType = editActionPage.action.hotkeyType;
+                               
+                                    break;
+
+
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

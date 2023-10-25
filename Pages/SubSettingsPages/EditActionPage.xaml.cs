@@ -24,6 +24,8 @@ namespace Everything_Handhelds_Tool.Pages
     public partial class EditActionPage : ControllerPage
     {
         public Classes.Actions.Action action;
+        public EditAction_Combobox actionCombobox;
+        public EditAction_ArgumentListView actionArgumentListView;
         public EditActionPage(Classes.Actions.Action importAction = null)
         {
             //Move initilize components to sub routine and async it to make pages feel smoother
@@ -56,13 +58,26 @@ namespace Everything_Handhelds_Tool.Pages
             //visibility isn't collapsed too
 
             //add controls passing values as needed
-            if (action != null) { stackPanel.Children.Add(new EditAction_Combobox(action.actionName)); }
-            else { stackPanel.Children.Add(new EditAction_Combobox()); }
+            if (action != null) 
+            { 
+                stackPanel.Children.Add(new EditAction_Combobox(action.actionName)); 
+                stackPanel.Children.Add(new EditAction_ArgumentListView(action)); 
+            }
+            else 
+            { 
+                stackPanel.Children.Add(new EditAction_Combobox());
+                stackPanel.Children.Add(new EditAction_ArgumentListView());
+            }
 
 
             userControls = General_Functions.SearchStackPanelReturnArray(stackPanel);
         }
 
+
+        public void UpdateActionFromSubControl()
+        {
+
+        }
 
         private void SaveActionList()
         {

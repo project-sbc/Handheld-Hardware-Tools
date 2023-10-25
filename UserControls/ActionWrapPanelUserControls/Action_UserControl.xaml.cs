@@ -19,9 +19,7 @@ using System.Windows.Shapes;
 
 namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
 {
-    /// <summary>
-    /// Interaction logic for TDP_Slider.xaml
-    /// </summary>
+
     public partial class Action_UserControl : ControllerUserControl
     {
         public ActionUserControl_DefaultHandler actionHandler = null;
