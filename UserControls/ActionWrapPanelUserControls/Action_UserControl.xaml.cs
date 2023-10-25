@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,7 +24,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
     /// </summary>
     public partial class Action_UserControl : ControllerUserControl
     {
-        public Everything_Handhelds_Tool.Classes.Actions.Action action = null;
+        public ActionUserControl_DefaultHandler actionHandler = null;
       
         public Action_UserControl(Everything_Handhelds_Tool.Classes.Actions.Action newAction)
         {
@@ -35,12 +36,28 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
             //main control
             mainControl = button;
 
-            action = newAction;
+            SelectActionHandler(newAction);
 
             //Configure text and symbol to match the action
             ConfigureTextAndSymbol();
         
         }
+        private void SelectActionHandler(Classes.Actions.Action action)
+        {
+            switch (action.actionName)
+            {
+                case "Cycle_TDP":
+                    actionHandler = new ActionUserControl_Cycle_TDP(action);
+                    break;
+                case "Change_TDP":
+                    actionHandler = new ActionUserControl_Change_TDP(action);
+                    break;
+                case "Toggle_WifiAP":
+                    actionHandler = new ActionUserControl_Toggle_WifiAP(action);
+                    break;
+            }
+        }
+
         public override void ChangeMainWindowControllerInstructionPage()
         {
             General_Functions.ChangeControllerInstructionPage("SelectBack");
@@ -48,79 +65,13 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
 
         private void ConfigureTextAndSymbol()
         {
-         
-            switch (action.actionName)
-            {
-                case "Change_TDP":
-                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
-                    textBlock.Text = TDP_Management.Instance.ReadAndReturnSustainedTDP().ToString() + " W";
-                    //override the first text assignment above, most of the
-                    if (action.parameters[0].ToString().Contains("-"))
-                    {
-                        textBlock.Text = Application.Current.Resources["Action_" + action.actionName].ToString() + action.parameters[0].ToString() + " W";
-                    }
-                    else
-                    {
-                        textBlock.Text = Application.Current.Resources["Action_Change_TDP"].ToString() + "+" + action.parameters[0].ToString() + " W";
-                    }
-
-                    break;
-                case "Cycle_TDP":
-                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
-                    textBlock2.Text = TDP_Management.Instance.ReadAndReturnSustainedTDP().ToString() + " W";
-                    textBlock.Text = Application.Current.Resources["Action_Cycle_TDP"].ToString();
-                    break;
-                case "Toggle_WifiAP":
-                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Router24;
-                    textBlock2.Text = "Toggle Wifi AP";
-                    if (Wifi_Management.Instance.IsWifiRunning()) 
-                    { 
-                        symbolIconDisabled.Visibility = Visibility.Hidden; 
-                        textBlock.Text = Application.Current.Resources["ActionUserControl_Enabled"].ToString();
-                    }
-                    else
-                    {
-                        symbolIconDisabled.Visibility = Visibility.Visible;
-                        textBlock.Text = Application.Current.Resources["ActionUserControl_Disabled"].ToString();
-                    }
-                    break;
-                default:
-                    break;
-            }
-
+            actionHandler.ConfigureControls(textBlock, textBlock2, symbolIcon, symbolIconDisabled);
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            if (action != null)
-            {
-                action.OnActivate();
+            actionHandler.ButtonPress(textBlock,textBlock2,symbolIcon,symbolIconDisabled);
 
-                switch (action.actionName)
-                {
-                    case "Change_TDP":
-                        textBlock2.Text = TDP_Management.Instance.ReadAndReturnSustainedTDP().ToString() + " W";
-                        break;
-                    case "Cycle_TDP":
-                        textBlock2.Text = TDP_Management.Instance.ReadAndReturnSustainedTDP().ToString() + " W";
-                        break;
-                    case "Toggle_WifiAP":
-                        if (symbolIconDisabled.Visibility == Visibility.Visible)
-                        {
-                            symbolIconDisabled.Visibility = Visibility.Hidden;
-                        }
-                        else
-                        {
-                            symbolIconDisabled.Visibility = Visibility.Visible;
-                        }
-                        
-                        break;
-                    default:
-                        break;
-                }
-
-            }
-   
         }
     }
 }
