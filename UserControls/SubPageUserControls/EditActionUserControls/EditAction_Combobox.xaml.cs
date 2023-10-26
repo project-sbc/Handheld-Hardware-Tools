@@ -88,8 +88,25 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
 
         private void comboBox_DropDownClosed(object sender, EventArgs e)
         {
-            if (comboBox.SelectedIndex != originalSelectedIndex)
+            if (comboBox.SelectedIndex != originalSelectedIndex && comboBox.SelectedIndex > -1)
             {
+                string actionLookup = actionDictionary.FirstOrDefault(o => o.Value == comboBox.SelectedValue).Key;
+                Classes.Actions.Action newAction = null;
+                
+                switch (actionLookup)
+                {
+                    case "Change_TDP":
+                        newAction = new Classes.Actions.ActionClass.Change_TDP();
+                        break;
+                    case "Toggle_WifiAP":
+                        newAction = new Classes.Actions.ActionClass.Toggle_WifiAP();
+                        break;
+                    case "Cycle_TDP":
+                        newAction = new Classes.Actions.ActionClass.Cycle_TDP();
+                        break;
+                }
+
+
                 //the value has changed, lets update the page's action with the new action item
                 MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
 
@@ -98,25 +115,16 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     EditActionPage editActionPage = mainWindow.frame.Content as EditActionPage;
                     if (editActionPage != null)
                     {
-                        if (editActionPage.action != null && comboBox.SelectedIndex > -1)
+                        if (editActionPage.action != null)
                         {
-                            string actionLookup = actionDictionary.FirstOrDefault(o => o.Value == comboBox.SelectedValue).Key;
-
-                            Classes.Actions.Action newAction = null;
-                            switch (actionLookup)
-                            {
-                                case "Change_TDP":
-                                    newAction = new Classes.Actions.ActionClass.Change_TDP();
-
-                                    newAction.displayInActionPanel = editActionPage.action.displayInActionPanel;
-                                    newAction.hotKey = editActionPage.action.hotKey;
-                                    newAction.hotkeyType = editActionPage.action.hotkeyType;
-                               
-                                    break;
-
-
-                            }
+                            newAction.displayInActionPanel = editActionPage.action.displayInActionPanel;
+                            newAction.hotKey = editActionPage.action.hotKey;
+                            newAction.hotkeyType = editActionPage.action.hotkeyType;
                         }
+                        editActionPage.action = newAction;
+
+
+                        editActionPage.actionArgumentListView.UpdateForNewAction(newAction.actionName);
                     }
                 }
             }

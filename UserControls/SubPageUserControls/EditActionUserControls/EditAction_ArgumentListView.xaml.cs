@@ -63,7 +63,14 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             }
 
         }
-              
+
+        public void UpdateForNewAction(string actionName)
+        {
+
+
+
+        }
+
 
         private void UpdatePageActionWithSubControlValues()
         {
