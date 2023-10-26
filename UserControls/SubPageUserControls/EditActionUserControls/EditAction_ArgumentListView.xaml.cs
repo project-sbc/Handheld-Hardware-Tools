@@ -74,7 +74,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
 
         private void UpdatePageActionWithSubControlValues()
         {
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            MainWindow mainWindow = Local_Object.Instance.GetMainWindow();
 
             if (mainWindow.frame.Content is EditActionPage)
             {

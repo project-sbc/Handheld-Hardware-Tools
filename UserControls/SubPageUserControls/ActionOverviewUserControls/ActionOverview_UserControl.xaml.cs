@@ -250,7 +250,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
         {
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
 
-            EditActionOverviewPage editActionOverviewPage = mainWindow.frame.Content as EditActionOverviewPage;
+            EditActionOverviewPage editActionOverviewPage = Local_Object.Instance.GetMainWindowFramePage() as EditActionOverviewPage;
 
             if (editActionOverviewPage != null)
             {

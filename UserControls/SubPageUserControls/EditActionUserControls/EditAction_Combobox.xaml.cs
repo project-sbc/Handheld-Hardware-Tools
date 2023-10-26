@@ -108,11 +108,11 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
 
 
                 //the value has changed, lets update the page's action with the new action item
-                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                Page page = (Page)Local_Object.Instance.GetMainWindowFramePage();
 
-                if (mainWindow.frame.Content is EditActionPage)
+                if (page is EditActionPage)
                 {
-                    EditActionPage editActionPage = mainWindow.frame.Content as EditActionPage;
+                    EditActionPage editActionPage = page as EditActionPage;
                     if (editActionPage != null)
                     {
                         if (editActionPage.action != null)

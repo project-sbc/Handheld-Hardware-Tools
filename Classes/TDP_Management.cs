@@ -65,7 +65,7 @@ namespace Everything_Handhelds_Tool.Classes
         }
         private void ReadTDP(string type)
         {
-            Device device = ((MainWindow)Application.Current.MainWindow).device;
+            Device device = Local_Object.Instance.GetMainWindowDevice();
             if (device.cpuType == "AMD")
             {//always read both sustained and boost on AMD, its fast
                 ReadAMDTDP();
@@ -348,7 +348,7 @@ namespace Everything_Handhelds_Tool.Classes
 
         private string DeviceMCHBAR()
         {
-            MainWindow mw = (MainWindow)Application.Current.MainWindow;
+            MainWindow mw = Local_Object.Instance.GetMainWindow();
 
             if (mw!= null)
             {
@@ -461,7 +461,7 @@ namespace Everything_Handhelds_Tool.Classes
         private void ChangeTDP(int tdp1, int tdp2)
         {
             ///keep below for the moment
-            Device device = ((MainWindow)Application.Current.MainWindow).device;
+            Device device = Local_Object.Instance.GetMainWindowDevice();
             if (device.cpuType == "AMD")
             {
                 ChangeAMDTDP(tdp1,tdp2);
