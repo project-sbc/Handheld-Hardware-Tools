@@ -21,7 +21,14 @@
                 </DockPanel>
 
 
-                <ListView x:Name="listView"  Margin="5,5,5,0" Height="100"   />
+                <ListView x:Name="listView"  Margin="5,5,5,0" Height="100" FontSize="19" HorizontalAlignment="Stretch"  >
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                         
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
             </DockPanel>
         </ui:Card>
 
