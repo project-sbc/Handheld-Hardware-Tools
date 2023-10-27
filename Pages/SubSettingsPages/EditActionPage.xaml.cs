@@ -59,14 +59,18 @@ namespace Everything_Handhelds_Tool.Pages
 
             //add controls passing values as needed
             if (action != null) 
-            { 
-                stackPanel.Children.Add(new EditAction_Combobox(action.actionName)); 
-                stackPanel.Children.Add(new EditAction_ArgumentListView(action)); 
+            {
+                actionCombobox = new EditAction_Combobox(action.actionName);
+                stackPanel.Children.Add(actionCombobox);
+                actionArgumentListView = new EditAction_ArgumentListView(action);
+                stackPanel.Children.Add(actionArgumentListView); 
             }
             else 
-            { 
-                stackPanel.Children.Add(new EditAction_Combobox());
-                stackPanel.Children.Add(new EditAction_ArgumentListView());
+            {
+                actionCombobox = new EditAction_Combobox();
+                stackPanel.Children.Add(actionCombobox);
+                actionArgumentListView = new EditAction_ArgumentListView();
+                stackPanel.Children.Add(actionArgumentListView);
             }
 
 

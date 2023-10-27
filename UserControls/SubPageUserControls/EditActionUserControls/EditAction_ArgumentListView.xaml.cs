@@ -49,16 +49,74 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
         }
 
 
+        private void ConfigureParameterListType(string actionName)
+        {
+            listView.Items.Clear();
+            switch (actionName)
+            {
+                case "Cycle_TDP":
+                    listView.SelectionMode = SelectionMode.Multiple;
+                    Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
+
+                    //add all the options, check to see if the value is divisible by 5 to see if you should add 3 or 2
+                    int tdp = 5;
+                    while (tdp <= settings.maxTDP)
+                    {
+                        listView.Items.Add(tdp.ToString());
+                        if ((double)(tdp/5) == Math.Round((double)tdp / 5, 0))
+                        {
+                            tdp = tdp + 3;
+                        }
+                        else
+                        {
+                            tdp = tdp + 2;
+                        }
+                    }
+
+                    break;
+                case "Change_TDP":
+                    int x = -5;
+                    while (x <=5)
+                    {
+                        if (x != 0) { listView.Items.Add(x.ToString()); }
+                        x++;
+                    }
+
+                    break;
+
+            }
+
+        }
+
+        private void ConfigureParameterListSelectedItems(List<string> list)
+        {
+            if (listView.Items.Count > 0)
+            {
+                foreach(string item in listView.Items)
+                {
+                    if (list.Contains(item))
+                    {
+                        //if single select set value and return, otherwise keep looping for all values                  
+                        if (listView.SelectionMode == SelectionMode.Single) 
+                        {
+                            listView.SelectedValue = item;
+                            return; 
+                        }
+                        else
+                        {
+                            listView.SelectedItems.Add(item);
+                        }
+                    }
+                }
+            }
+
+        }
+
         public void ConfigureControl(Classes.Actions.Action action = null)
         {
             if (action != null)
             {
-                switch (action.actionName)
-                {
-                    case "Change_TDP":
-
-                        break;
-                }
+               
 
             }
 
