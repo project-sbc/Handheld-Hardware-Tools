@@ -136,7 +136,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
         public void SelectUserControl()
         {
             //sends highlight command to usercontrol
-            if (userControls.Count > 0)
+            if (userControls.Count > 0 && highlightedUserControl > -1)
             {
                 if (userControls[highlightedUserControl] != null)
                 {

@@ -62,7 +62,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     int tdp = 5;
                     while (tdp <= settings.maxTDP)
                     {
-                        listView.Items.Add(tdp.ToString());
+                        listView.Items.Add(new ListViewItem { Content = tdp.ToString() });
                         if ((double)(tdp/5) == Math.Round((double)tdp / 5, 0))
                         {
                             tdp = tdp + 3;
@@ -78,7 +78,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     int x = -5;
                     while (x <=5)
                     {
-                        if (x != 0) { listView.Items.Add(x.ToString()); }
+                        if (x != 0) { listView.Items.Add(new ListViewItem {Content=x.ToString() }) ; }
                         x++;
                     }
 
@@ -92,9 +92,9 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
         {
             if (listView.Items.Count > 0)
             {
-                foreach(string item in listView.Items)
+                foreach(ListViewItem item in listView.Items)
                 {
-                    if (list.Contains(item))
+                    if (list.Contains(item.Content))
                     {
                         //if single select set value and return, otherwise keep looping for all values                  
                         if (listView.SelectionMode == SelectionMode.Single) 
@@ -116,7 +116,8 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
         {
             if (action != null)
             {
-               
+                ConfigureParameterListType(action.actionName);
+                ConfigureParameterListSelectedItems(action.parameters);
 
             }
 

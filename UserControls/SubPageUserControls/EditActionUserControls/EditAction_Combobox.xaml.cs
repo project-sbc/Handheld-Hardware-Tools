@@ -82,17 +82,17 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
         public override void ControlChangeValueHandler()
         {
             //set originalselectedindex to the NEW selected index to prevent accidental change when returning control to page (where it will reset to original if indexes dont match)
-            originalSelectedIndex = comboBox.SelectedIndex; 
-
+            HandleDropDownChanged();
         }
 
-        private void comboBox_DropDownClosed(object sender, EventArgs e)
+        private void HandleDropDownChanged()
         {
             if (comboBox.SelectedIndex != originalSelectedIndex && comboBox.SelectedIndex > -1)
             {
+                originalSelectedIndex = comboBox.SelectedIndex;
                 string actionLookup = actionDictionary.FirstOrDefault(o => o.Value == comboBox.SelectedValue).Key;
                 Classes.Actions.Action newAction = null;
-                
+
                 switch (actionLookup)
                 {
                     case "Change_TDP":
@@ -128,6 +128,11 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     }
                 }
             }
+        }
+
+        private void comboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            HandleDropDownChanged();
         }
     }
 

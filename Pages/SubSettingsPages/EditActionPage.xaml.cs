@@ -48,7 +48,6 @@ namespace Everything_Handhelds_Tool.Pages
             virtualStackPanel = stackPanel;
             AddControlsToArray();
 
-
         }
 
 

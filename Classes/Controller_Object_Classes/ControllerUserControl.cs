@@ -99,6 +99,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
             if (mainControl is ToggleSwitch) { HandleToggleSwitchInput(action); }
             if (mainControl is System.Windows.Controls.Button) { HandleButtonInput(action); }
             if (mainControl is ComboBox) { HandleComboBoxInput(action); }
+            if (mainControl is ListView) { HandleListViewInput(action); }
     
         }
         private void HandleToggleSwitchInput(string action)
@@ -160,7 +161,26 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                 default: break;
             }
         }
+        private void HandleListViewInput(string action)
+        {
+            ListView lv = mainControl as ListView;
+            switch (action)
+            {
 
+                case "A":
+                    
+                    break;
+                case "B":
+                   
+
+                    ReturnControlToPage();
+                    break;
+                case "DPadUp" or "DPadDown":
+                    HandleListViewNavigation(lv, action);
+                    break;
+                default: break;
+            }
+        }
         private void HandleComboBoxNavigation(ComboBox cbo, string action)
         {
             if (cbo == null)
@@ -201,13 +221,134 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                             cbo.SelectedIndex = 0;
                         }
                         break;
+                    case "A":
+                        ControlChangeValueHandler();
+                        break;
                 }
 
 
             }
 
         }
+        private void HandleListViewNavigation(ListView lv, string action)
+        {
+            if (lv == null)
+            {
+                return;
+            }
+            if (lv.Items.Count == 0)
+            {
+                return;
+            }
 
+            if (lv.SelectionMode == SelectionMode.Single)
+            {
+                if (lv.SelectedIndex == -1)
+                {
+                    lv.SelectedIndex = 0;
+                    return;
+                }
+                else
+                {
+                    switch (action)
+                    {
+                        case "DPadUp":
+                            if (lv.SelectedIndex > 0)
+                            {
+                                lv.SelectedIndex = lv.SelectedIndex - 1;
+                            }
+                            else
+                            {
+                                lv.SelectedIndex = lv.SelectedIndex - 1;
+                            }
+                            lv.ScrollIntoView(lv.SelectedItem);
+                            break;
+                        case "DPadDown":
+                            if (lv.SelectedIndex < lv.Items.Count - 1)
+                            {
+                                lv.SelectedIndex = lv.SelectedIndex + 1;
+                            }
+                            else
+                            {
+                                lv.SelectedIndex = 0;
+                            }
+                            lv.ScrollIntoView(lv.SelectedItem);
+                            break;
+                        case "A":
+                            ControlChangeValueHandler();
+                            break;
+                    }
+
+
+                }
+            }
+            else
+            {
+                //when multi you gotta set selected item to different color
+                ItemCollection itemCollection = lv.Items;
+                int index = -1;
+                foreach(ListViewItem item in itemCollection)
+                {
+                    if (item.Background == System.Windows.Media.Brushes.LightGray)
+                    {
+                        index = lv.Items.IndexOf(item);
+                        break;
+                    }
+                }
+                if (index == -1)
+                {
+                    ListViewItem listViewItem = lv.Items[0] as ListViewItem;
+                    listViewItem.Background = System.Windows.Media.Brushes.LightGray;
+                }
+                else
+                {
+                    ListViewItem listViewItem = lv.Items[index] as ListViewItem;
+                    ListViewItem newListViewItem = null;
+                    listViewItem.Background = System.Windows.Media.Brushes.Transparent;
+                    switch (action)
+                    {
+                        case "DPadUp":
+                            if (index > 0)
+                            {
+                                index = index - 1;
+                            }
+                            else
+                            {
+                                index = lv.Items.Count -1;
+                            }
+                            newListViewItem = lv.Items[index] as ListViewItem;
+                            newListViewItem.Background = System.Windows.Media.Brushes.LightGray;
+                            lv.ScrollIntoView(newListViewItem);
+                          
+                            break;
+                        case "DPadDown":
+
+                            if (index < lv.Items.Count- 1)
+                            {
+                                index = index + 1;
+                            }
+                            else
+                            {
+                                index = 0;
+                            }
+                            newListViewItem = lv.Items[index] as ListViewItem;
+                            newListViewItem.Background = System.Windows.Media.Brushes.LightGray;
+                            lv.ScrollIntoView(newListViewItem);
+                            break;
+                        case "A":
+                            ControlChangeValueHandler();
+                            break;
+                    }
+
+
+                }
+
+
+            }
+            
+
+
+        }
         private void HandleSliderInput(string action)
         {
             Slider slider = mainControl as Slider;
