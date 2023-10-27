@@ -37,7 +37,6 @@ namespace Everything_Handhelds_Tool
             InitializeRoutines();
 
 
-
         }
         #region Set up
         private void InitializeRoutines() 

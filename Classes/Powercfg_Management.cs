@@ -205,5 +205,22 @@ namespace Everything_Handhelds_Tool.Classes
         }
 
         #endregion
+
+
+        #region set high perf/balanced/saver plan
+        public void SetHighPerformancePlan()
+        {
+            string result = Run_CLI.Instance.RunCommand(" -s 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c", true, "C:\\windows\\system32\\powercfg.exe", 1000);
+        }
+        public void SetBalancedPlan()
+        {
+            Run_CLI.Instance.RunCommand(" -s 381b4222-f694-41f0-9685-ff5bb260df2e​", false, "C:\\windows\\system32\\powercfg.exe", 1000);
+        }
+        public void SetBatterySaver()
+        {
+            string result = Run_CLI.Instance.RunCommand(" -s a1841308-3541-4fab-bc81-f71556f20b4a", true, "C:\\windows\\system32\\powercfg.exe", 1000);
+        }
+        #endregion
+
     }
 }
