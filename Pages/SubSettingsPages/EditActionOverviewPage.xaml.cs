@@ -64,20 +64,35 @@ namespace Everything_Handhelds_Tool.Pages
         }
 
 
-        private void SaveActionList()
-        {
-
-        }
+       
         private void AddControlsToArray(Classes.Actions.Action? saveAction = null)
         {
             ActionList actions = (ActionList)XML_Management.Instance.LoadXML("ActionList");
 
-            foreach(Classes.Actions.Action action in actions)
+            if (saveAction != null)
+            {
+                if (saveAction.ID == null)
+                {
+                    //if new action no ID, make it count - 1
+                    saveAction.ID = actions.Count - 1;
+                    actions.Add(saveAction);
+                }
+                else
+                {
+                    actions[saveAction.ID] = saveAction;
+                }
+                actions.SaveToXML();
+            }
+
+
+            foreach (Classes.Actions.Action action in actions)
             {
                 UserControl userControl = new ActionOverview_UserControl(action);
                 stackPanel.Children.Add(userControl);
                 userControls.Add((ControllerUserControl)userControl);
             }
+
+           
 
         }
 
