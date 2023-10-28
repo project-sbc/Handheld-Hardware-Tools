@@ -62,7 +62,10 @@ namespace Everything_Handhelds_Tool.Pages
                 actionCombobox = new EditAction_Combobox(action.actionName);
                 stackPanel.Children.Add(actionCombobox);
                 actionArgumentListView = new EditAction_ArgumentListView(action);
-                stackPanel.Children.Add(actionArgumentListView); 
+                stackPanel.Children.Add(actionArgumentListView);
+
+                
+                stackPanel.Children.Add(new EditAction_InActionPanelToggleSwitch(action.displayInActionPanel));
             }
             else 
             {
@@ -70,6 +73,7 @@ namespace Everything_Handhelds_Tool.Pages
                 stackPanel.Children.Add(actionCombobox);
                 actionArgumentListView = new EditAction_ArgumentListView();
                 stackPanel.Children.Add(actionArgumentListView);
+                stackPanel.Children.Add(new EditAction_InActionPanelToggleSwitch());
             }
 
 

@@ -107,7 +107,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
             ToggleSwitch tS = mainControl as ToggleSwitch;
             switch (action)
             {
-                case "X":
+                case "A":
                     tS.IsChecked = !tS.IsChecked;
                     break;
                 case "B":
