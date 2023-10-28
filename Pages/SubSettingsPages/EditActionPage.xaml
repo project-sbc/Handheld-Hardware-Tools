@@ -28,6 +28,16 @@
 
             </Viewbox>
 
+            <Button x:Name="save" Click="save_Click"   Margin="4">
+                <Viewbox     >
+                    <TextBlock  Text="{DynamicResource Usercontrol_Save}" />
+                </Viewbox>
+            </Button>
+            <Button x:Name="Back" Click="Back_Click"  Margin="4" >
+                <Viewbox     >
+                    <TextBlock  Text="{DynamicResource Usercontrol_Back}" />
+                </Viewbox>
+            </Button>
           
         </StackPanel>
        

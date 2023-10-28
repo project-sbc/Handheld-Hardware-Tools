@@ -47,7 +47,28 @@ namespace Everything_Handhelds_Tool.Pages
                 userControls.Add((ControllerUserControl)userControl);
             }
         }
-        private void AddControlsToArray()
+
+        private void ReBaseIDsInActionList()
+        {
+            int index = 0;
+            foreach (object child in stackPanel.Children)
+            {
+                if (child is ActionOverview_UserControl)
+                {
+                    ActionOverview_UserControl actionOverview_UserControl = (ActionOverview_UserControl)child;
+                    actionOverview_UserControl.action.ID= index;
+                    index++;
+                }
+            }
+
+        }
+
+
+        private void SaveActionList()
+        {
+
+        }
+        private void AddControlsToArray(Classes.Actions.Action? saveAction = null)
         {
             ActionList actions = (ActionList)XML_Management.Instance.LoadXML("ActionList");
 

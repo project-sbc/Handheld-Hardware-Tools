@@ -30,6 +30,8 @@
     <system:String x:Key="Usercontrol_WifiAPPassword">Wifi AP Password</system:String>
     <system:String x:Key="Usercontrol_EditActions">Edit Actions</system:String>
     <system:String x:Key="Usercontrol_NewAction">New Action</system:String>
+    <system:String x:Key="Usercontrol_Save">Save</system:String>
+    <system:String x:Key="Usercontrol_Back">Back</system:String>
 
         
         <!-- actionusercontrol strings are for the action panel, and action strings are for editing/adding new controls-->

@@ -120,6 +120,10 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                             newAction.displayInActionPanel = editActionPage.action.displayInActionPanel;
                             newAction.hotKey = editActionPage.action.hotKey;
                             newAction.hotkeyType = editActionPage.action.hotkeyType;
+                            if (editActionPage.action.ID != null)
+                            {
+                                newAction.ID = editActionPage.action.ID;
+                            }
                         }
                         editActionPage.action = newAction;
 

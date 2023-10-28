@@ -28,7 +28,7 @@
 
             </Viewbox>
 
-            <Button x:Name="newAction" Click="newAction_Click" >
+            <Button x:Name="newAction" Click="newAction_Click" Height="30" >
                 <Viewbox     >
                     <TextBlock  Text="{DynamicResource Usercontrol_NewAction}" />
                 </Viewbox>

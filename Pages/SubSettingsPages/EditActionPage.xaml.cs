@@ -26,6 +26,7 @@ namespace Everything_Handhelds_Tool.Pages
         public Classes.Actions.Action action;
         public EditAction_Combobox actionCombobox;
         public EditAction_ArgumentListView actionArgumentListView;
+        private bool newAction = true;
         public EditActionPage(Classes.Actions.Action importAction = null)
         {
             //Move initilize components to sub routine and async it to make pages feel smoother
@@ -42,6 +43,7 @@ namespace Everything_Handhelds_Tool.Pages
             if (importAction != null)
             {
                 action = importAction;
+                newAction = false;
             }
 
             InitializeComponent();
@@ -104,6 +106,14 @@ namespace Everything_Handhelds_Tool.Pages
 
         }
 
-      
+        private void save_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
+        private void Back_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }
