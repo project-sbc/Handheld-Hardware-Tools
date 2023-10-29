@@ -71,6 +71,7 @@
     <system:String x:Key="Instruction_Launch">LAUNCH</system:String>
     <system:String x:Key="Instruction_Change">CHANGE</system:String>
     <system:String x:Key="Instruction_ToggleMode">TOGGLE MODE</system:String>
+    <system:String x:Key="Instruction_UpDown">Move Up Down</system:String>
 
 
 

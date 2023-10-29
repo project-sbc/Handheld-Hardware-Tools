@@ -18,6 +18,7 @@ using Everything_Handhelds_Tool.Classes.Actions;
 using Action = Everything_Handhelds_Tool.Classes.Actions.Action;
 using System.Diagnostics;
 using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
+using Everything_Handhelds_Tool.ControllerInputPages;
 
 namespace Everything_Handhelds_Tool
 {
@@ -432,6 +433,11 @@ namespace Everything_Handhelds_Tool
                     case "ToggleBack":
                         uri = new Uri("ControllerInstructionPages\\ToggleBack.xaml", UriKind.Relative);
                         break;
+                    case "EditDeleteBackMoveUpDown":
+                        uri = new Uri("ControllerInstructionPages\\EditDeleteBackMoveUpDown.xaml", UriKind.Relative);
+                        break;
+
+                        
                     default:
                         break;
                 }

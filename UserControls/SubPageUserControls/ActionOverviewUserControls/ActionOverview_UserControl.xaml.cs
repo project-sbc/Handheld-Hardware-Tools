@@ -45,7 +45,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
         }
         public override void ChangeMainWindowControllerInstructionPage()
         {
-            General_Functions.ChangeControllerInstructionPage("SelectBack");
+            General_Functions.ChangeControllerInstructionPage("EditDeleteBackMoveUpDown");
         }
 
         #region set textblocks and icons
@@ -204,7 +204,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
                     border.BorderBrush = System.Windows.Media.Brushes.White;
                 }
                 ChangeMainWindowControllerInstructionPage();
-                card.IsExpanded = true;
+                //card.IsExpanded = true;
             }
         }
 
@@ -214,10 +214,9 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
             {
                 card.IsExpanded = false;
                 ReturnControlToPage();
-                return;
+  
             }
-
-            if (card.IsExpanded)
+            else
             {
                 switch (action)
                 {
@@ -235,13 +234,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
                         break;
                 }
             }
-            else
-            {
-                switch(action)
-                {
-
-                }
-            }
+           
            
 
         }
