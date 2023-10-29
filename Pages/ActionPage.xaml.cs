@@ -57,6 +57,9 @@ namespace Everything_Handhelds_Tool.Pages
 
         private void ControllerWrapPanelPage_Loaded(object sender, RoutedEventArgs e)
         {
+            //ACTION PANELS NEED TO BE ADDED AFTER LOADED BECAUSE IF DURING INIT THE UNLOADED SAVE EVENT ON THE ACTION EDIT OVERVIEW PAGE WONT SAVE BEFORE THIS IS LOADED
+            //CAUSING ACTIONS TO EXIST THAT WERE JUST DELETED
+           
             Dispatcher.BeginInvoke(new System.Action(() => AddControlsToArray()));
            
         }
