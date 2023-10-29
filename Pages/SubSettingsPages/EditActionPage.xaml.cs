@@ -26,6 +26,8 @@ namespace Everything_Handhelds_Tool.Pages
         public Classes.Actions.Action action;
         public EditAction_Combobox actionCombobox;
         public EditAction_ArgumentListView actionArgumentListView;
+
+        //bool to determine if existing or new action
         private bool newAction = true;
         public EditActionPage(Classes.Actions.Action importAction = null)
         {
@@ -88,27 +90,26 @@ namespace Everything_Handhelds_Tool.Pages
 
         }
 
-        private void SaveActionList()
+        private void SaveActionToEditOverviewPage()
         {
-            //grabs all the actions from each control and then saves them to the XML
-            ActionList actions = new ActionList();
-
-            foreach (object child in stackPanel.Children)
-            {
-                if (child != null)
-                {
-                    ActionOverview_UserControl editAction_UserControl = (ActionOverview_UserControl)child;
-                    actions.Add(editAction_UserControl.action);
-                }
-            }
-
-            actions.SaveToXML();
-
+            //gets the overview page, sends to the frame on the mainwindow, passes the action to the page so it will add it and then save
+            EditActionOverviewPage editActionOverviewPage = new EditActionOverviewPage(action);
+            
+            //get mainwindow frame
+            MainWindow mainWindow = Local_Object.Instance.GetMainWindow();
+            mainWindow.frame.Content = editActionOverviewPage;
         }
 
-        private void save_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void ValidateInputs()
         {
 
+        }
+        private void save_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            //on save we need to make sure everything is good by calling validate inputs
+            //THEN save the action by sending to the overview page with action argument, and the editoverview page will handle the saving
+            ValidateInputs();  
+            SaveActionToEditOverviewPage();
         }
 
         private void Back_Click(object sender, System.Windows.RoutedEventArgs e)

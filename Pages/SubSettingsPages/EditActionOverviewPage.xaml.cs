@@ -38,14 +38,9 @@ namespace Everything_Handhelds_Tool.Pages
         {
             InitializeComponent();
             virtualStackPanel = stackPanel;
-            AddControlsToArray();
+            AddControlsToArray(action);
 
-            if (action != null)
-            {
-                UserControl userControl = new ActionOverview_UserControl(action);
-                stackPanel.Children.Add(userControl);
-                userControls.Add((ControllerUserControl)userControl);
-            }
+          
         }
 
         private void ReBaseIDsInActionList()
@@ -71,9 +66,9 @@ namespace Everything_Handhelds_Tool.Pages
 
             if (saveAction != null)
             {
-                if (saveAction.ID == null)
+                if (saveAction.ID == -1)
                 {
-                    //if new action no ID, make it count - 1
+                    //new action is -1, so if its -1 count it as new and make the new index = count - 1
                     saveAction.ID = actions.Count - 1;
                     actions.Add(saveAction);
                 }
