@@ -37,7 +37,8 @@ namespace Everything_Handhelds_Tool
             //run start up
             InitializeRoutines();
 
-
+            Powercfg_Management.Instance.GetActiveScheme();
+           
         }
         #region Set up
         private void InitializeRoutines() 

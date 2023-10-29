@@ -56,6 +56,7 @@ namespace Everything_Handhelds_Tool.Classes.HomePage
             this.Add("TDP_Boost_Slider", true);
             this.Add("Brightness_Slider", true);
             this.Add("Volume_Slider", true);
+            this.Add("PowerPlan_ComboBox", true);
 
         }
 

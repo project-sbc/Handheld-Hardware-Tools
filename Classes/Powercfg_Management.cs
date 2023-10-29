@@ -1,6 +1,7 @@
 ﻿using Everything_Handhelds_Tool.Classes.Devices;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Management;
 using System.Text;
@@ -207,20 +208,115 @@ namespace Everything_Handhelds_Tool.Classes
         #endregion
 
 
-        #region set high perf/balanced/saver plan
+        #region set high perf/balanced/saver plan or get active plan
         public void SetHighPerformancePlan()
         {
             string result = Run_CLI.Instance.RunCommand(" -s 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c", true, "C:\\windows\\system32\\powercfg.exe", 1000);
         }
         public void SetBalancedPlan()
         {
-            Run_CLI.Instance.RunCommand(" -s 381b4222-f694-41f0-9685-ff5bb260df2e​", false, "C:\\windows\\system32\\powercfg.exe", 1000);
+            string result = Run_CLI.Instance.RunCommand(" -s 381b4222-f694-41f0-9685-ff5bb260df2e​", true, "C:\\windows\\system32\\powercfg.exe", 1000);
         }
-        public void SetBatterySaver()
+        public void SetPowerSaver()
         {
             string result = Run_CLI.Instance.RunCommand(" -s a1841308-3541-4fab-bc81-f71556f20b4a", true, "C:\\windows\\system32\\powercfg.exe", 1000);
         }
         #endregion
 
+
+        #region import/set hyatice plan
+        public void SetHyaticePowerPlanModePowercfg()
+        {
+
+            importHyaticePowerPlan();
+
+            string result = Run_CLI.Instance.RunCommand(" /l", true, "C:\\windows\\system32\\powercfg.exe", 1000);
+
+            string[] array = result.Split('\n');
+
+            foreach (string str in array)
+            {
+                if (str.Contains("Optimized Power Saver"))
+                {
+
+                    Run_CLI.Instance.RunCommand(" /s " + GetGUID(str), false, "C:\\windows\\system32\\powercfg.exe", 1000);
+                }
+
+
+            }
+
+        }
+        public string GetActiveScheme()
+        {
+            string activePlan = "";
+            string result = Run_CLI.Instance.RunCommand(" getactivescheme", true, "C:\\windows\\system32\\powercfg.exe", 1000);
+
+            string name = GetSchemeName(result);
+            string GUID = GetGUID(result);
+            switch (GUID)
+            {
+                case "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c":
+                    return "High_Performance";
+                    break;
+                case "381b4222-f694-41f0-9685-ff5bb260df2e​":
+                    return "Balanced";
+                    break;
+                case "a1841308-3541-4fab-bc81-f71556f20b4a":
+                    return "Power_Saver";
+                    break;
+                default:
+                    if (name == "Optimized Power Saver")
+                    {
+                        return "Optimized_Power_Saver";
+                    }
+                    break;
+            }
+
+            return activePlan;
+
+        }
+
+        private string GetGUID(string input)
+        {
+            if (input.Contains(":"))
+            {
+                return input.Substring(input.IndexOf(":") + 1, 38).Trim();
+            }
+            else { return ""; }
+        }
+        private string GetSchemeName(string input)
+        {
+            if (input.Contains("(") && input.Contains(")"))
+            {
+                int startIndex = input.IndexOf("(") + 1;
+                int numberOfCharacters = input.IndexOf(")") - startIndex;
+                return input.Substring(startIndex, numberOfCharacters).Trim();
+            }
+            else { return ""; }
+        }
+        private bool HyaticePowerPlanInstalled()
+        {
+            string result = Run_CLI.Instance.RunCommand(" /l", true, "C:\\windows\\system32\\powercfg.exe", 1000);
+
+            if (result.Contains("Optimized Power Saver"))
+            {
+                return true;
+            }
+            else { return false; }
+        }
+
+        public void importHyaticePowerPlan()
+        {
+            if (!HyaticePowerPlanInstalled())
+            {
+                string appDir = AppDomain.CurrentDomain.BaseDirectory;
+                string directory = @Path.Combine(appDir + "Resources\\HyaticePowerPlan\\HyaticePowerPlan.pow");
+
+                Run_CLI.Instance.RunCommand(" -import " + directory, false, "C:\\windows\\system32\\powercfg.exe", 2000, true);
+            }
+
+        }
+
+        #endregion
     }
 }

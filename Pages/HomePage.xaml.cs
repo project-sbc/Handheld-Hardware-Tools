@@ -10,6 +10,7 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Forms.Integration;
 using System;
+using Everything_Handhelds_Tool.UserControls.EditActionUserControls;
 
 namespace Everything_Handhelds_Tool.Pages
 {
@@ -69,6 +70,8 @@ namespace Everything_Handhelds_Tool.Pages
                     return new Brightness_Slider();
                 case "Volume_Slider":
                     return new Volume_Slider();
+                case "PowerPlan_ComboBox":
+                    return new PowerPlan_Combobox();
                 default:
                     return null;
             }
