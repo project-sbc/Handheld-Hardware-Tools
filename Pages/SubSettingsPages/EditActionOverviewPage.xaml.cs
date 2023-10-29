@@ -181,5 +181,10 @@ namespace Everything_Handhelds_Tool.Pages
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.frame.Content = page;
         }
+
+        private void ControllerPage_Unloaded(object sender, RoutedEventArgs e)
+        {
+            SaveActionList();
+        }
     }
 }

@@ -48,11 +48,8 @@ namespace Everything_Handhelds_Tool.UserControls.SettingsPageUserControls
         private void button_Click(object sender, RoutedEventArgs e)
         {
             //navigate to the specific settings page
-            Classes.Actions.Action action = new Change_TDP();
-            action.parameters = new List<string>();  
-            action.parameters.Add("5");
 
-            Page page = new EditActionOverviewPage(action);
+            Page page = new EditActionOverviewPage();
 
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.frame.Content = page;

@@ -33,7 +33,7 @@ namespace Everything_Handhelds_Tool.Pages
             InitializeComponent();
             virtualWrapPanel = wrapPanel;
 
-            AddControlsToArray();
+           
         }
         private void AddControlsToArray()
         {
@@ -55,6 +55,10 @@ namespace Everything_Handhelds_Tool.Pages
             userControls = General_Functions.SearchWrapPanelReturnArray(wrapPanel);
         }
 
-
+        private void ControllerWrapPanelPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            Dispatcher.BeginInvoke(new System.Action(() => AddControlsToArray()));
+           
+        }
     }
 }

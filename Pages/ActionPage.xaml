@@ -8,7 +8,7 @@
                         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                         mc:Ignorable="d"
                         Title="HomePage"
-                                   xmlns:uc="clr-namespace:Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls"
+                                   xmlns:uc="clr-namespace:Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls" Loaded="ControllerWrapPanelPage_Loaded"
                                  >
 
     <Grid >
