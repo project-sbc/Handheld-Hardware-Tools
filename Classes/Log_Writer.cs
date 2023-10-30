@@ -26,7 +26,9 @@ namespace Everything_Handhelds_Tool
         {
             try
             {
-                if (!File.Exists(appDir + "\\Logs\\application_log.txt")) { createLogFile(); }
+                //create directory if it doesn't exist, YOU DONT NEED TO CREATE THE FILE. Streamwriter will do this
+                //creating the file manually can cause "another process is using the file" error
+                if (!Directory.Exists(appDir + "\\Logs")) { System.IO.Directory.CreateDirectory(appDir + "\\Logs"); }
                 using (StreamWriter w = File.AppendText(appDir + "\\Logs\\application_log.txt"))
                 {
                     if (errorNum != "") { newLog = "Error " + errorNum + ": " + newLog; }
@@ -52,18 +54,7 @@ namespace Everything_Handhelds_Tool
             }
             catch { }
         }
-        private void createLogFile()
-        {
-            try
-            {
-                if (!Directory.Exists(appDir + "\\Logs")) { System.IO.Directory.CreateDirectory(appDir + "\\Logs"); }
-                if (!File.Exists(appDir + "\\Logs\\application_log.txt")) { File.CreateText(appDir + "\\Logs\\application_log.txt"); Thread.Sleep(300); }
-
-
-            }
-            catch { }
-
-        }
+    
         public static Log_Writer Instance
         {
             get
