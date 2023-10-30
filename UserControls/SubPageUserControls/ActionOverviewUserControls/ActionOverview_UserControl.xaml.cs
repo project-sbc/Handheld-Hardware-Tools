@@ -106,9 +106,17 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
             {
                 case "Change_TDP":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
-                    string args = action.parameters[0].ToString();
-                    if (!args.Contains("-")) { args = "+" + args; }
-                    actionArguments.Text = args + " W";
+                    if (action.parameters != null)
+                    {
+                        if (action.parameters.Count > 0)
+                        {
+                            string args = action.parameters[0].ToString();
+                            if (!args.Contains("-")) { args = "+" + args; }
+                            actionArguments.Text = args + " W";
+                        }
+
+                    }
+
                     break;
                 case "Cycle_TDP":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;

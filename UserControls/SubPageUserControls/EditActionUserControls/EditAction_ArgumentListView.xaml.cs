@@ -52,6 +52,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
         private void ConfigureParameterListType(string actionName)
         {
             listView.Items.Clear();
+            this.Visibility = Visibility.Visible;
             switch (actionName)
             {
                 case "Cycle_TDP":
@@ -82,6 +83,10 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                         x++;
                     }
 
+                    break;
+                default:
+                    //this handles the non list items like toggle wifi, where this list needs to be hidden
+                    this.Visibility = Visibility.Hidden;
                     break;
 
             }
@@ -130,8 +135,9 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
 
         }
 
+      
 
-        private void UpdatePageActionWithSubControlValues()
+        private void UpdatePageActionWithSubControlValues(List<string> values)
         {
             MainWindow mainWindow = Local_Object.Instance.GetMainWindow();
 
@@ -142,7 +148,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                 {
                     if (editActionPage.action != null)
                     {
-
+                        editActionPage.action.parameters = values;
                     }
                 }
             }
@@ -152,8 +158,12 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
 
         public override void ControlChangeValueHandler()
         {
-           
-
+            List<string> values = new List<string>();
+            foreach (string value in listView.Items)
+            {
+                values.Add(value);
+            }
+            UpdatePageActionWithSubControlValues(values);
         }
     }
 
