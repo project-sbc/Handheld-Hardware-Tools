@@ -145,6 +145,7 @@
 
   <ItemGroup>
     <PackageReference Include="InputSimulator" Version="1.0.4" />
+    <PackageReference Include="PowerManagerAPI" Version="0.2.0-CI-20200413-015121" />
     <PackageReference Include="SharpDX.XInput" Version="4.2.0" />
     <PackageReference Include="System.Management" Version="7.0.2" />
     <PackageReference Include="WPF-UI" Version="2.0.3" />

@@ -7,6 +7,9 @@ using System.Management;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using PowerManagerAPI;
+using System.Diagnostics;
+using SharpDX;
 
 namespace Everything_Handhelds_Tool.Classes
 {
@@ -248,11 +251,13 @@ namespace Everything_Handhelds_Tool.Classes
         }
         public string GetActiveScheme()
         {
+
             string activePlan = "";
             string result = Run_CLI.Instance.RunCommand(" getactivescheme", true, "C:\\windows\\system32\\powercfg.exe", 1000);
 
             string name = GetSchemeName(result);
             string GUID = GetGUID(result);
+      
             switch (GUID)
             {
                 case "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c":
@@ -280,7 +285,7 @@ namespace Everything_Handhelds_Tool.Classes
         {
             if (input.Contains(":"))
             {
-                return input.Substring(input.IndexOf(":") + 1, 38).Trim();
+                return input.Substring(input.IndexOf(":") + 1, 37).Trim();
             }
             else { return ""; }
         }
@@ -310,9 +315,19 @@ namespace Everything_Handhelds_Tool.Classes
             if (!HyaticePowerPlanInstalled())
             {
                 string appDir = AppDomain.CurrentDomain.BaseDirectory;
-                string directory = @Path.Combine(appDir + "Resources\\HyaticePowerPlan\\HyaticePowerPlan.pow");
+                string directory = @Path.Combine(appDir + "Resources\\HyaticePowerPlan\\HyaticePowerPlan2.pow");
 
-                Run_CLI.Instance.RunCommand(" -import " + directory, false, "C:\\windows\\system32\\powercfg.exe", 2000, true);
+                string resultImport = Run_CLI.Instance.RunCommand(" -import " + directory, true, "C:\\windows\\system32\\powercfg.exe", 2000, true);
+                string guid = GetGUID(resultImport);
+                if (guid != "")
+                {
+                    string resultNameChange = Run_CLI.Instance.RunCommand(" -changename " + guid + " \"Optimized Power Plan\"", true, "C:\\windows\\system32\\powercfg.exe", 2000, true);
+                    string result2 = Run_CLI.Instance.RunCommand(" -s " + guid, true, "C:\\windows\\system32\\powercfg.exe", 2000, true);
+
+                }
+
+
+
             }
 
         }

@@ -19,6 +19,7 @@ using Action = Everything_Handhelds_Tool.Classes.Actions.Action;
 using System.Diagnostics;
 using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
 using Everything_Handhelds_Tool.ControllerInputPages;
+using System.Runtime.InteropServices;
 
 namespace Everything_Handhelds_Tool
 {
@@ -37,8 +38,8 @@ namespace Everything_Handhelds_Tool
             //run start up
             InitializeRoutines();
 
-            Powercfg_Management.Instance.GetActiveScheme();
-           
+            
+            
         }
         #region Set up
         private void InitializeRoutines() 
