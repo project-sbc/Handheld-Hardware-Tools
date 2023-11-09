@@ -4,6 +4,7 @@ using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
 using Everything_Handhelds_Tool.Pages;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -159,9 +160,10 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
         public override void ControlChangeValueHandler()
         {
             List<string> values = new List<string>();
-            foreach (string value in listView.Items)
+            foreach (ListViewItem value in listView.Items)
             {
-                values.Add(value);
+                values.Add(value.Content.ToString());
+                
             }
             UpdatePageActionWithSubControlValues(values);
         }

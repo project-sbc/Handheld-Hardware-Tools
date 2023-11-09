@@ -166,16 +166,13 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
             ListView lv = mainControl as ListView;
             switch (action)
             {
-
-                case "A":
-                    
-                    break;
+                                
                 case "B":
                    
 
                     ReturnControlToPage();
                     break;
-                case "DPadUp" or "DPadDown":
+                case "DPadUp" or "DPadDown" or "A":
                     HandleListViewNavigation(lv, action);
                     break;
                 default: break;
@@ -284,8 +281,12 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
             }
             else
             {
-                //when multi you gotta set selected item to different color
+                //when multi selectable items you gotta set selected item to different color
                 ItemCollection itemCollection = lv.Items;
+
+
+                //index is the currently selected item, we need to find it by searching through items for the light gray background item
+                //if there isn't a lightgray item, the index is -1 and we need to start at the top
                 int index = -1;
                 foreach(ListViewItem item in itemCollection)
                 {
@@ -295,6 +296,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                         break;
                     }
                 }
+                //for -1, we didn't find a currently selected item in the list so we start at 0 index
                 if (index == -1)
                 {
                     ListViewItem listViewItem = lv.Items[0] as ListViewItem;
@@ -304,10 +306,11 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                 {
                     ListViewItem listViewItem = lv.Items[index] as ListViewItem;
                     ListViewItem newListViewItem = null;
-                    listViewItem.Background = System.Windows.Media.Brushes.Transparent;
+                    
                     switch (action)
                     {
                         case "DPadUp":
+                            listViewItem.Background = System.Windows.Media.Brushes.Transparent;
                             if (index > 0)
                             {
                                 index = index - 1;
@@ -322,7 +325,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                           
                             break;
                         case "DPadDown":
-
+                            listViewItem.Background = System.Windows.Media.Brushes.Transparent;
                             if (index < lv.Items.Count- 1)
                             {
                                 index = index + 1;
@@ -336,6 +339,19 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                             lv.ScrollIntoView(newListViewItem);
                             break;
                         case "A":
+                            if (lv.SelectedItems.Count > 0)
+                            {
+                                if (!lv.SelectedItems.Contains(listViewItem))
+                                {
+                                    lv.SelectedItems.Add(listViewItem);
+                                }
+                                else
+                                {
+                                    lv.SelectedItems.Remove(listViewItem);
+                                }
+                            }
+
+
                             ControlChangeValueHandler();
                             break;
                     }
