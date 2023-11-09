@@ -321,8 +321,8 @@ namespace Everything_Handhelds_Tool.Classes
                 string guid = GetGUID(resultImport);
                 if (guid != "")
                 {
-                    string resultNameChange = Run_CLI.Instance.RunCommand(" -changename " + guid + " \"Optimized Power Plan\"", true, "C:\\windows\\system32\\powercfg.exe", 2000, true);
-                    string result2 = Run_CLI.Instance.RunCommand(" -s " + guid, true, "C:\\windows\\system32\\powercfg.exe", 2000, true);
+                    string resultNameChange = Run_CLI.Instance.RunCommand(" -changename " + guid + " \"Optimized Power Saver\"", true, "C:\\windows\\system32\\powercfg.exe", 2000, true);
+                    string resultSetPlan = Run_CLI.Instance.RunCommand(" -s " + guid, true, "C:\\windows\\system32\\powercfg.exe", 2000, true);
 
                 }
 
