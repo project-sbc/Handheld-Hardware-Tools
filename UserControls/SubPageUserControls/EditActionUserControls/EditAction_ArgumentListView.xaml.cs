@@ -160,7 +160,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
         public override void ControlChangeValueHandler()
         {
             List<string> values = new List<string>();
-            foreach (ListViewItem value in listView.Items)
+            foreach (ListViewItem value in listView.SelectedItems)
             {
                 values.Add(value.Content.ToString());
                 
