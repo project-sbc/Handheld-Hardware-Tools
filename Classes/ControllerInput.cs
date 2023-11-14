@@ -4,6 +4,10 @@ using Everything_Handhelds_Tool.Models;
 using Everything_Handhelds_Tool.Pages;
 using Nefarius.Utilities.DeviceManagement.Extensions;
 using Nefarius.Utilities.DeviceManagement.PnP;
+using Nefarius.ViGEm.Client;
+using Nefarius.ViGEm.Client.Exceptions;
+using Nefarius.ViGEm.Client.Targets;
+using Nefarius.ViGEm.Client.Targets.Xbox360;
 using SharpDX.XInput;
 using System;
 using System.Collections.Generic;
@@ -28,6 +32,12 @@ namespace Everything_Handhelds_Tool.Classes
         public ButtonPressEvent buttonPressEvent = new ButtonPressEvent();
         public ControllerConnectionChangedEvent controllerConnectionChangedEvent = new ControllerConnectionChangedEvent();
         public Controller? controller;
+
+        //FOR LEGION GO SPECIFIC
+        public Controller? controllerR;
+        public Controller? controllerL;
+
+        private ViGEmClient _ViGEmClient;
         //   wasControllerConnected is a previous state condition used to determine when the controller was connected to not connected
         // it helps fire the controllerConnectionChangedEvent
         private bool wasControllerConnected = false;
@@ -86,151 +96,9 @@ namespace Everything_Handhelds_Tool.Classes
            
             controllerThread.Start();
         }
-        private async void getBT()
-        {
-            DeviceInformationCollection PairedBluetoothDevices = await DeviceInformation.FindAllAsync(BluetoothDevice.GetDeviceSelectorFromPairingState(true));
-            //Connected bluetooth devices
+        
 
-            foreach(DeviceInformation device in PairedBluetoothDevices)
-            {
-                Debug.WriteLine(device.Name);
-            }
-        }
-
-        private async void MainControllerThreadLoopLGo()
-        {
-            try
-            {
-                Log_Writer.Instance.writeLog("Starting MainControllerThreadLoop LEGION GO COMBINE PROGRAM");
-
-
-                GetConnectedController();
-
-                Gamepad currentGamepadState = controller.GetState().Gamepad;
-                Gamepad previousGamepadState = controller.GetState().Gamepad;
-                string continousInputCurrent = "";
-                string continousInputPrevious = "";
-                int continousInputCounter = 0;
-
-                UpdateHotKeyDictionary();
-
-                while (this != null)
-                {
-
-
-                    if (!suspendEventsForHotKeyProgramming && !suspendEventsForNewHotKeyList && !suspendEventsForOSK)
-                    {
-                        //var watch = System.Diagnostics.Stopwatch.StartNew();
-                        //main controller thread is here. Start with getting controller
-                        GetConnectedController();
-
-                        currentGamepadState = controller.GetState().Gamepad;
-                        //reset continousInputCurrent
-                        continousInputCurrent = "";
-
-
-                        //check for ushort hotkey combo press from action list
-                        if (controllerHotKeyDictionary.Count > 0)
-                        {
-                            //this converts controller button presses to unique ushort value
-                            ushort currentButtonCombo = (ushort)currentGamepadState.Buttons;
-
-                            //if the value exists WE ONLY DO THE ACTION, NOTHING ELSE and repeat the while loop
-
-                            //If the value doesn't exist, we continue on like normal. This is important because we dont want to register other button presses 
-                            //that might mess up a hot key aciton like opening the menu, you could accidentally send a action
-                            //Good example is LB+RB+Dpad, the last dpad press could translate into the open QAM action
-                            if (controllerHotKeyDictionary.ContainsKey(currentButtonCombo))
-                            {
-                                Actions.Action action;
-                                if (controllerHotKeyDictionary.TryGetValue(currentButtonCombo, out action))
-                                {
-                                    action.OnActivate();
-                                    goto continueloop;
-                                }
-                            }
-
-                        }
-
-
-                        //this is the normal business routine after hotkey checking
-
-                        foreach (GamepadButtonFlags gbf in gamepadButtonFlags)
-                        {
-                            if (gbf.ToString().Contains("DPad"))
-                            {
-                                //call routine to send controller input events and track for continous input for any dpad input
-                                string result = HandleDPadInput(gbf, currentGamepadState, previousGamepadState);
-                                if (result != "") { continousInputCurrent = result; }
-                            }
-                            else
-                            {
-                                if (currentGamepadState.Buttons.HasFlag(gbf) && !previousGamepadState.Buttons.HasFlag(gbf))
-                                {
-                                    //raise event for button press
-                                    buttonPressEvent.raiseControllerInput(gbf.ToString());
-                                }
-                            }
-
-                        }
-
-
-                        //call routine that handles continous input controller input events and counts usage
-                        continousInputCounter = HandleContinousInput(continousInputCurrent, continousInputPrevious, continousInputCounter);
-
-
-                    continueloop:
-                        //set previous states to current for reference
-                        previousGamepadState = currentGamepadState;
-                        continousInputPrevious = continousInputCurrent;
-                    }
-                    else
-                    {
-                        await Task.Delay(100);
-                        if (suspendEventsForOSK)
-                        {
-                            if (!Application.Current.Windows.OfType<OSK>().Any())
-                            {
-                                suspendEventsForOSK = false;
-                            }
-                        }
-                        if (suspendEventsForNewHotKeyList)
-                        {
-                            UpdateHotKeyDictionary();
-                            suspendEventsForNewHotKeyList = false;
-                        }
-                        if (suspendEventsForHotKeyProgramming)
-                        {
-                            //check to see if main window frame is still on edit action page
-                            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-                            if (mainWindow != null)
-                            {
-                                if (mainWindow.frame.Content != null)
-                                {
-                                    if (mainWindow.frame.Content is not EditActionPage)
-                                    {
-                                        suspendEventsForHotKeyProgramming = false;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-
-                    //sleep for 10 ms to match approx. 100 Hz refresh of controller
-                    await Task.Delay(10);
-                    //watch.Stop();
-                    //Debug.WriteLine($"Total Execution Time: {watch.ElapsedMilliseconds} ms");
-
-
-                }
-                Log_Writer.Instance.writeLog("Ending MainControllerThreadLoop");
-            }
-            catch (Exception ex)
-            {
-                Log_Writer.Instance.writeLog("Error in main controller thread; " + ex.Message, "CI02");
-            }
-        }
+     
 
         private async void MainControllerThreadLoop()
         {
@@ -496,7 +364,136 @@ namespace Everything_Handhelds_Tool.Classes
 
         }
 
+        #region legion go
 
+        private async void MainControllerThreadLoopLGo()
+        {
+            try
+            {
+                Log_Writer.Instance.writeLog("Starting MainControllerThreadLoop LEGION GO COMBINE PROGRAM");
+
+
+                GetConnectedControllerLR();
+                _ViGEmClient = new ViGEmClient();
+
+                IXbox360Controller xbox360Controller = _ViGEmClient.CreateXbox360Controller();
+                xbox360Controller.Connect();
+
+
+                Gamepad currentGamepadStateL = controllerL.GetState().Gamepad;
+                Gamepad currentGamepadStateR = controllerR.GetState().Gamepad;
+                      
+
+                while (this != null)
+                {
+                    GetConnectedController();
+                    currentGamepadStateL = controllerL.GetState().Gamepad;
+                    currentGamepadStateR = controllerR.GetState().Gamepad;
+
+
+
+                    xbox360Controller.SetButtonState(Xbox360Button.A, currentGamepadStateR.Buttons.HasFlag(GamepadButtonFlags.X));
+
+
+                    //sleep for 10 ms to match approx. 100 Hz refresh of controller
+                    xbox360Controller.SubmitReport();
+                    await Task.Delay(10);
+                    //watch.Stop();
+                    //Debug.WriteLine($"Total Execution Time: {watch.ElapsedMilliseconds} ms");
+
+
+                }
+                Log_Writer.Instance.writeLog("Ending MainControllerThreadLoop");
+            }
+            catch (Exception ex)
+            {
+                Log_Writer.Instance.writeLog("Error in main controller thread; " + ex.Message, "CI02");
+            }
+        }
+        private async void GetConnectedControllerLR()
+        {
+            //LEGION GO SPECIFIC
+            //this loops through all 4 controller slots and attempts to connect to one. If not, sleeps and starts searching again.
+            try
+            {
+                //if controller is not null and already connected then return
+                if (controllerR != null && controllerL != null)
+                {
+                    if (controllerL.IsConnected && controllerR.IsConnected) { return; }
+
+                }
+
+                List<UserIndex> userIndexControllers = new List<UserIndex>() { UserIndex.One, UserIndex.Two, UserIndex.Three, UserIndex.Four };
+
+            connectControllers:
+
+                foreach (UserIndex ui in userIndexControllers)
+                {
+                    Controller newController = new Controller(ui);
+                    if (newController != null)
+                    {
+                        if (newController.IsConnected)
+                        {
+                            controllerL = newController;
+                            wasControllerConnected = true;
+                            controllerConnectionChangedEvent.raiseControllerConnectionChanged(true);
+                            return;
+                        }
+                    }
+                }
+
+                foreach (UserIndex ui in userIndexControllers)
+                {
+                    Controller newController = new Controller(ui);
+                    if (newController != null && newController != controllerL)
+                    {
+                        if (newController.IsConnected)
+                        {
+                            controllerR = newController;
+                            wasControllerConnected = true;
+                            controllerConnectionChangedEvent.raiseControllerConnectionChanged(true);
+                            return;
+                        }
+                    }
+                }
+
+
+                if (wasControllerConnected)
+                {
+                    wasControllerConnected = false;
+                    controllerConnectionChangedEvent.raiseControllerConnectionChanged(false);
+                }
+
+                //if nothing connected and isn't null then we wait a few seconds and try again
+                Task.Delay(4000).Wait();
+                goto connectController;
+
+            }
+            catch (Exception ex)
+            {
+                Log_Writer.Instance.writeLog("Connecting to controller; " + ex.Message, "CI01");
+            }
+
+        }
+
+        private async void getBT()
+        {
+            DeviceInformationCollection PairedBluetoothDevices = await DeviceInformation.FindAllAsync(BluetoothDevice.GetDeviceSelector());
+            //Connected bluetooth devices
+
+            foreach (DeviceInformation device in PairedBluetoothDevices)
+            {
+                Debug.WriteLine(device.Name);
+                Debug.WriteLine(device.IsEnabled);
+                Debug.WriteLine(device.Pairing.IsPaired);
+                Debug.WriteLine(device.Id);
+
+
+
+
+            }
+        }
+        #endregion
         //list of button flags to loop through in main thread
         private List<GamepadButtonFlags> gamepadButtonFlags = new List<GamepadButtonFlags>
         { GamepadButtonFlags.A, GamepadButtonFlags.B, GamepadButtonFlags.X, GamepadButtonFlags.Y, GamepadButtonFlags.DPadUp, GamepadButtonFlags.DPadDown, GamepadButtonFlags.DPadLeft, GamepadButtonFlags.DPadRight, GamepadButtonFlags.LeftShoulder, GamepadButtonFlags.RightShoulder, GamepadButtonFlags.Start, GamepadButtonFlags.Back, GamepadButtonFlags.LeftThumb, GamepadButtonFlags.RightThumb };
