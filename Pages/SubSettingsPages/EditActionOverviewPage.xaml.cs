@@ -68,8 +68,8 @@ namespace Everything_Handhelds_Tool.Pages
             {
                 if (saveAction.ID == -1)
                 {
-                    //new action is -1, so if its -1 count it as new and make the new index = count - 1
-                    saveAction.ID = actions.Count - 1;
+                    //new action is -1, so if its -1 count it as new and make the new index = count
+                    saveAction.ID = actions.Count;
                     actions.Add(saveAction);
                 }
                 else
@@ -80,12 +80,18 @@ namespace Everything_Handhelds_Tool.Pages
             }
 
 
-            foreach (Classes.Actions.Action action in actions)
+            if (actions.Count > 0)
             {
-                UserControl userControl = new ActionOverview_UserControl(action);
-                stackPanel.Children.Add(userControl);
-                userControls.Add((ControllerUserControl)userControl);
+                foreach (Classes.Actions.Action action in actions)
+                {
+                    UserControl userControl = new ActionOverview_UserControl(action);
+                    stackPanel.Children.Add(userControl);
+                    userControls.Add((ControllerUserControl)userControl);
+                }
             }
+           
+
+          
 
            
 

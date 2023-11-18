@@ -21,7 +21,7 @@
                 </DockPanel>
 
 
-                <ListView x:Name="listView"  Margin="5,5,5,0" Height="100" FontSize="19" HorizontalAlignment="Stretch"  >
+                <ListView x:Name="listView"  Margin="5,5,5,0" Height="100" FontSize="19" HorizontalAlignment="Stretch" SelectionChanged="listView_SelectionChanged"  >
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>

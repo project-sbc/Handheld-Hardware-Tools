@@ -2,7 +2,12 @@
 using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
 using Everything_Handhelds_Tool.Models;
 using Everything_Handhelds_Tool.Pages;
-
+using Nefarius.Utilities.DeviceManagement.Extensions;
+using Nefarius.Utilities.DeviceManagement.PnP;
+using Nefarius.ViGEm.Client;
+using Nefarius.ViGEm.Client.Exceptions;
+using Nefarius.ViGEm.Client.Targets;
+using Nefarius.ViGEm.Client.Targets.Xbox360;
 using SharpDX.XInput;
 using System;
 using System.Collections.Generic;
@@ -12,11 +17,15 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Threading;
+using Windows.Devices.Bluetooth;
+using Windows.Devices.Enumeration;
 
 namespace Everything_Handhelds_Tool.Classes
 {
-    public class ControllerInput
+    public class ControllerInputLGo
     {
         //add profiles to perform either mouse or controller mapping
 
@@ -24,7 +33,11 @@ namespace Everything_Handhelds_Tool.Classes
         public ControllerConnectionChangedEvent controllerConnectionChangedEvent = new ControllerConnectionChangedEvent();
         public Controller? controller;
 
+        //FOR LEGION GO SPECIFIC
+        public Controller? controllerR;
+        public Controller? controllerL;
 
+        private ViGEmClient _ViGEmClient;
         //   wasControllerConnected is a previous state condition used to determine when the controller was connected to not connected
         // it helps fire the controllerConnectionChangedEvent
         private bool wasControllerConnected = false;
@@ -70,7 +83,7 @@ namespace Everything_Handhelds_Tool.Classes
                 suspendEventsForHotKeyProgramming = value;
             }
         }
-        public ControllerInput()
+        public ControllerInputLGo()
         {
 
 
@@ -350,54 +363,152 @@ namespace Everything_Handhelds_Tool.Classes
 
         }
 
-       
+        #region legion go
+
+        private async void MainControllerThreadLoopLGo()
+        {
+            try
+            {
+                Log_Writer.Instance.writeLog("Starting MainControllerThreadLoop LEGION GO COMBINE PROGRAM");
+
+
+                GetConnectedControllerLR();
+                _ViGEmClient = new ViGEmClient();
+
+                IXbox360Controller xbox360Controller = _ViGEmClient.CreateXbox360Controller();
+                xbox360Controller.Connect();
+
+
+                Gamepad currentGamepadStateL = controllerL.GetState().Gamepad;
+                Gamepad currentGamepadStateR = controllerR.GetState().Gamepad;
+                      
+
+                while (this != null)
+                {
+                    GetConnectedController();
+                    currentGamepadStateL = controllerL.GetState().Gamepad;
+                    currentGamepadStateR = controllerR.GetState().Gamepad;
+
+
+                    //right controller ABXY translated from rotated controller setup
+                    xbox360Controller.SetButtonState(Xbox360Button.A, currentGamepadStateR.Buttons.HasFlag(GamepadButtonFlags.X));
+                    xbox360Controller.SetButtonState(Xbox360Button.B, currentGamepadStateR.Buttons.HasFlag(GamepadButtonFlags.Y));
+                    xbox360Controller.SetButtonState(Xbox360Button.X, currentGamepadStateR.Buttons.HasFlag(GamepadButtonFlags.A));
+                    xbox360Controller.SetButtonState(Xbox360Button.Y, currentGamepadStateR.Buttons.HasFlag(GamepadButtonFlags.B));
+
+
+
+                    xbox360Controller.SetButtonState(Xbox360Button.Y, currentGamepadStateR.Buttons.HasFlag(GamepadButtonFlags.B));
+                    xbox360Controller.SetButtonState(Xbox360Button.Y, currentGamepadStateR.Buttons.HasFlag(GamepadButtonFlags.B));
+
+
+
+
+
+                    //send report and sleep for 10 ms to match approx. 100 Hz refresh of controller
+                    xbox360Controller.SubmitReport();
+                    await Task.Delay(10);
+                    //watch.Stop();
+                    //Debug.WriteLine($"Total Execution Time: {watch.ElapsedMilliseconds} ms");
+
+
+                }
+                Log_Writer.Instance.writeLog("Ending MainControllerThreadLoop");
+            }
+            catch (Exception ex)
+            {
+                Log_Writer.Instance.writeLog("Error in main controller thread; " + ex.Message, "CI02");
+            }
+        }
+        private async void GetConnectedControllerLR()
+        {
+            //LEGION GO SPECIFIC
+            //this loops through all 4 controller slots and attempts to connect to one. If not, sleeps and starts searching again.
+            try
+            {
+                //if controller is not null and already connected then return
+                if (controllerR != null && controllerL != null)
+                {
+                    if (controllerL.IsConnected && controllerR.IsConnected) { return; }
+
+                }
+
+                List<UserIndex> userIndexControllers = new List<UserIndex>() { UserIndex.One, UserIndex.Two, UserIndex.Three, UserIndex.Four };
+
+            connectControllers:
+
+                foreach (UserIndex ui in userIndexControllers)
+                {
+                    Controller newController = new Controller(ui);
+                    if (newController != null)
+                    {
+                        if (newController.IsConnected)
+                        {
+                            controllerL = newController;
+                            wasControllerConnected = true;
+                            controllerConnectionChangedEvent.raiseControllerConnectionChanged(true);
+                            return;
+                        }
+                    }
+                }
+
+                foreach (UserIndex ui in userIndexControllers)
+                {
+                    Controller newController = new Controller(ui);
+                    if (newController != null && newController != controllerL)
+                    {
+                        if (newController.IsConnected)
+                        {
+                            controllerR = newController;
+                            wasControllerConnected = true;
+                            controllerConnectionChangedEvent.raiseControllerConnectionChanged(true);
+                            return;
+                        }
+                    }
+                }
+
+
+                if (wasControllerConnected)
+                {
+                    wasControllerConnected = false;
+                    controllerConnectionChangedEvent.raiseControllerConnectionChanged(false);
+                }
+
+                //if nothing connected and isn't null then we wait a few seconds and try again
+                Task.Delay(4000).Wait();
+                goto connectControllers;
+
+            }
+            catch (Exception ex)
+            {
+                Log_Writer.Instance.writeLog("Connecting to controller; " + ex.Message, "CI01");
+            }
+
+        }
+
+        private async void getBT()
+        {
+            DeviceInformationCollection PairedBluetoothDevices = await DeviceInformation.FindAllAsync(BluetoothDevice.GetDeviceSelector());
+            //Connected bluetooth devices
+
+            foreach (DeviceInformation device in PairedBluetoothDevices)
+            {
+                Debug.WriteLine(device.Name);
+                Debug.WriteLine(device.IsEnabled);
+                Debug.WriteLine(device.Pairing.IsPaired);
+                Debug.WriteLine(device.Id);
+
+
+
+
+            }
+        }
+        #endregion
         //list of button flags to loop through in main thread
         private List<GamepadButtonFlags> gamepadButtonFlags = new List<GamepadButtonFlags>
         { GamepadButtonFlags.A, GamepadButtonFlags.B, GamepadButtonFlags.X, GamepadButtonFlags.Y, GamepadButtonFlags.DPadUp, GamepadButtonFlags.DPadDown, GamepadButtonFlags.DPadLeft, GamepadButtonFlags.DPadRight, GamepadButtonFlags.LeftShoulder, GamepadButtonFlags.RightShoulder, GamepadButtonFlags.Start, GamepadButtonFlags.Back, GamepadButtonFlags.LeftThumb, GamepadButtonFlags.RightThumb };
 
     }
 
-    public class ButtonPressEvent
-    {
-
-        public event EventHandler<controllerInputEventArgs> controllerInputEvent;
-
-        public void raiseControllerInput(string action)
-        {
-            System.Windows.Application.Current.Dispatcher.BeginInvoke(() =>
-            {
-                controllerInputEvent?.Invoke(this, new controllerInputEventArgs(action));
-            });
-        }
-    }
-    public class controllerInputEventArgs : EventArgs
-    {
-        public string Action { get; set; }
-        public controllerInputEventArgs(string action)
-        {
-            this.Action = action;
-        }
-    }
-
-    public class ControllerConnectionChangedEvent
-    {
-
-        public event EventHandler<controllerConnectionChangedEventArgs> controllerConnectionChangedEvent;
-
-        public void raiseControllerConnectionChanged(bool connected)
-        {
-            System.Windows.Application.Current.Dispatcher.BeginInvoke(() =>
-            {
-                controllerConnectionChangedEvent?.Invoke(this, new controllerConnectionChangedEventArgs(connected));
-            });
-        }
-    }
-    public class controllerConnectionChangedEventArgs : EventArgs
-    {
-        public bool Connected { get; set; }
-        public controllerConnectionChangedEventArgs(bool connected)
-        {
-            this.Connected = connected;
-        }
-    }
+   
 }

@@ -87,7 +87,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     break;
                 default:
                     //this handles the non list items like toggle wifi, where this list needs to be hidden
-                    this.Visibility = Visibility.Hidden;
+                    this.Visibility = Visibility.Collapsed;
                     break;
 
             }
@@ -166,6 +166,11 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                 
             }
             UpdatePageActionWithSubControlValues(values);
+        }
+
+        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ControlChangeValueHandler();
         }
     }
 

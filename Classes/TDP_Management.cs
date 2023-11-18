@@ -45,7 +45,7 @@ namespace Everything_Handhelds_Tool.Classes
         private string appDir = AppDomain.CurrentDomain.BaseDirectory;
         private int tdpSustained = 15;
         private int tdpBoost = 15;
-
+        private bool unableToReadTDPDevice = false;
 
 
         public int ReturnSustainedTDP()
@@ -390,8 +390,13 @@ namespace Everything_Handhelds_Tool.Classes
                         tdp = line.Replace("|", "").Replace("PPT LIMIT SLOW", "").Replace(" ", "").Replace("slow-limit", "");
                         tdp = tdp.Substring(0, tdp.IndexOf("."));
                         tdpBoost = (int)Math.Round(Convert.ToDouble(tdp), 0);
+                        return;
                     }
                 }
+
+                //THERE IS A RETURN IN THE SECOND SECTION THAT IF IT CAN READ THE TDP WONT COME TO THIS SECTIOn
+                //THIS SECTION IS FOR DEVICES LIKE STEAM DECK AND AMD Z1E WHERE YOU CAN"T READ THE TDP
+                unableToReadTDPDevice = true;
             }
         }
         private void ChangeAMDTDP(int pl1TDP, int pl2TDP)
@@ -417,6 +422,11 @@ namespace Everything_Handhelds_Tool.Classes
                 result = Run_CLI.Instance.RunCommand(commandArguments, true, processRyzenAdj);
                 Thread.Sleep(30);
 
+                if (unableToReadTDPDevice)
+                {
+                    tdpBoost = pl2TDP;
+                    tdpSustained = pl1TDP;
+                }
 
             }
             catch (Exception ex)
