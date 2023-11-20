@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Windows.Foundation.Collections;
 
 namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
 {
@@ -47,12 +48,11 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
         }
 
 
-        public Dictionary<string, string>actionDictionary = new DefaultActionItemDictionary();
         private void ConfigureControl(bool actionVisible = false)
         {
             if (actionVisible)
             {
-
+                toggleSwitch.IsChecked = actionVisible;
             }
 
         }
@@ -71,10 +71,43 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
 
         public override void ControlChangeValueHandler()
         {
-            //set originalselectedindex to the NEW selected index to prevent accidental change when returning control to page (where it will reset to original if indexes dont match)
-            toggleSwitch.IsChecked = !toggleSwitch.IsChecked;
+           
+            bool isToggled;
+            if (toggleSwitch.IsChecked == false)
+            {
+                isToggled = false;
+            }
+            else
+            {
+                isToggled = true;
+            }
+
+
+            MainWindow mainWindow = Local_Object.Instance.GetMainWindow();
+
+            if (mainWindow.frame.Content is EditActionPage)
+            {
+                EditActionPage editActionPage = mainWindow.frame.Content as EditActionPage;
+                if (editActionPage != null)
+                {
+                    if (editActionPage.action != null)
+                    {
+                        editActionPage.action.displayInActionPanel = isToggled;
+                    }
+                }
+            }
         }
 
+
+        private void toggleSwitch_Checked(object sender, RoutedEventArgs e)
+        {
+            ControlChangeValueHandler();
+        }
+
+        private void toggleSwitch_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ControlChangeValueHandler();
+        }
     }
 
 

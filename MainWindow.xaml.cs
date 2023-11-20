@@ -420,6 +420,12 @@ namespace Everything_Handhelds_Tool
             {
                 switch (pageName)
                 {
+                    case "SelectSaveBack":
+                        uri = new Uri("ControllerInstructionPages\\SelectSaveBack.xaml", UriKind.Relative);
+                        break;
+                    case "SelectAddBack":
+                        uri = new Uri("ControllerInstructionPages\\SelectAddBack.xaml", UriKind.Relative);
+                        break;
                     case "SelectBack":
                         uri = new Uri("ControllerInstructionPages\\SelectBack.xaml", UriKind.Relative);
                         break;

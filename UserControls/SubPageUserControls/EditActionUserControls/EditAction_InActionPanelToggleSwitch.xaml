@@ -15,7 +15,7 @@
                     <Viewbox Height="30" VerticalAlignment="Center"  HorizontalAlignment="Left" >
                         <TextBlock Text="{DynamicResource Usercontrol_ActionDisplayInPanel}"  />
                     </Viewbox>
-                    <ui:ToggleSwitch x:Name="toggleSwitch" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,5,20,0" DockPanel.Dock="Right"/>
+                    <ui:ToggleSwitch x:Name="toggleSwitch" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,5,20,0" DockPanel.Dock="Right" Checked="toggleSwitch_Checked" Unchecked="toggleSwitch_Unchecked"   />
 
 
 

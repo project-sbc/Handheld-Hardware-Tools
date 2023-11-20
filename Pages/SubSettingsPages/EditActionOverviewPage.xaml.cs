@@ -39,8 +39,8 @@ namespace Everything_Handhelds_Tool.Pages
             InitializeComponent();
             virtualStackPanel = stackPanel;
             AddControlsToArray(action);
+            SetPageDefaultInstruction();
 
-          
         }
 
         private void ReBaseIDsInActionList()
@@ -58,8 +58,15 @@ namespace Everything_Handhelds_Tool.Pages
 
         }
 
+        public override void SetPageDefaultInstruction()
+        {
+            //EDITACTIONOVERVIEW PAGE IS SPECIAL BECAUSE IT DOESNST GET THE USUAL CONTROLLER INSTRUCIONT OF SELECT BACK. TYPICALLY THIS IS HANDLED AT THE GENERIC CLASS LEVEL BUT I HAVE THE ADD NEW ACTION BUTTON
+            //AND I NEED TO MAKE A SPECIAL INSRUCTION FOR THIS ONE. SO I WILL OVERRIDE THE GENERIC PAGE CLASS RETURNCONTROLTOPAGE and i have to add the instruction at init too so thats the first thing that shows up
 
-       
+            General_Functions.ChangeControllerInstructionPage("SelectAddBack");
+        }
+
+
         private void AddControlsToArray(Classes.Actions.Action? saveAction = null)
         {
             ActionList actions = (ActionList)XML_Management.Instance.LoadXML("ActionList");
@@ -181,6 +188,11 @@ namespace Everything_Handhelds_Tool.Pages
         }
 
         private void newAction_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            AddNewAction();
+        }
+
+        private void AddNewAction()
         {
             System.Windows.Controls.Page page = new EditActionPage();
 

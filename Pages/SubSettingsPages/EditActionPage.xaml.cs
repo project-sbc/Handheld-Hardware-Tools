@@ -51,9 +51,27 @@ namespace Everything_Handhelds_Tool.Pages
             InitializeComponent();
             virtualStackPanel = stackPanel;
             AddControlsToArray();
+            SetPageDefaultInstruction();
+        }
+        public override void SetPageDefaultInstruction()
+        {
+            //EDITACTION PAGE IS SPECIAL BECAUSE IT DOESNST GET THE USUAL CONTROLLER INSTRUCIONT OF SELECT BACK. TYPICALLY THIS IS HANDLED AT THE GENERIC CLASS LEVEL BUT I HAVE THE ADD SAVE BUTTON
+            //AND I NEED TO MAKE A SPECIAL INSRUCTION FOR THIS ONE. SO I WILL OVERRIDE THE GENERIC PAGE CLASS RETURNCONTROLTOPAGE and i have to add the instruction at init too so thats the first thing that shows up
 
+            General_Functions.ChangeControllerInstructionPage("SelectSaveBack");
         }
 
+        public override void HandleControllerInput(string action)
+        {
+            base.HandleControllerInput(action);
+
+            if (action == "Start" && controllerNavigatePage)
+            {
+                SaveActionToXML();
+            }
+
+
+        }
 
         private void AddControlsToArray()
         {
@@ -85,10 +103,7 @@ namespace Everything_Handhelds_Tool.Pages
         }
 
 
-        public void UpdateActionFromSubControl()
-        {
-
-        }
+    
 
         private void SaveActionToEditOverviewPage()
         {
@@ -106,9 +121,14 @@ namespace Everything_Handhelds_Tool.Pages
         }
         private void save_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            SaveActionToXML();
+        }
+
+        private void SaveActionToXML()
+        {
             //on save we need to make sure everything is good by calling validate inputs
             //THEN save the action by sending to the overview page with action argument, and the editoverview page will handle the saving
-            ValidateInputs();  
+            ValidateInputs();
             SaveActionToEditOverviewPage();
         }
 
