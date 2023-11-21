@@ -38,6 +38,7 @@ namespace Everything_Handhelds_Tool.Classes
         public const string CppFunctionsDLL = @"Resources\AMD\ADLX\ADLX_PerformanceMetrics.dll";
         public const string CppFunctionsDLL2 = @"Resources\AMD\ADLX\ADLX_AutoTuning.dll";
         public const string CppFunctionsDLL3 = @"Resources\AMD\ADLX\ADLX_3DSettings.dll";
+        public const string CppFunctionsDLL4 = @"Resources\AMD\ADLX\ADLX_DisplaySettings.dll";
 
         [DllImport(CppFunctionsDLL, CallingConvention = CallingConvention.Cdecl)] public static extern int GetFPSData();
 
@@ -55,6 +56,7 @@ namespace Everything_Handhelds_Tool.Classes
 
         [DllImport(CppFunctionsDLL3, CallingConvention = CallingConvention.Cdecl)] public static extern bool SetRSRSharpness(int sharpness);
         [DllImport(CppFunctionsDLL3, CallingConvention = CallingConvention.Cdecl)] public static extern int GetRSRSharpness();
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool HasIntegerScalingSupport();
 
         #endregion
 

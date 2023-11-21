@@ -23,6 +23,7 @@
   <ItemGroup>
     <None Remove="Resources\AMD\ADLX\ADLX_3DSettings.dll" />
     <None Remove="Resources\AMD\ADLX\ADLX_AutoTuning.dll" />
+    <None Remove="Resources\AMD\ADLX\ADLX_DisplaySettings.dll" />
     <None Remove="Resources\AMD\ADLX\ADLX_PerformanceMetrics.dll" />
     <None Remove="Resources\AMD\ADLX\kernel32.dll" />
     <None Remove="Resources\AMD\ADLX\ucrtbased.dll" />
@@ -59,6 +60,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\AMD\ADLX\ADLX_AutoTuning.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\AMD\ADLX\ADLX_DisplaySettings.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\AMD\ADLX\ADLX_PerformanceMetrics.dll">
