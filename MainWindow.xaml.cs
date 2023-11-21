@@ -8,18 +8,9 @@ using System.Windows.Threading;
 using Everything_Handhelds_Tool.Classes.Models;
 using System.Globalization;
 using System.Net.NetworkInformation;
-using System.Windows.Interop;
 using Wpf.Ui.Controls;
 using Everything_Handhelds_Tool.Classes.Devices;
-using System.Windows.Media.Effects;
-using Wpf.Ui.Controls.Interfaces;
-using Wpf.Ui.Common;
-using Everything_Handhelds_Tool.Classes.Actions;
-using Action = Everything_Handhelds_Tool.Classes.Actions.Action;
-using System.Diagnostics;
-using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
-using Everything_Handhelds_Tool.ControllerInputPages;
-using System.Runtime.InteropServices;
+
 
 namespace Everything_Handhelds_Tool
 {
@@ -28,7 +19,7 @@ namespace Everything_Handhelds_Tool
     {
 
         public Device device;
-        
+
         public MainWindow()
         {
             //Get the device type (i.e. win max 2, one x fly, etc)
@@ -39,7 +30,7 @@ namespace Everything_Handhelds_Tool
             InitializeRoutines();
 
             bool test = ADLX_Management.HasIntegerScalingSupport();
-            
+
         }
         #region Set up
         private void InitializeRoutines() 
