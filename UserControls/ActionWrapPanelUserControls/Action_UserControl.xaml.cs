@@ -53,6 +53,9 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
                 case "Toggle_WifiAP":
                     actionHandler = new ActionUserControl_Toggle_WifiAP(action);
                     break;
+                default:
+                    MessageBox.Show("NO HANDLER FOR THIS ACTION, ADD IT YOU DUMMY. Action_UserControl.xaml.cs " + action.actionName);
+                    break;
             }
         }
 

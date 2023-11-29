@@ -50,7 +50,9 @@
     <system:String x:Key="Action_Cycle_TDP">Change TDP Mode</system:String>
     <system:String x:Key="ActionUserControl_CycleTDP">Change TDP Mode</system:String>
     <system:String x:Key="ActionUserControl_Toggle_WifiAP">Toggle Wifi AP</system:String>
+    <system:String x:Key="ActionUserControl_Toggle_IntergerScaling">Toggle Integer Scaling</system:String>
     <system:String x:Key="Action_Toggle_WifiAP">Toggle Wifi AP</system:String>
+    <system:String x:Key="Action_Toggle_IntegerScaling">Toggle Integer Scaling</system:String>
 
     <system:String x:Key="ActionUserControl_Toggle_RSR">Toggle RSR</system:String>
     <system:String x:Key="Action_Toggle_RSR">Toggle RSR</system:String>

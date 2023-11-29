@@ -23,6 +23,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
     [XmlInclude(typeof(Toggle_WifiAP))]
     [XmlInclude(typeof(Cycle_TDP))]
     [XmlInclude(typeof(Cycle_Volume))]
+    [XmlInclude(typeof(Toggle_IntegerScaling))]
     public class Action
     {
         //action name is programming specific, display name will be generated at runtime based on language selected
@@ -52,6 +53,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
             this.Add("Cycle_TDP", Application.Current.Resources["Action_Cycle_TDP"].ToString());
             //this.Add("Toggle_Wifi", Application.Current.Resources["Action_Toggle_Wifi"].ToString());
             this.Add("Toggle_WifiAP", Application.Current.Resources["Action_Toggle_WifiAP"].ToString());
+            this.Add("Toggle_IntegerScaling", Application.Current.Resources["Action_Toggle_IntegerScaling"].ToString());
             //this.Add("Toggle_BT", Application.Current.Resources["Action_Toggle_BT"].ToString());
             //this.Add("Toggle_QAM", Application.Current.Resources["Action_Toggle_QAM"].ToString());
 

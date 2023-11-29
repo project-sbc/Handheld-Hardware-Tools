@@ -104,6 +104,10 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     case "Cycle_TDP":
                         newAction = new Classes.Actions.ActionClass.Cycle_TDP();
                         break;
+
+                    default:
+                        MessageBox.Show("NO HANDLER FOR THIS ACTION, ADD IT YOU DUMMY. EditAction_ComboBox.xaml.cs " + actionLookup);
+                        break;
                 }
 
 

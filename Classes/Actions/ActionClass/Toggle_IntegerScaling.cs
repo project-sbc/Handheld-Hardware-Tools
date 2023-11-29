@@ -12,7 +12,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
         public Toggle_IntegerScaling()
         {
             actionName = "Toggle_IntegerScaling";
-            //arguments = new List<string>();
+       
         }
         public override void OnActivate()
         {

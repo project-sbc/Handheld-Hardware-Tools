@@ -85,11 +85,13 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     }
 
                     break;
-                default:
+                case "Toggle_Wifi" or "Toggle_IntegerScaling":
                     //this handles the non list items like toggle wifi, where this list needs to be hidden
                     this.Visibility = Visibility.Collapsed;
                     break;
-
+                default:
+                    MessageBox.Show("NO HANDLER FOR THIS ACTION, ADD IT YOU DUMMY. ActionOverview_UserControl.xaml.cs " + actionName);
+                    break;
             }
 
         }

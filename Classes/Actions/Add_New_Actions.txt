@@ -1,0 +1,13 @@
+﻿Instructions to add new actions
+
+
+1. Add a new action class in classes/actions/actionclass
+2. Add a [XmlInclude(typeof(ABCDEFG))] to the Action.cs file in classes/actions
+3. Add new strings to the string resource file ALL LANGUAGES
+
+ex.
+    <system:String x:Key="Action_Cycle_TDP">Change TDP Mode</system:String>
+    <system:String x:Key="ActionUserControl_CycleTDP">Change TDP Mode</system:String>
+
+4. Add new ActionUserControl_  .cs to UserControls/ActionWRapPanelUserControls
+5. Update switch list in Action_UserControl.xaml in UserControls/ActionWrapPanelUserControls
