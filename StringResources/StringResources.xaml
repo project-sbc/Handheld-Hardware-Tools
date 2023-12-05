@@ -21,6 +21,7 @@
     <system:String x:Key="Usercontrol_ShutdownPC">Shut Down PC</system:String>
     <system:String x:Key="Usercontrol_RestartPC">Restart PC</system:String>
     <system:String x:Key="Usercontrol_ActionType">Action Type</system:String>
+    <system:String x:Key="Usercontrol_ActionEnableHotKey">Enable Hotkey</system:String>
     <system:String x:Key="Usercontrol_ActionArguments">Action Parameters</system:String>
     <system:String x:Key="Usercontrol_ActionDisplayInPanel">Display In Panel</system:String>
     <system:String x:Key="Usercontrol_PowerPlan">Power Plan</system:String>

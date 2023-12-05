@@ -26,6 +26,7 @@ namespace Everything_Handhelds_Tool.Pages
         public Classes.Actions.Action action;
         public EditAction_Combobox actionCombobox;
         public EditAction_ArgumentListView actionArgumentListView;
+        public EditAction_EnableHotKey actionEnableHotKey;
 
         //bool to determine if existing or new action
         private bool newAction = true;

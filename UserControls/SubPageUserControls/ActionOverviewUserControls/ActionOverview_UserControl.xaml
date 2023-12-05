@@ -29,7 +29,7 @@
                         <StackPanel Orientation="Horizontal">
                             <ui:SymbolIcon x:Name="symbolIconPanel" Symbol="FlashPlay20" FontSize="20" Margin="0,0,8,0" Grid.RowSpan="2"  VerticalAlignment="Center"   />
 
-                            <Viewbox Height="20" VerticalAlignment="Center"  HorizontalAlignment="Left" >
+                            <Viewbox Height="20" VerticalAlignment="Center" Width="115" HorizontalAlignment="Left" >
                                 <TextBlock  x:Name="actionPanelVisible"  />
                             </Viewbox>
                         </StackPanel>
