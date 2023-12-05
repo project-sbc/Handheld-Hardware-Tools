@@ -19,6 +19,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
             cycle_TDP.parameters.Add("10");
             cycle_TDP.parameters.Add("15");
             cycle_TDP.parameters.Add("20");
+            cycle_TDP.ID = 0;
             this.Add(cycle_TDP);
 
         
