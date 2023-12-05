@@ -29,8 +29,7 @@ namespace Everything_Handhelds_Tool
             //run start up
             InitializeRoutines();
 
-            bool test = ADLX_Management.HasIntegerScalingSupport();
-
+        
         }
         #region Set up
         private void InitializeRoutines() 
