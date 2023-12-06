@@ -10,6 +10,7 @@ using System.Globalization;
 using System.Net.NetworkInformation;
 using Wpf.Ui.Controls;
 using Everything_Handhelds_Tool.Classes.Devices;
+using System.Diagnostics;
 
 
 namespace Everything_Handhelds_Tool
@@ -29,7 +30,16 @@ namespace Everything_Handhelds_Tool
             //run start up
             InitializeRoutines();
 
-        
+
+            ADLX_Management.SetGPUScaling(0);
+            //Debug.WriteLine("GPU SCALING SUPPORT: " +ADLX_Management.HasGPUScalingSupport().ToString());
+            ADLX_Management.SetGPUScaling(1);
+            Debug.WriteLine("GPU SCALING SUPPORT: " + ADLX_Management.HasGPUScalingSupport().ToString());
+            Debug.WriteLine("SCALING MODE SUPPORT: " + ADLX_Management.HasScalingModeSupport().ToString());
+            ADLX_Management.SetScalingMode(1);
+            Debug.WriteLine("SCALING MODE: " + ADLX_Management.GetScalingMode().ToString());
+            ADLX_Management.SetIntegerScaling(1);
+
         }
         #region Set up
         private void InitializeRoutines() 
