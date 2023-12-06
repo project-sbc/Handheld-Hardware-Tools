@@ -60,6 +60,18 @@ namespace Everything_Handhelds_Tool.Classes
         [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern int SetIntegerScaling(int key);
         [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool IsIntegerScalingEnabled();
 
+
+
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool HasGPUScalingSupport();
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern int SetGPUScaling(int key);
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool IsGPUScalingEnabled();
+
+
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool HasScalingModeSupport();
+
+        //Scaling Mode int to mode: 0 is preserve aspect ration, 1 is full panel, 2 is center
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern int SetScalingMode(int key);
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern int GetScalingMode();
         #endregion
 
     }
