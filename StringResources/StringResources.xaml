@@ -24,6 +24,7 @@
     <system:String x:Key="Usercontrol_ActionEnableHotKey">Enable Hotkey</system:String>
     <system:String x:Key="Usercontrol_ActionArguments">Action Parameters</system:String>
     <system:String x:Key="Usercontrol_ActionDisplayInPanel">Display In Panel</system:String>
+    <system:String x:Key="Usercontrol_ClickToSetHotKey">Click Button To Set Hotkey</system:String>
     <system:String x:Key="Usercontrol_PowerPlan">Power Plan</system:String>
         
         
@@ -40,6 +41,7 @@
     <system:String x:Key="Usercontrol_WifiAPSSID">Wifi AP SSID</system:String>
     <system:String x:Key="Usercontrol_WifiAPPassword">Wifi AP Password</system:String>
     <system:String x:Key="Usercontrol_EditActions">Edit Actions</system:String>
+    <system:String x:Key="Usercontrol_EditAction">Edit Action</system:String>
     <system:String x:Key="Usercontrol_NewAction">New Action</system:String>
     <system:String x:Key="Usercontrol_Save">Save</system:String>
     <system:String x:Key="Usercontrol_Back">Back</system:String>

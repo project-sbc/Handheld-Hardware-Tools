@@ -7,24 +7,35 @@
                                mc:Ignorable="d" 
             Height="Auto"  Margin="0,0,0,3" >
     <Border Style="{StaticResource userControlBorder}" Name="border">
-        <ui:Card VerticalAlignment="Center" x:Name="card" >
-
-            <DockPanel >
-                <DockPanel  DockPanel.Dock="Top" Margin="0,-5,0,0">
+        <ui:CardExpander VerticalAlignment="Top" x:Name="card" ExpandDirection="Down" IsExpanded="True">
+            <ui:CardExpander.Header >
+                <DockPanel  >
                     <ui:SymbolIcon Symbol="DesktopKeyboard16" FontSize="30" Margin="0,0,8,0"  VerticalAlignment="Top"   />
                     <Viewbox Height="30" VerticalAlignment="Center"  HorizontalAlignment="Left" >
                         <TextBlock Text="{DynamicResource Usercontrol_ActionEnableHotKey}"  />
                     </Viewbox>
-                    <ui:ToggleSwitch x:Name="toggleSwitch" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,5,20,0" DockPanel.Dock="Right" Checked="toggleSwitch_Checked" Unchecked="toggleSwitch_Unchecked"   />
+                    <ui:ToggleSwitch x:Name="toggleSwitch" IsChecked="{Binding Path=IsExpanded, ElementName=card}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0" DockPanel.Dock="Right"/>
 
 
 
                 </DockPanel>
+            </ui:CardExpander.Header>
+            <StackPanel >
+                <Viewbox Height="30" VerticalAlignment="Center"  HorizontalAlignment="Left" >
+                    <TextBlock Text="{DynamicResource Usercontrol_ClickToSetHotKey}"  />
+                </Viewbox>
+                <Button  x:Name="button" Width="Auto"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" Click="button_Click">
+                    <DockPanel HorizontalAlignment="Left" >
+                        <ui:SymbolIcon x:Name="iconHotKeyType" Symbol="XboxController20" FontSize="30" Margin="0,0,18,0"  VerticalAlignment="Center" DockPanel.Dock="Left" HorizontalContentAlignment="Left" HorizontalAlignment="Left" />
+                        <Viewbox Height="30" VerticalAlignment="Center"  HorizontalAlignment="Stretch" DockPanel.Dock="Right" >
+                            <TextBlock x:Name="textBlockHotKey"  />
+                        </Viewbox>
+                    </DockPanel>
 
+                </Button>
 
-             
-            </DockPanel>
-        </ui:Card>
+            </StackPanel>
+        </ui:CardExpander>
 
     </Border>
     

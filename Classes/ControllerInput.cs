@@ -175,12 +175,19 @@ namespace Everything_Handhelds_Tool.Classes
                     }
                     else
                     {
-                        await Task.Delay(100);
+                        //handle scenarios without usual input: when OSK is open disable all the other stuff
+                        //when programming hot keys stop events
+                        //when updating hotkeylist jump out to update then jump back in
+               
                         if (suspendEventsForOSK)
                         {
                             if (!Application.Current.Windows.OfType<OSK>().Any())
                             {
                                 suspendEventsForOSK = false;
+                            }
+                            else
+                            {
+                                await Task.Delay(100);
                             }
                         }
                         if (suspendEventsForNewHotKeyList)
@@ -190,6 +197,7 @@ namespace Everything_Handhelds_Tool.Classes
                         }
                         if (suspendEventsForHotKeyProgramming)
                         {
+                            
                             //check to see if main window frame is still on edit action page
                             MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
                             if (mainWindow != null)
@@ -206,10 +214,10 @@ namespace Everything_Handhelds_Tool.Classes
                     }
 
 
-                    //sleep for 10 ms to match approx. 100 Hz refresh of controller
+                    //task delay for 10 ms to match approx. 100 Hz refresh of controller
                     await Task.Delay(10);
-                    //watch.Stop();
-                    //Debug.WriteLine($"Total Execution Time: {watch.ElapsedMilliseconds} ms");
+                    
+
 
 
                 }

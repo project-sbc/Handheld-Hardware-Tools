@@ -31,14 +31,6 @@ namespace Everything_Handhelds_Tool
             InitializeRoutines();
 
 
-            ADLX_Management.SetGPUScaling(0);
-            //Debug.WriteLine("GPU SCALING SUPPORT: " +ADLX_Management.HasGPUScalingSupport().ToString());
-            ADLX_Management.SetGPUScaling(1);
-            Debug.WriteLine("GPU SCALING SUPPORT: " + ADLX_Management.HasGPUScalingSupport().ToString());
-            Debug.WriteLine("SCALING MODE SUPPORT: " + ADLX_Management.HasScalingModeSupport().ToString());
-            ADLX_Management.SetScalingMode(1);
-            Debug.WriteLine("SCALING MODE: " + ADLX_Management.GetScalingMode().ToString());
-            ADLX_Management.SetIntegerScaling(1);
 
         }
         #region Set up
