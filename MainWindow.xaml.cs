@@ -11,6 +11,7 @@ using System.Net.NetworkInformation;
 using Wpf.Ui.Controls;
 using Everything_Handhelds_Tool.Classes.Devices;
 using System.Diagnostics;
+using Everything_Handhelds_Tool.Classes.Wifi_AP;
 
 
 namespace Everything_Handhelds_Tool
@@ -20,6 +21,8 @@ namespace Everything_Handhelds_Tool
     {
 
         public Device device;
+
+        public WiFiDirectHotspotManager wifiAP = null;
 
         public MainWindow()
         {
@@ -352,6 +355,9 @@ namespace Everything_Handhelds_Tool
         {
             //Tasks to do when window is reopening
 
+            //make controller input class register button presses
+            controllerInput.mainWindowShowing = true;
+
             //update status bar because timer takes 5 seconds to update
             UpdateStatusBar();
 
@@ -371,7 +377,10 @@ namespace Everything_Handhelds_Tool
         private void TasksToggleWindowClosed()
         {
             //Tasks to do when window is hiding
-                        
+
+            //make controller input class stop registering button presses (only hot keys will work)
+            controllerInput.mainWindowShowing = false;
+
             //Stop statusbar update timer
             statusBarDispatcherTimer.Stop();
 

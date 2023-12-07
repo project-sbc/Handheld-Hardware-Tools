@@ -37,6 +37,21 @@ namespace Everything_Handhelds_Tool.Classes
         private bool suspendEventsForNewHotKeyList { get; set; } = false;
         private bool suspendEventsForOSK { get; set; } = false;
 
+
+        //set a bool to control if the window is showing
+        private bool _mainWindowShowing = true;
+        public bool mainWindowShowing {
+            get
+            {
+                return _mainWindowShowing;
+            }
+
+
+            set {
+                _mainWindowShowing = value;
+            }
+        }
+
         public bool publicSuspendEventsForOSK
         {
             get
@@ -143,29 +158,35 @@ namespace Everything_Handhelds_Tool.Classes
 
 
                         //this is the normal business routine after hotkey checking
-
-                        foreach (GamepadButtonFlags gbf in gamepadButtonFlags)
+                        //first check if window is showing
+                        if (_mainWindowShowing)
                         {
-                            if (gbf.ToString().Contains("DPad"))
+                            foreach (GamepadButtonFlags gbf in gamepadButtonFlags)
                             {
-                                //call routine to send controller input events and track for continous input for any dpad input
-                                string result = HandleDPadInput(gbf, currentGamepadState, previousGamepadState);
-                                if (result != "") { continousInputCurrent = result; }
-                            }
-                            else
-                            {
-                                if (currentGamepadState.Buttons.HasFlag(gbf) && !previousGamepadState.Buttons.HasFlag(gbf))
+                                if (gbf.ToString().Contains("DPad"))
                                 {
-                                    //raise event for button press
-                                    buttonPressEvent.raiseControllerInput(gbf.ToString());
+                                    //call routine to send controller input events and track for continous input for any dpad input
+                                    string result = HandleDPadInput(gbf, currentGamepadState, previousGamepadState);
+                                    if (result != "") { continousInputCurrent = result; }
                                 }
+                                else
+                                {
+                                    if (currentGamepadState.Buttons.HasFlag(gbf) && !previousGamepadState.Buttons.HasFlag(gbf))
+                                    {
+                                        //raise event for button press
+                                        buttonPressEvent.raiseControllerInput(gbf.ToString());
+                                    }
+                                }
+
                             }
 
+
+                            //call routine that handles continous input controller input events and counts usage
+                            continousInputCounter = HandleContinousInput(continousInputCurrent, continousInputPrevious, continousInputCounter);
                         }
 
 
-                        //call routine that handles continous input controller input events and counts usage
-                        continousInputCounter = HandleContinousInput(continousInputCurrent, continousInputPrevious, continousInputCounter);
+                    
 
 
                     continueloop:

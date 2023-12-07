@@ -17,13 +17,23 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
         public override void OnActivate()
         {
             //calls main window toggle window
-            if (Wifi_Management.Instance.IsWifiRunning())
+            MainWindow mW = Local_Object.Instance.GetMainWindow();
+
+            if (mW.wifiAP == null)
             {
-                Wifi_Management.Instance.StopWifi();
+                Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
+               
+                mW.wifiAP = new Wifi_AP.WiFiDirectHotspotManager(settings.ssidWifiAP,settings.passwordWifiAP);
+                mW.wifiAP.Start();
             }
             else
             {
-                Wifi_Management.Instance.StartWifi();
+                if (mW.wifiAP.Status() == Windows.Devices.WiFiDirect.WiFiDirectAdvertisementPublisherStatus.Started)
+                {
+                    mW.wifiAP.Stop();
+                    mW.wifiAP = null;
+                }
+               
             }
         }
     }
