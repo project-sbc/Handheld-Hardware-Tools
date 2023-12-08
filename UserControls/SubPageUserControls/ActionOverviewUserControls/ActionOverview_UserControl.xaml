@@ -16,10 +16,10 @@
                     <ui:SymbolIcon x:Name="symbolIcon" Symbol="DeveloperBoardLightning20" FontSize="30" Margin="0,0,8,0" Grid.RowSpan="2"  VerticalAlignment="Center"   />
 
                     <StackPanel  Width="220">
-                        <Viewbox Height="30" VerticalAlignment="Center"  HorizontalAlignment="Left" >
+                        <Viewbox Height="30" VerticalAlignment="Center" Width="200" HorizontalAlignment="Left" >
                             <TextBlock  x:Name="actionName"  />
                         </Viewbox>
-                        <Viewbox Height="20" VerticalAlignment="Center"  HorizontalAlignment="Left" >
+                        <Viewbox Height="20" VerticalAlignment="Center" Width="200" HorizontalAlignment="Left" >
                             <TextBlock  x:Name="actionArguments"  />
                         </Viewbox>
                     </StackPanel>
@@ -36,7 +36,7 @@
                         <StackPanel Orientation="Horizontal">
                             <ui:SymbolIcon x:Name="symbolIconHotKey" Symbol="XboxController20" FontSize="20" Margin="0,0,8,0" Grid.RowSpan="2"  VerticalAlignment="Center"   />
 
-                            <Viewbox Height="20" VerticalAlignment="Center"  HorizontalAlignment="Left" >
+                            <Viewbox Height="20" VerticalAlignment="Center" Width="115"  HorizontalAlignment="Left" >
                                 <TextBlock  Name="actionHotKey"  />
                             </Viewbox>
                         </StackPanel>

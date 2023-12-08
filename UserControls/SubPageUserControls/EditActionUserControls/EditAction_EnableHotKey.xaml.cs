@@ -68,7 +68,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     ushort controllervalue = 0;
                     ushort.TryParse(hotKeyText, out controllervalue);
                     hotKeyValue = controllervalue;
-                    textBlockHotKey.Text = convertControllerUshortToString(hotKeyText);
+                    textBlockHotKey.Text = General_Functions.convertControllerUshortToString(hotKeyText);
                 }
                 if (newactionHotKeyType == "Keyboard")
                 {
@@ -116,7 +116,30 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                 EditActionPage editActionPage = mainWindow.frame.Content as EditActionPage;
                 if (editActionPage != null)
                 {
-                   
+                    if (editActionPage.action != null)
+                    {
+                        if (isToggled)
+                        {
+                            
+                            if (hotKeyType == "Controller")
+                            {
+                                editActionPage.action.hotKey = hotKeyValue.ToString();
+                                editActionPage.action.hotkeyType = hotKeyType;
+                            }
+                            if (hotKeyType == "Keyboard")
+                            {
+                                editActionPage.action.hotKey = hotKeyText;
+                                editActionPage.action.hotkeyType = hotKeyType;
+                            }
+                        }
+                        else
+                        {
+                            editActionPage.action.hotKey = "";
+                            editActionPage.action.hotkeyType = "";
+                        }
+
+                    }
+
                 }
             }
         }
@@ -178,6 +201,14 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                 {
                     //as soon as the button combo is LESS than the previous gamepad button AND isn't the A button (value of 4096) we know they have finished pressing all the buttons and we can now figure out what the combo is
                     
+                    //these three variables will get passed to the action
+                    hotKeyValue = controllerButtons;
+                    hotKeyText = General_Functions.convertControllerUshortToString(controllerButtons.ToString());
+                    hotKeyType = "Controller";
+
+                    //set text block and icon
+                    textBlockHotKey.Text = hotKeyText;
+                    iconHotKeyType.Symbol = Wpf.Ui.Common.SymbolRegular.XboxController24;
 
                     stopKB_Controller_Timer(false);
                     return;
@@ -187,57 +218,10 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             previousGamepad = currentGamepad;
 
 
-
-
         }
 
-        private string convertControllerUshortToString(string hotkey)
-        {
-            string gamepadCombo = "";
-            Gamepad gamepad = new Gamepad();
-
-
-            ushort uShorthotkey;
-
-            if (ushort.TryParse(hotkey, out uShorthotkey))
-            {
-                gamepad.Buttons = (GamepadButtonFlags)(uShorthotkey);
-
-
-                if (gamepad.Buttons.HasFlag(GamepadButtonFlags.LeftShoulder)) { gamepadCombo = makeGamepadButtonString(gamepadCombo, "LB"); }
-                if (gamepad.Buttons.HasFlag(GamepadButtonFlags.RightShoulder)) { gamepadCombo = makeGamepadButtonString(gamepadCombo, "RB"); }
-                if (gamepad.Buttons.HasFlag(GamepadButtonFlags.LeftThumb)) { gamepadCombo = makeGamepadButtonString(gamepadCombo, "LStick"); }
-                if (gamepad.Buttons.HasFlag(GamepadButtonFlags.RightThumb)) { gamepadCombo = makeGamepadButtonString(gamepadCombo, "RStick"); }
-                if (gamepad.Buttons.HasFlag(GamepadButtonFlags.Start)) { gamepadCombo = makeGamepadButtonString(gamepadCombo, "Start"); }
-                if (gamepad.Buttons.HasFlag(GamepadButtonFlags.Back)) { gamepadCombo = makeGamepadButtonString(gamepadCombo, "Back"); }
-                if (gamepad.Buttons.HasFlag(GamepadButtonFlags.A)) { gamepadCombo = makeGamepadButtonString(gamepadCombo, "A"); }
-                if (gamepad.Buttons.HasFlag(GamepadButtonFlags.B)) { gamepadCombo = makeGamepadButtonString(gamepadCombo, "B"); }
-                if (gamepad.Buttons.HasFlag(GamepadButtonFlags.X)) { gamepadCombo = makeGamepadButtonString(gamepadCombo, "X"); }
-                if (gamepad.Buttons.HasFlag(GamepadButtonFlags.Y)) { gamepadCombo = makeGamepadButtonString(gamepadCombo, "Y"); }
-                if (gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadUp)) { gamepadCombo = makeGamepadButtonString(gamepadCombo, "DPadUp"); }
-                if (gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadDown)) { gamepadCombo = makeGamepadButtonString(gamepadCombo, "DPadDown"); }
-                if (gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadLeft)) { gamepadCombo = makeGamepadButtonString(gamepadCombo, "DPadLeft"); }
-                if (gamepad.Buttons.HasFlag(GamepadButtonFlags.DPadRight)) { gamepadCombo = makeGamepadButtonString(gamepadCombo, "DPadRight"); }
-
-            }
-
-
-            return gamepadCombo;
-
-        }
-        private string makeGamepadButtonString(string currentValue, string addValue)
-        {
-            //routine to make string for 
-            if (currentValue == "")
-            {
-                return addValue;
-            }
-            else
-            {
-                return currentValue + "+" + addValue;
-            }
-
-        }
+      
+      
 
         private void startKB_Controller_Timer()
         {
@@ -276,6 +260,9 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
         }
         private void stopKB_Controller_Timer(bool timedOut)
         {
+            //stop timeout timer
+            fiveSecondTimeOutTimer.Stop();
+
             //set variables to allow the normal function of keyboard/controller input
             //do controller first
             MainWindow mainWindow = Local_Object.Instance.GetMainWindow();
@@ -291,6 +278,11 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             if (timedOut)
             {
                 textBlockHotKey.Text = hotKeyText;
+            }
+            else
+            {
+                //if it wasn't timed out then call the update function
+                ControlChangeValueHandler();
             }
         }
 
@@ -310,7 +302,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
         #region keyboard timer
         private void fiveSecondTimeOutTimer_Tick(object sender, EventArgs e)
         {
-            textBlockHotKey.Text = hotKeyText;
+            
             stopKB_Controller_Timer(true);
         }
 
