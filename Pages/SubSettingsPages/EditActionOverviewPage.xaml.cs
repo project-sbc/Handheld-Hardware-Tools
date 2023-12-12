@@ -29,10 +29,23 @@ namespace Everything_Handhelds_Tool.Pages
             //Move initilize components to sub routine and async it to make pages feel smoother
             Dispatcher.BeginInvoke(new System.Action(() => InitializeActions(action)));
 
-         
         }
 
-      
+        public override void HandleControllerInput(string action)
+        {
+            //typically this is handled in the generic page class, but because this page has a Y action of starting a new action, I need to override
+            //the generic class, call the base class, and add Y action here. REFERENCE GENERIC CLASS, because we only care to do something different if controllerNavigatePage is true
+            //and action is Y
+            base.HandleControllerInput(action);
+
+            if (action == "Y" && controllerNavigatePage)
+            {
+                AddNewAction();
+            }
+
+
+        }
+
 
         private void InitializeActions(Classes.Actions.Action? action = null)
         {

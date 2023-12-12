@@ -131,8 +131,11 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                         }
                         editActionPage.action = newAction;
 
-
+                        //this routine updates the argument list OR collapses it if the new action type doesnt need 
+                        //an argument
                         editActionPage.actionArgumentListView.UpdateForNewAction(newAction.actionName);
+                        //call this to update page usercontrol list (so if argument list is hidden controller input wont accidentally pick it up)
+                        editActionPage.RebaseUserControlsAfterActionTypeUpdate();
                     }
                 }
             }

@@ -18,7 +18,7 @@ namespace Everything_Handhelds_Tool.Classes
         public int minTDP { get; set; } = 5;
         public string intelTDPType { get; set; } = "MMIO";
 
-
+        public bool syncSustainedBoostTDP = true;
 
         public string ssidWifiAP { get; set; } = "EverythingHandheldsWifi";
         public string passwordWifiAP { get; set; } = "everythinghandhelds";

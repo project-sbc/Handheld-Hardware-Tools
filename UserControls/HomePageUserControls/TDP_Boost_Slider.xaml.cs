@@ -36,12 +36,18 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
         private void ConfigureControl()
         {
             Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
+            if (settings.syncSustainedBoostTDP)
+            {
+                this.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                control.Maximum = settings.maxTDP;
+                control.Minimum = settings.minTDP;
 
-
-            control.Maximum = settings.maxTDP;
-            control.Minimum = settings.minTDP;
-
-            control.Value = TDP_Management.Instance.ReadAndReturnBoostTDP();
+                control.Value = TDP_Management.Instance.ReadAndReturnBoostTDP();
+            }
+           
         }
 
         private void control_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)

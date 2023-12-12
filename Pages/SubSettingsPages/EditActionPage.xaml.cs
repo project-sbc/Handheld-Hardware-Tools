@@ -104,11 +104,18 @@ namespace Everything_Handhelds_Tool.Pages
             }
 
 
-            userControls = General_Functions.SearchStackPanelReturnArray(stackPanel);
+            RebaseUserControlsAfterActionTypeUpdate();
         }
 
+        public void RebaseUserControlsAfterActionTypeUpdate()
+        {
+            //this routine is going to update the UserControls array, so when an action doesnt need
+            //a argument list, it will be collapsed, and controller input won't accidentally pick it up
+            userControls = General_Functions.SearchStackPanelReturnArray(stackPanel);
 
-    
+
+        }
+
 
         private void SaveActionToEditOverviewPage()
         {

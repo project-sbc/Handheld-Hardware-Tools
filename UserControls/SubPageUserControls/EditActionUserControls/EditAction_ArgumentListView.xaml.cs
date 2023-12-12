@@ -96,6 +96,8 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
 
         }
 
+
+        
         private void ConfigureParameterListSelectedItems(List<string> list)
         {
             if (listView.Items.Count > 0)
