@@ -21,7 +21,7 @@ namespace Everything_Handhelds_Tool.Classes
         public bool syncSustainedBoostTDP = true;
 
         public string ssidWifiAP { get; set; } = "EverythingHandheldsWifi";
-        public string passwordWifiAP { get; set; } = "everythinghandhelds";
+        public string passwordWifiAP { get; set; } = "eh123456";
 
 
         public void SaveToXML()
