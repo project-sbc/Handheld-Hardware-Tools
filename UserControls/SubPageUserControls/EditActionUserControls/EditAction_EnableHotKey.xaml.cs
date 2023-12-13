@@ -182,6 +182,10 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             //get gamepad from mainwindow
             MainWindow mainWindow = Local_Object.Instance.GetMainWindow();
             //get the state and turn it into a ushort
+            if (mainWindow.controllerInput.controller == null)
+            {
+                return;
+            }
             currentGamepad = ((ushort)mainWindow.controllerInput.controller.GetState().Gamepad.Buttons);
 
 

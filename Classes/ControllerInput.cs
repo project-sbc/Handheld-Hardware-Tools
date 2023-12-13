@@ -219,18 +219,6 @@ namespace Everything_Handhelds_Tool.Classes
                         if (suspendEventsForHotKeyProgramming)
                         {
                             
-                            //check to see if main window frame is still on edit action page
-                            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-                            if (mainWindow != null)
-                            {
-                                if (mainWindow.frame.Content != null)
-                                {
-                                    if (mainWindow.frame.Content is not EditActionPage)
-                                    {
-                                        suspendEventsForHotKeyProgramming = false;
-                                    }
-                                }
-                            }
                         }
                     }
 

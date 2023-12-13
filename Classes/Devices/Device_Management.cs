@@ -62,7 +62,8 @@ namespace Everything_Handhelds_Tool.Classes.Devices
 
 
                     break;
-                case "AYANEO":
+                    //REMEMBER I CHANGED AYANEO TO STOP BECAUSE I NEVER MADE CLASSES FOR ALL AYA NEO PRODUCTS. LIGHTEN WAS TESTING FOR ME
+                case "AYANEO_CHANGEBACK":
                     switch (product)
                     {
                         case "AIR":
@@ -107,16 +108,21 @@ namespace Everything_Handhelds_Tool.Classes.Devices
                     }
                     break;
                 default:
-                    if (cpuType == "Intel")
-                    {
-                        handheldDevice = new Intel_Generic();
-                    }
-                    if (cpuType == "AMD")
-                    {
-                        handheldDevice = new AMD_Generic();
-                    }
+
                     break;
             }
+            if (handheldDevice == null)
+            {
+                if (cpuType == "Intel")
+                {
+                    handheldDevice = new Intel_Generic();
+                }
+                if (cpuType == "AMD")
+                {
+                    handheldDevice = new AMD_Generic();
+                }
+            }
+
             handheldDevice.cpuType = cpuType;
             handheldDevice.mchBar = motherboard_Info.MCHBar();
             handheldDevice.cpuName = motherboard_Info.CPUName(); 

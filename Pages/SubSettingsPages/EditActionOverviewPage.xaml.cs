@@ -107,6 +107,7 @@ namespace Everything_Handhelds_Tool.Pages
                     UserControl userControl = new ActionOverview_UserControl(action);
                     stackPanel.Children.Add(userControl);
                     userControls.Add((ControllerUserControl)userControl);
+                    Debug.WriteLine(action.ID);
                 }
             }
            
@@ -121,6 +122,8 @@ namespace Everything_Handhelds_Tool.Pages
         {
             //grabs all the actions from each control and then saves them to the XML
             ActionList actions = new ActionList();
+
+            ReBaseIDsInActionList();
 
             foreach (object child in stackPanel.Children)
             {
@@ -196,6 +199,12 @@ namespace Everything_Handhelds_Tool.Pages
 
                 }
 
+
+                if (action == "MoveUp" || action == "MoveDown" || action == "Delete")
+                {
+                    //make sure to save XML and rebase IDs when moving or deleting, because that will screw up the order
+                    SaveActionList();
+                }
 
             }
         }
