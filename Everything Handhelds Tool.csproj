@@ -9,7 +9,7 @@
     <UseWPF>true</UseWPF>
 	  <UseWindowsForms>true</UseWindowsForms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <ApplicationIcon>everything handheld tool icon.ico</ApplicationIcon>
+    <ApplicationIcon>EHT ICO.ico</ApplicationIcon>
 	
   </PropertyGroup>
 
@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="EHT LOGO.PNG" />
     <None Remove="Resources\AMD\ADLX\ADLX_3DSettings.dll" />
     <None Remove="Resources\AMD\ADLX\ADLX_AutoTuning.dll" />
     <None Remove="Resources\AMD\ADLX\ADLX_DisplaySettings.dll" />
@@ -55,7 +56,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="everything handheld tool icon.ico" />
+    <Content Include="EHT ICO.ico" />
     <Content Include="Resources\AMD\ADLX\ADLX_3DSettings.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -155,6 +156,10 @@
     <PackageReference Include="SharpDX.XInput" Version="4.2.0" />
     <PackageReference Include="System.Management" Version="7.0.2" />
     <PackageReference Include="WPF-UI" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="EHT LOGO.PNG" />
   </ItemGroup>
 
   <ItemGroup>
