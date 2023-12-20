@@ -61,11 +61,8 @@
 
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
-        <Border Margin="4,0,0,4" >
-            <Border.Background>
-                <ImageBrush  ImageSource="/EHT LOGO.PNG" />
-            </Border.Background>
-        </Border>
+        <Image Source="/EHT LOGO.PNG" />
+       
         <ui:NotifyIcon
                 Grid.Row="0"
                 x:Name="notifyIcon"

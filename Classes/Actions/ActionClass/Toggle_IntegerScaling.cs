@@ -23,9 +23,11 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
                 if (intScalingEnabled)
                 {
                     ADLX_Management.SetIntegerScaling(0);
+                    ADLX_Management.SetScalingMode(0);
                 }
                 else
                 {
+                    ADLX_Management.SetScalingMode(1);
                     ADLX_Management.SetIntegerScaling(1);
                 }
             }
