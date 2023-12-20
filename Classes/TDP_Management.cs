@@ -422,11 +422,7 @@ namespace Everything_Handhelds_Tool.Classes
                 result = Run_CLI.Instance.RunCommand(commandArguments, true, processRyzenAdj);
                 Thread.Sleep(30);
 
-                if (unableToReadTDPDevice)
-                {
-                    tdpBoost = pl2TDP;
-                    tdpSustained = pl1TDP;
-                }
+
 
             }
             catch (Exception ex)
@@ -443,11 +439,11 @@ namespace Everything_Handhelds_Tool.Classes
 
             if (settings.intelTDPType.Contains("MMIO"))
             {
-                RunIntelTDPChangeMMIOKX(tdp1, tdp2, DeviceMCHBAR());
+                Task.Run(()=>RunIntelTDPChangeMMIOKX(tdp1, tdp2, DeviceMCHBAR()));
             }
             if (settings.intelTDPType.Contains("MSR"))
             {
-                RunIntelTDPChangeMSR(tdp1, tdp2);
+                Task.Run(() => RunIntelTDPChangeMSR(tdp1, tdp2));
             }
 
 
@@ -465,6 +461,12 @@ namespace Everything_Handhelds_Tool.Classes
             if (tdp2 > settings.maxTDP) { tdp2 = settings.maxTDP; }
             if (tdp2 < settings.minTDP) { tdp2 = settings.minTDP ; }
 
+            //make sure to sync them regardless of what the value is if setting is set like that
+            if (settings.syncSustainedBoostTDP)
+            {
+                tdp2 = tdp1;
+            }
+
             ChangeTDP(tdp1, tdp2);
         }
 
@@ -472,13 +474,18 @@ namespace Everything_Handhelds_Tool.Classes
         {
             ///keep below for the moment
             Device device = Local_Object.Instance.GetMainWindowDevice();
+
+
+            //set the values now
+            tdpBoost = tdp1;
+            tdpSustained = tdp2;
             if (device.cpuType == "AMD")
             {
-                ChangeAMDTDP(tdp1,tdp2);
+                Task.Run(()=>ChangeAMDTDP(tdp1,tdp2));
             }
             if (device.cpuType == "Intel")
             {
-                ChangeIntelTDP(tdp1,tdp2);
+               ChangeIntelTDP(tdp1,tdp2);
             }
 
         }

@@ -38,16 +38,16 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
             Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
             if (settings.syncSustainedBoostTDP)
             {
-                this.Visibility = Visibility.Collapsed;
+                toggleSwitch.IsChecked = true;
             }
             else
             {
-                control.Maximum = settings.maxTDP;
-                control.Minimum = settings.minTDP;
-
-                control.Value = TDP_Management.Instance.ReadAndReturnBoostTDP();
+                toggleSwitch.IsChecked = false;
             }
-           
+            control.Maximum = settings.maxTDP;
+            control.Minimum = settings.minTDP;
+
+            control.Value = TDP_Management.Instance.ReadAndReturnBoostTDP();
         }
 
         private void control_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
@@ -84,6 +84,44 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
             {
                 General_Functions.ChangeControllerInstructionPage("ToggleBack");
             }
+        }
+
+        private void handleToggleChange()
+        {
+            //when this toggle is flipped, we will change whether tpd is synced or not in the settings. This setting is checked everytime 
+            //tdp is changed
+
+            //this little piece is just to stop it from running at load. The configure controls will handle all of this and it doesn't need to be run at runtime
+            if (!this.IsLoaded)
+            {
+                return;
+            }
+
+            Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
+
+            int sustainedTDP = TDP_Management.Instance.ReturnSustainedTDP();
+            if (toggleSwitch.IsChecked == true)
+            {
+                settings.syncSustainedBoostTDP = false;
+                control.Value = TDP_Management.Instance.ReturnSustainedTDP();
+                
+            }
+            else
+            {
+                settings.syncSustainedBoostTDP = true;
+            }
+            settings.SaveToXML();
+
+            TDP_Management.Instance.ChangeSustainedBoostTDP(sustainedTDP, sustainedTDP);
+        }
+        private void toggleSwitch_Checked(object sender, RoutedEventArgs e)
+        {
+            handleToggleChange();
+        }
+
+        private void toggleSwitch_Unchecked(object sender, RoutedEventArgs e)
+        {
+            handleToggleChange();
         }
     }
 }
