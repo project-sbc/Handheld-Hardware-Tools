@@ -12,6 +12,7 @@ using Wpf.Ui.Controls;
 using Everything_Handhelds_Tool.Classes.Devices;
 using System.Diagnostics;
 using Everything_Handhelds_Tool.Classes.Wifi_AP;
+using System.IO;
 
 
 namespace Everything_Handhelds_Tool
@@ -32,8 +33,6 @@ namespace Everything_Handhelds_Tool
             InitializeComponent();
             //run start up
             InitializeRoutines();
-
-
 
         }
         #region Set up

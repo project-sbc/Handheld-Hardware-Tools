@@ -118,7 +118,36 @@ namespace Everything_Handhelds_Tool.Classes
                     Marshal.ReleaseComObject(masterVol);
             }
         }
+        public void GetMasterMicrophoneMute()
+        {
+            IAudioEndpointVolume masterMic = null;
+            try
+            {
+                masterMic = GetMasterMicrophoneObject();
+                if (masterMic == null)
+                {
+                    volumeMuted = false;
+                }
+                else
+                {
+                    bool isMuted;
+                    masterMic.GetMute(out isMuted);
+                    volumeMuted = isMuted;
+                }
 
+
+
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                if (masterMic != null)
+                    Marshal.ReleaseComObject(masterMic);
+            }
+        }
         /// <summary>
         /// Sets the master volume to a specific level
         /// </summary>
@@ -203,6 +232,25 @@ namespace Everything_Handhelds_Tool.Classes
             }
         }
 
+        public void SetMasterMicrophoneMute(bool isMuted)
+        {
+            IAudioEndpointVolume masterMic = null;
+            try
+            {
+                masterMic = GetMasterMicrophoneObject();
+                if (masterMic == null)
+                    return;
+
+                masterMic.SetMute(isMuted, Guid.Empty);
+                volumeMuted = isMuted;
+            }
+            finally
+            {
+                if (masterMic != null)
+                    Marshal.ReleaseComObject(masterMic);
+            }
+        }
+
         /// <summary>
         /// Switches between the master volume mute states depending on the current state
         /// </summary>
@@ -226,6 +274,49 @@ namespace Everything_Handhelds_Tool.Classes
             {
                 if (masterVol != null)
                     Marshal.ReleaseComObject(masterVol);
+            }
+        }
+        public bool ToggleMasterMicrophoneMute()
+        {
+            IAudioEndpointVolume masterMic = null;
+            try
+            {
+                masterMic = GetMasterMicrophoneObject();
+                if (masterMic == null)
+                    return false;
+
+                bool isMuted;
+                masterMic.GetMute(out isMuted);
+                masterMic.SetMute(!isMuted, Guid.Empty);
+                volumeMuted = !isMuted;
+                return !isMuted;
+            }
+            finally
+            {
+                if (masterMic != null)
+                    Marshal.ReleaseComObject(masterMic);
+            }
+        }
+        private static IAudioEndpointVolume GetMasterMicrophoneObject()
+        {
+            IMMDeviceEnumerator deviceEnumerator = null;
+            IMMDevice microphone = null;
+            try
+            {
+                deviceEnumerator = (IMMDeviceEnumerator)(new MMDeviceEnumerator());
+                deviceEnumerator.GetDefaultAudioEndpoint(EDataFlow.eCapture, ERole.eMultimedia, out microphone);
+
+                Guid IID_IAudioEndpointVolume = typeof(IAudioEndpointVolume).GUID;
+                object o;
+                microphone.Activate(ref IID_IAudioEndpointVolume, 0, IntPtr.Zero, out o);
+                IAudioEndpointVolume masterVol = (IAudioEndpointVolume)o;
+
+                return masterVol;
+            }
+            finally
+            {
+                if (microphone != null) Marshal.ReleaseComObject(microphone);
+                if (deviceEnumerator != null) Marshal.ReleaseComObject(deviceEnumerator);
             }
         }
 

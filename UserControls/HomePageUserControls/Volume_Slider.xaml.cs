@@ -36,6 +36,7 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
         private void ConfigureControl()
         {
             int volume = Volume_Management.Instance.ReadAndReturnVolume();
+
             if (volume >= 0)
             {
                 control.Value = volume;
