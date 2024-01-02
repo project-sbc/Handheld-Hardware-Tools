@@ -145,6 +145,10 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Blur20;
 
                     break;
+                case "Toggle_MicrophoneMute":
+                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Mic20;
+
+                    break;
                 default:
                     MessageBox.Show("NO HANDLER FOR THIS ACTION, ADD IT YOU DUMMY. ActionOverview_UserControl.xaml.cs " + action.actionName);
                     break;

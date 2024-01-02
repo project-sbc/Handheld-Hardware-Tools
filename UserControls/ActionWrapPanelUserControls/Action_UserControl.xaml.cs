@@ -47,6 +47,9 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
                 case "Cycle_TDP":
                     actionHandler = new ActionUserControl_Cycle_TDP(action);
                     break;
+                case "Cycle_Volume":
+                    actionHandler = new ActionUserControl_Cycle_Volume(action);
+                    break;
                 case "Change_TDP":
                     actionHandler = new ActionUserControl_Change_TDP(action);
                     break;
@@ -54,7 +57,13 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
                     actionHandler = new ActionUserControl_Toggle_WifiAP(action);
                     break;
                 case "Toggle_IntegerScaling":
-                    actionHandler = new ActionUserControl_Toggle_WifiAP(action);
+                    actionHandler = new ActionUserControl_Toggle_IntegerScaling(action);
+                    break;
+                case "Toggle_MicrophoneMute":
+                    actionHandler = new ActionUserControl_Toggle_MicrophoneMute(action);
+                    break;
+                case "Toggle_VolumeMute":
+                    actionHandler = new ActionUserControl_Toggle_VolumeMute(action);
                     break;
                 default:
                     MessageBox.Show("NO HANDLER FOR THIS ACTION, ADD IT YOU DUMMY. Action_UserControl.xaml.cs " + action.actionName);

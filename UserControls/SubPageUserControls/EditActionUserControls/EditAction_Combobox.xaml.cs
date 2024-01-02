@@ -107,6 +107,9 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     case "Toggle_IntegerScaling":
                         newAction = new Classes.Actions.ActionClass.Toggle_IntegerScaling();
                         break;
+                    case "Toggle_MicrophoneMute":
+                        newAction = new Classes.Actions.ActionClass.Toggle_MicrophoneMute();
+                        break;
                     default:
                         MessageBox.Show("NO HANDLER FOR THIS ACTION, ADD IT YOU DUMMY. EditAction_ComboBox.xaml.cs " + actionLookup);
                         break;

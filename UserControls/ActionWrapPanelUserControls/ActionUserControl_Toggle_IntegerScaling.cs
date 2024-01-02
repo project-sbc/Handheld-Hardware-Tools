@@ -25,7 +25,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
 
             if (!ADLX_Management.HasIntegerScalingSupport())
             {
-                
+                System.Windows.MessageBox.Show("ActionUserControl_Toggle_IntegerScaling.cs   NEED TO FIGURE OUT HOW TO HANDLE INTERGER SCALING FOR THIS ACTION PANEL");
             }
 
 
