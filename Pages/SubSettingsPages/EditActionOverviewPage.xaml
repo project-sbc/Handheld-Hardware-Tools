@@ -28,9 +28,14 @@
 
             </Viewbox>
 
-            <Button x:Name="newAction" Click="newAction_Click" Height="30" >
+            <Button x:Name="newAction" Click="newAction_Click" Margin="4" >
                 <Viewbox     >
                     <TextBlock  Text="{DynamicResource Usercontrol_NewAction}" />
+                </Viewbox>
+            </Button>
+            <Button x:Name="Back" Click="Back_Click"  Margin="4" >
+                <Viewbox     >
+                    <TextBlock  Text="{DynamicResource Usercontrol_Back}" />
                 </Viewbox>
             </Button>
         </StackPanel>

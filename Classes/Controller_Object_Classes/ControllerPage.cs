@@ -24,11 +24,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                 switch (action)
                 {
                     case "B":
-                        //This returns navigation to the window, so unhighlight the active control and send SetControllerNavigateWindow to true
-                        UnhighlightUserControl();
-                        ReturnControlToWindow();
-                        //change controller input to SelectHide for window control
-                        General_Functions.ChangeControllerInstructionPage("SelectHide");
+                        PressBPageHandler();
                         break;
                     case "Highlight First Control":
                         //This is when the page first gains controller input, highlight the first UC to show it has control with controller input
@@ -37,8 +33,13 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                         SetPageDefaultInstruction();
                         break;
                     case "A":
-                        controllerNavigatePage = false;
-                        SelectUserControl();
+                        //make sure a control is highlighted (index not -1), otherwise there is a navigation bug that comes up
+                        if (highlightedUserControl > -1)
+                        {
+                            controllerNavigatePage = false;
+                            SelectUserControl();
+                        }
+            
                         break;
                     case "DPadUp" or "DPadDown":
                         HandleUserControlNavigation(action);
@@ -51,7 +52,13 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
             else
             {
                 //if controllerNavigatePage is false, send the input to the usercontrol level
-                SendControllerInputToUserControl(action);
+                //check to make sure a control is selected
+                if (highlightedUserControl > -1)
+                {
+                    SendControllerInputToUserControl(action);
+                }
+
+                
             }
 
           
@@ -70,7 +77,18 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                 }
             }
         }
+        public virtual void PressBPageHandler()
+        {
+            //I created this because sometimes when B is pressed it goes to a different page like in sub setting pages
+            //so rather than always just giving control bck to the window, this will reroute to a different page
+            //The default behavior will be give control bcak to window but it can be overridden
+            //This returns navigation to the window, so unhighlight the active control and send SetControllerNavigateWindow to true
+            UnhighlightUserControl();
+            ReturnControlToWindow();
+            //change controller input to SelectHide for window control
+            General_Functions.ChangeControllerInstructionPage("SelectHide");
 
+        }
         public virtual void ReturnControlToPage() 
         {
             //call this routine from the usercontrol to return to page control

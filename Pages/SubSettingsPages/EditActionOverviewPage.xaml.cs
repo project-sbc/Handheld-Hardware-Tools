@@ -209,6 +209,19 @@ namespace Everything_Handhelds_Tool.Pages
             }
         }
 
+        public override void PressBPageHandler()
+        {
+            //override base function to send you back to general settings page
+            System.Windows.Controls.Page page = new SettingsPage();
+
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow.frame.Content = page;
+        }
+
+        private void Back_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            PressBPageHandler();
+        }
         private void newAction_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             AddNewAction();

@@ -27,6 +27,11 @@
                 <TextBlock VerticalAlignment="Bottom"  Text="{DynamicResource Usercontrol_LANWifiSettings}" />
 
             </Viewbox>
+            <Button x:Name="Back" Click="Back_Click"  Margin="4" >
+                <Viewbox     >
+                    <TextBlock  Text="{DynamicResource Usercontrol_Back}" />
+                </Viewbox>
+            </Button>
         </StackPanel>
        
 
