@@ -37,13 +37,18 @@ namespace Everything_Handhelds_Tool.Classes
 
         public int volume = -1;
         public bool volumeMuted = true;
+        public bool microphoneMuted = true;
 
         public int ReadAndReturnVolume()
         {
             GetMasterVolume();
             return volume;
         }
-
+        public bool ReadAndReturnMicrophoneMute()
+        {
+            GetMasterMicrophoneMute();
+            return microphoneMuted;
+        }
         public bool ReadAndReturnVolumeMute()
         {
             GetMasterVolumeMute();
@@ -126,13 +131,13 @@ namespace Everything_Handhelds_Tool.Classes
                 masterMic = GetMasterMicrophoneObject();
                 if (masterMic == null)
                 {
-                    volumeMuted = false;
+                    microphoneMuted = false;
                 }
                 else
                 {
                     bool isMuted;
                     masterMic.GetMute(out isMuted);
-                    volumeMuted = isMuted;
+                    microphoneMuted = isMuted;
                 }
 
 

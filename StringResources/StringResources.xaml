@@ -55,6 +55,7 @@
     <system:String x:Key="ActionUserControl_Toggle_WifiAP">Toggle Wifi AP</system:String>
     <system:String x:Key="ActionUserControl_Toggle_IntergerScaling">Toggle Integer Scaling</system:String>
     <system:String x:Key="Action_Toggle_WifiAP">Toggle Wifi AP</system:String>
+    <system:String x:Key="Action_Toggle_MicrophoneMute">Toggle Microphone Mute</system:String>
     <system:String x:Key="Action_Toggle_IntegerScaling">Toggle Integer Scaling</system:String>
 
     <system:String x:Key="ActionUserControl_Toggle_RSR">Toggle RSR</system:String>
