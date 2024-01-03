@@ -22,11 +22,11 @@ namespace Everything_Handhelds_Tool.UserControls.SettingsPageUserControls
     /// <summary>
     /// Interaction logic for TDP_Slider.xaml
     /// </summary>
-    public partial class LANWifiSettings_Button : ControllerUserControl
+    public partial class EditHomepageSettings_Button : ControllerUserControl
     {
 
       
-        public LANWifiSettings_Button()
+        public EditHomepageSettings_Button()
         {
             InitializeComponent();
 
@@ -46,12 +46,14 @@ namespace Everything_Handhelds_Tool.UserControls.SettingsPageUserControls
         private void button_Click(object sender, RoutedEventArgs e)
         {
             //navigate to the specific settings page
+      
 
-
-            Page page = new WifiAPSettingsPage();
+            Page page = new EditHomeOverviewPage();
 
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.frame.Content = page;
+
+
         }
     }
 }

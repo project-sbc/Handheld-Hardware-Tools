@@ -8,59 +8,35 @@
                                mc:Ignorable="d" 
             Height="Auto"  Margin="0,0,0,3" >
     <Border x:Name="border" Style="{StaticResource userControlBorder}" >
-        <ui:CardExpander  VerticalAlignment="Top" x:Name="card"  ExpandDirection="Down" >
-            <ui:CardExpander.Header >
-                <DockPanel  >
-                                        
-                   
-                    <StackPanel  Width="300">
-                        <Viewbox Height="30" VerticalAlignment="Center" Width="280" HorizontalAlignment="Left" >
-                            <TextBlock  x:Name="hpiDisplayName"  />
-                        </Viewbox>
-
-                    </StackPanel>
-
-                   
-                    
-                    
-                    <ui:ToggleSwitch  IsChecked="{Binding Path=IsExpanded, ElementName=card}" VerticalAlignment="Center" HorizontalAlignment="Right" Width="0" DockPanel.Dock="Right"/>
-                    <ui:ToggleSwitch x:Name="toggleSwitch"  VerticalAlignment="Center" HorizontalAlignment="Right" Width="0" DockPanel.Dock="Right"/>
+        <ui:Card  VerticalAlignment="Top" x:Name="card"   >
+            <DockPanel  >
 
 
-                </DockPanel>
-            </ui:CardExpander.Header>
-            <DockPanel  Height="30"  Margin="0,-10,0,0">
+                <StackPanel  Width="300">
+                    <Viewbox Height="30" VerticalAlignment="Center" Width="280" HorizontalAlignment="Left" >
+                        <TextBlock  x:Name="hpiDisplayName"  />
+                    </Viewbox>
 
-                <StackPanel Orientation="Horizontal" >
-
-                    <Button Name="btnEdit" Click="btnEdit_Click" HorizontalAlignment="Center" Width="100" Margin="0,0,5,0">
-                        <Viewbox   >
-                            <TextBlock  Text="{DynamicResource EditActionUserControl_Edit}" />
-                        </Viewbox>
-                    </Button>
-                    <Button Name="btnDelete" Click="btnDelete_Click" HorizontalAlignment="Center" Width="100" Margin="0,0,5,0">
-                        <Viewbox   >
-                            <TextBlock  Text="{DynamicResource EditActionUserControl_Delete}" />
-                        </Viewbox>
-                    </Button>
-                    <Button Name="btnMoveUp" Click="btnMoveUp_Click" HorizontalAlignment="Center" Width="100" Margin="0,0,5,0">
-                        <Viewbox   >
-                            <TextBlock  Text="{DynamicResource EditActionUserControl_MoveUp}" />
-                        </Viewbox>
-                    </Button>
-                    <Button Name="btnMoveDown" Click="btnMoveDown_Click" HorizontalAlignment="Center" Width="100" Margin="0,0,5,0">
-                        <Viewbox   >
-                            <TextBlock  Text="{DynamicResource EditActionUserControl_MoveDown}" />
-                        </Viewbox>
-                    </Button>
                 </StackPanel>
-                
-               
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" >
+
+                    <ui:ToggleSwitch x:Name="toggleSwitch"  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,0,0"/>
+                    <Button Name="btnMoveUp" Click="btnMoveUp_Click" HorizontalAlignment="Center" Width="40" Margin="0,0,0,0">
+                        <ui:SymbolIcon Symbol="ArrowUp12" />
+                    </Button>
+                    <Button Name="btnMoveDown" Click="btnMoveDown_Click" HorizontalAlignment="Center" Width="40" Margin="0,0,0,0">
+                        <Viewbox   >
+                            <ui:SymbolIcon Symbol="ArrowDown12" />
+                        </Viewbox>
+                    </Button>
+
+                </StackPanel>
 
 
+              
+        
             </DockPanel>
-
-        </ui:CardExpander>
+        </ui:Card>
     </Border>
   
     

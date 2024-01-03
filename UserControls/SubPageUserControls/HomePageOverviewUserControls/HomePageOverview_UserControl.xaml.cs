@@ -41,7 +41,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
             hpi = newHPI;
 
             //Configure text and symbol to match the action
-            ConfigureTextAndSymbol();
+            ConfigureTextAndToggleSwitch();
         
         }
         public override void ChangeMainWindowControllerInstructionPage()
@@ -50,17 +50,27 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
         }
 
         #region set textblocks and icons
-        private void ConfigureTextAndSymbol()
+        private void ConfigureTextAndToggleSwitch()
         {
-            //4 textblocks and a couple icons to set
+            //textblock and toggle switch to set
             SetDisplayNameTextBlock();
 
+            //
+            if (hpi.UserControlVisible)
+            {
+                toggleSwitch.IsChecked = true;
+            }
+            else
+            {
+                toggleSwitch.IsChecked = false;
+            }
           
 
         }
         private void SetDisplayNameTextBlock()
         {
             hpiDisplayName.Text = Application.Current.Resources[hpi.UserControlName].ToString();
+
         }
       
 
@@ -86,7 +96,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
         {
             if (action == "B")
             {
-                card.IsExpanded = false;
+              
                 ReturnControlToPage();
   
             }
@@ -95,16 +105,15 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
                 switch (action)
                 {
                     case "DPadUp":
-                        SendCommandToEditActionOverviewPage("MoveUp");
+                        SendCommandToHomePageOverviewPage("MoveUp");
                         break;
                     case "DPadDown":
-                        SendCommandToEditActionOverviewPage("MoveDown");
+                        SendCommandToHomePageOverviewPage("MoveDown");
                         break;
-                    case "Delete":
-                        SendCommandToEditActionOverviewPage("Delete");
-                        break;
+
                     case "A":
-                        SendCommandToEditActionOverviewPage("Edit");
+                        hpi.UserControlVisible = !hpi.UserControlVisible;
+                        toggleSwitch.IsChecked = hpi.UserControlVisible;
                         break;
                 }
             }
@@ -113,37 +122,29 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
 
         }
 
-        private void SendCommandToEditActionOverviewPage(string action)
+        private void SendCommandToHomePageOverviewPage(string action)
         {
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
 
-            EditActionOverviewPage editActionOverviewPage = Local_Object.Instance.GetMainWindowFramePage() as EditActionOverviewPage;
+            EditHomeOverviewPage editHomeOverviewPage = Local_Object.Instance.GetMainWindowFramePage() as EditHomeOverviewPage;
 
-            if (editActionOverviewPage != null)
+            if (editHomeOverviewPage != null)
             {
-                editActionOverviewPage.HandleUserControlInputs(this, action);
+                editHomeOverviewPage.HandleUserControlInputs(this, action);
             }
 
         }
 
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
-        {
-            SendCommandToEditActionOverviewPage("Edit");
-        }
-
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            SendCommandToEditActionOverviewPage("Delete");
-        }
+       
 
         private void btnMoveUp_Click(object sender, RoutedEventArgs e)
         {
-            SendCommandToEditActionOverviewPage("MoveUp");
+            SendCommandToHomePageOverviewPage("MoveUp");
         }
 
         private void btnMoveDown_Click(object sender, RoutedEventArgs e)
         {
-            SendCommandToEditActionOverviewPage("MoveDown");
+            SendCommandToHomePageOverviewPage("MoveDown");
         }
     }
 }

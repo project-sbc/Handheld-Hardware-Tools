@@ -27,8 +27,8 @@
     <system:String x:Key="Usercontrol_ActionDisplayInPanel">Display In Panel</system:String>
     <system:String x:Key="Usercontrol_ClickToSetHotKey">Click Button To Set Hotkey</system:String>
     <system:String x:Key="Usercontrol_PowerPlan">Power Plan</system:String>
-        
-        
+
+
     <!-- these are the power plan strings used on the homepage control to select the power plan !-->
     <system:String x:Key="Usercontrol_PowerPlanHighPerformance">High Performance</system:String>
     <system:String x:Key="Usercontrol_PowerPlanBalanced">Balanced</system:String>
@@ -39,6 +39,7 @@
     <!-- these are the power plan strings used on the homepage control to select the power plan !-->
 
     <system:String x:Key="Usercontrol_LANWifiSettings">Wifi AP Settings</system:String>
+    <system:String x:Key="Usercontrol_EditHomepageSettings">Edit Home Page</system:String>
     <system:String x:Key="Usercontrol_WifiAPSSID">Wifi AP SSID</system:String>
     <system:String x:Key="Usercontrol_WifiAPPassword">Wifi AP Password</system:String>
     <system:String x:Key="Usercontrol_EditActions">Edit Actions</system:String>

@@ -34,6 +34,7 @@
             <StackPanel  x:Name="stackPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
                 <uc:LANWifiSettings_Button/>
                 <uc:EditActionsSettings_Button/>
+                <uc:EditHomepageSettings_Button/>
             </StackPanel>
         </ScrollViewer>
        

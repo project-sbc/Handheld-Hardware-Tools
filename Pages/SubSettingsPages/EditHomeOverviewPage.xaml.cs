@@ -28,7 +28,7 @@ namespace Everything_Handhelds_Tool.Pages
         public EditHomeOverviewPage(Classes.Actions.Action? action = null)
         {
             //Move initilize components to sub routine and async it to make pages feel smoother
-            Dispatcher.BeginInvoke(new System.Action(() => InitializeActions(action)));
+            Dispatcher.BeginInvoke(new System.Action(() => InitializeActions()));
 
         }
 
