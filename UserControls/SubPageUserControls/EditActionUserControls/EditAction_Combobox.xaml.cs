@@ -119,6 +119,9 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     case "Toggle_VolumeMute":
                         newAction = new Classes.Actions.ActionClass.Toggle_VolumeMute();
                         break;
+                    case "Toggle_WinOSK":
+                        newAction = new Classes.Actions.ActionClass.Toggle_WinOSK();
+                        break;
                     case "Cycle_Volume":
                         newAction = new Classes.Actions.ActionClass.Cycle_Volume();
                         break;

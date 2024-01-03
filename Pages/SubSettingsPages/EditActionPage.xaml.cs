@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.AccessControl;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms.Integration;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -28,6 +29,9 @@ namespace Everything_Handhelds_Tool.Pages
         public EditAction_ArgumentListView actionArgumentListView;
         public EditAction_EnableHotKey actionEnableHotKey;
 
+
+        public bool updateControllerHotKeyDictionary = false;
+        public bool updateKBHotKeyDictionary = false;
         //bool to determine if existing or new action
         private bool newAction = true;
         public EditActionPage(Classes.Actions.Action importAction = null)
@@ -125,6 +129,15 @@ namespace Everything_Handhelds_Tool.Pages
             //get mainwindow frame
             MainWindow mainWindow = Local_Object.Instance.GetMainWindow();
             mainWindow.frame.Content = editActionOverviewPage;
+
+            if (updateControllerHotKeyDictionary)
+            {
+                mainWindow.controllerInput.publicSuspendEventsForNewHotKeyList = true;
+            }
+            if (updateKBHotKeyDictionary)
+            {
+                MessageBox.Show("ADD KEYBOARD HANDLER HERE TO UPDATE KB DICTIONARY EditActionPage.xaml.cs");
+            }
         }
 
         private void ValidateInputs()

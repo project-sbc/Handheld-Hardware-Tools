@@ -48,7 +48,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
         }
         public override void ChangeMainWindowControllerInstructionPage()
         {
-            General_Functions.ChangeControllerInstructionPage("ChangeBack");
+            General_Functions.ChangeControllerInstructionPage("ChangeToggleBack");
         }
 
 
@@ -120,20 +120,48 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     {
                         if (isToggled)
                         {
-                            
+                            //i had to put in fancy logic to make sure the hot key dictionaries in controller and keyboard events would be updated appropriately
+                            //depending on the various scenarios
                             if (hotKeyType == "Controller")
                             {
+                                if (editActionPage.action.hotkeyType == "Keyboard")
+                                {
+                                    editActionPage.updateKBHotKeyDictionary = true;
+                                }
+                                if (editActionPage.action.hotKey != hotKeyValue.ToString() || editActionPage.action.hotkeyType != hotKeyType)
+                                {
+                                    editActionPage.updateControllerHotKeyDictionary = true;
+                                }
+
                                 editActionPage.action.hotKey = hotKeyValue.ToString();
                                 editActionPage.action.hotkeyType = hotKeyType;
                             }
                             if (hotKeyType == "Keyboard")
                             {
+                                if (editActionPage.action.hotkeyType == "Controller")
+                                {
+                                    editActionPage.updateControllerHotKeyDictionary = true;
+                                }
+                                if (editActionPage.action.hotKey != hotKeyText || editActionPage.action.hotkeyType != hotKeyType)
+                                {
+                                    editActionPage.updateControllerHotKeyDictionary = true;
+                                }
+
                                 editActionPage.action.hotKey = hotKeyText;
                                 editActionPage.action.hotkeyType = hotKeyType;
                             }
                         }
                         else
                         {
+                            //these are the triggers for updating the dictionaries with shortcuts in them
+                            if (editActionPage.action.hotkeyType == "Controller")
+                            {
+                                editActionPage.updateControllerHotKeyDictionary = true;
+                            }
+                            if (editActionPage.action.hotkeyType == "Keyboard")
+                            {
+                                editActionPage.updateKBHotKeyDictionary = true;
+                            }
                             editActionPage.action.hotKey = "";
                             editActionPage.action.hotkeyType = "";
                         }

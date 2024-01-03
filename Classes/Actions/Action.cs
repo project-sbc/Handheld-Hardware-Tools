@@ -28,6 +28,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
     [XmlInclude(typeof(Toggle_VolumeMute))]
     [XmlInclude(typeof(Toggle_Wifi))]
     [XmlInclude(typeof(Toggle_BT))]
+    [XmlInclude(typeof(Toggle_WinOSK))]
     public class Action
     {
         //action name is programming specific, display name will be generated at runtime based on language selected
@@ -62,13 +63,14 @@ namespace Everything_Handhelds_Tool.Classes.Actions
             this.Add("Toggle_MicrophoneMute", Application.Current.Resources["Action_Toggle_MicrophoneMute"].ToString());
             this.Add("Toggle_VolumeMute", Application.Current.Resources["Action_Toggle_VolumeMute"].ToString());
             this.Add("Toggle_BT", Application.Current.Resources["Action_Toggle_BT"].ToString());
+            this.Add("Toggle_WinOSK", Application.Current.Resources["Action_Toggle_WinOSK"].ToString());
             //this.Add("Toggle_QAM", Application.Current.Resources["Action_Toggle_QAM"].ToString());
 
 
             //new DefaultActionItem() { actionName = "Auto_TDP", displayName = "" };
             //new DefaultActionItem() { actionName = "Toggle_Controller_Keyboard", displayName = "" };
             //new DefaultActionItem() { actionName = "Toggle_Windows_Keyboard", displayName = "" };
-            //new DefaultActionItem() { actionName = "Toggle_Volume_Mute", displayName = "" };
+       
             //new DefaultActionItem() { actionName = "Toggle_Microphone_Mute", displayName = "" };
             //new DefaultActionItem() { actionName = "Open_Steam_Big_Picture", displayName = "" };
             //new DefaultActionItem() { actionName = "Open_Playnite", displayName = "" };

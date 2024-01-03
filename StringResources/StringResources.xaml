@@ -58,6 +58,7 @@
     <system:String x:Key="Action_Toggle_MicrophoneMute">Toggle Microphone Mute</system:String>
     <system:String x:Key="Action_Toggle_IntegerScaling">Toggle Integer Scaling</system:String>
     <system:String x:Key="Action_Toggle_VolumeMute">Toggle Volume Mute</system:String>
+    <system:String x:Key="Action_Toggle_WinOSK">Toggle OSK</system:String>
 
 
     <system:String x:Key="Action_Toggle_RSR">Toggle RSR</system:String>

@@ -85,6 +85,13 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                         {
                             MainControlInputHandlerSwitchBoard(action);
                         }
+                        else
+                        {
+                            if (action == "B")
+                            {
+                                ReturnControlToPage();
+                            }
+                        }
                     }
                 }
                 else 
