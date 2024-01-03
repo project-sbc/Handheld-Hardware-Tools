@@ -48,20 +48,18 @@
 
         
         <!-- actionusercontrol strings are for the action panel, and action strings are for editing/adding new controls-->
-    <system:String x:Key="ActionUserControl_Change_TDP">Change TDP </system:String>
     <system:String x:Key="Action_Change_TDP">Change TDP</system:String>
     <system:String x:Key="Action_Cycle_TDP">Change TDP Mode</system:String>
     <system:String x:Key="Action_Cycle_Volume">Change Volume Mode</system:String>
-    <system:String x:Key="ActionUserControl_CycleTDP">Change TDP Mode</system:String>
-    <system:String x:Key="ActionUserControl_Toggle_WifiAP">Toggle Wifi AP</system:String>
-    <system:String x:Key="ActionUserControl_Toggle_MicrophoneMute">Toggle Microphone Mute</system:String>
-    <system:String x:Key="ActionUserControl_Toggle_IntergerScaling">Toggle Integer Scaling</system:String>
+
     <system:String x:Key="Action_Toggle_WifiAP">Toggle Wifi AP</system:String>
+    <system:String x:Key="Action_Toggle_Wifi">Toggle Wifi</system:String>
+    <system:String x:Key="Action_Toggle_BT">Toggle Bluetooth</system:String>
     <system:String x:Key="Action_Toggle_MicrophoneMute">Toggle Microphone Mute</system:String>
     <system:String x:Key="Action_Toggle_IntegerScaling">Toggle Integer Scaling</system:String>
     <system:String x:Key="Action_Toggle_VolumeMute">Toggle Volume Mute</system:String>
 
-    <system:String x:Key="ActionUserControl_Toggle_RSR">Toggle RSR</system:String>
+
     <system:String x:Key="Action_Toggle_RSR">Toggle RSR</system:String>
 
     <system:String x:Key="ActionUserControl_Enabled">Enabled</system:String>

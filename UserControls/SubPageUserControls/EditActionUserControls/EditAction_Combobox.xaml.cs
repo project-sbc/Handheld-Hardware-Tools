@@ -101,6 +101,12 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     case "Toggle_WifiAP":
                         newAction = new Classes.Actions.ActionClass.Toggle_WifiAP();
                         break;
+                    case "Toggle_Wifi":
+                        newAction = new Classes.Actions.ActionClass.Toggle_Wifi();
+                        break;
+                    case "Toggle_BT":
+                        newAction = new Classes.Actions.ActionClass.Toggle_BT();
+                        break;
                     case "Cycle_TDP":
                         newAction = new Classes.Actions.ActionClass.Cycle_TDP();
                         break;
@@ -109,6 +115,12 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                         break;
                     case "Toggle_MicrophoneMute":
                         newAction = new Classes.Actions.ActionClass.Toggle_MicrophoneMute();
+                        break;
+                    case "Toggle_VolumeMute":
+                        newAction = new Classes.Actions.ActionClass.Toggle_VolumeMute();
+                        break;
+                    case "Cycle_Volume":
+                        newAction = new Classes.Actions.ActionClass.Cycle_Volume();
                         break;
                     default:
                         MessageBox.Show("NO HANDLER FOR THIS ACTION, ADD IT YOU DUMMY. EditAction_ComboBox.xaml.cs " + actionLookup);

@@ -149,6 +149,34 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Mic20;
 
                     break;
+                case "Toggle_VolumeMute":
+                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.SpeakerMute24;
+
+                    break;
+                case "Toggle_Wifi":
+                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Wifi124;
+
+                    break;
+                case "Toggle_BT":
+                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Bluetooth24;
+
+                    break;
+                case "Cycle_Volume":
+                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Speaker216;
+                    if (action.parameters != null)
+                    {
+                        if (action.parameters.Count > 0)
+                        {
+                            string totalVolString = "";
+                            foreach (string vol in action.parameters)
+                            {
+                                totalVolString = totalVolString + vol + " %; ";
+                            }
+                            actionArguments.Text = totalVolString;
+                        }
+
+                    }
+                    break;
                 default:
                     MessageBox.Show("NO HANDLER FOR THIS ACTION, ADD IT YOU DUMMY. ActionOverview_UserControl.xaml.cs " + action.actionName);
                     break;

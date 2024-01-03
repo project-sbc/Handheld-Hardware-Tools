@@ -56,6 +56,12 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
                 case "Toggle_WifiAP":
                     actionHandler = new ActionUserControl_Toggle_WifiAP(action);
                     break;
+                case "Toggle_Wifi":
+                    actionHandler = new ActionUserControl_Toggle_Wifi(action);
+                    break;
+                case "Toggle_BT":
+                    actionHandler = new ActionUserControl_Toggle_BT(action);
+                    break;
                 case "Toggle_IntegerScaling":
                     actionHandler = new ActionUserControl_Toggle_IntegerScaling(action);
                     break;

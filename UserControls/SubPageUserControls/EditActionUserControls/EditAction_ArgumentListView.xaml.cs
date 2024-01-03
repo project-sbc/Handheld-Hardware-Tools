@@ -76,6 +76,19 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     }
 
                     break;
+                case "Cycle_Volume":
+                    listView.SelectionMode = SelectionMode.Multiple;
+                   
+
+                    //add all the options, check to see if the value is divisible by 5 to see if you should add 3 or 2
+                    int vol = 0;
+                    while (vol <= 100)
+                    {
+                        listView.Items.Add(new ListViewItem { Content = vol.ToString() });
+                        vol = vol + 5;
+                    }
+
+                    break;
                 case "Change_TDP":
                     int x = -5;
                     while (x <=5)
@@ -85,7 +98,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     }
 
                     break;
-                case "Toggle_WifiAP" or "Toggle_IntegerScaling" or "Toggle_MicrophoneMute":
+                case "Toggle_WifiAP" or "Toggle_IntegerScaling" or "Toggle_MicrophoneMute" or "Toggle_VolumeMute" or "Toggle_Wifi" or "Toggle_BT":
                     //this handles the non list items like toggle wifi, where this list needs to be hidden
                     this.Visibility = Visibility.Collapsed;
                     break;

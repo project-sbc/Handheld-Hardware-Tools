@@ -26,6 +26,8 @@ namespace Everything_Handhelds_Tool.Classes.Actions
     [XmlInclude(typeof(Toggle_IntegerScaling))]
     [XmlInclude(typeof(Toggle_MicrophoneMute))]
     [XmlInclude(typeof(Toggle_VolumeMute))]
+    [XmlInclude(typeof(Toggle_Wifi))]
+    [XmlInclude(typeof(Toggle_BT))]
     public class Action
     {
         //action name is programming specific, display name will be generated at runtime based on language selected
@@ -54,12 +56,12 @@ namespace Everything_Handhelds_Tool.Classes.Actions
             this.Add("Change_TDP", Application.Current.Resources["Action_Change_TDP"].ToString());
             this.Add("Cycle_TDP", Application.Current.Resources["Action_Cycle_TDP"].ToString());
             this.Add("Cycle_Volume", Application.Current.Resources["Action_Cycle_Volume"].ToString());
-            //this.Add("Toggle_Wifi", Application.Current.Resources["Action_Toggle_Wifi"].ToString());
+            this.Add("Toggle_Wifi", Application.Current.Resources["Action_Toggle_Wifi"].ToString());
             this.Add("Toggle_WifiAP", Application.Current.Resources["Action_Toggle_WifiAP"].ToString());
             this.Add("Toggle_IntegerScaling", Application.Current.Resources["Action_Toggle_IntegerScaling"].ToString());
             this.Add("Toggle_MicrophoneMute", Application.Current.Resources["Action_Toggle_MicrophoneMute"].ToString());
             this.Add("Toggle_VolumeMute", Application.Current.Resources["Action_Toggle_VolumeMute"].ToString());
-            //this.Add("Toggle_BT", Application.Current.Resources["Action_Toggle_BT"].ToString());
+            this.Add("Toggle_BT", Application.Current.Resources["Action_Toggle_BT"].ToString());
             //this.Add("Toggle_QAM", Application.Current.Resources["Action_Toggle_QAM"].ToString());
 
 
