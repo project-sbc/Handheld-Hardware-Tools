@@ -18,7 +18,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
         }
         public override void OnActivate()
         {
-            Application.Current.Dispatcher.Invoke(() => ActionTask());
+            ActionTask();
       
            
         }
