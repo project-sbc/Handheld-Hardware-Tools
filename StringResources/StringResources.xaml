@@ -10,6 +10,7 @@
     <system:String x:Key="MainWindow_NavigationViewMenuItem_Power">Power</system:String>
     <system:String x:Key="MainWindow_NavigationViewMenuItem_Settings">Settings</system:String>
 
+    <system:String x:Key="Usercontrol_Volume">Volume</system:String>
     <system:String x:Key="Usercontrol_TDP">TDP</system:String>
     <system:String x:Key="Usercontrol_TDP2">Boost TDP</system:String>
     <system:String x:Key="Usercontrol_MaxCPUFrequency">Set Max CPU Frequency</system:String>
@@ -125,7 +126,7 @@
     <system:String x:Key="Usercontrol_Wifi">Wi-Fi</system:String>
     <system:String x:Key="Usercontrol_Bluetooth">Bluetooth</system:String>
 
-    <system:String x:Key="Usercontrol_Volume">Volume</system:String>
+   
     <system:String x:Key="Usercontrol_VolumeMute">Volume Mute</system:String>
     <system:String x:Key="Usercontrol_Resolution">Resolution</system:String>
     <system:String x:Key="Usercontrol_RefreshRate">Refresh Rate</system:String>

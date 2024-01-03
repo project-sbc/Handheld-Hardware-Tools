@@ -65,15 +65,15 @@ namespace Everything_Handhelds_Tool.Pages
         {
             switch(name)
             {
-                case "TDP_Slider":
+                case "Usercontrol_TDP":
                     return new TDP_Slider();
-                case "TDP_Boost_Slider":
+                case "Usercontrol_TDP2":
                     return new TDP_Boost_Slider();
-                case "Brightness_Slider":
+                case "Usercontrol_Brightness":
                     return new Brightness_Slider();
-                case "Volume_Slider":
+                case "Usercontrol_Volume":
                     return new Volume_Slider();
-                case "PowerPlan_ComboBox":
+                case "Usercontrol_PowerPlan":
                     return new PowerPlan_Combobox();
                 default:
                     return null;

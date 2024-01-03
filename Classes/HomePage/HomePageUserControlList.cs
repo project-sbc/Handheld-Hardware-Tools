@@ -29,7 +29,7 @@ namespace Everything_Handhelds_Tool.Classes.HomePage
 
                 if (this.Find(hpi => hpi.UserControlName == control.Key) == null)
                 {
-                    this.Add(new HomePageItem() { UserControlName = control.Key, UserControlVisible =control.Value, UserControlDisplayName = "TDP_Slider" });
+                    this.Add(new HomePageItem() { UserControlName = control.Key, UserControlVisible =control.Value });
                     listUpdated= true;
                 }
                 
@@ -52,11 +52,11 @@ namespace Everything_Handhelds_Tool.Classes.HomePage
         //complete list for home page items, this gets updated when new controls are added
         public DefaultCompleteHomePageList()
         {
-            this.Add("TDP_Slider", true);
-            this.Add("TDP_Boost_Slider", true);
-            this.Add("Brightness_Slider", true);
-            this.Add("Volume_Slider", true);
-            this.Add("PowerPlan_ComboBox", true);
+            this.Add("Usercontrol_TDP", true);
+            this.Add("Usercontrol_TDP2", true);
+            this.Add("Usercontrol_Brightness", true);
+            this.Add("Usercontrol_Volume", true);
+            this.Add("Usercontrol_PowerPlan", true);
 
         }
 
@@ -66,7 +66,7 @@ namespace Everything_Handhelds_Tool.Classes.HomePage
     {
         public string UserControlName { get; set; }
         public bool UserControlVisible { get; set; }
-        public string UserControlDisplayName { get; set; }
+        
     }
 
 }
