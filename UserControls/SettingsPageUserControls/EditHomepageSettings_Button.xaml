@@ -11,7 +11,7 @@
         <Grid >
             <Button  x:Name="button" Width="Auto"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" Click="button_Click">
                 <DockPanel HorizontalAlignment="Left" >
-                    <ui:SymbolIcon x:Name="controllerStatusBarIcon" Symbol="Router24" FontSize="30" Margin="0,0,18,0"  VerticalAlignment="Center" DockPanel.Dock="Left" HorizontalContentAlignment="Left" HorizontalAlignment="Left" />
+                    <ui:SymbolIcon x:Name="controllerStatusBarIcon"  Symbol="Router24" FontSize="30" Margin="0,0,18,0"  VerticalAlignment="Center" DockPanel.Dock="Left" HorizontalContentAlignment="Left" HorizontalAlignment="Left" />
                     <Viewbox Height="30" VerticalAlignment="Center"  HorizontalAlignment="Stretch" DockPanel.Dock="Right" >
                         <TextBlock Text="{DynamicResource Usercontrol_EditHomepageSettings}"  />
                     </Viewbox>

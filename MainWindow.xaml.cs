@@ -392,6 +392,7 @@ namespace Everything_Handhelds_Tool
         }
         public void ToggleWindow()
         {
+           
             if (this.Visibility == Visibility.Hidden || this.WindowState == WindowState.Minimized)
             {
                 TasksToggleWindowOpen();
@@ -454,10 +455,17 @@ namespace Everything_Handhelds_Tool
 
             frameControllerInput.Source = uri;
         }
-
+        private void ContextMenu_Show(object sender, RoutedEventArgs e)
+        {
+            TasksToggleWindowOpen();
+        }
+        private void ContextMenu_Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
         private void notifyIcon_LeftClick(NotifyIcon sender, RoutedEventArgs e)
         {
-            ToggleWindow();
+            TasksToggleWindowOpen();
         }
     }
 }

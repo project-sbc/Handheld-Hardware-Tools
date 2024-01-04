@@ -94,6 +94,9 @@
     <system:String x:Key="Instruction_UpDown">Move Up Down</system:String>
 
 
+    <system:String x:Key="ContextMenu_Show">Show</system:String>
+    <system:String x:Key="ContextMenu_Close">Close</system:String>
+
 
     <!-- THIS IS THE DIVIDER DO NOT CROSS THIS LINE PLEASE EVERYTHING BELOW IS NOT IN USE FOR THE NEW APP AND MUST BE BROUGHTUP-->
 
@@ -229,8 +232,7 @@
 
     
     
-    <system:String x:Key="ContextMenu_Hide">Hide</system:String>
-    <system:String x:Key="ContextMenu_Close">Close</system:String>
+  
     <system:String x:Key="ContextMenu_ShutDownPC">Shut Down PC</system:String>
     <system:String x:Key="UserControl_Shutdown">Shut Down</system:String>
     <system:String x:Key="UserControl_FanControl">Fan Control</system:String>

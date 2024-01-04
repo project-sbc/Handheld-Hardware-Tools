@@ -72,7 +72,8 @@
                 TooltipText="WPF UI" LeftClick="notifyIcon_LeftClick">
             <ui:NotifyIcon.Menu>
                 <ContextMenu >
-                    <MenuItem Header="Menu item 1" />
+                    <MenuItem Header="{DynamicResource ContextMenu_Show}"  Click="ContextMenu_Show"/>
+                    <MenuItem Header="{DynamicResource ContextMenu_Close}" Click="ContextMenu_Close"/>
                 </ContextMenu>
             </ui:NotifyIcon.Menu>
         </ui:NotifyIcon>
