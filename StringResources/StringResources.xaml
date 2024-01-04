@@ -57,16 +57,17 @@
     <system:String x:Key="Action_Toggle_WifiAP">Toggle Wifi AP</system:String>
     <system:String x:Key="Action_Toggle_Wifi">Toggle Wifi</system:String>
     <system:String x:Key="Action_Toggle_BT">Toggle Bluetooth</system:String>
+    <system:String x:Key="Action_Toggle_QAM">Toggle Menu</system:String>
     <system:String x:Key="Action_Toggle_MicrophoneMute">Toggle Microphone Mute</system:String>
     <system:String x:Key="Action_Toggle_IntegerScaling">Toggle Integer Scaling</system:String>
     <system:String x:Key="Action_Toggle_VolumeMute">Toggle Volume Mute</system:String>
     <system:String x:Key="Action_Toggle_WinOSK">Toggle OSK</system:String>
-
-
+    <system:String x:Key="Action_Toggle_Desktop">Toggle Desktop</system:String>
     <system:String x:Key="Action_Toggle_RSR">Toggle RSR</system:String>
 
     <system:String x:Key="ActionUserControl_Enabled">Enabled</system:String>
     <system:String x:Key="ActionUserControl_Disabled">Disabled</system:String>
+    <system:String x:Key="ActionUserControl_Toggle">Toggle</system:String>
         
     <system:String x:Key="EditActionUserControl_Edit">Edit</system:String>
     <system:String x:Key="EditActionUserControl_Delete">Delete</system:String>

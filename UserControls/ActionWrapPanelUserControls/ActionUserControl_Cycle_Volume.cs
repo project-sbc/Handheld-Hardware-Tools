@@ -19,13 +19,13 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
         public override void ConfigureControls(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled)
         {
             symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Speaker216;
-            textBlock2.Text = Volume_Management.Instance.ReadAndReturnVolume().ToString() + " %";
-            textBlock.Text = Application.Current.Resources["Action_Cycle_Volume"].ToString();
+            textBlock.Text = Volume_Management.Instance.ReadAndReturnVolume().ToString() + " %";
+            textBlock2.Text = Application.Current.Resources["Action_Cycle_Volume"].ToString();
         }
         public override void ButtonPress(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled) 
         {
             action.OnActivate();
-            textBlock2.Text = Volume_Management.Instance.ReadAndReturnVolume().ToString() + " %";
+            textBlock.Text = Volume_Management.Instance.ReadAndReturnVolume().ToString() + " %";
         }
 
 

@@ -13,7 +13,7 @@
         Top="0"
         x:Name="mainWindow"
         Topmost="True"
-        Width="550"
+        Width="565"
         WindowStyle="None"
         AllowsTransparency="True"
         SizeToContent="Height"

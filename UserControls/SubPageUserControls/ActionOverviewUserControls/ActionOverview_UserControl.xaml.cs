@@ -141,6 +141,10 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Router24;
 
                     break;
+                case "Toggle_Desktop":
+                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.TabDesktopBottom24;
+
+                    break;
                 case "Toggle_IntegerScaling":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Blur20;
 
@@ -155,6 +159,10 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
                     break;
                 case "Toggle_Wifi":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Wifi124;
+
+                    break;
+                case "Toggle_QAM":
+                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.WindowHeaderVertical20;
 
                     break;
                 case "Toggle_BT":

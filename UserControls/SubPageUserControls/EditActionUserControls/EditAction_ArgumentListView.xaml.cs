@@ -98,7 +98,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     }
 
                     break;
-                case "Toggle_WifiAP" or "Toggle_IntegerScaling" or "Toggle_MicrophoneMute" or "Toggle_VolumeMute" or "Toggle_Wifi" or "Toggle_BT" or "Toggle_WinOSK":
+                case "Toggle_WifiAP" or "Toggle_QAM" or "Toggle_IntegerScaling" or "Toggle_Desktop" or "Toggle_MicrophoneMute" or "Toggle_VolumeMute" or "Toggle_Wifi" or "Toggle_BT" or "Toggle_WinOSK":
                     //this handles the non list items like toggle wifi, where this list needs to be hidden
                     this.Visibility = Visibility.Collapsed;
                     break;

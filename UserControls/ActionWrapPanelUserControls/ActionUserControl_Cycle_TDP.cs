@@ -19,13 +19,13 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
         public override void ConfigureControls(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled)
         {
             symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
-            textBlock2.Text = TDP_Management.Instance.ReadAndReturnSustainedTDP().ToString() + " W";
-            textBlock.Text = Application.Current.Resources["Action_Cycle_TDP"].ToString();
+            textBlock.Text = TDP_Management.Instance.ReadAndReturnSustainedTDP().ToString() + " W";
+            textBlock2.Text = Application.Current.Resources["Action_Cycle_TDP"].ToString();
         }
         public override void ButtonPress(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled) 
         {
             action.OnActivate();
-            textBlock2.Text = TDP_Management.Instance.ReadAndReturnSustainedTDP().ToString() + " W";
+            textBlock.Text = TDP_Management.Instance.ReadAndReturnSustainedTDP().ToString() + " W";
         }
 
 

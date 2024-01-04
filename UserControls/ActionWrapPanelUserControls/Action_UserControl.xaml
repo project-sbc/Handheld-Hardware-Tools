@@ -21,8 +21,8 @@
                 <ui:SymbolIcon x:Name="symbolIcon" Symbol="DeveloperBoardLightning20" FontSize="50"   />
                 <ui:SymbolIcon x:Name="symbolIconDisabled" Symbol="Line20" FontSize="50" FontWeight="UltraBold"  Visibility="Hidden"     />
 
-                <Viewbox Height="25" Grid.Column="1"   HorizontalAlignment="Center"  >
-                    <TextBlock x:Name="textBlock" Text=""  />
+                <Viewbox Height="25"   Grid.Column="1"   HorizontalAlignment="Center"  >
+                    <TextBlock x:Name="textBlock" Text="" TextWrapping="WrapWithOverflow" />
                 </Viewbox>
 
                 <Viewbox Height="25" Grid.Row="1" Grid.ColumnSpan="2"   HorizontalAlignment="Center"  >
