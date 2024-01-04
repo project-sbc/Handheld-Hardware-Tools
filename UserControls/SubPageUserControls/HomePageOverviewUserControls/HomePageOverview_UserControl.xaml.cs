@@ -112,8 +112,8 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
                         break;
 
                     case "A":
-                        hpi.UserControlVisible = !hpi.UserControlVisible;
-                        toggleSwitch.IsChecked = hpi.UserControlVisible;
+                     
+                        toggleSwitch.IsChecked = !toggleSwitch.IsChecked;
                         break;
                 }
             }
@@ -145,6 +145,34 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
         private void btnMoveDown_Click(object sender, RoutedEventArgs e)
         {
             SendCommandToHomePageOverviewPage("MoveDown");
+        }
+
+        private void toggleVisibilitySwitch()
+        {
+            if (this.IsLoaded)
+            {
+                if (toggleSwitch.IsChecked == true)
+                {
+                    hpi.UserControlVisible = true;
+                }
+                else
+                {
+                    hpi.UserControlVisible = false;
+                }
+                SendCommandToHomePageOverviewPage("Toggle");
+            }
+         
+         
+        }
+
+        private void toggleSwitch_Checked(object sender, RoutedEventArgs e)
+        {
+            toggleVisibilitySwitch();
+        }
+
+        private void toggleSwitch_Unchecked(object sender, RoutedEventArgs e)
+        {
+            toggleVisibilitySwitch();
         }
     }
 }

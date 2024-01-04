@@ -125,8 +125,7 @@ namespace Everything_Handhelds_Tool.Pages
 
                         break;
                     case "Toggle":
-                        HomePageOverview_UserControl editHPI_UserControl = (HomePageOverview_UserControl)userControl;
-                        editHPI_UserControl.hpi.UserControlVisible = !editHPI_UserControl.hpi.UserControlVisible;
+                        
 
                         break;
                     case "MoveDown":

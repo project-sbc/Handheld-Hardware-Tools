@@ -20,7 +20,7 @@
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" >
 
-                    <ui:ToggleSwitch x:Name="toggleSwitch"  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,0,0"/>
+                    <ui:ToggleSwitch x:Name="toggleSwitch"  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,0,0" Checked="toggleSwitch_Checked" Unchecked="toggleSwitch_Unchecked" />
                     <Button Name="btnMoveUp" Click="btnMoveUp_Click" HorizontalAlignment="Center" Width="40" Margin="0,0,0,0">
                         <ui:SymbolIcon Symbol="ArrowUp12" />
                     </Button>
