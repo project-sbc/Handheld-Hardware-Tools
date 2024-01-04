@@ -46,7 +46,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
         }
         public override void ChangeMainWindowControllerInstructionPage()
         {
-            General_Functions.ChangeControllerInstructionPage("EditDeleteBackMoveUpDown");
+            General_Functions.ChangeControllerInstructionPage("ToggleBackMoveUpDown");
         }
 
         #region set textblocks and icons

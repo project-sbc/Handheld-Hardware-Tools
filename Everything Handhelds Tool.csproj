@@ -56,6 +56,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <COMReference Include="Shell32">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>50a7e9b0-70ef-11d1-b75a-00a0c90564fe</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="EHT ICO.ico" />
     <Content Include="Resources\AMD\ADLX\ADLX_3DSettings.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -165,6 +177,9 @@
 
   <ItemGroup>
     <Compile Update="ControllerInstructionPages\ChangeBack.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ControllerInstructionPages\ToggleBackMoveUpDown.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="ControllerInstructionPages\ToggleBack.xaml.cs">

@@ -9,7 +9,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using WindowsInput;
-
+using Shell32;
+using System.Diagnostics.Eventing.Reader;
 namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
 {
     public class Toggle_Desktop : Action
@@ -21,14 +22,32 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
         }
         public override void OnActivate()
         {
-            InputSimulator inputSimulator = new InputSimulator();
-            inputSimulator.Keyboard.KeyDown(WindowsInput.Native.VirtualKeyCode.LWIN);
-            inputSimulator.Keyboard.KeyDown(WindowsInput.Native.VirtualKeyCode.VK_D);
-            inputSimulator.Keyboard.KeyUp(WindowsInput.Native.VirtualKeyCode.VK_D);
-            inputSimulator.Keyboard.KeyUp(WindowsInput.Native.VirtualKeyCode.LWIN);
-            inputSimulator = null;
+            //Shell objects need to run on STA thread, thats why i need to use a new thread, otherwise it wont work
+
+            if (1 == 1)
+            {
+
+                Thread thread = new Thread(ToggleDesktop);
+                thread.SetApartmentState(ApartmentState.STA); //Set the thread to STA
+                thread.Start();
+                Debug.WriteLine("Invoking togg desk");
+                //Application.Current.Dispatcher.BeginInvoke(() => ToggleDesktop());
+            }
+           
+       
+
 
         }
+
+        private async void ToggleDesktop()
+        {
+            var objShel = new Shell();
+            // Show the desktop
+            objShel.ToggleDesktop();
+      
+            objShel = null;
+        }
+       
     }
     
 }

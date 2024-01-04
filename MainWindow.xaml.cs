@@ -13,6 +13,7 @@ using Everything_Handhelds_Tool.Classes.Devices;
 using System.Diagnostics;
 using Everything_Handhelds_Tool.Classes.Wifi_AP;
 using System.IO;
+using Everything_Handhelds_Tool.ControllerInputPages;
 
 
 namespace Everything_Handhelds_Tool
@@ -421,6 +422,11 @@ namespace Everything_Handhelds_Tool
             {
                 switch (pageName)
                 {
+
+                    case "ToggleBackMoveUpDown":
+                        uri = new Uri("ControllerInstructionPages\\ToggleBackMoveUpDown.xaml", UriKind.Relative);
+                        break;
+                        
                     case "SelectSaveBack":
                         uri = new Uri("ControllerInstructionPages\\SelectSaveBack.xaml", UriKind.Relative);
                         break;

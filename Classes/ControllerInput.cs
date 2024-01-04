@@ -146,12 +146,17 @@ namespace Everything_Handhelds_Tool.Classes
                             //Good example is LB+RB+Dpad, the last dpad press could translate into the open QAM action
                             if (controllerHotKeyDictionary.ContainsKey(currentButtonCombo))
                             {
-                                Actions.Action action;
-                                if (controllerHotKeyDictionary.TryGetValue(currentButtonCombo, out action))
+                                //Add the current vs previous gamepad button state to prevent mutliple actions from being called back to back
+                                if (currentGamepadState.Buttons != previousGamepadState.Buttons)
                                 {
-                                    action.OnActivate();
-                                    goto continueloop;
+                                    Actions.Action action;
+                                    if (controllerHotKeyDictionary.TryGetValue(currentButtonCombo, out action))
+                                    {
+                                        action.OnActivate();
+                                        goto continueloop;
+                                    }
                                 }
+       
                             }
 
                         }
