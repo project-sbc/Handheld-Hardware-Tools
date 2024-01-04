@@ -19,7 +19,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
         public override void ConfigureControls(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled)
         {
             symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
-            textBlock.Text = TDP_Management.Instance.ReadAndReturnSustainedTDP().ToString() + " W";
+            textBlock2.Text = TDP_Management.Instance.ReadAndReturnSustainedTDP().ToString() + " W";
             //override the first text assignment above, most of the
             if (action.parameters[0].ToString().Contains("-"))
             {
