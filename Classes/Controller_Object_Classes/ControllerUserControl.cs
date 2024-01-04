@@ -212,7 +212,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                         }
                         else
                         {
-                            cbo.SelectedIndex = cbo.SelectedIndex - 1;
+                            cbo.SelectedIndex = cbo.Items.Count - 1;
                         }
                         break;
                     case "DPadDown":
