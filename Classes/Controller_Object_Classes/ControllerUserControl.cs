@@ -27,7 +27,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                 if (borderControl is Border)
                 {
                     Border border = (Border)borderControl;
-                    border.BorderBrush = System.Windows.Media.Brushes.Gray;
+                    border.BorderBrush = (System.Windows.Media.Brush)Application.Current.Resources["HighlightCardBorder"];
                 }
             }
         }
@@ -38,7 +38,8 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                 if (borderControl is Border)
                 {
                     Border border = (Border)borderControl;
-                    border.BorderBrush = System.Windows.Media.Brushes.White;
+                    //border.BorderBrush = System.Windows.Media.Brushes.White;
+                    border.BorderBrush = (System.Windows.Media.Brush)Application.Current.Resources["SelectedCardBorder"];
                 }
                 ChangeMainWindowControllerInstructionPage();
             }

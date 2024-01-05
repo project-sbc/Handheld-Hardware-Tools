@@ -14,7 +14,7 @@ using System.Diagnostics;
 using Everything_Handhelds_Tool.Classes.Wifi_AP;
 using System.IO;
 using Everything_Handhelds_Tool.ControllerInputPages;
-
+using Wpf.Ui;
 
 namespace Everything_Handhelds_Tool
 {
@@ -34,6 +34,8 @@ namespace Everything_Handhelds_Tool
             InitializeComponent();
             //run start up
             InitializeRoutines();
+
+
 
         }
         #region Set up
@@ -345,6 +347,11 @@ namespace Everything_Handhelds_Tool
         {
             //set location
             SetAppLocationHeight();
+
+
+
+
+        
 
         }
 

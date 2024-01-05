@@ -9,14 +9,26 @@
         <ResourceDictionary>
             <SolidColorBrush x:Key="PageCard" Color="#FF3F3F3F"  />
             <SolidColorBrush x:Key="PageCardHighlight" Color="#66EDEDED"  />
+
+
+
+
+            <SolidColorBrush x:Key="blah" Color="Transparent"  />
+
             <ResourceDictionary.MergedDictionaries>
-                <ui:ThemesDictionary Theme="Dark" />
-             
+
                 <ui:ControlsDictionary />
                 <ResourceDictionary Source="/StringResources/StringResources.xaml" />
-                    <ResourceDictionary Source="/Styles/ControlStyle.xaml" />
-                    <!-- Other merged dictionaries here -->
-                 </ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="/Styles/ControlStyle.xaml" />
+                <ResourceDictionary Source="/Styles/DefaultTheme.xaml" />
+                <!-- -->
+                <ui:ThemesDictionary Theme="Dark" />
+          
+
+
+                <!-- Other merged dictionaries here -->
+            </ResourceDictionary.MergedDictionaries>
                     <!-- Other app resources here -->
             </ResourceDictionary>
         </Application.Resources>

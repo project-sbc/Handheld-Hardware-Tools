@@ -10,7 +10,7 @@
         xmlns:uc="clr-namespace:Everything_Handhelds_Tool.UserControls.SettingsPageUserControls"
       Title="HomePage"     
                  xmlns:UpperCase="clr-namespace:Everything_Handhelds_Tool.Classes.Converters" Unloaded="ControllerPage_Unloaded"
-                        
+                  Background="{DynamicResource PageBackground}"       
                         >
 
     <Grid  >

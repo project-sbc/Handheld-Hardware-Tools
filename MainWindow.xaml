@@ -17,11 +17,13 @@
         WindowStyle="None"
         AllowsTransparency="True"
         SizeToContent="Height"
-
+        
         Height="800"
         Loaded="UiWindow_Loaded"
         Closing="Window_Closing" 
-
+        
+        Background="{DynamicResource MainWindowBackground}"
+       
         >
     <Window.Resources>
         <Style x:Key="_ListBoxItemStyle" TargetType="ListBoxItem">
@@ -47,7 +49,7 @@
         </Style>
 
     </Window.Resources>
-    <Grid Margin="0,8,0,8" >
+    <Grid Margin="0,8,0,8"  Background="{DynamicResource MainWindowBackground}" >
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
@@ -61,7 +63,7 @@
 
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
-        <Image Source="/EHT LOGO.PNG" />
+        <Image Source="{DynamicResource MainWindowLogo}" />
        
         <ui:NotifyIcon
                 Grid.Row="0"
@@ -128,7 +130,7 @@
 
         <ui:InfoBar Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" />
 
-        <Frame x:Name="frameControllerInput" Grid.Row="2" Grid.Column="1"   HorizontalAlignment="Stretch"  />
+        <Frame x:Name="frameControllerInput" Grid.Row="2" Grid.Column="1"   HorizontalAlignment="Stretch" Background="{DynamicResource MainWindowBottomControllerInput}"  />
     </Grid>
 
 

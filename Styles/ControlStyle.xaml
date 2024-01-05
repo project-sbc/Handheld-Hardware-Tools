@@ -21,6 +21,7 @@
         <Setter Property="BorderThickness" Value="2" />
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="CornerRadius" Value="5"/>
+        <Setter Property="Background" Value="{DynamicResource CardBackground}" />
     </Style>
 
     <!--#endregion-->
