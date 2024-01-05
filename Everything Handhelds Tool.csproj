@@ -10,6 +10,7 @@
 	  <UseWindowsForms>true</UseWindowsForms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>EHT ICO.ico</ApplicationIcon>
+    <StartupObject>Everything_Handhelds_Tool.App</StartupObject>
 	
   </PropertyGroup>
 
