@@ -22,7 +22,7 @@
         Loaded="UiWindow_Loaded"
         Closing="Window_Closing" 
         
-        Background="{DynamicResource MainWindowBackground}"
+  
        
         >
     <Window.Resources>
@@ -38,7 +38,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="true">
-                                <Setter TargetName="_Border" Property="Background" Value="White"/>
+                                <Setter TargetName="_Border" Property="Background" Value="{DynamicResource HighlightedSideMenuBackground}"/>
                                 <Setter TargetName="icon" Property="Foreground" Value="Black"/>
                             </Trigger>
 
@@ -49,7 +49,7 @@
         </Style>
 
     </Window.Resources>
-    <Grid Margin="0,8,0,8"  Background="{DynamicResource MainWindowBackground}" >
+    <Grid Margin="0,0,0,0"  Background="{DynamicResource MainWindowBackground}" >
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
@@ -83,13 +83,12 @@
 
 
             <DockPanel  Margin="15,-7,15,0"  >
-                
-       
 
-                <Button DockPanel.Dock="Right" Click="Button_Click">
+                <Button  DockPanel.Dock="Right" Click="Button_Click"  Background="{DynamicResource ControlsBackground}">
                     <ui:SymbolIcon x:Name="hideIcon"  Symbol="ArrowExit20" FontSize="23" Filled="False"  Visibility="Visible" />
 
                 </Button>
+
 
                 <Viewbox MaxHeight="25" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,0,20,0"  >
                     <TextBlock x:Name="timeStatusBar" FontSize="30" />
@@ -112,7 +111,7 @@
         </DockPanel>
 
 
-        <ui:Card Grid.Row="1"  Name="cardBorder"   Margin="6,0,6,0" Grid.Column="1"  VerticalAlignment="Stretch" VerticalContentAlignment="Top">
+        <ui:Card Grid.Row="1"  Name="cardBorder"   Margin="6,0,6,0" Grid.Column="1" Background="{DynamicResource PageBackground}"     VerticalAlignment="Stretch" VerticalContentAlignment="Top">
             
             <Frame x:Name="frame"   HorizontalAlignment="Stretch"   />
         </ui:Card>
@@ -130,7 +129,7 @@
 
         <ui:InfoBar Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" />
 
-        <Frame x:Name="frameControllerInput" Grid.Row="2" Grid.Column="1"   HorizontalAlignment="Stretch" Background="{DynamicResource MainWindowBottomControllerInput}"  />
+        <Frame x:Name="frameControllerInput" Grid.Row="2" Grid.Column="1"   HorizontalAlignment="Stretch"   />
     </Grid>
 
 

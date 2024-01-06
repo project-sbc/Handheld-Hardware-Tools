@@ -10,10 +10,10 @@
         xmlns:uc="clr-namespace:Everything_Handhelds_Tool.UserControls.EditActionUserControls"
       Title="HomePage"     
                  xmlns:UpperCase="clr-namespace:Everything_Handhelds_Tool.Classes.Converters"
-                        Background="{DynamicResource PageBackground}" 
+                        
                         >
 
-    <Grid >
+    <Grid  >
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition  />
@@ -28,12 +28,12 @@
 
             </Viewbox>
 
-            <Button x:Name="save" Click="save_Click"   Margin="4">
+            <Button x:Name="save" Click="save_Click"   Margin="4" Background="{DynamicResource ControlsBackground}">
                 <Viewbox     >
                     <TextBlock  Text="{DynamicResource Usercontrol_Save}" />
                 </Viewbox>
             </Button>
-            <Button x:Name="Back" Click="Back_Click"  Margin="4" >
+            <Button x:Name="Back" Click="Back_Click"  Margin="4" Background="{DynamicResource ControlsBackground}">
                 <Viewbox     >
                     <TextBlock  Text="{DynamicResource Usercontrol_Back}" />
                 </Viewbox>

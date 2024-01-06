@@ -7,13 +7,16 @@
         <Application.Resources>
            
         <ResourceDictionary>
-            <SolidColorBrush x:Key="PageCard" Color="#FF3F3F3F"  />
-            <SolidColorBrush x:Key="PageCardHighlight" Color="#66EDEDED"  />
 
 
+            <!-- SolidColorBrush x:Key="PageCard" Color="#FF3F3F3F"   -->
+            <!--<SolidColorBrush x:Key="PageCardHighlight" Color="#66EDEDED"   -->
+
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{DynamicResource FontIconColor}" />
+            </Style>
 
 
-            <SolidColorBrush x:Key="blah" Color="Transparent"  />
 
             <ResourceDictionary.MergedDictionaries>
 

@@ -324,6 +324,7 @@ namespace Everything_Handhelds_Tool
 
         private void navigationViewListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
+           
             LoadPageInFrame();   
         }
 

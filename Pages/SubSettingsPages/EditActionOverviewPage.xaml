@@ -10,7 +10,7 @@
         xmlns:uc="clr-namespace:Everything_Handhelds_Tool.UserControls.SettingsPageUserControls"
       Title="HomePage"     
                  xmlns:UpperCase="clr-namespace:Everything_Handhelds_Tool.Classes.Converters" Unloaded="ControllerPage_Unloaded"
-                  Background="{DynamicResource PageBackground}"       
+                        
                         >
 
     <Grid  >
@@ -28,12 +28,12 @@
 
             </Viewbox>
 
-            <Button x:Name="newAction" Click="newAction_Click" Margin="4" >
+            <Button x:Name="newAction" Click="newAction_Click" Margin="4" Background="{DynamicResource ControlsBackground}">
                 <Viewbox     >
                     <TextBlock  Text="{DynamicResource Usercontrol_NewAction}" />
                 </Viewbox>
             </Button>
-            <Button x:Name="Back" Click="Back_Click"  Margin="4" >
+            <Button x:Name="Back" Click="Back_Click"  Margin="4" Background="{DynamicResource ControlsBackground}">
                 <Viewbox     >
                     <TextBlock  Text="{DynamicResource Usercontrol_Back}" />
                 </Viewbox>

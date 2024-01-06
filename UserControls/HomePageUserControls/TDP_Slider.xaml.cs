@@ -2,6 +2,7 @@
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -75,6 +76,8 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
      
         public override void ControlChangeValueHandler()
         {
+            Debug.WriteLine(card.Background.ToString());
+
             int tdp = (int)Math.Round(slider.Value, 0);
             TDP_Management.Instance.ChangeSustainedTDP(tdp);
         }

@@ -14,14 +14,14 @@
         <StackPanel Orientation="Horizontal" Margin="0,0,20,0">
             <ui:FontIcon Glyph="&#xF093;" FontSize="20" />
             <Viewbox Height="20" VerticalAlignment="Center" Margin="10,0,0,0">
-                <TextBlock Text="{DynamicResource Instruction_Select}" Foreground="White"  />
+                <TextBlock Text="{DynamicResource Instruction_Select}"  />
             </Viewbox>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="0,0,20,0">
             <ui:FontIcon Glyph="&#xF094;" FontSize="20" />
             <Viewbox Height="20" VerticalAlignment="Center" Margin="10,0,0,0">
-                <TextBlock Text="{DynamicResource Instruction_Back}" Foreground="White"  />
+                <TextBlock Text="{DynamicResource Instruction_Back}"  />
             </Viewbox>
         </StackPanel>
     </StackPanel>

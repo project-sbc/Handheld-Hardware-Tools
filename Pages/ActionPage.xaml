@@ -9,7 +9,7 @@
                         mc:Ignorable="d"
                         Title="HomePage"
                                    xmlns:uc="clr-namespace:Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls" Loaded="ControllerWrapPanelPage_Loaded"
-              Background="{DynamicResource PageBackground}"                   >
+                                 >
 
     <Grid >
         <Grid.RowDefinitions>

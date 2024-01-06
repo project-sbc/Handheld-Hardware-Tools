@@ -10,7 +10,7 @@
         xmlns:uc="clr-namespace:Everything_Handhelds_Tool.UserControls.SubPageUserControls.WifiAPSettingsPageUserControls"
       Title="HomePage"     
                  xmlns:UpperCase="clr-namespace:Everything_Handhelds_Tool.Classes.Converters"
-                        Background="{DynamicResource PageBackground}" 
+                       
                         >
 
     <Grid >
@@ -27,7 +27,7 @@
                 <TextBlock VerticalAlignment="Bottom"  Text="{DynamicResource Usercontrol_LANWifiSettings}" />
 
             </Viewbox>
-            <Button x:Name="Back" Click="Back_Click"  Margin="4" >
+            <Button x:Name="Back" Click="Back_Click"  Margin="4" Background="{DynamicResource ControlsBackground}">
                 <Viewbox     >
                     <TextBlock  Text="{DynamicResource Usercontrol_Back}" />
                 </Viewbox>

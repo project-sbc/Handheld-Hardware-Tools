@@ -15,20 +15,20 @@
         <StackPanel Orientation="Horizontal" Margin="0,0,20,0">
             <ui:FontIcon Glyph="&#xF093;" FontSize="20" />
             <Viewbox Height="20" VerticalAlignment="Center" Margin="10,0,0,0">
-                <TextBlock Text="{DynamicResource Instruction_Toggle}" Foreground="White"  />
+                <TextBlock Text="{DynamicResource Instruction_Toggle}"  />
             </Viewbox>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="0,0,20,0">
             <ui:FontIcon Glyph="&#xF094;" FontSize="20" />
             <Viewbox Height="20" VerticalAlignment="Center" Margin="10,0,0,0">
-                <TextBlock Text="{DynamicResource Instruction_Back}" Foreground="White"  />
+                <TextBlock Text="{DynamicResource Instruction_Back}" />
             </Viewbox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,0,20,0">
             <ui:FontIcon Glyph="&#xF10E;" FontSize="20" />
             <Viewbox Height="20" VerticalAlignment="Center" Margin="10,0,0,0">
-                <TextBlock Text="{DynamicResource Instruction_UpDown}" Foreground="White"  />
+                <TextBlock Text="{DynamicResource Instruction_UpDown}" />
             </Viewbox>
         </StackPanel>
     </StackPanel>
