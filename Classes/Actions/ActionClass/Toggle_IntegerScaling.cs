@@ -14,6 +14,19 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
             actionName = "Toggle_IntegerScaling";
        
         }
+
+        public override bool UsableOnDevice()
+        {
+            try
+            {
+                return ADLX_Management.HasIntegerScalingSupport();
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public override void OnActivate()
         {
             //calls main window toggle window

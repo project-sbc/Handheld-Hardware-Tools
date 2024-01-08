@@ -34,6 +34,8 @@ namespace Everything_Handhelds_Tool.Classes.Actions
     public class Action
     {
         //action name is programming specific, display name will be generated at runtime based on language selected
+
+        
         public int ID = -1;
         public string actionName;
         public bool displayInActionPanel;
@@ -44,7 +46,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
         //This routine is going to be the onclick event
         public virtual void OnActivate() { }
 
-
+        public virtual bool UsableOnDevice() { return true; }
        
     }
 

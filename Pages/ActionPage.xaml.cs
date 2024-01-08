@@ -46,7 +46,7 @@ namespace Everything_Handhelds_Tool.Pages
 
             foreach (Classes.Actions.Action action in actions)
             {
-                if (action.displayInActionPanel)
+                if (action.displayInActionPanel && action.UsableOnDevice())
                 {
                     wrapPanel.Children.Add(new Action_UserControl(action));
                 }
