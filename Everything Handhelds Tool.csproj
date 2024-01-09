@@ -172,6 +172,8 @@
   <ItemGroup>
     <PackageReference Include="AudioSwitcher.AudioApi.CoreAudio" Version="3.0.3" />
     <PackageReference Include="InputSimulator" Version="1.0.4" />
+    <PackageReference Include="MahApps.Metro.IconPacks.FontAwesome" Version="4.11.0" />
+    <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
     <PackageReference Include="Nefarius.Utilities.DeviceManagement" Version="3.17.406" />
     <PackageReference Include="PowerManagerAPI" Version="0.2.0-CI-20200413-015121" />
     <PackageReference Include="SharpDX.XInput" Version="4.2.0" />
@@ -197,6 +199,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="ControllerInstructionPages\SelectHide.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\HomePageUserControls\ActiveCores_Slider.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UserControls\HomePageUserControls\Volume_Slider.xaml.cs">

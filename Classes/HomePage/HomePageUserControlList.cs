@@ -57,6 +57,8 @@ namespace Everything_Handhelds_Tool.Classes.HomePage
             this.Add("Usercontrol_Brightness", true);
             this.Add("Usercontrol_Volume", true);
             this.Add("Usercontrol_PowerPlan", true);
+            this.Add("Usercontrol_EPP", true);
+            this.Add("Usercontrol_ActiveCores", true);
 
         }
 

@@ -78,12 +78,28 @@ namespace Everything_Handhelds_Tool.Classes
             Run_CLI.Instance.RunCommand(" /S scheme_current", false, "C:\\windows\\system32\\powercfg.exe", 1000);
         }
 
+        public void UnhidePowerCfgSettings()
+        {
+            //unhides epp, active core, etc
+            Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR PROCFREQMAX -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 1000);
+            Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR PROCTHROTTLEMAX -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 1000);
+            Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR CPMAXCORES -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 1000);
+            Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR CPMINCORES -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 1000);
+            Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR PERFEPP -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 1000);
+            Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR PERFEPP1 -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 1000);
+
+        }
+
         #endregion
 
         #region coreparking
         private int activeCores = 1;
         public int maxNumberCores = new ManagementObjectSearcher("Select * from Win32_Processor").Get().Cast<ManagementBaseObject>().Sum(item => int.Parse(item["NumberOfCores"].ToString()));
 
+        public int ReturnMaxNumberActiveCores()
+        {
+            return maxNumberCores;
+        }
 
         public int ReadAndReturnActiveCores()
         {

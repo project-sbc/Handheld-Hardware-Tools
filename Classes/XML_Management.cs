@@ -142,7 +142,7 @@ namespace Everything_Handhelds_Tool.Classes
                         case "HomePageUserControlList":
                             xmls = new XmlSerializer(typeof(HomePageUserControlList));
                             objObject = ((HomePageUserControlList)xmls.Deserialize(sr));
-                            ((HomePageUserControlList)objObject).UpdateList();
+                        
                             break;
                         case "Settings":
                             xmls = new XmlSerializer(typeof(Settings));

@@ -29,6 +29,10 @@
     <system:String x:Key="Usercontrol_PowerPlan">Power Plan</system:String>
 
 
+    <system:String x:Key="Usercontrol_EPP">EPP</system:String>
+    <system:String x:Key="Usercontrol_FPSLimit">FPS Limit</system:String>
+    <system:String x:Key="Usercontrol_ActiveCores">Active CPU Cores</system:String>
+
     <!-- these are the power plan strings used on the homepage control to select the power plan !-->
     <system:String x:Key="Usercontrol_PowerPlanHighPerformance">High Performance</system:String>
     <system:String x:Key="Usercontrol_PowerPlanBalanced">Balanced</system:String>
@@ -136,9 +140,7 @@
     <system:String x:Key="Usercontrol_Resolution">Resolution</system:String>
     <system:String x:Key="Usercontrol_RefreshRate">Refresh Rate</system:String>
 
-    <system:String x:Key="Usercontrol_EPP">EPP</system:String>
-    <system:String x:Key="Usercontrol_FPSLimit">FPS Limit</system:String>
-    <system:String x:Key="Usercontrol_ActiveCores">Active CPU Cores</system:String>
+
  
     <system:String x:Key="Usercontrol_GPUCLK">GPU Clock</system:String>
     <system:String x:Key="Usercontrol_HotKeyAction">Action</system:String>

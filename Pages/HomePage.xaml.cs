@@ -38,7 +38,7 @@ namespace Everything_Handhelds_Tool.Pages
         {
             //Get the XML list from the UserConfiguration folder for what controls go on the home page
             HomePageUserControlList chpl = (HomePageUserControlList)XML_Management.Instance.LoadXML("HomePageUserControlList");
-
+            chpl.UpdateList();
             //loop through and add the usercontrols
             foreach (HomePageItem hpi in chpl)
             {
@@ -75,6 +75,10 @@ namespace Everything_Handhelds_Tool.Pages
                     return new Volume_Slider();
                 case "Usercontrol_PowerPlan":
                     return new PowerPlan_Combobox();
+                case "Usercontrol_EPP":
+                    return new EPP_Slider();
+                case "Usercontrol_ActiveCores":
+                    return new ActiveCores_Slider();
                 default:
                     return null;
             }
