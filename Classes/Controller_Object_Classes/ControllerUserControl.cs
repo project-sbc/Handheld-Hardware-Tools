@@ -388,6 +388,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                     ControlChangeValueHandler();
                     break;
                 case "B":
+                    ControlChangeValueHandler();
                     ReturnControlToPage();
                     break;
 

@@ -9,8 +9,8 @@
     <SolidColorBrush x:Key="MainWindowBackground" Color="Transparent"  />
     <SolidColorBrush x:Key="PageBackground" Color="#0FFFFFFF"  />
     <SolidColorBrush x:Key="CardBackground" Color="Transparent"  />
-    <SolidColorBrush x:Key="HighlightCardBorder" Color="Transparent"  />
-    <SolidColorBrush x:Key="SelectedCardBorder" Color="Transparent"  />
+    <SolidColorBrush x:Key="HighlightCardBorder" Color="Gray"  />
+    <SolidColorBrush x:Key="SelectedCardBorder" Color="White"  />
     <SolidColorBrush x:Key="FontIconColor" Color="White"  />
     <SolidColorBrush x:Key="HighlightedSideMenuBackground" Color="Gray"  />
     <SolidColorBrush x:Key="ControlsBackground" Color="Transparent"  />

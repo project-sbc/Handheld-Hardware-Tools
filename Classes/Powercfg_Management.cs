@@ -171,7 +171,15 @@ namespace Everything_Handhelds_Tool.Classes
             ReadMaxCPUClock();
             ReadTurboEnabled();
             if (turboEnabled && maxCPUClock == 0) { return true; }
-            else { return false; }
+            else 
+            { 
+                if (maxCPUClock != 0 && !turboEnabled)
+                {
+                    //fix powercfg, if max cpu is set then we dont need maxthrottleproc set to less than 100%
+                    PowercfgChangeValueHandler("100", "PROCTHROTTLEMAX");
+                }
+                return false; 
+            }
         }
 
         public int ReadAndReturnMaxCPUClock()
@@ -179,7 +187,14 @@ namespace Everything_Handhelds_Tool.Classes
             ReadMaxCPUClock();
             return maxCPUClock;
         }
-
+        public int ReturnMaxCPUClock()
+        {
+            return maxCPUClock;
+        }
+        public bool ReturnMTurboEnabled()
+        {
+            return turboEnabled;
+        }
         private void ReadMaxCPUClock()
         {
             string result = Run_CLI.Instance.RunCommand(" -Q SCHEME_CURRENT sub_processor PROCFREQMAX", true, "C:\\windows\\system32\\powercfg.exe", 1000).Trim();

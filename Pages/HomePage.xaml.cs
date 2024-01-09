@@ -79,6 +79,8 @@ namespace Everything_Handhelds_Tool.Pages
                     return new EPP_Slider();
                 case "Usercontrol_ActiveCores":
                     return new ActiveCores_Slider();
+                case "Usercontrol_MaxCPUClock":
+                    return new MaxCPU_Slider();
                 default:
                     return null;
             }
