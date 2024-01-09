@@ -46,6 +46,7 @@ namespace Everything_Handhelds_Tool.Pages
 
             foreach (Classes.Actions.Action action in actions)
             {
+                //check if dispaly in action panel is enabled and the device supports the action 
                 if (action.displayInActionPanel && action.UsableOnDevice())
                 {
                     wrapPanel.Children.Add(new Action_UserControl(action));
