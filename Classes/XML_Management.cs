@@ -1,5 +1,6 @@
 ﻿using Everything_Handhelds_Tool.Classes.Actions;
 using Everything_Handhelds_Tool.Classes.HomePage;
+using Everything_Handhelds_Tool.Classes.Profiles;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -55,6 +56,9 @@ namespace Everything_Handhelds_Tool.Classes
                 case "ActionList":
                     folderFileName = "UserConfiguration\\Actions\\Actions.xml";
                     break;
+                case "ProfileList":
+                    folderFileName = "UserConfiguration\\Profiles\\Profiles.xml";
+                    break;
             }
 
 
@@ -99,7 +103,13 @@ namespace Everything_Handhelds_Tool.Classes
                         xmls.Serialize(sw, objAL);
                         objCM = null;
                         break;
-                        
+                    case "ProfileList":
+                        xmls = new XmlSerializer(typeof(ProfileList));
+                        ProfileList objPL = (ProfileList)objClass;
+                        xmls.Serialize(sw, objPL);
+                        objCM = null;
+                        break;
+
                 }
                 sw.Dispose();
                 xmls = null;
@@ -127,6 +137,9 @@ namespace Everything_Handhelds_Tool.Classes
                 case "ActionList":
                     filePath = "UserConfiguration\\Actions\\Actions.xml";
                     break;
+                case "ProfileList":
+                    filePath = "UserConfiguration\\Profiles\\Profiles.xml";
+                    break;
             }
 
             object objObject = null;
@@ -152,6 +165,10 @@ namespace Everything_Handhelds_Tool.Classes
                             xmls = new XmlSerializer(typeof(ActionList));
                             objObject = ((ActionList)xmls.Deserialize(sr));
                             break;
+                        case "ProfileList":
+                            xmls = new XmlSerializer(typeof(Profile));
+                            objObject = ((ProfileList)xmls.Deserialize(sr));
+                            break;
                     }
 
                     sr.Dispose();
@@ -173,8 +190,11 @@ namespace Everything_Handhelds_Tool.Classes
                     case "ActionList":
                         objObject = new DefaultActionList();
                         break;
+                    case "ProfileList":
+                        objObject = new ProfileList();
+                        break;
 
-                        
+
                 }
             }
             return objObject;
