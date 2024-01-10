@@ -24,6 +24,7 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
     {
 
         private bool dragStarted = false;
+    
         public Brightness_Slider()
         {
             InitializeComponent();
@@ -34,10 +35,30 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
             //main control
             mainControl = slider;
 
-            //set control
-           ConfigureControl();
+           
+            if (useableOnDevice)
+            {
+                ConfigureControl();
+            }
 
         }
+
+        public override bool UseableOnThisDevice()
+        {
+            try
+            {
+                Brightness_Management.Instance.ReturnBrightness();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log_Writer.Instance.writeLog(ex.Message, "Brightness_Slider usability");
+                MessageBox.Show("Error writing to log file. " + ex.Message);
+                return false;
+            }
+      
+        }
+
         public override void ChangeMainWindowControllerInstructionPage()
         {
             General_Functions.ChangeControllerInstructionPage("ChangeBack");

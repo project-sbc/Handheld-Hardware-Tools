@@ -1,5 +1,7 @@
-﻿using Everything_Handhelds_Tool.Classes;
+﻿using AudioSwitcher.AudioApi;
+using Everything_Handhelds_Tool.Classes;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
+using Everything_Handhelds_Tool.Classes.Devices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,100 +38,22 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
         }
         private void ConfigureControl()
         {
-            bool turboEnabled = Powercfg_Management.Instance.ReadAndReturnCPUClockStatus();
-            if (turboEnabled)
+            int maxCPU = Powercfg_Management.Instance.ReturnMaxCPUClock();
+            if (maxCPU > 0)
             {
-                toggleSwitch.IsChecked = false;
-                toggleSwitch2.IsChecked = false;
+                toggleSwitch.IsChecked = true;
+
+                control.Value = (double)Math.Round((decimal)maxCPU / 100, 0) * 100;
             }
             else
             {
-                int maxCPU = Powercfg_Management.Instance.ReturnMaxCPUClock();
-                if (maxCPU > 0)
-                {
-                    toggleSwitch.IsChecked = true;
-                    toggleSwitch2.IsChecked = true;
-                    control.Value = (double)Math.Round((decimal)maxCPU/100, 0)*100;
-                }
-                else
-                {
-                    toggleSwitch.IsChecked = true;
-                    toggleSwitch2.IsChecked = false;
-                }
+                toggleSwitch.IsChecked = false;
+     
             }
-            
+
         }
 
-        public override void HandleControllerInput(string action)
-        {
-            if (mainControl != null)
-            {
-
-
-                if (toggleSwitchControl != null)
-                {
-                    ToggleSwitch tS = toggleSwitchControl as ToggleSwitch;
-                    if (action == "X")
-                    {
-                        tS.IsChecked = !tS.IsChecked;
-                        ChangeMainWindowControllerInstructionPage();
-                    }
-                    else
-                    {
-
-
-                        if (tS.IsChecked == true )
-                        {
-                            if (toggleSwitch2.IsChecked == true )
-                            {
-                                HandleSliderInput(action);
-                            }
-                            else
-                            {
-                                if (action == "A")
-                                {
-                                    toggleSwitch2.IsChecked = !toggleSwitch2.IsChecked;
-                                }
-                            }
-
-                            
-                        }
-                        else
-                        {
-                            if (action == "B")
-                            {
-                                ReturnControlToPage();
-                            }
-                        }
-                    }
-                }
-                
-            }
-        }
-
-        private void HandleSliderInput(string action)
-        {
-            Slider slider = mainControl as Slider;
-            switch (action)
-            {
-                case "DPadRight":
-                    slider.Value = slider.Value + slider.Interval;
-                    break;
-                case "DPadLeft":
-                    slider.Value = slider.Value - slider.Interval;
-                    break;
-                case "A":
-                    toggleSwitch2.IsChecked = !toggleSwitch2.IsChecked;
-                    break;
-                case "B":
-                    ControlChangeValueHandler();
-                    ReturnControlToPage();
-                    break;
-
-                default: break;
-            }
-        }
-
+    
 
         private void control_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
@@ -164,7 +88,7 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
             }
         }
 
-        private void handleToggleChange(int switchNumber)
+        private void handleToggleChange()
         {
             //when this toggle is flipped, we will change whether tpd is synced or not in the settings. This setting is checked everytime 
             //tdp is changed
@@ -174,60 +98,36 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
             {
                 return;
             }
-            if (switchNumber == 1)
+            if (toggleSwitch.IsChecked == true)
             {
-                if (toggleSwitch.IsChecked == true)
+                Classes.Devices.Device device = (Classes.Devices.Device)Local_Object.Instance.GetMainWindowDevice();
+                if (device.maxNonTurboCPUFrequnecy > 0)
                 {
-                    if (Powercfg_Management.Instance.ReadAndReturnMaxCPUClock() > 0 && toggleSwitch2.IsChecked == false)
-                    {
-                        toggleSwitch2.IsChecked = true;
-                    }
-                  
-                    Powercfg_Management.Instance.ChangeTurboEnabledState(false);
-
+                    Powercfg_Management.Instance.ChangeMaxCPUClock(device.maxNonTurboCPUFrequnecy);
+                    control.Value = device.maxNonTurboCPUFrequnecy;
                 }
                 else
                 {
-                    Powercfg_Management.Instance.ChangeTurboEnabledState(false);
+                    control.Value = control.Maximum;
                 }
+
             }
             else
             {
-                //For toggleSwitch2
-                if (toggleSwitch2.IsChecked == false)
-                {
-                    Powercfg_Management.Instance.ChangeTurboEnabledState(true);
-
-                }
+                Powercfg_Management.Instance.ChangeMaxCPUClock(0);
             }
-         
-           
+
+
         }
         private void toggleSwitch_Checked(object sender, RoutedEventArgs e)
         {
-            ToggleSwitch ts = (ToggleSwitch)sender;
-            if (ts.Name == "toggleSwitch")
-            {
-                handleToggleChange(1);
-            }
-            else
-            {
-                handleToggleChange(2);
-            }
-           
+            handleToggleChange();
+
         }
 
         private void toggleSwitch_Unchecked(object sender, RoutedEventArgs e)
         {
-            ToggleSwitch ts = (ToggleSwitch)sender;
-            if (ts.Name == "toggleSwitch")
-            {
-                handleToggleChange(1);
-            }
-            else
-            {
-                handleToggleChange(2);
-            }
+            handleToggleChange();
         }
     }
 }

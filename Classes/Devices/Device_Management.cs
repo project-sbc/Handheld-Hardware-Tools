@@ -18,7 +18,8 @@ namespace Everything_Handhelds_Tool.Classes.Devices
             string manufacturer = motherboard_Info.Manufacturer().ToUpper();
             string product = motherboard_Info.Product().ToUpper();
             string cpuType = motherboard_Info.CPUType();
-           
+            int maxNonTurboCPUFrequency = motherboard_Info.MaxNonTurboCPUFrequency();
+
             Device handheldDevice = null;
 
             switch (manufacturer)
@@ -125,7 +126,8 @@ namespace Everything_Handhelds_Tool.Classes.Devices
 
             handheldDevice.cpuType = cpuType;
             handheldDevice.mchBar = motherboard_Info.MCHBar();
-            handheldDevice.cpuName = motherboard_Info.CPUName(); 
+            handheldDevice.cpuName = motherboard_Info.CPUName();
+            handheldDevice.maxNonTurboCPUFrequnecy = maxNonTurboCPUFrequency;
 
             device = handheldDevice;
         }

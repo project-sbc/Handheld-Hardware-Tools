@@ -23,6 +23,7 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
     public partial class Volume_Slider : ControllerUserControl
     {
         private bool dragStarted = false;
+      
         public Volume_Slider()
         {
             InitializeComponent();
@@ -31,7 +32,12 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
             mainControl = control;
             toggleSwitchControl = toggleSwitch;
             //set control
-            ConfigureControl();
+            if (useableOnDevice)
+            {
+                ConfigureControl();
+            }
+         
+
         }
         private void ConfigureControl()
         {
@@ -47,6 +53,22 @@ namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
             {
                 this.Visibility = Visibility.Collapsed;
             }
+        }
+
+        public override bool UseableOnThisDevice()
+        {
+            try
+            {
+                Brightness_Management.Instance.ReturnBrightness();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log_Writer.Instance.writeLog(ex.Message, "Brightness_Slider usability");
+                MessageBox.Show("Error writing to log file. " + ex.Message);
+                return false;
+            }
+
         }
 
         private void control_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)

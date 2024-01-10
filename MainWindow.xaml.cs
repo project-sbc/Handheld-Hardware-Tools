@@ -15,6 +15,9 @@ using Everything_Handhelds_Tool.Classes.Wifi_AP;
 using System.IO;
 using Everything_Handhelds_Tool.ControllerInputPages;
 using Wpf.Ui;
+using System.Windows.Markup;
+using System.Xml;
+
 
 namespace Everything_Handhelds_Tool
 {
@@ -35,7 +38,9 @@ namespace Everything_Handhelds_Tool
             //run start up
             InitializeRoutines();
 
+            FileStream xamlFile = new FileStream("Styles\\NewTheme.xaml", FileMode.Open, FileAccess.Read);
 
+            Application.Current.Resources.MergedDictionaries.Add(((ResourceDictionary)XamlReader.Load(xamlFile)));
 
         }
         #region Set up
@@ -252,7 +257,8 @@ namespace Everything_Handhelds_Tool
                 ControllerPage a = (ControllerPage)frame.Content;
                 a.HandleControllerInput("Highlight First Control");
             }
-            
+                      
+           
         }
 
         private void HandleControllerConnectionChanged(object sender, controllerConnectionChangedEventArgs e)

@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:system="clr-namespace:System;assembly=netstandard">
+
+   
+   
+  
+
+    <SolidColorBrush x:Key="MainWindowBackground" Color="Blue"  />
+    <SolidColorBrush x:Key="PageBackground" Color="#0FFFFFFF"  />
+    <SolidColorBrush x:Key="CardBackground" Color="Transparent"  />
+    <SolidColorBrush x:Key="HighlightCardBorder" Color="Red"  />
+    <SolidColorBrush x:Key="SelectedCardBorder" Color="White"  />
+    <SolidColorBrush x:Key="FontIconColor" Color="Tan"  />
+    <SolidColorBrush x:Key="HighlightedSideMenuBackground" Color="Gray"  />
+    <SolidColorBrush x:Key="ControlsBackground" Color="Transparent"  />
+     
+    <BitmapImage x:Key="MainWindowLogo" UriSource="/EHT LOGO.PNG" />
+
+
+</ResourceDictionary>

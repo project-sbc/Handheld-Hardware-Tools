@@ -31,7 +31,31 @@ namespace Everything_Handhelds_Tool.Classes.Motherboard_Info
             }
         }
 
+        public int MaxNonTurboCPUFrequency()
+        {
+            try
+            {
+                ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Processor");
 
+                foreach (ManagementObject obj in searcher.Get())
+                {
+                    // The MaxClockSpeed property represents the maximum frequency of the processor in MHz.
+                    uint value = (uint)obj["MaxClockSpeed"];
+
+                    //make sure it rounds to nearest 100
+                    int finalValueRounded = (int)(Math.Round((decimal)value,0)/100)*100;
+
+                    return (int)finalValueRounded;
+   
+                }
+                return -1;
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+           
+        }
 
         public string Product()
         {

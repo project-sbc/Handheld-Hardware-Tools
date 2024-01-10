@@ -58,6 +58,7 @@
 
   <ItemGroup>
     <Page Remove="Resources\AppStyle\AppStyle.xaml" />
+    <Page Remove="Styles\NewTheme.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -165,6 +166,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\WifiDirect\WiFiDirectLegacyAP.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Styles\NewTheme.xaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

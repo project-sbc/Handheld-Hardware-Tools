@@ -47,7 +47,7 @@ namespace Everything_Handhelds_Tool.Pages
                     ControllerUserControl controllerUserControl = ReturnUserControlByName(hpi.UserControlName);
                     if (controllerUserControl != null)
                     {
-                        if (controllerUserControl.Visibility == System.Windows.Visibility.Visible)
+                        if (controllerUserControl.Visibility == System.Windows.Visibility.Visible && controllerUserControl.useableOnDevice)
                         {
                             stackPanel.Children.Add(controllerUserControl);
                             userControls.Add(controllerUserControl);

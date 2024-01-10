@@ -39,6 +39,8 @@ namespace Everything_Handhelds_Tool.Classes
         public bool volumeMuted = true;
         public bool microphoneMuted = true;
 
+
+
         public int ReadAndReturnVolume()
         {
             GetMasterVolume();

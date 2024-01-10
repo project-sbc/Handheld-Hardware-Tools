@@ -15,8 +15,13 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
         public Object borderControl;
         public Object mainControl;
         public Object toggleSwitchControl;
+        public bool useableOnDevice;
+        
+        public ControllerUserControl()
+        {
+            useableOnDevice = UseableOnThisDevice();
+        }
 
-      
         public virtual void ControlChangeValueHandler() { }
 
         public virtual void ChangeMainWindowControllerInstructionPage() { }
@@ -64,6 +69,10 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
             
         }
 
+        public virtual bool UseableOnThisDevice()
+        {
+            return true;
+        }
 
         #region handling controller input
         public virtual void HandleControllerInput(string action)
