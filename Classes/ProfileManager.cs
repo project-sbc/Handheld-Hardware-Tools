@@ -16,7 +16,7 @@ namespace Everything_Handhelds_Tool.Classes
     {
         public Dictionary<string, Profile> profileDictionary = new Dictionary<string, Profile>();
         private string currentPowerStatus;
-
+        public Profile activeProfile = null;
         public bool suspendUpdateProfileToExeDictionary
         {
             get
@@ -43,11 +43,12 @@ namespace Everything_Handhelds_Tool.Classes
 
         }
 
-        private void SystemEvents_PowerModeChanged(object sender, Microsoft.Win32.PowerModeChangedEventArgs e)
+        private void HandlePowerStatusChanged()
         {
-            if (e.Mode == Microsoft.Win32.PowerModes.StatusChange)
+            //simple code, if mainwindow gets the poewr changed event (because of the status bar) it will just call this
+            if (activeProfile != null)
             {
-                // Check what the status is and act accordingly
+                activeProfile.ApplyProfile();
             }
         }
 
