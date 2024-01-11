@@ -14,7 +14,7 @@ namespace Everything_Handhelds_Tool.Classes.Profiles
         {
             XML_Management.Instance.SaveXML("ProfileList", this);
         }
-        public Dictionary<string, Profile> ReturnProcessExeList()
+        public Dictionary<string, Profile> ReturnProcessExeDictionary()
         {
             Dictionary<string, Profile> profileExe = new Dictionary<string, Profile>();
 

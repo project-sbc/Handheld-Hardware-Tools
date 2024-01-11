@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Everything_Handhelds_Tool.Classes.Profiles.ProfileActions
+namespace Everything_Handhelds_Tool.Classes.Profiles.ProfileActions.ProfileActionClass
 {
+
     public class SetTDP : ProfileAction
     {
         public override void ExecuteAction()
@@ -15,7 +16,7 @@ namespace Everything_Handhelds_Tool.Classes.Profiles.ProfileActions
             {
                 TDP_Management.Instance.ChangeSustainedBoostTDP(tdp, tdp);
             }
-            
+
         }
     }
 }
