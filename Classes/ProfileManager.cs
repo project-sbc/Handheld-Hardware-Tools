@@ -1,8 +1,10 @@
 ﻿using Everything_Handhelds_Tool.Classes.Actions;
 using Everything_Handhelds_Tool.Classes.Profiles;
+using Microsoft.Win32;
 using SharpDX.XInput;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -13,7 +15,7 @@ namespace Everything_Handhelds_Tool.Classes
     public class ProfileManager
     {
         public Dictionary<string, Profile> profileDictionary = new Dictionary<string, Profile>();
-
+        private string currentPowerStatus;
 
         public bool suspendUpdateProfileToExeDictionary
         {
@@ -37,10 +39,43 @@ namespace Everything_Handhelds_Tool.Classes
 
 
             thread.Start();
+            
+
         }
 
+        private void SystemEvents_PowerModeChanged(object sender, Microsoft.Win32.PowerModeChangedEventArgs e)
+        {
+            if (e.Mode == Microsoft.Win32.PowerModes.StatusChange)
+            {
+                // Check what the status is and act accordingly
+            }
+        }
+
+        private Profile LoopThroughDictionaryForActiveExe()
+        {
+            //this is the main code to find if a exe is running from the dictionary
+            if (profileDictionary != null)
+            {
+                if (profileDictionary.Count > 0)
+                {
+                    Process[] pList = Process.GetProcesses();
+                    foreach (KeyValuePair<string, Profile> row in profileDictionary)
+                    {
+                        string processName = row.Key;
+
+                        if (pList.Single(c => c.ProcessName.ToString() == processName) != null)
+                        {
+                            return row.Value;
+                        }
+                    }
 
 
+                }
+            }
+            //if no process found exit with null
+            return null;
+
+        }
 
         private async void MainProfileMonitorThreadLoop()
         {
@@ -52,23 +87,13 @@ namespace Everything_Handhelds_Tool.Classes
 
                 while (this != null)
                 {
+                    //this is going to check a few things
+
 
 
                     if (!suspendUpdateProfileToExeDictionary)
                     {
-                        if (profileDictionary != null)
-                        {
-                            if (profileDictionary.Count > 0)
-                            {
-
-                                foreach(KeyValuePair<string,Profile> row in profileDictionary)
-                                {
-
-                                }
-
-
-                            }
-                        }
+                        
                        
                     }
                     else

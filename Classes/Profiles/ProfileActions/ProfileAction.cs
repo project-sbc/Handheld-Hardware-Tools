@@ -8,6 +8,8 @@ namespace Everything_Handhelds_Tool.Classes.Profiles.ProfileActions
     public class ProfileAction
     {
         public string Value;
-        public virtual void ExecuteAction() {}
+        public bool ChangeWithPowerState = false;
+        public string OnBatteryValue;
+        public virtual void ExecuteAction(string powerStatus) {}
     }
 }

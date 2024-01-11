@@ -79,7 +79,7 @@ namespace Everything_Handhelds_Tool
             //subscribe to controller connection changed event
             controllerInput.controllerConnectionChangedEvent.controllerConnectionChangedEvent += HandleControllerConnectionChanged;
         }
-      
+        
 
 
         private void SetAppLocationHeight()
