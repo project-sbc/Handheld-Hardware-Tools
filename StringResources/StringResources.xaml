@@ -27,6 +27,7 @@
     <system:String x:Key="Usercontrol_ActionDisplayInPanel">Display In Panel</system:String>
     <system:String x:Key="Usercontrol_ClickToSetHotKey">Click Button To Set Hotkey</system:String>
     <system:String x:Key="Usercontrol_PowerPlan">Power Plan</system:String>
+    <system:String x:Key="Usercontrol_IntelTDPType">Intel TDP Type</system:String>
 
 
     <system:String x:Key="Usercontrol_EPP">EPP</system:String>

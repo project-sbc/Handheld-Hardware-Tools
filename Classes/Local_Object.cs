@@ -37,21 +37,32 @@ namespace Everything_Handhelds_Tool.Classes
             }
         }
 
+        
 
 
         public Page GetMainWindowFramePage()
         {
-           return (Page)((MainWindow)Application.Current.MainWindow).frame.Content;
+            return (Page)((MainWindow)Application.Current.MainWindow).frame.Content;
+        }
+
+        public string DeviceCPUType()
+        {
+            string cpuType = "";
+            cpuType = ((MainWindow)Application.Current.MainWindow).device.cpuType;
+            return cpuType;
         }
 
         public Device GetMainWindowDevice()
         {
-           return ((MainWindow)Application.Current.MainWindow).device;
+           
+            return null;
+           
         }
 
         public MainWindow GetMainWindow()
         {
             return ((MainWindow)Application.Current.MainWindow);
+
         }
 
 

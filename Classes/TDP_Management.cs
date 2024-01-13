@@ -46,7 +46,7 @@ namespace Everything_Handhelds_Tool.Classes
         private int tdpSustained = 15;
         private int tdpBoost = 15;
         private bool unableToReadTDPDevice = false;
-
+        public string cpuType;
 
         public int ReturnSustainedTDP()
         {
@@ -65,12 +65,12 @@ namespace Everything_Handhelds_Tool.Classes
         }
         private void ReadTDP(string type)
         {
-            Device device = Local_Object.Instance.GetMainWindowDevice();
-            if (device.cpuType == "AMD")
+           
+            if (cpuType == "AMD")
             {//always read both sustained and boost on AMD, its fast
                 ReadAMDTDP();
             }
-            if (device.cpuType == "Intel")
+            if (cpuType == "Intel")
             {
                 ReadIntelTDP(type);
             }
@@ -473,17 +473,18 @@ namespace Everything_Handhelds_Tool.Classes
         private void ChangeTDP(int tdp1, int tdp2)
         {
             ///keep below for the moment
-            Device device = Local_Object.Instance.GetMainWindowDevice();
-
+           
+          
 
             //set the values now
             tdpBoost = tdp1;
             tdpSustained = tdp2;
-            if (device.cpuType == "AMD")
+            if (cpuType == "AMD")
             {
-                Task.Run(()=>ChangeAMDTDP(tdp1,tdp2));
+                ChangeAMDTDP(tdp1, tdp2);
+        
             }
-            if (device.cpuType == "Intel")
+            if (cpuType == "Intel")
             {
                ChangeIntelTDP(tdp1,tdp2);
             }

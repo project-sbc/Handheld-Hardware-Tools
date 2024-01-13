@@ -35,7 +35,7 @@
                 <uc:LANWifiSettings_Button/>
                 <uc:EditActionsSettings_Button/>
                 <uc:EditHomepageSettings_Button/>
-               
+                <uc:IntelTDPType_Combobox/>
             </StackPanel>
         </ScrollViewer>
        

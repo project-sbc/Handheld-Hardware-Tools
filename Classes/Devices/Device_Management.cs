@@ -125,6 +125,7 @@ namespace Everything_Handhelds_Tool.Classes.Devices
             }
 
             handheldDevice.cpuType = cpuType;
+            TDP_Management.Instance.cpuType = cpuType;
             handheldDevice.mchBar = motherboard_Info.MCHBar();
             handheldDevice.cpuName = motherboard_Info.CPUName();
             handheldDevice.maxNonTurboCPUFrequnecy = maxNonTurboCPUFrequency;
