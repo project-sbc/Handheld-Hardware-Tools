@@ -26,7 +26,7 @@
             <EventSetter Event="Click" Handler="Button_Click" />
             <Style.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5" />
+                    <Setter Property="CornerRadius" Value="10" />
                 </Style>
             </Style.Resources>
         </Style>

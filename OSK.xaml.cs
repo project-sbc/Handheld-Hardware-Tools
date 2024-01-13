@@ -31,6 +31,9 @@ namespace Everything_Handhelds_Tool
 
         ControllerInputOSK inputOSK = new ControllerInputOSK();
         Button currentHighlightButtonLeft;
+        int currentLeftIndex = -1;
+        int currentRightIndex = -1;
+
         Button currentHighlightButtonRight;
         private Dictionary<int, Button> keyboardIndexToButtonLeft = new Dictionary<int, Button>();
         private Dictionary<int, Button> keyboardIndexToButtonRight = new Dictionary<int, Button>();
@@ -156,13 +159,14 @@ namespace Everything_Handhelds_Tool
 
         private Dictionary<int, int> keyboardAngleToIndex = new Dictionary<int, int>()
         {
-           //old set up before i made the cardinals only 10 degrees wide {15, 0 }, {45 ,1}, {75, 2}, {105 , 3}, {135, 4}, {165, 5}, {195, 6}, {225, 7}, {255, 8}, {285, 9}, {315, 10}, {345, 11}, {360, 0}
-            {5, 0 }, {45 ,1}, {85, 2}, {95 , 3}, {135, 4}, {175, 5}, {185, 6}, {225, 7}, {265, 8}, {275, 9}, {315, 10}, {355, 11}, {360, 0}
+           //old set up before i made the cardinals only 10 degrees wide
+           {15, 0 }, {45 ,1}, {75, 2}, {105 , 3}, {135, 4}, {165, 5}, {195, 6}, {225, 7}, {255, 8}, {285, 9}, {315, 10}, {345, 11}, {360, 0}
+            // set up where cardinals are 10 degrees wide{5, 0 }, {45 ,1}, {85, 2}, {95 , 3}, {135, 4}, {175, 5}, {185, 6}, {225, 7}, {265, 8}, {275, 9}, {315, 10}, {355, 11}, {360, 0}
         };
 
 
 
-        private int ReturnButtonZoneIndex(double x, double y)
+        private int ReturnButtonZoneIndex(double x, double y, int previousIndex)
         {
             double radius = Math.Sqrt((x) * (x) + (y) * (y));
 
@@ -173,42 +177,76 @@ namespace Everything_Handhelds_Tool
             if (x >= 0 && y < 0) { angle = (4 + iAngle); }
             angle = (angle * 90);
 
-            int buttonIndex = 0;
-
-            if (radius < 2500) { buttonIndex = 12; }
-            else
+         
+            if (radius < 3500) { return 12; }
+            if (radius < 22000)
             {
-                if (radius < 22000)
+                if (angle <= 85 || angle >= 275) { return 14; }
+                else
                 {
-                    if (angle <= 85 || angle >= 275) { buttonIndex = 14; }
+                    if (angle >= 95 && angle <= 265)
+                    {
+                        return 13;
+                    }
                     else
                     {
-                        if (angle >= 95 && angle <= 265)
-                        {
-                            buttonIndex = 13;
-                        }
+                        if (angle < 95) { return 3; }
                         else
                         {
-                            if (angle < 95) { buttonIndex = 3; }
-                            else
-                            {
-                                buttonIndex = 9;
-                            }
-
+                            return 9;
                         }
-                    }
 
+                    }
+                }
+
+            }
+
+
+            //this section handles the outside circle angle
+            //i want to incorproate a hysterisis on the angle of 5-10 degrees
+            //in order to go to the next letter you need to go beyond the zone by 5-10 degrees so this section will cover
+            //handling the primary index
+            
+            //if the previous index = current index after looking it up, thats fine
+            //the tricky part is saying they DONT match and modifying the dictionary range by the 5-10 degrees
+
+            //lets start by finding the range of the previous index
+            //during initial the preivous index is -1 before it gets real value so lets if condition that out
+
+            if (previousIndex != -1 && previousIndex < 12)
+            {
+                //now lets look up the range of the first index
+                int upperRange = keyboardAngleToIndex.FirstOrDefault(x => x.Value == previousIndex).Key;
+
+                //since 0 index bridges the gap between 0 and 360 lets handle that one specially
+                if (previousIndex == 0)
+                {
+                    //hard code for the 0 index because of overlap on 0-360 area
+                    if (angle < upperRange + 5 || angle > 340)
+                    {
+                        return previousIndex;
+                    }
                 }
                 else
                 {
-                    foreach (KeyValuePair<int, int> keyValuePair in keyboardAngleToIndex)
+                    if (angle < upperRange + 5 && angle > upperRange - 35)
                     {
-                        if (angle <= keyValuePair.Key) { buttonIndex = keyValuePair.Value; break; }
+                        return previousIndex;
                     }
                 }
             }
 
-            return buttonIndex;
+            int newIndex = 0;
+            foreach (KeyValuePair<int, int> keyValuePair in keyboardAngleToIndex)
+            {
+                if (angle <= keyValuePair.Key) { newIndex = keyValuePair.Value; break; }
+            }
+
+            
+            
+
+            //return the new index as that is the only result left to return
+            return newIndex;
         }
 
         private void HighlightButton(Button button)
@@ -232,8 +270,10 @@ namespace Everything_Handhelds_Tool
         private void ButtonPressEvent_controllerJoystickEventOSK(object? sender, controllerJoystickEventArgsOSK e)
         {
             //left stick inputs first
-            int leftButtonIndex = ReturnButtonZoneIndex(e.lx, e.ly);
-            int rightButtonIndex = ReturnButtonZoneIndex(e.rx, e.ry);
+            int leftButtonIndex = ReturnButtonZoneIndex(e.lx, e.ly, currentLeftIndex);
+            int rightButtonIndex = ReturnButtonZoneIndex(e.rx, e.ry, currentRightIndex);
+            currentLeftIndex = leftButtonIndex;
+            currentRightIndex = rightButtonIndex;
 
 
             Button newHighlightButtonLeft = keyboardIndexToButtonLeft[leftButtonIndex];
