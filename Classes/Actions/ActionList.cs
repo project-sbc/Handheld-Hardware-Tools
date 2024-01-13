@@ -13,16 +13,18 @@ namespace Everything_Handhelds_Tool.Classes.Actions
     public class DefaultActionList:ActionList
     {
         public DefaultActionList() 
-        { 
-            Cycle_TDP cycle_TDP = new Cycle_TDP();
-            cycle_TDP.parameters = new List<string>();
-            cycle_TDP.parameters.Add("10");
-            cycle_TDP.parameters.Add("15");
-            cycle_TDP.parameters.Add("20");
-            cycle_TDP.ID = 0;
+        {
+            Cycle_TDP cycle_TDP = new Cycle_TDP() { parameters = new List<string> { "10", "15", "20" }, ID = 0, displayInActionPanel = true };
             this.Add(cycle_TDP);
 
-        
+            Toggle_QAM toggle_QAM = new Toggle_QAM() {ID = 1, displayInActionPanel = true };
+            this.Add(toggle_QAM);
+
+            Toggle_OSK toggle_OSK = new Toggle_OSK() { ID = 2, displayInActionPanel = true };
+            this.Add(toggle_OSK);
+
+            Toggle_WinOSK toggle_WOSK = new Toggle_WinOSK() { ID = 3, displayInActionPanel = true };
+            this.Add(toggle_WOSK);
         }
     }
 
