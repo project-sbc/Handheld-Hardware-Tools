@@ -4,6 +4,7 @@ using Microsoft.Win32;
 using SharpDX.XInput;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -17,15 +18,17 @@ namespace Everything_Handhelds_Tool.Classes
         public Dictionary<string, Profile> profileDictionary = new Dictionary<string, Profile>();
         private string currentPowerStatus;
         public Profile activeProfile = null;
+
+        private bool _suspendUpdateProfileToExeDictionary = false;
         public bool suspendUpdateProfileToExeDictionary
         {
             get
             {
-                return suspendUpdateProfileToExeDictionary;
+                return _suspendUpdateProfileToExeDictionary;
             }
             set
             {
-                suspendUpdateProfileToExeDictionary = value;
+                _suspendUpdateProfileToExeDictionary = value;
             }
         }
         public ProfileManager()
@@ -52,22 +55,34 @@ namespace Everything_Handhelds_Tool.Classes
             }
         }
 
-        private Profile LoopThroughDictionaryForActiveExe()
+        private bool CheckIfProcessIsRunning(string processName)
+        {
+            Process[] pList = Process.GetProcessesByName(processName);
+            if (pList != null)
+            {
+                if (pList.Length > 0) { return true; }
+            }
+            return false;
+        }
+
+        private Profile LoopThroughDictionaryForActiveExeProfile()
         {
             //this is the main code to find if a exe is running from the dictionary
             if (profileDictionary != null)
             {
                 if (profileDictionary.Count > 0)
                 {
-                    Process[] pList = Process.GetProcesses();
+                   
                     foreach (KeyValuePair<string, Profile> row in profileDictionary)
                     {
-                        string processName = row.Key;
+                        Process[] pList = Process.GetProcessesByName(row.Key);
 
-                        if (pList.Single(c => c.ProcessName.ToString() == processName) != null)
+                        if (pList.Length > 0)
                         {
                             return row.Value;
                         }
+
+
                     }
 
 
@@ -78,24 +93,53 @@ namespace Everything_Handhelds_Tool.Classes
 
         }
 
+        private bool CheckActiveProfileShouldContinueRunning()
+        {
+            if (activeProfile != null)
+            {
+                if (activeProfile.processExe != "")
+                {
+                    if (CheckIfProcessIsRunning(activeProfile.processExe))
+                    {
+                        return true;
+                    }
+                }
+
+
+            }
+            return false;
+        }
+
         private async void MainProfileMonitorThreadLoop()
         {
             try
             {
-                Log_Writer.Instance.writeLog("Starting ProfileThreadLoop");
+                //Log_Writer.Instance.writeLog("Starting ProfileThreadLoop");
                                
                 UpdateDictionary();
 
                 while (this != null)
                 {
-                    //this is going to check a few things
-
-
-
+                   
                     if (!suspendUpdateProfileToExeDictionary)
                     {
-                        
-                       
+                        //main thread here
+                     
+                        //Check to see if active profile should keep running, I used a ! to capture when it SHOULDNT keep running (i.e. exe is not running anymore) or if the active profile is null
+                        if (!CheckActiveProfileShouldContinueRunning())
+                        {
+                            //this function below gets a profile if an active exe is running, otherwise it will return null
+                            Profile newActiveProfile = LoopThroughDictionaryForActiveExeProfile();
+
+                            if (newActiveProfile != null)
+                            {
+                                //if not null, then apply it and make the active profile that new profile
+                                newActiveProfile.ApplyProfile();
+                                activeProfile = newActiveProfile;
+                            }
+
+                        }
+
                     }
                     else
                     {

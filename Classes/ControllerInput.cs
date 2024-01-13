@@ -24,7 +24,7 @@ namespace Everything_Handhelds_Tool.Classes
         public ControllerConnectionChangedEvent controllerConnectionChangedEvent = new ControllerConnectionChangedEvent();
         public Controller? controller;
 
-
+           
         //   wasControllerConnected is a previous state condition used to determine when the controller was connected to not connected
         // it helps fire the controllerConnectionChangedEvent
         private bool wasControllerConnected = false;
@@ -207,14 +207,20 @@ namespace Everything_Handhelds_Tool.Classes
                
                         if (suspendEventsForOSK)
                         {
-                            if (!Application.Current.Windows.OfType<OSK>().Any())
+                            
+                            Application.Current.Dispatcher.BeginInvoke(() =>
                             {
-                                suspendEventsForOSK = false;
-                            }
-                            else
-                            {
-                                await Task.Delay(100);
-                            }
+                                if (!Application.Current.Windows.OfType<OSK>().Any())
+                                {
+                                    suspendEventsForOSK = false;
+                                }
+
+                                
+                            });
+
+                            await Task.Delay(100);
+                            
+
                         }
                         if (suspendEventsForNewHotKeyList)
                         {

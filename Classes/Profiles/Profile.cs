@@ -12,7 +12,7 @@ namespace Everything_Handhelds_Tool.Classes.Profiles
     {
         public string processExe;
         public ProfileActionList actionList;
-
+        public string profileName;
 
         public virtual void ApplyProfile()
         {

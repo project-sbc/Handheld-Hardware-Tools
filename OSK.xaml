@@ -11,7 +11,10 @@
         Left="0"
         Topmost="True"
         Focusable="False"
-        Title="OSK" Height="220" Width="1000">
+        Title="OSK" Height="220" Width="1000"
+        Closed="Window_Closed"
+        >
+
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Background" Value="Gray" />
@@ -21,7 +24,13 @@
             <Setter Property="FontSize" Value="37" />
             <Setter Property="Opacity" Value=".7" />
             <EventSetter Event="Click" Handler="Button_Click" />
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Style.Resources>
         </Style>
+
     </Window.Resources>
    
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent">

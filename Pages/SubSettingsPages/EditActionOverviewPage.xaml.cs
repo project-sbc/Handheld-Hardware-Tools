@@ -42,7 +42,7 @@ namespace Everything_Handhelds_Tool.Pages
             {
                 AddNewAction();
             }
-
+           
 
         }
 
@@ -136,6 +136,10 @@ namespace Everything_Handhelds_Tool.Pages
 
             actions.SaveToXML();
 
+
+            //set controller input class to update controller hotkey dictionary
+            MainWindow mw = (MainWindow)Application.Current.MainWindow;
+            mw.controllerInput.publicSuspendEventsForNewHotKeyList = true;
         }
 
         public void HandleUserControlInputs(UserControl userControl, string action)

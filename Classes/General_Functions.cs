@@ -1,4 +1,5 @@
 ﻿using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
+using Everything_Handhelds_Tool.Pages;
 using SharpDX.XInput;
 using System;
 using System.Collections.Generic;
@@ -44,32 +45,30 @@ namespace Everything_Handhelds_Tool.Classes
             window.LoadPageInFrameExternal(uriLink);
         }
 
-        public static Uri TranslateIconToPageURI(SymbolRegular icon)
+        public static Page TranslateIconToPageURI(SymbolRegular icon)
         {
             //translates navigation menu symbol to corresponding URI for mainwindow navigation
-            Uri uri = new Uri("Pages\\HomePage.xaml", UriKind.Relative);
+            Page returnPage = null;
+
+          
             switch (icon)
             {
-                case SymbolRegular.Home16:
-                    //no need to explicitly say home, its the default
-                    break;
-
+      
                 case SymbolRegular.Power20:
-                    uri = new Uri("Pages\\PowerPage.xaml", UriKind.Relative);
+                    returnPage = new PowerPage();
                     break;
                 case SymbolRegular.Flash20:
-                    uri = new Uri("Pages\\ActionPage.xaml", UriKind.Relative);
+                    returnPage = new ActionPage();
                     break;
                 case SymbolRegular.Settings20:
-                    uri = new Uri("Pages\\SettingsPage.xaml", UriKind.Relative);
+                    returnPage = new SettingsPage();
                     break;
-
                 default:
-
+                    returnPage = new Pages.HomePage();
                     break;
             }
 
-            return uri;
+            return returnPage;
         }
       
         public static void ChangeControllerInstructionPage(string pageName)

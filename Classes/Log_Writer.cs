@@ -59,6 +59,7 @@ namespace Everything_Handhelds_Tool
         {
             get
             {
+                
                 if (_instance == null)
                 {
                     lock (lockObj)

@@ -17,8 +17,12 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
         public override void OnActivate()
         {
             //calls main window toggle window
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-            if (mainWindow != null) { mainWindow.ToggleWindow(); }
+            Application.Current.Dispatcher.BeginInvoke(() =>
+            {
+                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                mainWindow.ToggleWindow();
+
+            });
         }
     }
 }

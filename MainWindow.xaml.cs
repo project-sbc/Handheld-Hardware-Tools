@@ -17,6 +17,7 @@ using Everything_Handhelds_Tool.ControllerInputPages;
 using Wpf.Ui;
 using System.Windows.Markup;
 using System.Xml;
+using Everything_Handhelds_Tool.Classes.Profiles;
 
 
 namespace Everything_Handhelds_Tool
@@ -29,6 +30,8 @@ namespace Everything_Handhelds_Tool
 
         public WiFiDirectHotspotManager wifiAP = null;
 
+        public ProfileManager profileManager = new ProfileManager();
+
         public MainWindow()
         {
             //Get the device type (i.e. win max 2, one x fly, etc)
@@ -38,9 +41,10 @@ namespace Everything_Handhelds_Tool
             //run start up
             InitializeRoutines();
 
-            FileStream xamlFile = new FileStream("Styles\\NewTheme.xaml", FileMode.Open, FileAccess.Read);
 
-            Application.Current.Resources.MergedDictionaries.Add(((ResourceDictionary)XamlReader.Load(xamlFile)));
+            //FileStream xamlFile = new FileStream("Styles\\NewTheme.xaml", FileMode.Open, FileAccess.Read);
+
+            //Application.Current.Resources.MergedDictionaries.Add(((ResourceDictionary)XamlReader.Load(xamlFile)));
 
         }
         #region Set up
@@ -331,7 +335,6 @@ namespace Everything_Handhelds_Tool
 
         private void navigationViewListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-           
             LoadPageInFrame();   
         }
 
@@ -340,7 +343,8 @@ namespace Everything_Handhelds_Tool
             //loads page in frame when navigation menu item changes
             if (navigationViewListBox.SelectedItem != null)
             {
-                frame.Source = General_Functions.TranslateIconToPageURI((Wpf.Ui.Common.SymbolRegular)navigationViewListBox.SelectedItem);
+                frame.Content = General_Functions.TranslateIconToPageURI((Wpf.Ui.Common.SymbolRegular)navigationViewListBox.SelectedItem);
+
             }
         }
 

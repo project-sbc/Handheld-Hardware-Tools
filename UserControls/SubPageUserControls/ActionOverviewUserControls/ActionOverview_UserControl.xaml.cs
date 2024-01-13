@@ -173,6 +173,10 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Keyboard24;
 
                     break;
+                case "Toggle_OSK":
+                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Keyboard24;
+
+                    break;
                 case "Cycle_Volume":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Speaker216;
                     if (action.parameters != null)
@@ -231,7 +235,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
                     case "DPadDown":
                         SendCommandToEditActionOverviewPage("MoveDown");
                         break;
-                    case "Delete":
+                    case "X":
                         SendCommandToEditActionOverviewPage("Delete");
                         break;
                     case "A":

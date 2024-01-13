@@ -166,7 +166,7 @@ namespace Everything_Handhelds_Tool.Classes
                             objObject = ((ActionList)xmls.Deserialize(sr));
                             break;
                         case "ProfileList":
-                            xmls = new XmlSerializer(typeof(Profile));
+                            xmls = new XmlSerializer(typeof(ProfileList));
                             objObject = ((ProfileList)xmls.Deserialize(sr));
                             break;
                     }

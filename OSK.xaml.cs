@@ -26,6 +26,9 @@ namespace Everything_Handhelds_Tool
     /// </summary>
     public partial class OSK : Window
     {
+        private bool showMainWindowAtClose = false;
+
+
         ControllerInputOSK inputOSK = new ControllerInputOSK();
         Button currentHighlightButtonLeft;
         Button currentHighlightButtonRight;
@@ -41,6 +44,8 @@ namespace Everything_Handhelds_Tool
 
             SetLocation();
 
+            SuspendMainControllerInputCheckMainWindowOpen();
+
             AddButtonsToDictionary();
 
             HighlightButton(btnL12);
@@ -52,6 +57,21 @@ namespace Everything_Handhelds_Tool
             inputOSK.buttonPressEvent.controllerJoystickEventOSK += ButtonPressEvent_controllerJoystickEventOSK;
             inputOSK.buttonPressEvent.controllerInputEventOSK += ButtonPressEvent_controllerInputEventOSK;
         }
+        private void SuspendMainControllerInputCheckMainWindowOpen()
+        {
+            //suspend controller input at controller input class by toggling the bool
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow.controllerInput.publicSuspendEventsForOSK = true;
+
+            //check to see if the main window should show again after toggling the keyboard
+            //if window was open, we will show it again when OSK closes, otherwise we wont
+            if (mainWindow.Visibility == Visibility.Visible)
+            {
+                showMainWindowAtClose = true;
+                ToggleMainWindow();
+            }
+        }
+
         private void SetLocation()
         {
             this.Width = SystemParameters.FullPrimaryScreenWidth;
@@ -59,6 +79,15 @@ namespace Everything_Handhelds_Tool
             this.Top = SystemParameters.FullPrimaryScreenHeight - Math.Round(SystemParameters.FullPrimaryScreenHeight * 0.35, 0);
         }
 
+        private void ToggleMainWindow()
+        {
+            Application.Current.Dispatcher.BeginInvoke(() =>
+            {
+                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                mainWindow.ToggleWindow();
+
+            });
+        }
 
 
         private void LoadLeftKeyboardDisplayText()
@@ -121,6 +150,7 @@ namespace Everything_Handhelds_Tool
             if (e.Action == "RightShoulder") { currentHighlightButtonRight.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent)); }
             if (e.Action == "X") { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.BACK); }
             if (e.Action == "Y") { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.SPACE); }
+            if (e.Action == "B") { this.Close(); }
         }
 
 
@@ -259,6 +289,13 @@ namespace Everything_Handhelds_Tool
             inputSimulator.Keyboard.KeyUp(virtualKeyCode);
         }
 
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if (showMainWindowAtClose)
+            {
+                ToggleMainWindow();
+            }
+        }
     }
   
 }
