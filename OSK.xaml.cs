@@ -2,6 +2,7 @@
 using Everything_Handhelds_Tool.Classes.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -59,7 +60,81 @@ namespace Everything_Handhelds_Tool
 
             inputOSK.buttonPressEvent.controllerJoystickEventOSK += ButtonPressEvent_controllerJoystickEventOSK;
             inputOSK.buttonPressEvent.controllerInputEventOSK += ButtonPressEvent_controllerInputEventOSK;
+            inputOSK.buttonPressEvent.controllerJoystickDPadEventOSK += ButtonPressEvent_controllerJoystickDPadEventOSK;
         }
+
+        private void ButtonPressEvent_controllerJoystickDPadEventOSK(object? sender, controllerInputEventArgsOSK e)
+        {
+            //this is for when the keyboard is not in ABSOLUTE joystick mode (the mode where you need angle and radius to figure out the button)
+            //we need a left and right joystick "Dpad"  input to mimic basically two dpads that will control button navigation
+            
+            //format is Left_[direction] and Right_[direction] so lets start
+            //by distinguishing between left and right
+            if (e.Action.Contains("Left_"))
+            {
+                UnhighlightButton(currentHighlightButtonLeft);
+                currentHighlightButtonLeft = HandleButtonOffsetFromControllerInput(currentHighlightButtonLeft, e.Action.Replace("Left_", ""), leftGrid);
+                HighlightButton(currentHighlightButtonLeft);
+            }
+            else
+            {
+                UnhighlightButton(currentHighlightButtonRight);
+                currentHighlightButtonRight = HandleButtonOffsetFromControllerInput(currentHighlightButtonRight, e.Action.Replace("Right_", ""), rightGrid);
+                HighlightButton(currentHighlightButtonRight);
+            }
+
+        }
+
+        private Button HandleButtonOffsetFromControllerInput(Button button, string direction, Grid grid)
+        {
+            int gridRow =Grid.GetRow(button);
+            int gridCol =Grid.GetColumn(button);
+
+            switch (direction)
+            {
+                case "Up":
+                    if (gridRow > 0)
+                    {
+                        gridRow = gridRow - 1;
+                    }
+                    break;
+                case "Down":
+                    if (gridRow < grid.RowDefinitions.Count-1)
+                    {
+                        gridRow = gridRow + 1;
+                    }
+
+                    break;
+                case "Left":
+                    if (gridCol > 0)
+                    {
+                        gridCol = gridCol - 1;
+                    }
+
+                    break;
+                case "Right":
+                    if (gridCol < grid.ColumnDefinitions.Count - 1)
+                    {
+                        gridCol = gridCol + 1;
+                    }
+
+                    break;
+            }
+
+
+            Button newHighlightButton = (Button)grid.Children.Cast<UIElement>().First(e => Grid.GetRow(e) == gridRow && Grid.GetColumn(e) == gridCol);
+
+            if (newHighlightButton != null)
+            {
+                return newHighlightButton;
+            }
+            else
+            {
+                return button;
+            }
+
+        }
+
         private void SuspendMainControllerInputCheckMainWindowOpen()
         {
             //suspend controller input at controller input class by toggling the bool
@@ -241,9 +316,6 @@ namespace Everything_Handhelds_Tool
             {
                 if (angle <= keyValuePair.Key) { newIndex = keyValuePair.Value; break; }
             }
-
-            
-            
 
             //return the new index as that is the only result left to return
             return newIndex;

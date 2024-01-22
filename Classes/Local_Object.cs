@@ -54,8 +54,8 @@ namespace Everything_Handhelds_Tool.Classes
 
         public Device GetMainWindowDevice()
         {
-           
-            return null;
+            MainWindow mw = GetMainWindow();
+            return mw.device;
            
         }
 

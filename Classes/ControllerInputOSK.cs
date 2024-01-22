@@ -22,6 +22,14 @@ namespace Everything_Handhelds_Tool.Classes
         //Variable to stop events in the case of programming a hot key
         public bool suspendEventsForProgramming { get; set; } = false;
 
+
+        private bool _absoluteJoystickMode { get; set; } = true;
+
+        public bool absoluteJoystickMode
+        {
+            get { return _absoluteJoystickMode; }
+            set {  _absoluteJoystickMode = value; }
+        }
         public ControllerInputOSK()
         {
             Thread controllerThread = new Thread(MainControllerThreadLoop);
@@ -55,24 +63,23 @@ namespace Everything_Handhelds_Tool.Classes
                     continousInputCurrent = "";
                     foreach (GamepadButtonFlags gbf in gamepadButtonFlags)
                     {
-                        if (gbf.ToString().Contains("DPad"))
+                        if (currentGamepadState.Buttons.HasFlag(gbf) && !previousGamepadState.Buttons.HasFlag(gbf))
                         {
-                            //call routine to send controller input events and track for continous input for any dpad input
-                            string result = HandleDPadInput(gbf, currentGamepadState, previousGamepadState);
-                            if (result != "") { continousInputCurrent = result; }
+                            //raise event for button press
+                            buttonPressEvent.raiseControllerInput(gbf.ToString());
                         }
-                        else
-                        {
-                            if (currentGamepadState.Buttons.HasFlag(gbf) && !previousGamepadState.Buttons.HasFlag(gbf))
-                            {
-                                //raise event for button press
-                                buttonPressEvent.raiseControllerInput(gbf.ToString());
-                            }
-                        }
-                       
+
                     }
 
-                    
+                    if (absoluteJoystickMode)
+                    {
+                        buttonPressEvent.raiseStickInput(currentGamepadState.LeftThumbX, currentGamepadState.LeftThumbY, currentGamepadState.RightThumbX, currentGamepadState.RightThumbY);
+                    }
+                    else
+                    {
+                        HandleJoystickToDPadInputLeftRight(currentGamepadState, previousGamepadState);
+                    }
+
                     //call routine that handles continous input controller input events and counts usage
                     continousInputCounter = HandleContinousInput(continousInputCurrent, continousInputPrevious, continousInputCounter);
 
@@ -113,7 +120,7 @@ namespace Everything_Handhelds_Tool.Classes
             //otherwise return 1 by default
             return 1;
         }
-        private string HandleDPadInput(GamepadButtonFlags gbf, Gamepad currentGamepadState, Gamepad previousGamepadState)
+        private string HandleJoystickToDPadInputLeftRight(Gamepad currentGamepadState, Gamepad previousGamepadState)
         {
             //Routine looks at both dpad or joystick for continous movement by comparing to previous state and returns the dpad direction (even for joystick)
             //to keep track of continous movement. If movement isn't continous between controller cycles return ""
@@ -125,35 +132,42 @@ namespace Everything_Handhelds_Tool.Classes
                 bool joystickInputDirectionCorrect = false;
 
                 //set short variables based on dpad, use absolute values so we don't have to make different cases for up or down/left or right which requires different >=  or <= operators. Makes it simple
-                if (gbf == GamepadButtonFlags.DPadUp && currentGamepadState.LeftThumbY > 12000 || gbf == GamepadButtonFlags.DPadDown && currentGamepadState.LeftThumbY < -12000)
+                if (currentGamepadState.LeftThumbY > 12000  && previousGamepadState.LeftThumbY <= 12000)
                 {
-                    joystickInputDirectionCorrect = true;
-                    previousInputValue = Math.Abs((decimal)previousGamepadState.LeftThumbY);
+                    buttonPressEvent.raiseStickDPadInput("Left_Up");
                 }
-                if (gbf == GamepadButtonFlags.DPadRight && currentGamepadState.LeftThumbX > 12000 || gbf == GamepadButtonFlags.DPadLeft && currentGamepadState.LeftThumbX < -12000)
+                if (currentGamepadState.LeftThumbY < -12000 && previousGamepadState.LeftThumbY >= -12000)
                 {
-                    joystickInputDirectionCorrect = true;
-                    previousInputValue = Math.Abs((decimal)previousGamepadState.LeftThumbX);
+                    buttonPressEvent.raiseStickDPadInput("Left_Down");
+                }
+                if (currentGamepadState.RightThumbY > 12000 && previousGamepadState.RightThumbY <= 12000)
+                {
+                    buttonPressEvent.raiseStickDPadInput("Right_Up");
+                }
+                if (currentGamepadState.RightThumbY < -12000 && previousGamepadState.RightThumbY >= -12000)
+                {
+                    buttonPressEvent.raiseStickDPadInput("Right_Down");
+                }
+                if (currentGamepadState.LeftThumbX < -12000 && previousGamepadState.LeftThumbX >= -12000)
+                {
+                    buttonPressEvent.raiseStickDPadInput("Left_Left");
+                }
+                if (currentGamepadState.LeftThumbX > 12000 && previousGamepadState.LeftThumbX <= 12000)
+                {
+                    buttonPressEvent.raiseStickDPadInput("Left_Right");
+                }
+                if (currentGamepadState.RightThumbX < -12000 && previousGamepadState.RightThumbX >= -12000)
+                {
+                    buttonPressEvent.raiseStickDPadInput("Right_Left");
+                }
+                if (currentGamepadState.RightThumbX > 12000 && previousGamepadState.RightThumbX <= 12000)
+                {
+                    buttonPressEvent.raiseStickDPadInput("Right_Right");
                 }
 
-                buttonPressEvent.raiseStickInput(currentGamepadState.LeftThumbX,currentGamepadState.LeftThumbY,currentGamepadState.RightThumbX,currentGamepadState.RightThumbY);
 
 
-                //this says if dpad is pressed or joystick is moved go to next if statement
-                if (currentGamepadState.Buttons.HasFlag(gbf) || joystickInputDirectionCorrect)
-                {
-                    //this check if the previous gamepad state is pressed or joystick wasn't moved
-                    if (!previousGamepadState.Buttons.HasFlag(gbf) && previousInputValue <= 12000)
-                    {
-                        //send controller input event if current state is on and previous state was off
-                        buttonPressEvent.raiseControllerInput(gbf.ToString());
-                    }
-                    else
-                    {
-                        //otherwise capture it as a continous movement
-                        return gbf.ToString();
-                    }
-                }
+               
                 //default return value is "", only when input is continous will it return something else
                 
             }
@@ -208,6 +222,7 @@ namespace Everything_Handhelds_Tool.Classes
 
         public event EventHandler<controllerInputEventArgsOSK> controllerInputEventOSK;
         public event EventHandler<controllerJoystickEventArgsOSK> controllerJoystickEventOSK;
+        public event EventHandler<controllerInputEventArgsOSK> controllerJoystickDPadEventOSK;
 
         public void raiseControllerInput(string action)
         {
@@ -222,6 +237,14 @@ namespace Everything_Handhelds_Tool.Classes
             System.Windows.Application.Current.Dispatcher.BeginInvoke(() =>
             {
                 controllerJoystickEventOSK?.Invoke(this, new controllerJoystickEventArgsOSK(lx, ly, rx, ry));
+            });
+        }
+
+        public void raiseStickDPadInput(string action)
+        {
+            System.Windows.Application.Current.Dispatcher.BeginInvoke(() =>
+            {
+                controllerJoystickDPadEventOSK?.Invoke(this, new controllerInputEventArgsOSK(action));
             });
         }
 
