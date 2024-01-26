@@ -229,6 +229,7 @@ namespace Everything_Handhelds_Tool
             if (e.Action == "X") { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.BACK); }
             if (e.Action == "Y") { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.SPACE); }
             if (e.Action == "B") { this.Close(); }
+            if (e.Action == "A") { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.RETURN); }
         }
 
 
@@ -403,10 +404,16 @@ namespace Everything_Handhelds_Tool
 
         private void Window_Closed(object sender, EventArgs e)
         {
+            //if the main window was showing when the keyboard was pulled up, show the main window again
+            //if using shortcut to open this, it will be ignored
             if (showMainWindowAtClose)
             {
                 ToggleMainWindow();
             }
+
+
+            //this is to close the input thread
+            inputOSK.AbortThread();
         }
     }
   

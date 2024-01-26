@@ -3,9 +3,11 @@ using SharpDX.XInput;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using static System.Collections.Specialized.BitVector32;
@@ -21,23 +23,37 @@ namespace Everything_Handhelds_Tool.Classes
 
         //Variable to stop events in the case of programming a hot key
         public bool suspendEventsForProgramming { get; set; } = false;
+        public Thread controllerThread;
 
-
-        private bool _absoluteJoystickMode { get; set; } = true;
-
+        private bool _absoluteJoystickMode { get; set; } = false;
+        
         public bool absoluteJoystickMode
         {
             get { return _absoluteJoystickMode; }
             set {  _absoluteJoystickMode = value; }
         }
+
+        private bool _abortThread { get; set; } = false;
+
+        public bool abortThread
+        {
+            get { return _abortThread; }
+            set { _abortThread = value; }
+        }
         public ControllerInputOSK()
         {
-            Thread controllerThread = new Thread(MainControllerThreadLoop);
+            controllerThread = new Thread(MainControllerThreadLoop);
             controllerThread.IsBackground = true;
             controllerThread.Name = "ControllerThreadOSK";
             controllerThread.Priority = ThreadPriority.Highest;
             controllerThread.Start();
         }
+
+        public void AbortThread()
+        {
+            abortThread = true;
+        }
+
 
         private async void MainControllerThreadLoop()
         {
@@ -52,12 +68,15 @@ namespace Everything_Handhelds_Tool.Classes
                 string continousInputPrevious = "";
                 int continousInputCounter = 0;
 
-                while (this != null)
+
+             
+
+                while (_abortThread == false)
                 {
                     //var watch = System.Diagnostics.Stopwatch.StartNew();
                     //main controller thread is here. Start with getting controller
                     GetConnectedController();
-
+                    
                     currentGamepadState = controller.GetState().Gamepad;
                     //reset continousInputCurrent
                     continousInputCurrent = "";

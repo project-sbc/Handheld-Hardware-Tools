@@ -41,6 +41,10 @@
             <ColumnDefinition Width="120*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <Grid Grid.Column="1" Background="Transparent" Name="leftGrid" >
             <Grid.RowDefinitions>
                 <RowDefinition />
