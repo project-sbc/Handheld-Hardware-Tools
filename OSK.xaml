@@ -11,7 +11,7 @@
         Left="0"
         Topmost="True"
         Focusable="False"
-        Title="OSK" Height="220" Width="1000"
+        Title="OSK" Height="240" Width="1000"
         Closed="Window_Closed"
         >
 
@@ -43,8 +43,11 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="9*" />
-            <RowDefinition />
+            <RowDefinition Height="45" />
         </Grid.RowDefinitions>
+
+        <Frame Grid.Column="1"  Grid.Row="1" Grid.ColumnSpan="3" Source="/ControllerInstructionPages/OSKInstructions.xaml" HorizontalContentAlignment="Center"/>
+
         <Grid Grid.Column="1" Background="Transparent" Name="leftGrid" >
             <Grid.RowDefinitions>
                 <RowDefinition />

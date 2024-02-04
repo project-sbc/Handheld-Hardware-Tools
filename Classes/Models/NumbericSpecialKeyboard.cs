@@ -20,19 +20,19 @@ namespace Everything_Handhelds_Tool.Classes.Models
         {
             {0, new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_G, DisplayCharacter="g"}}, 
             {1,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_T, DisplayCharacter="t"}},
-            {2,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_R, DisplayCharacter="r"}},
-            {3,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_E, DisplayCharacter="e"}},
-            {4,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_W, DisplayCharacter="w"}},
+            {2,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_3, DisplayCharacter="3"}},
+            {3,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_2, DisplayCharacter="2"}},
+            {4,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_1, DisplayCharacter="1"}},
             {5,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_Q, DisplayCharacter="q"}},
             {6,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_A, DisplayCharacter="a"}},
             {7,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_Z, DisplayCharacter="z"}},
-            {8,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_X, DisplayCharacter="x"}},
-            {9,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_C, DisplayCharacter="c"}},
-            {10,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_V, DisplayCharacter="v"}},
+            {8,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_7, DisplayCharacter="7"}},
+            {9,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_8, DisplayCharacter="8"}},
+            {10,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_9, DisplayCharacter="9"}},
             {11,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_B, DisplayCharacter="b"}},
-            {12,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_D, DisplayCharacter="d"}},
-            {13,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_S, DisplayCharacter="s"}},
-            {14,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_F, DisplayCharacter="f"}},
+            {12,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_5, DisplayCharacter="5"}},
+            {13,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_4, DisplayCharacter="4"}},
+            {14,new VirtualKeyCodeDisplayCharacter{vkc = WindowsInput.Native.VirtualKeyCode.VK_6, DisplayCharacter="6"}},
         
         };
         private Dictionary<int, VirtualKeyCodeDisplayCharacter> rightKeyboardLowerAlpha = new Dictionary<int, VirtualKeyCodeDisplayCharacter>()

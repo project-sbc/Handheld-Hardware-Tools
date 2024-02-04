@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Markup;
 
+
 namespace Everything_Handhelds_Tool
 {
     /// <summary>
@@ -22,7 +23,7 @@ namespace Everything_Handhelds_Tool
             
 
         }
-
+       
         /// <summary>
         /// This funtion loads a ResourceDictionary from a file at runtime
         /// </summary>

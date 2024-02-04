@@ -19,6 +19,8 @@ using System.Windows.Markup;
 using System.Xml;
 using Everything_Handhelds_Tool.Classes.Profiles;
 
+using System.Windows.Interop;
+
 
 namespace Everything_Handhelds_Tool
 {
@@ -32,10 +34,16 @@ namespace Everything_Handhelds_Tool
 
         public ProfileManager profileManager = new ProfileManager();
 
+        public MouseKeyHook mouseKeyHook = new MouseKeyHook();
+
+      
         public MainWindow()
         {
             //Get the device type (i.e. win max 2, one x fly, etc)
             device = new Device_Management().device;
+
+            //subscribe mouse key events
+            mouseKeyHook.Subscribe();
 
             InitializeComponent();
             //run start up
