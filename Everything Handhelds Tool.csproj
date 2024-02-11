@@ -9,7 +9,7 @@
     <UseWPF>true</UseWPF>
 	  <UseWindowsForms>true</UseWindowsForms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <ApplicationIcon>EHT ICO.ico</ApplicationIcon>
+    <ApplicationIcon>HH Tool icon v2.ico</ApplicationIcon>
     <StartupObject>Everything_Handhelds_Tool.App</StartupObject>
 	
   </PropertyGroup>
@@ -74,7 +74,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="EHT ICO.ico" />
+    <Content Include="HH Tool icon v2.ico" />
     <Content Include="Resources\AMD\ADLX\ADLX_3DSettings.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -173,6 +173,8 @@
     </Content>
   </ItemGroup>
 
+
+	
   <ItemGroup>
     <PackageReference Include="AudioSwitcher.AudioApi.CoreAudio" Version="3.0.3" />
     <PackageReference Include="InputSimulator" Version="1.0.4" />
@@ -226,10 +228,6 @@
     </Compile>
   </ItemGroup>
 
-  <ItemGroup>
-    <Page Update="ControllerInstructionPages\ChangeBack.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
+
 
 </Project>

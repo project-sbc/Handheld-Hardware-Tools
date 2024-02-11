@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml.Serialization;
 
 namespace Everything_Handhelds_Tool.Classes
@@ -67,6 +68,7 @@ namespace Everything_Handhelds_Tool.Classes
         }
         private void CheckDirectoryExistsOrCreate(string folder)
         {
+           
             //checks for directory, if it doesnt exist make it. FIrst check for upperfolder UserConfiguration then check for next level folder
             if (!Directory.Exists(directory + "UserConfiguration"))
             {

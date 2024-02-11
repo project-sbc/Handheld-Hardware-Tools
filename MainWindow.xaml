@@ -71,7 +71,7 @@
                 FocusOnLeftClick="True"
                 Visibility="Visible"
                 MenuOnRightClick="True"
-                TooltipText="WPF UI" LeftClick="notifyIcon_LeftClick">
+                TooltipText="HandheldHardware Tools" LeftClick="notifyIcon_LeftClick">
             <ui:NotifyIcon.Menu>
                 <ContextMenu >
                     <MenuItem Header="{DynamicResource ContextMenu_Show}"  Click="ContextMenu_Show"/>
