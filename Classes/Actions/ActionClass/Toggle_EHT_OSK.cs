@@ -17,9 +17,9 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
         public override void OnActivate()
         {
             //calls main window toggle window
-            if (!Application.Current.Windows.OfType<OSK>().Any())
+            if (!Application.Current.Windows.OfType<Everything_Handhelds_Tool.OSK.OSK>().Any())
             {
-                OSK osk = new OSK();
+                Everything_Handhelds_Tool.OSK.OSK osk = new Everything_Handhelds_Tool.OSK.OSK();
                 osk.Show();
 
 

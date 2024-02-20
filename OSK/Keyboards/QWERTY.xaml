@@ -1,0 +1,602 @@
+﻿<Page x:Class="Everything_Handhelds_Tool.OSK.Keyboards.QWERTY"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Everything_Handhelds_Tool.OSK.Keyboards"
+      mc:Ignorable="d" 
+      Loaded="Page_Loaded"
+     Unloaded="Page_Unloaded"
+      Title="QWERTYOsk">
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Gray" />
+            <Setter Property="IsHitTestVisible" Value="True" />
+            <Setter Property="Margin" Value="3" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="37" />
+            <Setter Property="Opacity" Value="1" />
+            <EventSetter Event="Click" Handler="Button_Click" />
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="3" />
+                </Style>
+            </Style.Resources>
+        </Style>
+
+    </Page.Resources>
+    <Canvas Name="mainCanvas"   Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"  Height="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
+        <Grid Name="mainGrid"   Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}}" Height="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Margin="6,6,3,3" Tag="Dual" CommandParameter="`" >
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text="~" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1">
+                        <TextBlock Text="`" Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="3,6,3,3" Tag="Dual" CommandParameter="1" >
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text="!" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1">
+                        <TextBlock Text="1" Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Column="3" Grid.ColumnSpan="2" Margin="3,6,3,3" Tag="Dual" CommandParameter="2" >
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text="@" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1" >
+                        <TextBlock Text="2" Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Column="5" Grid.ColumnSpan="2" Margin="3,6,3,3" Tag="Dual" CommandParameter="3" >
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text="#" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1" >
+                        <TextBlock Text="3" Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Column="7" Grid.ColumnSpan="2" Margin="3,6,3,3" Tag="Dual" CommandParameter="4" >
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text="$" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1" >
+                        <TextBlock Text="4" Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Column="9" Grid.ColumnSpan="2" Margin="3,6,3,3" Tag="Dual" CommandParameter="5" >
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text="%" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1" >
+                        <TextBlock Text="5" Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Column="11" Grid.ColumnSpan="2" Margin="3,6,3,3" Tag="Dual" CommandParameter="6" >
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text="^" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1" >
+                        <TextBlock Text="6" Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Column="13" Grid.ColumnSpan="2" Margin="3,6,3,3" Tag="Dual" CommandParameter="7" >
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text="&amp;" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1" >
+                        <TextBlock Text="7" Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Column="15" Grid.ColumnSpan="2" Margin="3,6,3,3" Tag="Dual" CommandParameter="8" >
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text="*" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1" >
+                        <TextBlock Text="8" Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Column="17" Grid.ColumnSpan="2" Margin="3,6,3,3" Tag="Dual" CommandParameter="9" >
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text="(" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1" >
+                        <TextBlock Text="9" Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Column="19" Grid.ColumnSpan="2" Margin="3,6,3,3" Tag="Dual" CommandParameter="0" >
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text=")" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1" >
+                        <TextBlock Text="0" Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Column="21" Grid.ColumnSpan="2" Margin="3,6,3,3" Tag="Dual">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text="_" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1" >
+                        <TextBlock Text="-" Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Column="23" Grid.ColumnSpan="2" Margin="3,6,3,3" Tag="Dual">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text="+" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1" >
+                        <TextBlock Text="=" Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Column="25" Grid.ColumnSpan="3" Margin="3,6,6,3" Tag="Special" CommandParameter="Backspace">
+                <Grid  VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox >
+                        <TextBlock TextWrapping="Wrap" Text="Backspace" />
+                    </Viewbox>
+                    <Viewbox Grid.Column="1" Margin="10,0,0,0" Name="controllerIconViewbox1">
+                        <TextBlock Text="&#xF096;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+
+
+            <Button Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2" Margin="6,3,3,3" Tag="Special" CommandParameter="Tab" >
+                <Grid  VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox >
+                        <TextBlock Text="Tab" />
+                    </Viewbox>
+
+
+                </Grid>
+
+            </Button>
+            <Button Grid.Row="1" Grid.Column="2"  Grid.ColumnSpan="2"  Content="q"  Tag="Letter" />
+            <Button Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2"  Content="w" Tag="Letter"/>
+            <Button Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2"  Content="e" Tag="Letter"/>
+            <Button Grid.Row="1" Grid.Column="8" Grid.ColumnSpan="2"  Content="r" Tag="Letter"/>
+            <Button Grid.Row="1" Grid.Column="10" Grid.ColumnSpan="2"  Content="t" Tag="Letter"/>
+            <Button Grid.Row="1" Grid.Column="12" Grid.ColumnSpan="2"  Content="y" Tag="Letter"/>
+            <Button Grid.Row="1" Grid.Column="14" Grid.ColumnSpan="2"  Content="u" Tag="Letter"/>
+            <Button Grid.Row="1" Grid.Column="16" Grid.ColumnSpan="2"  Content="i" Tag="Letter"/>
+            <Button Grid.Row="1" Grid.Column="18" Grid.ColumnSpan="2"  Content="o" Tag="Letter"/>
+            <Button Grid.Row="1" Grid.Column="20" Grid.ColumnSpan="2"  Content="p" Tag="Letter"/>
+            <Button Grid.Row="1" Grid.Column="22" Grid.ColumnSpan="2"  Tag="Dual">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock Tag="LeftCurlyBracket" Text="}"  Foreground="DarkGray">
+                            <TextBlock.RenderTransform>
+                                <ScaleTransform ScaleX="-1" />
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1" >
+                        <TextBlock Text="[" Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Row="1" Grid.Column="24" Grid.ColumnSpan="2" Tag="Dual">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text="}" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1" >
+                        <TextBlock Text="]" Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Row="1" Grid.Column="26" Grid.ColumnSpan="2" Margin="3,3,6,3" Tag="Dual">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text="|" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1" >
+                        <TextBlock Text="\" Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+
+
+
+            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="6,3,3,3" Tag="Special" CommandParameter="CapsLock" Name="capsButton">
+                <Grid  VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox >
+                        <TextBlock TextWrapping="Wrap" Text="Caps" />
+                    </Viewbox>
+                    <Viewbox Grid.Column="1" Margin="10,0,0,0" Name="controllerIconViewbox2">
+                        <TextBlock TextWrapping="Wrap" Text="&#xF108;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2"  Content="a" Tag="Letter"/>
+            <Button Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="2"  Content="s" Tag="Letter"/>
+            <Button Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="2"  Content="d" Tag="Letter"/>
+            <Button Grid.Row="2" Grid.Column="9" Grid.ColumnSpan="2"  Content="f" Tag="Letter"/>
+            <Button Grid.Row="2" Grid.Column="11" Grid.ColumnSpan="2"  Content="g" Tag="Letter"/>
+            <Button Grid.Row="2" Grid.Column="13" Grid.ColumnSpan="2"  Content="h" Tag="Letter"/>
+            <Button Grid.Row="2" Grid.Column="15" Grid.ColumnSpan="2"  Content="j"  Tag="Letter"/>
+            <Button Grid.Row="2" Grid.Column="17" Grid.ColumnSpan="2"  Content="k" Tag="Letter"/>
+            <Button Grid.Row="2" Grid.Column="19" Grid.ColumnSpan="2"  Content="l" Tag="Letter"/>
+            <Button Grid.Row="2" Grid.Column="21" Grid.ColumnSpan="2" Tag="Dual">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text=":" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1" >
+                        <TextBlock Text=";" Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Row="2" Grid.Column="23" Grid.ColumnSpan="2"  Tag="Dual">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text="'" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1" >
+                        <TextBlock Text="&quot;" Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Row="2" Grid.Column="25" Grid.ColumnSpan="3" Margin="3,3,6,3" Tag="Special" CommandParameter="Enter" >
+                <Grid  VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox >
+                        <TextBlock TextWrapping="Wrap" Text="Enter" />
+                    </Viewbox>
+                    <Viewbox Grid.Column="1" Margin="10,0,0,0"  Name="controllerIconViewbox3">
+                        <TextBlock TextWrapping="Wrap" Text="" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
+                    </Viewbox>
+
+                </Grid>
+
+
+            </Button>
+
+
+
+            <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Margin="6,3,3,3" Tag="Special" CommandParameter="Shift" Name="shiftButton">
+                <Grid  VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox >
+                        <TextBlock TextWrapping="Wrap" Text="Shift" />
+                    </Viewbox>
+                    <Viewbox Grid.Column="1" Margin="10,0,0,0" Name="controllerIconViewbox4">
+                        <TextBlock TextWrapping="Wrap" Text="&#xF10A;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" Content="z"  Tag="Letter"/>
+            <Button Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2" Content="x"  Tag="Letter"/>
+            <Button Grid.Row="3" Grid.Column="8" Grid.ColumnSpan="2" Content="c"  Tag="Letter"/>
+            <Button Grid.Row="3" Grid.Column="10" Grid.ColumnSpan="2"  Content="v"  Tag="Letter"/>
+            <Button Grid.Row="3" Grid.Column="12" Grid.ColumnSpan="2"   Content="b"  Tag="Letter"/>
+            <Button Grid.Row="3" Grid.Column="14" Grid.ColumnSpan="2"   Content="n"  Tag="Letter"/>
+            <Button Grid.Row="3" Grid.Column="16" Grid.ColumnSpan="2"   Content="m"  Tag="Letter"/>
+            <Button Grid.Row="3" Grid.Column="18" Grid.ColumnSpan="2"   Tag="Dual">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text="&lt;" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1" >
+                        <TextBlock Text="," Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Row="3" Grid.Column="20" Grid.ColumnSpan="2"   Tag="Dual">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text="&gt;" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1" >
+                        <TextBlock Text="." Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Row="3" Grid.Column="22" Grid.ColumnSpan="2"   Tag="Dual">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Tag="2">
+                        <TextBlock  Text="?" Foreground="DarkGray"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Tag="1" >
+                        <TextBlock Text="/" Foreground="White"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Row="3" Grid.Column="24" Grid.ColumnSpan="4" Margin="3,3,6,3" Tag="Special" CommandParameter="Shift">
+                <Grid  VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox >
+                        <TextBlock TextWrapping="Wrap" Text="Shift" />
+                    </Viewbox>
+                    <Viewbox Grid.Column="1" Margin="10,0,0,0" Name="controllerIconViewbox5">
+                        <TextBlock TextWrapping="Wrap" Text="&#xF10A;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+
+
+            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="6,3,3,6" />
+            <Button Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="17" Margin="3,3,3,6" Tag="Special" CommandParameter="Space">
+                <Grid  VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox >
+                        <TextBlock TextWrapping="Wrap" Text="Space" />
+                    </Viewbox>
+                    <Viewbox Grid.Column="1" Margin="10,0,0,0" Name="controllerIconViewbox6">
+                        <TextBlock TextWrapping="Wrap" Text="&#xF095;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
+                    </Viewbox>
+
+                </Grid>
+            </Button>
+            <Button Grid.Row="4" Grid.Column="19" Grid.ColumnSpan="3" Margin="3,3,3,6" />
+            <Button Grid.Row="4" Grid.Column="22" Grid.ColumnSpan="3" Margin="3,3,3,6" />
+            <Button Grid.Row="4" Grid.Column="25" Grid.ColumnSpan="3" Margin="3,3,3,6" Tag="Special" CommandParameter="Hide">
+                <Grid  VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox >
+                        <TextBlock Text="&#xE92F;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
+                    </Viewbox>
+                    <Viewbox Grid.Column="1" Margin="10,0,0,0" Name="controllerIconViewbox7">
+                        <TextBlock Text="&#xF094;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
+                    </Viewbox>
+
+                </Grid>
+
+
+
+            </Button>
+
+
+
+
+
+
+
+
+        </Grid>
+    </Canvas>
+
+
+</Page>
+

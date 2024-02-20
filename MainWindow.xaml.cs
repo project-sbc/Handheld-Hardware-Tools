@@ -346,6 +346,8 @@ namespace Everything_Handhelds_Tool
             LoadPageInFrame();   
         }
 
+
+
         private void LoadPageInFrame()
         {
             //loads page in frame when navigation menu item changes

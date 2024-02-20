@@ -9,7 +9,7 @@
     <UseWPF>true</UseWPF>
 	  <UseWindowsForms>true</UseWindowsForms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <ApplicationIcon>HH Tool icon v2.ico</ApplicationIcon>
+    <ApplicationIcon>HH Tool icon v2 - Merged Down.ico</ApplicationIcon>
     <StartupObject>Everything_Handhelds_Tool.App</StartupObject>
 	
   </PropertyGroup>
@@ -74,7 +74,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="HH Tool icon v2.ico" />
+    <Content Include="HH Tool icon v2 - Merged Down.ico" />
     <Content Include="Resources\AMD\ADLX\ADLX_3DSettings.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

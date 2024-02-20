@@ -1,36 +1,52 @@
-﻿using Everything_Handhelds_Tool.Models;
-using SharpDX.XInput;
+﻿using SharpDX.XInput;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Runtime.CompilerServices;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using static System.Collections.Specialized.BitVector32;
 
-namespace Everything_Handhelds_Tool.Classes
+namespace Everything_Handhelds_Tool.OSK
 {
     public class ControllerInputOSK
     {
-        //add profiles to perform either mouse or controller mapping
+      
 
         public ButtonPressEventOSK buttonPressEvent = new ButtonPressEventOSK();
-        private Controller? controller;
+        public Controller? controller;
 
-        //Variable to stop events in the case of programming a hot key
-        public bool suspendEventsForProgramming { get; set; } = false;
+
         public Thread controllerThread;
 
-        private bool _absoluteJoystickMode { get; set; } = false;
-        
-        public bool absoluteJoystickMode
+
+        //controllerConnected keeps track of controller state to send to the page to handle hiding controller icons, etc.
+        private bool _controllerConnected = false;
+
+        private bool controllerConnected
         {
-            get { return _absoluteJoystickMode; }
-            set {  _absoluteJoystickMode = value; }
+            get
+            {
+                return _controllerConnected;
+
+            }
+
+            set
+            {//if new value doesnt equal what it was (_controllerConnected) then something changed
+                if (_controllerConnected != value)
+                {
+                    //if new value is false   (!value) then it must be it disconnected
+                    if (!value)
+                    {
+                        buttonPressEvent.raiseControllerConnectedDisconnected("Disconnected");
+                    }
+                    else
+                    {//else if its true then its connected
+                        buttonPressEvent.raiseControllerConnectedDisconnected("Connected");
+                    }
+                    //dont forget to change the _controllerConnected value to keep track of the state
+                    _controllerConnected = value;
+                }
+            }
         }
 
         private bool _abortThread { get; set; } = false;
@@ -59,8 +75,10 @@ namespace Everything_Handhelds_Tool.Classes
         {
             try
             {
-                Log_Writer.Instance.writeLog("Starting MainControllerThreadLoop");
+
                 GetConnectedController();
+                //add a abort thread check because if controller not connected, an abort thread signal will end up here and throw an error on controllerGamepadState
+                if (abortThread) { return; }
 
                 Gamepad currentGamepadState = controller.GetState().Gamepad;
                 Gamepad previousGamepadState = controller.GetState().Gamepad;
@@ -69,14 +87,15 @@ namespace Everything_Handhelds_Tool.Classes
                 int continousInputCounter = 0;
 
 
-             
-
-                while (_abortThread == false)
+                while (_abortThread == false && System.Windows.Application.Current != null)
                 {
                     //var watch = System.Diagnostics.Stopwatch.StartNew();
                     //main controller thread is here. Start with getting controller
                     GetConnectedController();
-                    
+
+                    //add a abort thread check because if controller not connected, an abort thread signal will end up here and throw an error on controllerGamepadState
+                    if (abortThread) { return; }
+
                     currentGamepadState = controller.GetState().Gamepad;
                     //reset continousInputCurrent
                     continousInputCurrent = "";
@@ -86,18 +105,35 @@ namespace Everything_Handhelds_Tool.Classes
                         {
                             //raise event for button press
                             buttonPressEvent.raiseControllerInput(gbf.ToString());
-                        }
 
+                        }
+                        if (currentGamepadState.Buttons.HasFlag(gbf) && previousGamepadState.Buttons.HasFlag(gbf))
+                        {
+                            continousInputCurrent = gbf.ToString();
+
+                        }
                     }
 
-                    if (absoluteJoystickMode)
+                    if (currentGamepadState.LeftTrigger > 80 && previousGamepadState.LeftTrigger <= 80)
+                    {
+                        buttonPressEvent.raiseControllerInput("LeftTrigger");
+                    }
+
+                    if (currentGamepadState.RightTrigger > 80 && previousGamepadState.RightTrigger <= 80)
+                    {
+                        buttonPressEvent.raiseControllerInput("RightTrigger");
+                    }
+
+                    //add all joystick inputs to determine if we should trigger the movement event, use absolute value and add to see if > 0 otherwise DONT SEND EVENT
+
+
+
+
+                    if (currentGamepadState.LeftThumbX != 0 || currentGamepadState.LeftThumbY != 0 || currentGamepadState.RightThumbX != 0 || currentGamepadState.RightThumbY != 0)
                     {
                         buttonPressEvent.raiseStickInput(currentGamepadState.LeftThumbX, currentGamepadState.LeftThumbY, currentGamepadState.RightThumbX, currentGamepadState.RightThumbY);
                     }
-                    else
-                    {
-                        HandleJoystickToDPadInputLeftRight(currentGamepadState, previousGamepadState);
-                    }
+
 
                     //call routine that handles continous input controller input events and counts usage
                     continousInputCounter = HandleContinousInput(continousInputCurrent, continousInputPrevious, continousInputCounter);
@@ -106,16 +142,16 @@ namespace Everything_Handhelds_Tool.Classes
                     previousGamepadState = currentGamepadState;
                     continousInputPrevious = continousInputCurrent;
 
-                    //sleep for 10 ms to match approx. 100 Hz refresh of controller
-                    await Task.Delay(2);
+                    //sleep for 8 ms to match approx. 100 Hz refresh of controller
+                    await Task.Delay(8);
                     //watch.Stop();
                     //Debug.WriteLine($"Total Execution Time: {watch.ElapsedMilliseconds} ms");
                 }
-                Log_Writer.Instance.writeLog("Ending MainControllerThreadLoop");
+
             }
             catch (Exception ex)
             {
-                Log_Writer.Instance.writeLog("Error in main controller thread; " + ex.Message, "CI02");
+                System.Windows.MessageBox.Show(ex.Message);
             }
         }
         private int HandleContinousInput(string continuousInputCurrent, string continuousInputPrevious, int counter)
@@ -139,64 +175,6 @@ namespace Everything_Handhelds_Tool.Classes
             //otherwise return 1 by default
             return 1;
         }
-        private string HandleJoystickToDPadInputLeftRight(Gamepad currentGamepadState, Gamepad previousGamepadState)
-        {
-            //Routine looks at both dpad or joystick for continous movement by comparing to previous state and returns the dpad direction (even for joystick)
-            //to keep track of continous movement. If movement isn't continous between controller cycles return ""
-            
-            //define short variables to be either for the X or Y left thumb values
-            try
-            {
-                decimal previousInputValue = 0;
-                bool joystickInputDirectionCorrect = false;
-
-                //set short variables based on dpad, use absolute values so we don't have to make different cases for up or down/left or right which requires different >=  or <= operators. Makes it simple
-                if (currentGamepadState.LeftThumbY > 12000  && previousGamepadState.LeftThumbY <= 12000)
-                {
-                    buttonPressEvent.raiseStickDPadInput("Left_Up");
-                }
-                if (currentGamepadState.LeftThumbY < -12000 && previousGamepadState.LeftThumbY >= -12000)
-                {
-                    buttonPressEvent.raiseStickDPadInput("Left_Down");
-                }
-                if (currentGamepadState.RightThumbY > 12000 && previousGamepadState.RightThumbY <= 12000)
-                {
-                    buttonPressEvent.raiseStickDPadInput("Right_Up");
-                }
-                if (currentGamepadState.RightThumbY < -12000 && previousGamepadState.RightThumbY >= -12000)
-                {
-                    buttonPressEvent.raiseStickDPadInput("Right_Down");
-                }
-                if (currentGamepadState.LeftThumbX < -12000 && previousGamepadState.LeftThumbX >= -12000)
-                {
-                    buttonPressEvent.raiseStickDPadInput("Left_Left");
-                }
-                if (currentGamepadState.LeftThumbX > 12000 && previousGamepadState.LeftThumbX <= 12000)
-                {
-                    buttonPressEvent.raiseStickDPadInput("Left_Right");
-                }
-                if (currentGamepadState.RightThumbX < -12000 && previousGamepadState.RightThumbX >= -12000)
-                {
-                    buttonPressEvent.raiseStickDPadInput("Right_Left");
-                }
-                if (currentGamepadState.RightThumbX > 12000 && previousGamepadState.RightThumbX <= 12000)
-                {
-                    buttonPressEvent.raiseStickDPadInput("Right_Right");
-                }
-
-
-
-               
-                //default return value is "", only when input is continous will it return something else
-                
-            }
-            catch (Exception ex)
-            {
-                Log_Writer.Instance.writeLog("Error in main controller thread - dpad input handler; " + ex.Message, "CI03");
-            }
-
-            return "";
-        }
 
 
         private void GetConnectedController()
@@ -207,24 +185,33 @@ namespace Everything_Handhelds_Tool.Classes
                 List<UserIndex> userIndexControllers = new List<UserIndex>() { UserIndex.One, UserIndex.Two, UserIndex.Three, UserIndex.Four };
 
             connectController:
-
-                foreach (UserIndex ui in userIndexControllers)
+                if (!abortThread)
                 {
-                    Controller newController = new Controller(ui);
-                    if (newController != null)
+                    foreach (UserIndex ui in userIndexControllers)
                     {
-                        if (newController.IsConnected) { controller = newController; return; }
+                        Controller newController = new Controller(ui);
+                        if (newController != null)
+                        {
+                            if (newController.IsConnected)
+                            {
+                                controller = newController;
+                                controllerConnected = true;
+                                return;
+                            }
+                        }
                     }
+
+                    //if nothing connected and isn't null then we wait a few seconds and try again
+                    controllerConnected = false;
+                    Thread.Sleep(3000);
+                    goto connectController;
                 }
 
-                //if nothing connected and isn't null then we wait a few seconds and try again
-                Thread.Sleep(3000);
-                goto connectController;
 
             }
             catch (Exception ex)
             {
-                Log_Writer.Instance.writeLog("Connecting to controller; " + ex.Message, "CI01");
+
             }
 
         }
@@ -241,7 +228,7 @@ namespace Everything_Handhelds_Tool.Classes
 
         public event EventHandler<controllerInputEventArgsOSK> controllerInputEventOSK;
         public event EventHandler<controllerJoystickEventArgsOSK> controllerJoystickEventOSK;
-        public event EventHandler<controllerInputEventArgsOSK> controllerJoystickDPadEventOSK;
+        public event EventHandler<controllerInputEventArgsOSK> controllerConnectedDisconnectedEventOSK;
 
         public void raiseControllerInput(string action)
         {
@@ -249,6 +236,8 @@ namespace Everything_Handhelds_Tool.Classes
             {
                 controllerInputEventOSK?.Invoke(this, new controllerInputEventArgsOSK(action));
             });
+
+
         }
 
         public void raiseStickInput(double lx, double ly, double rx, double ry)
@@ -257,14 +246,18 @@ namespace Everything_Handhelds_Tool.Classes
             {
                 controllerJoystickEventOSK?.Invoke(this, new controllerJoystickEventArgsOSK(lx, ly, rx, ry));
             });
+
+
         }
 
-        public void raiseStickDPadInput(string action)
+        public void raiseControllerConnectedDisconnected(string action)
         {
+
             System.Windows.Application.Current.Dispatcher.BeginInvoke(() =>
             {
-                controllerJoystickDPadEventOSK?.Invoke(this, new controllerInputEventArgsOSK(action));
+                controllerConnectedDisconnectedEventOSK?.Invoke(this, new controllerInputEventArgsOSK(action));
             });
+
         }
 
     }

@@ -1,7 +1,7 @@
 ﻿
 using System.Linq;
 using System.Windows;
-
+using Everything_Handhelds_Tool.OSK;
 namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
 {
     public class Toggle_OSK : Action
@@ -13,12 +13,26 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
         }
         public override void OnActivate()
         {
-            if (!Application.Current.Windows.OfType<OSK>().Any())
+            if (!Application.Current.Windows.OfType< Everything_Handhelds_Tool.OSK.OSK> ().Any())
             {
-                OSK osk = new OSK();
+                Everything_Handhelds_Tool.OSK.OSK osk = new Everything_Handhelds_Tool.OSK.OSK();
                 osk.Show();
             }
-            
+
+            Application.Current.Dispatcher.BeginInvoke(() =>
+            {
+                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                if (mainWindow != null)
+                {
+                    mainWindow.controllerInput.publicSuspendEventsForOSK = true;
+                    mainWindow.ToggleWindow();
+                }
+
+
+            });
+
+
+
         }
     }
    

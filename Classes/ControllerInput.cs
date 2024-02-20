@@ -210,7 +210,7 @@ namespace Everything_Handhelds_Tool.Classes
                             
                             Application.Current.Dispatcher.BeginInvoke(() =>
                             {
-                                if (!Application.Current.Windows.OfType<OSK>().Any())
+                                if (!Application.Current.Windows.OfType<Everything_Handhelds_Tool.OSK.OSK>().Any())
                                 {
                                     suspendEventsForOSK = false;
                                 }
