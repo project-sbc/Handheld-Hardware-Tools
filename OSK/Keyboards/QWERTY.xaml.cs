@@ -44,13 +44,20 @@ namespace Everything_Handhelds_Tool.OSK.Keyboards
 
         public QWERTY()
         {
-            InitializeComponent();
+            
 
             //get list of buttons to make searching for button changes easier - this was used when I made the joysticks into seudo dpads for left right up down movement, wasnt good because moving up and down woudlnt always get the right key because of the button offsets
             //buttons = mainGrid.Children.OfType<Button>().OrderBy(Grid.GetRow).ThenBy(Grid.GetColumn).ToList();
 
+            //Move initilize components to sub routine and async it to make pages feel smoother
+            Dispatcher.BeginInvoke(new System.Action(() => Initialize()));
 
+        }
 
+        private void Initialize()
+        {
+            InitializeComponent();
+        
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -566,12 +573,7 @@ namespace Everything_Handhelds_Tool.OSK.Keyboards
         }
         private void ButtonPressEvent_controllerJoystickEventOSK(object? sender, controllerJoystickEventArgsOSK e)
         {
-            Debug.WriteLine("LX: " + e.lx.ToString());
-            Debug.WriteLine("LY: " + e.ly.ToString());
-            Debug.WriteLine("RX: " + e.rx.ToString());
-            Debug.WriteLine("RY: " + e.ry.ToString());
-           
-
+          
             Application.Current.Dispatcher.BeginInvoke(() =>
             {
                 HandleLeftCircleMovement(e);

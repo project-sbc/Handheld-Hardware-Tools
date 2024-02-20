@@ -25,10 +25,19 @@ namespace Everything_Handhelds_Tool.OSK
         public OSK()
         {
             InitializeComponent();
+           
+            //Move initilize components to sub routine and async it to make pages feel smoother
+            Dispatcher.BeginInvoke(new System.Action(() => Initialize()));
 
-            SetLocation();
-            ShowWindowAndLoadKeyboardPageInFrame();
         }
+
+        private void Initialize()
+        {
+            SetLocation();
+            frame.Source = new Uri("Keyboards\\QWERTY.xaml", UriKind.RelativeOrAbsolute);
+
+        }
+
 
 
         #region handle interprocess post messages here AND making the app non focusable
@@ -63,16 +72,7 @@ namespace Everything_Handhelds_Tool.OSK
 
 
         #endregion
-        public void ShowWindowAndLoadKeyboardPageInFrame()
-        {
-            if (this.Visibility != Visibility.Visible)
-            {
-                this.Visibility = Visibility.Visible;
-                frame.Source = new Uri("Keyboards\\QWERTY.xaml", UriKind.RelativeOrAbsolute);
-            }
 
-
-        }
         public void UnloadPageAndHideWindow()
         {
             frame.Content = null;
