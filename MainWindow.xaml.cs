@@ -58,42 +58,7 @@ namespace Everything_Handhelds_Tool
 
         }
 
-        #region making the app non focusable
-
-        //used in non focus app
-        private const int GWL_EXSTYLE = -20;
-        private const int WS_EX_NOACTIVATE = 0x08000000;
-
-        [DllImport("user32.dll")]
-        public static extern IntPtr SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
-
-        [DllImport("user32.dll")]
-        public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
-        //protected override void OnSourceInitialized(EventArgs e)
-        //{
-            //base.OnSourceInitialized(e);
-
-        //}
-
-
-        private void SetWindowAsNonFocusable()
-        {
-            //set app as non focusable 
-            var helper = new WindowInteropHelper(this);
-            SetWindowLong(helper.Handle, GWL_EXSTYLE,
-                GetWindowLong(helper.Handle, GWL_EXSTYLE) | WS_EX_NOACTIVATE);
-        }
-        private void SetWindowAsFocusable()
-        {
-            //set app as focusable 
-            var helper = new WindowInteropHelper(this);
-            SetWindowLong(helper.Handle, GWL_EXSTYLE,
-                GetWindowLong(helper.Handle, GWL_EXSTYLE) & ~WS_EX_NOACTIVATE);
-        }
-
-
-
-        #endregion
+      
 
 
         #region Set up
@@ -504,7 +469,36 @@ namespace Everything_Handhelds_Tool
                 TasksToggleWindowClosed();
             }
         }
+        #region making the app non focusable
 
+        //used in non focus app
+        private const int GWL_EXSTYLE = -20;
+        private const int WS_EX_NOACTIVATE = 0x08000000;
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+        [DllImport("user32.dll")]
+        public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+
+        private void SetWindowAsNonFocusable()
+        {
+            //set app as non focusable 
+            var helper = new WindowInteropHelper(this);
+            SetWindowLong(helper.Handle, GWL_EXSTYLE,
+                GetWindowLong(helper.Handle, GWL_EXSTYLE) | WS_EX_NOACTIVATE);
+        }
+        private void SetWindowAsFocusable()
+        {
+            //set app as focusable 
+            var helper = new WindowInteropHelper(this);
+            SetWindowLong(helper.Handle, GWL_EXSTYLE,
+                GetWindowLong(helper.Handle, GWL_EXSTYLE) & ~WS_EX_NOACTIVATE);
+        }
+
+
+
+        #endregion
         #endregion
 
 

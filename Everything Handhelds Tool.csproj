@@ -231,6 +231,10 @@
     </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="AppWindows\WindowManager\" />
+  </ItemGroup>
+
 
 
 </Project>
