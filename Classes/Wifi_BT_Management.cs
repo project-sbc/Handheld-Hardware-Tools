@@ -85,14 +85,18 @@ namespace Everything_Handhelds_Tool.Classes
         public async Task ToggleBT()
         {
             var radios = await Radio.GetRadiosAsync();
+            Debug.WriteLine(radios.Count);
             var btRadio = radios.FirstOrDefault(radio => radio.Kind == RadioKind.Bluetooth);
            
-
+    
             if (btRadio != null)
             {
-                Debug.WriteLine(btRadio.Name);
-                if (btRadio.State == RadioState.Off) { btRadio.SetStateAsync(RadioState.On); }
-                if (btRadio.State == RadioState.On) { btRadio.SetStateAsync(RadioState.Off); }
+                //MAKE SURE TO TAKE THE STATE OUT OF THE RADIO OBJECT. I RAN INTO AN ISSUE WHERE the state updates on the first if statement,so if the bt is off, the first if statement turns it on
+                //the second if statement immediately turns it off!
+                RadioState state = btRadio.State;
+                if (state == RadioState.Off) { btRadio.SetStateAsync(RadioState.On); }
+
+                if (state == RadioState.On) { btRadio.SetStateAsync(RadioState.Off); }
             }
             btRadio = null;
 
