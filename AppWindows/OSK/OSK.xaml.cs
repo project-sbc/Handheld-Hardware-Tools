@@ -15,7 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Everything_Handhelds_Tool.OSK
+namespace Everything_Handhelds_Tool.AppWindows.OSK
 {
     /// <summary>
     /// Interaction logic for OSK.xaml
@@ -40,7 +40,7 @@ namespace Everything_Handhelds_Tool.OSK
 
 
 
-        #region handle interprocess post messages here AND making the app non focusable
+        #region making the app non focusable
 
         //used in non focus app
         private const int GWL_EXSTYLE = -20;

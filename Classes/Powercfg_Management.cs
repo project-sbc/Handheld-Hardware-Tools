@@ -39,15 +39,30 @@ namespace Everything_Handhelds_Tool.Classes
         }
 
         #region common powercfg handler
-        private int PowercfgResultHandler(string result)
+
+        //i havent finished commonizing everything, this can be a later to do, the idea is that I can do all powercfg stuff through these two routines
+        //its a nice idea but needs further development. I am using parts of this already though
+
+        private int PowercfgReadValueHandler(string queryString, string power = null)
         {
-            string Power = SystemParameters.PowerLineStatus.ToString();
+            //queryString is the command you would put into cmd powercfg tool i.e.  -Q SCHEME_CURRENT sub_processor CPMAXCORES
+            //USE THIS WITH THE PowercfgResultHandler below to parse out the value you want
+            //power is optional argument to specify AC vs DC power plan value. if null then it grabs current state
+            string results = Run_CLI.Instance.RunCommand(queryString, true, "C:\\windows\\system32\\powercfg.exe", 1000).Trim();
+            return PowercfgResultHandler(results, power);
+        }
+
+
+        private int PowercfgResultHandler(string result, string power = null)
+        {
+            //power is optional argument to specify AC vs DC power plan value. if null then it grabs current state
+            if (power == null) { power = SystemParameters.PowerLineStatus.ToString(); }
             string[] resultArray = result.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
             string tempString = "";
             int value = -1;
             if (resultArray.Length > 2)
             {
-                if (Power == "Online")
+                if (power == "Online")
                 {
                     tempString = resultArray[resultArray.Length - 2];
                 }
@@ -80,7 +95,7 @@ namespace Everything_Handhelds_Tool.Classes
 
         public void UnhidePowerCfgSettings()
         {
-            //unhides epp, active core, etc
+            //unhides epp, active core, etc, otherwise these values can't be changed
             Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR PROCFREQMAX -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 1000);
             Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR PROCTHROTTLEMAX -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 1000);
             Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR CPMAXCORES -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 1000);
@@ -109,11 +124,10 @@ namespace Everything_Handhelds_Tool.Classes
 
         private void ReadActiveCores()
         {
-            string Power = SystemParameters.PowerLineStatus.ToString();
-            //call common string handler for powercfg
-            string result = Run_CLI.Instance.RunCommand(" -Q SCHEME_CURRENT sub_processor CPMAXCORES", true, "C:\\windows\\system32\\powercfg.exe", 1000).Trim();
             //value is current active core count
-            int value = PowercfgResultHandler(result);
+            int value = PowercfgReadValueHandler(" -Q SCHEME_CURRENT sub_processor CPMAXCORES");
+
+            //value is a percentage of total number active cores (i.e. 50% on a 8C CPU means 4C are active), so we need to convert back to a raw core number value
             double calculateCores = (value * maxNumberCores) / 100;
             calculateCores = Math.Round(calculateCores, 0);
 
@@ -123,6 +137,7 @@ namespace Everything_Handhelds_Tool.Classes
 
         public void ChangeActiveCores(int cores)
         {
+            //convert core number to total percentage using CPU total # cores
             string CorePercentage = (Math.Round((double)(cores / maxNumberCores), 2) * 100).ToString();
             PowercfgChangeValueHandler(CorePercentage, "CPMAXCORES");
             PowercfgChangeValueHandler(CorePercentage, "CPMINCORES");      
@@ -143,11 +158,8 @@ namespace Everything_Handhelds_Tool.Classes
 
         private void ReadEPP()
         {
-            string Power = SystemParameters.PowerLineStatus.ToString();
-            string result = Run_CLI.Instance.RunCommand(" -Q SCHEME_CURRENT SUB_PROCESSOR PERFEPP", true, "C:\\windows\\system32\\powercfg.exe", 1000).Trim();
+            int intEPP = PowercfgReadValueHandler(" -Q SCHEME_CURRENT SUB_PROCESSOR PERFEPP");
 
-            int intEPP = PowercfgResultHandler(result);
-       
             EPP = intEPP;
         }
   
@@ -195,6 +207,31 @@ namespace Everything_Handhelds_Tool.Classes
         {
             return turboEnabled;
         }
+
+        public bool ReadAndReturnCPUTurboStatus()
+        {
+            //use this for the TurboCPU_ToggleSwitch control
+            ReadMaxCPUClock();
+            ReadTurboEnabled();
+            if (turboEnabled && maxCPUClock == 0) { return true; }
+            else
+            {
+                return false;
+            }
+        }
+        public void ToggleCPUTurboStatus(bool toggle)
+        { //use this for the TurboCPU_ToggleSwitch control
+            PowercfgChangeValueHandler("0", "PROCFREQMAX");
+            if (toggle) 
+            {
+                PowercfgChangeValueHandler("100", "PROCTHROTTLEMAX");
+            }
+            else
+            {
+                PowercfgChangeValueHandler("99", "PROCTHROTTLEMAX");
+            }
+        }
+
         private void ReadMaxCPUClock()
         {
             string result = Run_CLI.Instance.RunCommand(" -Q SCHEME_CURRENT sub_processor PROCFREQMAX", true, "C:\\windows\\system32\\powercfg.exe", 1000).Trim();

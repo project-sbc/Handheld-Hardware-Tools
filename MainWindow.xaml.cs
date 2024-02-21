@@ -20,6 +20,8 @@ using System.Xml;
 using Everything_Handhelds_Tool.Classes.Profiles;
 
 using System.Windows.Interop;
+using System.Runtime.InteropServices;
+using System.Collections.Generic;
 
 
 namespace Everything_Handhelds_Tool
@@ -55,6 +57,45 @@ namespace Everything_Handhelds_Tool
             //Application.Current.Resources.MergedDictionaries.Add(((ResourceDictionary)XamlReader.Load(xamlFile)));
 
         }
+
+        #region making the app non focusable
+
+        //used in non focus app
+        private const int GWL_EXSTYLE = -20;
+        private const int WS_EX_NOACTIVATE = 0x08000000;
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+        [DllImport("user32.dll")]
+        public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+        //protected override void OnSourceInitialized(EventArgs e)
+        //{
+            //base.OnSourceInitialized(e);
+
+        //}
+
+
+        private void SetWindowAsNonFocusable()
+        {
+            //set app as non focusable 
+            var helper = new WindowInteropHelper(this);
+            SetWindowLong(helper.Handle, GWL_EXSTYLE,
+                GetWindowLong(helper.Handle, GWL_EXSTYLE) | WS_EX_NOACTIVATE);
+        }
+        private void SetWindowAsFocusable()
+        {
+            //set app as focusable 
+            var helper = new WindowInteropHelper(this);
+            SetWindowLong(helper.Handle, GWL_EXSTYLE,
+                GetWindowLong(helper.Handle, GWL_EXSTYLE) & ~WS_EX_NOACTIVATE);
+        }
+
+
+
+        #endregion
+
+
         #region Set up
         private void InitializeRoutines() 
         { 
@@ -399,10 +440,41 @@ namespace Everything_Handhelds_Tool
             //Reload last page
             LoadPageInFrame();
 
+            //determine if a full screen game is running, if so we will open the app as NON-FOCUSABLE. this makes it so that some games won't minimize
+            DetermineAppFocusOnFullScreenGame();
+
             //set app to normal state and visible
             this.Show();
 
+            
+
         }
+
+        private void DetermineAppFocusOnFullScreenGame()
+        {
+            //this code checks for full screen games
+            List<Process> listProcesses = new List<Process>();
+
+            Process[] pList = Process.GetProcesses();
+            foreach (Process p in pList)
+            {
+                if (p.MainWindowHandle != IntPtr.Zero)
+                {
+                    Debug.WriteLine(p.ProcessName);
+
+                    if (FullScreenProgram_Management.IsForegroundFullScreen(new HandleRef(null, p.MainWindowHandle), null) && !FullScreenProgram_Management.ExcludeFullScreenProcessList.Contains(p.ProcessName))
+                    {
+                        //this is where we will make app non focusable
+                        SetWindowAsNonFocusable();
+                        return;
+                    }
+                }
+            }
+
+            //if no full screen game is found we end up here
+            SetWindowAsFocusable();
+        }
+
         private void TasksToggleWindowClosed()
         {
             //Tasks to do when window is hiding

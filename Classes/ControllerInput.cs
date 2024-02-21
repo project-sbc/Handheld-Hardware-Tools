@@ -1,4 +1,5 @@
-﻿using Everything_Handhelds_Tool.Classes.Actions;
+﻿using Everything_Handhelds_Tool.AppWindows.OSK;
+using Everything_Handhelds_Tool.Classes.Actions;
 using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
 using Everything_Handhelds_Tool.Models;
 using Everything_Handhelds_Tool.Pages;
@@ -210,7 +211,7 @@ namespace Everything_Handhelds_Tool.Classes
                             
                             Application.Current.Dispatcher.BeginInvoke(() =>
                             {
-                                if (!Application.Current.Windows.OfType<Everything_Handhelds_Tool.OSK.OSK>().Any())
+                                if (!Application.Current.Windows.OfType<OSK>().Any())
                                 {
                                     suspendEventsForOSK = false;
                                 }

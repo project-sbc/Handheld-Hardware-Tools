@@ -81,6 +81,8 @@ namespace Everything_Handhelds_Tool.Pages
                     return new ActiveCores_Slider();
                 case "Usercontrol_MaxCPUClock":
                     return new MaxCPU_Slider();
+                case "Usercontrol_CPUTurbo":
+                    return new TurboCPU_ToggleSwitch();
                 default:
                     return null;
             }

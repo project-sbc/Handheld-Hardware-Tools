@@ -17,9 +17,9 @@ using System.Windows.Threading;
 using WindowsInput.Native;
 using WindowsInput;
 using System.Windows.Controls.Primitives;
-using System.Diagnostics;
+using Everything_Handhelds_Tool.AppWindows.OSK;
 
-namespace Everything_Handhelds_Tool.OSK.Keyboards
+namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
 {
     /// <summary>
     /// Interaction logic for QWERTY.xaml
@@ -27,7 +27,7 @@ namespace Everything_Handhelds_Tool.OSK.Keyboards
 
     public partial class QWERTY : Page
     {
-        Everything_Handhelds_Tool.OSK.ControllerInputOSK inputOSK = null;
+        ControllerInputOSK inputOSK = null;
         Button leftButton = null;
         Button rightButton = null;
         List<Button> buttons;
@@ -153,7 +153,7 @@ namespace Everything_Handhelds_Tool.OSK.Keyboards
 
         private void SubscribeEvents()
         {
-            inputOSK = new Everything_Handhelds_Tool.OSK.ControllerInputOSK();
+            inputOSK = new Everything_Handhelds_Tool.AppWindows.OSK.ControllerInputOSK();
 
             //subscribe to controller input events for buttons and joystick movement
             inputOSK.buttonPressEvent.controllerInputEventOSK += ButtonPressEvent_controllerInputEventOSK;
@@ -347,7 +347,7 @@ namespace Everything_Handhelds_Tool.OSK.Keyboards
             inputOSK.AbortThread();
             Application.Current.Dispatcher.BeginInvoke(() =>
             {
-                OSK osk = Application.Current.Windows.OfType<Everything_Handhelds_Tool.OSK.OSK>().First();
+                OSK osk = Application.Current.Windows.OfType<Everything_Handhelds_Tool.AppWindows.OSK.OSK>().First();
                 if (osk != null)
                 {
                     osk.Close();

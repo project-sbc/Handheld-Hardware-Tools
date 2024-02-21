@@ -13,8 +13,8 @@
     <system:String x:Key="Usercontrol_Volume">Volume</system:String>
     <system:String x:Key="Usercontrol_TDP">TDP</system:String>
     <system:String x:Key="Usercontrol_TDP2">Boost TDP</system:String>
-    <system:String x:Key="Usercontrol_MaxCPUFrequency">Set Max CPU Frequency</system:String>
-    <system:String x:Key="Usercontrol_CPUTurbo">Disable CPU Turbo Boost</system:String>
+    <system:String x:Key="Usercontrol_MaxCPUClock">Set Max CPU Frequency</system:String>
+    <system:String x:Key="Usercontrol_CPUTurbo">CPU Turbo Boost</system:String>
     <system:String x:Key="Usercontrol_Brightness">Brightness</system:String>
     <system:String x:Key="Usercontrol_CloseEHT">Close Everything Handheld Tools</system:String>
     <system:String x:Key="Usercontrol_HideEHT">Hide Everything Handheld Tools</system:String>

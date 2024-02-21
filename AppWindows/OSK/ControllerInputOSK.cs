@@ -6,11 +6,10 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Everything_Handhelds_Tool.OSK
+namespace Everything_Handhelds_Tool.AppWindows.OSK
 {
     public class ControllerInputOSK
     {
-      
 
         public ButtonPressEventOSK buttonPressEvent = new ButtonPressEventOSK();
         public Controller? controller;
@@ -266,7 +265,7 @@ namespace Everything_Handhelds_Tool.OSK
         public string Action { get; set; }
         public controllerInputEventArgsOSK(string action)
         {
-            this.Action = action;
+            Action = action;
         }
     }
     public class controllerJoystickEventArgsOSK : EventArgs
