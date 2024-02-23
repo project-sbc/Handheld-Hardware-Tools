@@ -17,7 +17,6 @@ using System.Windows.Threading;
 using WindowsInput.Native;
 using WindowsInput;
 using System.Windows.Controls.Primitives;
-using Everything_Handhelds_Tool.AppWindows.OSK;
 
 namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
 {

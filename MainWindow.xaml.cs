@@ -22,12 +22,13 @@ using Everything_Handhelds_Tool.Classes.Profiles;
 using System.Windows.Interop;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
+using Everything_Handhelds_Tool.AppWindows.WindowManager;
 
 
 namespace Everything_Handhelds_Tool
 {
         
-    public partial class MainWindow : UiWindow 
+    public partial class MainWindow : ControllerWindow 
     {
 
         public Device device;
@@ -52,10 +53,18 @@ namespace Everything_Handhelds_Tool
             InitializeRoutines();
 
 
+            //set your common items between windows (this has to do with the ControllerWindow custom class
+            commonFrame = frame;
+            instructionFrame = frameControllerInput;
+
+
+            //These are for a future feature of custom formats
             //FileStream xamlFile = new FileStream("Styles\\NewTheme.xaml", FileMode.Open, FileAccess.Read);
 
             //Application.Current.Resources.MergedDictionaries.Add(((ResourceDictionary)XamlReader.Load(xamlFile)));
 
+            AppWindows.WindowManager.WindowManager wm = new AppWindows.WindowManager.WindowManager();
+            wm.Show();
         }
 
       
@@ -90,12 +99,10 @@ namespace Everything_Handhelds_Tool
 
         private void SubscribeEvents()
         {
-            //subscribe to controller input
-            controllerInput.buttonPressEvent.controllerInputEvent += HandleControllerInputTopLevel;
+            SubscribeControllerEvents();
             //subscribe to power changed (to update status bar)
             SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
-            //subscribe to controller connection changed event
-            controllerInput.controllerConnectionChangedEvent.controllerConnectionChangedEvent += HandleControllerConnectionChanged;
+
         }
         
 
@@ -263,28 +270,11 @@ namespace Everything_Handhelds_Tool
         #endregion
         #region Controller Navigation
         public ControllerInput controllerInput = new ControllerInput();
-        //controllerNavigateWindow determines if input stays on window level or gets passed down
-        public bool controllerNavigateWindow = true;
+       
 
-        public void SetControllerNavigateWindow(bool navigateValue)
-        {
-            //set the controllerNavigateWindow from page level
-            controllerNavigateWindow= navigateValue;
-            if (!controllerNavigateWindow )
-            {
-                ControllerPage a = (ControllerPage)frame.Content;
-                a.HandleControllerInput("Highlight First Control");
-            }
-                      
-           
-        }
 
-        private void HandleControllerConnectionChanged(object sender, controllerConnectionChangedEventArgs e)
-        {
-            if (e.Connected) { SetControllerInputPage("SelectHide"); }
-            else { SetControllerInputPage(""); }
-        }
-        private void HandleControllerInputTopLevel(object? sender, controllerInputEventArgs e)
+
+        public override void HandleControllerInputTopLevel(object? sender, controllerInputEventArgs e)
         {
             if (!controllerNavigateWindow)
             {//if not navigating at the window level pass input to page level
@@ -507,55 +497,7 @@ namespace Everything_Handhelds_Tool
             ToggleWindow();
         }
 
-        public void SetControllerInputPage(string pageName)
-        {
-            //Sets the controller instruction on the bottom of the page
-            //If controller is not connected the uri should be null to make the instruction disappear
-            Uri uri = null;
-            //if the controller icon, which updates based on controller connection, is visible, then change instruction
-            if (controllerStatusBarIcon.Visibility == Visibility.Visible)
-            {
-                switch (pageName)
-                {
-
-                    case "ToggleBackMoveUpDown":
-                        uri = new Uri("ControllerInstructionPages\\ToggleBackMoveUpDown.xaml", UriKind.Relative);
-                        break;
-                        
-                    case "SelectSaveBack":
-                        uri = new Uri("ControllerInstructionPages\\SelectSaveBack.xaml", UriKind.Relative);
-                        break;
-                    case "SelectAddBack":
-                        uri = new Uri("ControllerInstructionPages\\SelectAddBack.xaml", UriKind.Relative);
-                        break;
-                    case "SelectBack":
-                        uri = new Uri("ControllerInstructionPages\\SelectBack.xaml", UriKind.Relative);
-                        break;
-                    case "SelectHide":
-                        uri = new Uri("ControllerInstructionPages\\SelectHide.xaml", UriKind.Relative);
-                        break;
-                    case "ChangeBack":
-                        uri = new Uri("ControllerInstructionPages\\ChangeBack.xaml", UriKind.Relative);
-                        break;
-                    case "ChangeToggleBack":
-                        uri = new Uri("ControllerInstructionPages\\ChangeToggleBack.xaml", UriKind.Relative);
-                        break;
-                    case "ToggleBack":
-                        uri = new Uri("ControllerInstructionPages\\ToggleBack.xaml", UriKind.Relative);
-                        break;
-                    case "EditDeleteBackMoveUpDown":
-                        uri = new Uri("ControllerInstructionPages\\EditDeleteBackMoveUpDown.xaml", UriKind.Relative);
-                        break;
-
-                        
-                    default:
-                        break;
-                }
-            }
-         
-
-            frameControllerInput.Source = uri;
-        }
+      
         private void ContextMenu_Show(object sender, RoutedEventArgs e)
         {
             TasksToggleWindowOpen();

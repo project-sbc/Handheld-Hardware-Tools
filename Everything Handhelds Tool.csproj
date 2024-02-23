@@ -193,6 +193,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="AppWindows\WindowManager\Window_UserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ControllerInstructionPages\OSKInstructions.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -229,10 +232,6 @@
     <Compile Update="UserControls\HomePageUserControls\Brightness_Slider.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="AppWindows\WindowManager\" />
   </ItemGroup>
 
 

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-
+using System.Windows.Media;
 using Wpf.Ui.Controls;
 
 namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
@@ -139,8 +139,24 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
 
         public void ReturnControlToWindow()
         {
-            MainWindow wnd = (MainWindow)Application.Current.MainWindow;
-            wnd.SetControllerNavigateWindow(true);
+            DependencyObject parent = VisualTreeHelper.GetParent(this);
+
+            // Traverse up the visual tree until we find a Window
+            while (parent != null && !(parent is Window))
+            {
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+
+            // Check if we found a Window
+            if (parent is Window)
+            {
+                ControllerWindow window = (ControllerWindow)parent;
+                window.SetControllerNavigateWindow(true);
+            }
+
+            //OLD CODE WHEN I ONLY HAD ONE WINDOW, NOW TRYING TO COMMONIZE
+            //MainWindow wnd = (MainWindow)Application.Current.MainWindow;
+            //wnd.SetControllerNavigateWindow(true);
         }
         public void HighlightUserControl()
         {

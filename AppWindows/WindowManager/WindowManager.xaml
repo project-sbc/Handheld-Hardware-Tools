@@ -1,0 +1,25 @@
+﻿<classes:ControllerWindow x:Class="Everything_Handhelds_Tool.AppWindows.WindowManager.WindowManager"
+        xmlns:wuc="clr-namespace:Everything_Handhelds_Tool.AppWindows.WindowManager"
+                           xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Everything_Handhelds_Tool.AppWindows.WindowManager" xmlns:local1="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
+        mc:Ignorable="d"
+                     Topmost="True"
+            Left="50"
+           WindowStyle="None"
+             Background="Transparent"
+            AllowsTransparency="True"
+         WindowStartupLocation="CenterScreen"
+        Title="WindowManager" Height="450" Width="800">
+    <Border CornerRadius="7" Background="DimGray">
+        <Grid   >
+            <Frame Name="frame" Source="WindowManagerPage.xaml" />
+            <Frame Name="controllerFrame"  />
+            
+        </Grid>
+    </Border>
+    
+</classes:ControllerWindow>
