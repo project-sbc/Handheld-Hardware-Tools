@@ -10,8 +10,10 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 using static System.Net.Mime.MediaTypeNames;
@@ -46,21 +48,190 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
             }
         }
 
+        #region button routines
+        private void maximizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleWindowState();
+        }
 
+        #region move window to different monitor
+
+        public async Task MoveWindowToNextMonitorAsync()
+        {
+            if (selectedProcess != null)
+            {
+                if (selectedProcess.MainWindowHandle != IntPtr.Zero)
+                {
+                    //WE NEED TO GET CURRENT STATE OF WINDOW BECAUSE MOVING IT WHILE NOT OPEN MAKES IT NOT WORK THE FIRST TIME
+                    var placement = WindowStateHandler.GetPlacement(selectedProcess.MainWindowHandle);
+
+                    WindowState windowState = GetWindowState(placement.showCmd.ToString());
+
+                    if (windowState != WindowState.Maximized)
+                    {
+                        WindowStateHandler.SetWindowState(selectedProcess.MainWindowHandle, WindowState.Normal);
+                        await Task.Delay(200);
+                    }
+
+
+
+                    List<Screen> screens = Screen.AllScreens.ToList();
+
+                    // Get the position and size of the window
+                    MoveWindowToMonitor.RECT windowRect;
+                    MoveWindowToMonitor.GetWindowRect(selectedProcess.MainWindowHandle, out windowRect);
+
+
+                    // Get the screen  of the winodw
+                    Screen windowScreen = Screen.FromHandle(selectedProcess.MainWindowHandle);
+
+                    int indexScreen = screens.IndexOf(windowScreen);
+
+          
+
+                    int newIndex = 0;
+                    if (indexScreen != -1 && indexScreen < (screens.Count-1))
+                    {
+                        newIndex = indexScreen + 1;
+                    }
+
+                    Screen targetScreen = screens[newIndex];
+                                        // Calculate the new position of the window relative to the target monitor
+                    int newX = targetScreen.Bounds.Left + 40; // Example: 100 pixels from the left edge
+                    int newY = targetScreen.Bounds.Top + 40; // Example: 100 pixels from the top edge
+
+
+                    Debug.WriteLine(indexScreen.ToString() + " newX " + newX.ToString() + "; newY " + newY.ToString());
+
+                    // Move the window to the new position
+                    MoveWindowToMonitor.SetWindowPos(selectedProcess.MainWindowHandle, IntPtr.Zero, newX, newY, windowRect.Right - windowRect.Left, windowRect.Bottom - windowRect.Top, MoveWindowToMonitor.SWP_SHOWWINDOW | MoveWindowToMonitor.SWP_NOZORDER);
+
+                    await Task.Delay(200);
+                    //maximize window and set to front
+   
+                    WindowStateHandler.SetForegroundWindow(selectedProcess.MainWindowHandle);
+                    await Task.Delay(200);
+                    WindowStateHandler.SetWindowState(selectedProcess.MainWindowHandle, WindowState.Maximized);
+
+                }
+            }
+           
+        }
+
+        public async Task MoveWindowToPreviousMonitorAsync()
+        {
+            if (selectedProcess != null)
+            {
+                if (selectedProcess.MainWindowHandle != IntPtr.Zero)
+                {
+                    //WE NEED TO GET CURRENT STATE OF WINDOW BECAUSE MOVING IT WHILE NOT OPEN MAKES IT NOT WORK THE FIRST TIME
+                    var placement = WindowStateHandler.GetPlacement(selectedProcess.MainWindowHandle);
+
+                    WindowState windowState = GetWindowState(placement.showCmd.ToString());
+
+                    if (windowState != WindowState.Maximized)
+                    {
+                        WindowStateHandler.SetWindowState(selectedProcess.MainWindowHandle, WindowState.Maximized);
+                        await Task.Delay(500);
+                    }
+
+
+
+                    List<Screen> screens = Screen.AllScreens.ToList();
+
+                    // Get the position and size of the window
+                    MoveWindowToMonitor.RECT windowRect;
+                    MoveWindowToMonitor.GetWindowRect(selectedProcess.MainWindowHandle, out windowRect);
+
+
+                    // Get the screen  of the winodw
+                    Screen windowScreen = Screen.FromHandle(selectedProcess.MainWindowHandle);
+
+                    int indexScreen = screens.IndexOf(windowScreen);
+
+
+
+                    int newIndex = screens.Count-1;
+                    if (indexScreen > 0)
+                    {
+                        newIndex = indexScreen - 1;
+                    }
+
+                    Screen targetScreen = screens[newIndex];
+                    // Calculate the new position of the window relative to the target monitor
+                    int newX = targetScreen.Bounds.Left + 40; // Example: 100 pixels from the left edge
+                    int newY = targetScreen.Bounds.Top + 40; // Example: 100 pixels from the top edge
+
+
+                    Debug.WriteLine(indexScreen.ToString() + " newX " + newX.ToString() + "; newY " + newY.ToString());
+
+                    // Move the window to the new position
+                    MoveWindowToMonitor.SetWindowPos(selectedProcess.MainWindowHandle, IntPtr.Zero, newX, newY, windowRect.Right - windowRect.Left, windowRect.Bottom - windowRect.Top, MoveWindowToMonitor.SWP_SHOWWINDOW | MoveWindowToMonitor.SWP_NOZORDER);
+
+                    await Task.Delay(400);
+                    //maximize window and set to front
+
+                    WindowStateHandler.SetForegroundWindow(selectedProcess.MainWindowHandle);
+                    await Task.Delay(400);
+                    WindowStateHandler.SetWindowState(selectedProcess.MainWindowHandle, WindowState.Maximized);
+
+                }
+            }
+
+        }
+        #endregion
+
+
+
+        #region handle window state toggle
+        public void ToggleWindowState()
+        {
+            if (selectedProcess != null)
+            {
+                if (selectedProcess.MainWindowHandle != IntPtr.Zero)
+                {
+                    var placement = WindowStateHandler.GetPlacement(selectedProcess.MainWindowHandle);
+
+                    WindowState windowState = GetWindowState(placement.showCmd.ToString());
+                    
+                    if (windowState == WindowState.Maximized)
+                    {
+                        WindowStateHandler.SetWindowState(selectedProcess.MainWindowHandle, WindowState.Minimized);
+                    }
+                    else
+                    {
+                        WindowStateHandler.SetWindowState(selectedProcess.MainWindowHandle, WindowState.Maximized);
+                        WindowStateHandler.SetForegroundWindow(selectedProcess.MainWindowHandle);
+                    }
+                }
+            }
+        }
+
+        private WindowState GetWindowState(string cmdPlacement)
+        {
+            switch (cmdPlacement)
+            {
+                case "Normal":
+                    return WindowState.Normal;
+                case "Minimized":
+                    return WindowState.Minimized;
+                case "Maximized":
+                    return WindowState.Maximized;
+                default:
+                    return WindowState.Normal;
+            }
+
+        }
+
+    
+        #endregion
+        #endregion
 
 
 
         // Import the necessary Windows APIs
 
 
-        [DllImport("user32.dll")]
-        private static extern IntPtr GetWindow(IntPtr hWnd, uint uCmd);
-
-        [DllImport("user32.dll")]
-        private static extern IntPtr GetTopWindow(IntPtr hWnd);
-
-
-        private const uint GW_HWNDNEXT = 2;
 
         private void PopulateStackPanelWithProcesses()
         {
@@ -68,11 +239,11 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
             //we can use this list to organize our processes by window order starting with the topmost window
             List<IntPtr> listWindowZOrder = new List<IntPtr>();
 
-            IntPtr windowIntPtr = GetTopWindow(IntPtr.Zero);
+            IntPtr windowIntPtr = ZOrderFunctions.GetTopWindow(IntPtr.Zero);
             while (windowIntPtr != IntPtr.Zero)
             {
                 listWindowZOrder.Add(windowIntPtr);
-                windowIntPtr = GetWindow(windowIntPtr, GW_HWNDNEXT);
+                windowIntPtr = ZOrderFunctions.GetWindow(windowIntPtr, ZOrderFunctions.GW_HWNDNEXT);
             }
 
 
@@ -167,7 +338,7 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
             
         }
 
-
+        //this is a list used to get rid of the few weird processes that have windows but we don't want to include in the list
         private List<string> ExclusionProcessList = new List<string>()
         {
            {"TextInputHost"},
@@ -179,8 +350,122 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
 
          };
 
+     
+    }
 
-        System.Windows.Media.Imaging.BitmapImage BitmapToImageSource(Bitmap bitmap)
+    public static class WindowStateHandler
+    {
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);
+        public static WINDOWPLACEMENT GetPlacement(IntPtr hwnd)
+        {
+            WINDOWPLACEMENT placement = new WINDOWPLACEMENT();
+            placement.length = Marshal.SizeOf(placement);
+            GetWindowPlacement(hwnd, ref placement);
+            return placement;
+        }
+
+        [DllImport("user32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool GetWindowPlacement(
+            IntPtr hWnd, ref WINDOWPLACEMENT lpwndpl);
+
+        [Serializable]
+        [StructLayout(LayoutKind.Sequential)]
+        public struct WINDOWPLACEMENT
+        {
+            public int length;
+            public int flags;
+            public ShowWindowCommands showCmd;
+            public System.Drawing.Point ptMinPosition;
+            public System.Drawing.Point ptMaxPosition;
+            public System.Drawing.Rectangle rcNormalPosition;
+        }
+
+        public enum ShowWindowCommands : int
+        {
+            Hide = 0,
+            Normal = 1,
+            Minimized = 2,
+            Maximized = 3,
+        }
+
+
+        public static void SetWindowState(IntPtr hWnd, WindowState state)
+        {
+            int nCmdShow = 0;
+            switch (state)
+            {
+                case WindowState.Normal:
+                    nCmdShow = SW_SHOWNORMAL;
+                    break;
+                case WindowState.Minimized:
+                    nCmdShow = SW_SHOWMINIMIZED;
+                    break;
+                case WindowState.Maximized:
+                    nCmdShow = SW_SHOWMAXIMIZED;
+                    break;
+                default:
+                    break;
+            }
+
+            // Call ShowWindow with the appropriate window handle and command
+            ShowWindow(hWnd, nCmdShow);
+        }
+
+        [DllImport("user32.dll")]
+        public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+        // Define constants for window states
+        public const int SW_HIDE = 0;
+        public const int SW_SHOWNORMAL = 1;
+        public const int SW_SHOWMINIMIZED = 2;
+        public const int SW_SHOWMAXIMIZED = 3;
+        public const int SW_SHOWNOACTIVATE = 4;
+        public const int SW_RESTORE = 9;
+        public const int SW_SHOWDEFAULT = 10;
+    }
+
+    public static class MoveWindowToMonitor
+    {
+
+        [DllImport("user32.dll")]
+        public static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
+        [DllImport("user32.dll")]
+        public static extern IntPtr MonitorFromWindow(IntPtr hwnd, uint dwFlags);
+
+        [DllImport("user32.dll")]
+        public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+
+        // Constants for window positioning
+        public const uint SWP_SHOWWINDOW = 0x0040;
+        public const uint SWP_NOZORDER = 0x0004;
+
+
+        public struct RECT
+        {
+            public int Left;
+            public int Top;
+            public int Right;
+            public int Bottom;
+        }
+    }
+
+    public static class ZOrderFunctions
+    {
+        //all of these are used to get the z order of windows for populating the windows manager
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetWindow(IntPtr hWnd, uint uCmd);
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetTopWindow(IntPtr hWnd);
+
+
+        public const uint GW_HWNDNEXT = 2;
+        public static System.Windows.Media.Imaging.BitmapImage BitmapToImageSource(Bitmap bitmap)
         {
             using (MemoryStream memory = new MemoryStream())
             {

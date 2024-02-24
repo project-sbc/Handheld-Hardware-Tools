@@ -7,7 +7,11 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Windows;
 using System.Windows.Interop;
+
+using Point = System.Drawing.Point;
+using Size = System.Drawing.Size;
 
 
 namespace Everything_Handhelds_Tool.AppWindows.WindowManager
@@ -56,10 +60,51 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
         {
             System.Windows.Media.Imaging.BitmapImage bitmap = BitmapToImageSource(PrintWindow(windowHandle));
             image.Source = bitmap;
-           
-
 
         }
+
+        public override void HandleControllerInput(string action)
+        {
+            //we will completely override base handler here
+            if (action == "B")
+            {
+                ReturnControlToPage();
+                return;
+            }
+
+            //WE NEED THE PAGE TO DO THIS NEXT PART, SO WE WORK UP THE VISUAL TREE
+            //use this code to work up the visual tree until you hit a controllerpage
+            DependencyObject parent = System.Windows.Media.VisualTreeHelper.GetParent(this);
+
+            // Traverse up the visual tree until we find a page
+            while (parent != null && !(parent is ControllerPage))
+            {
+                parent = System.Windows.Media.VisualTreeHelper.GetParent(parent);
+            }
+
+            // Check if we found a page
+            if (parent is ControllerPage)
+            {
+                WindowManagerPage page = (WindowManagerPage)parent;
+                switch (action)
+                {
+                    case "A":
+                        page.ToggleWindowState();
+                        break;
+                    case "RightShoulder":
+                        page.MoveWindowToNextMonitorAsync();
+                        break;
+                    case "LeftShoulder":
+                        page.MoveWindowToPreviousMonitorAsync();
+                        break;
+                    default:
+                        MessageBox.Show("FINIUSH THIS HERE");
+                        break;
+                }
+            }
+            
+        }
+
         System.Windows.Media.Imaging.BitmapImage BitmapToImageSource(Bitmap bitmap)
         {
             using (MemoryStream memory = new MemoryStream())

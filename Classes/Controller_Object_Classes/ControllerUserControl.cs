@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows;
 using Wpf.Ui.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
 {
@@ -63,10 +64,33 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
         public virtual void ReturnControlToPage() 
         {
             HighlightControl();
-            MainWindow wnd = (MainWindow)Application.Current.MainWindow;
-            ControllerPage controllerPage = wnd.frame.Content as ControllerPage;
-            controllerPage.ReturnControlToPage();
+
+            //use this code to work up the visual tree until you hit a controllerpage
+            DependencyObject parent = VisualTreeHelper.GetParent(this);
+
+            // Traverse up the visual tree until we find a page
+            while (parent != null && !(parent is ControllerPage))
+            {
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+
+            // Check if we found a page
+            if (parent is ControllerPage)
+            {
+                ControllerPage page = (ControllerPage)parent;
+                page.controllerNavigatePage = true;
+            }
+
             
+        }
+
+        public void ReturnControlToWindow()
+        {
+           
+
+            //OLD CODE WHEN I ONLY HAD ONE WINDOW, NOW TRYING TO COMMONIZE
+            //MainWindow wnd = (MainWindow)Application.Current.MainWindow;
+            //wnd.SetControllerNavigateWindow(true);
         }
 
         public virtual bool UseableOnThisDevice()
@@ -107,6 +131,13 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                 else 
                 {
                     MainControlInputHandlerSwitchBoard(action);
+                }
+            }
+            else
+            {
+                if (action == "B")
+                {
+                    ReturnControlToPage();
                 }
             }
         }

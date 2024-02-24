@@ -21,7 +21,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="1">
-            <Image Name="largeImage" VerticalAlignment="Top"  />
+            <Image Name="largeImage" Height="225" VerticalAlignment="Top"  />
             <Viewbox Height="40"  VerticalAlignment="Bottom" HorizontalAlignment="Center"   >
 
                 <TextBlock Name="textProcessTitle" />
@@ -35,21 +35,50 @@
             </Viewbox>
 
             <StackPanel Orientation="Horizontal">
-                <Button >
+                <Button Height="60" Name="maximizeButton" Click="maximizeButton_Click">
                     <ui:SymbolIcon Symbol="FullScreenMaximize20" FontSize="40" />
                 </Button>
 
-                <Button >
+                <Button Height="60" Name="closeButton">
                     <ui:SymbolIcon Symbol="CalendarCancel20" FontSize="40"/>
                 </Button>
 
-                <Button >
-                    <Grid>
-                        <ui:SymbolIcon Symbol="Tv20" FontSize="30"/>
-                        <ui:SymbolIcon Symbol="Tv20" FontSize="30" Margin="45,0,0,0"/>
-                    </Grid>
+                <Button Height="60" Name="monitorMoveRight">
+                    <StackPanel Orientation="Horizontal">
+                        <Grid>
+                            <TextBlock Text="1"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ui:SymbolIcon Symbol="Tv20" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        
+                        </Grid>
+                        <ui:SymbolIcon Symbol="ArrowRight20" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Grid>
+                            <TextBlock Text="2"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ui:SymbolIcon Symbol="Tv20" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                        </Grid>
+                        
+                    </StackPanel>
+                </Button>
+                <Button Height="60" Name="monitorMoveLeft">
+                    <StackPanel Orientation="Horizontal">
+                        <Grid>
+                            <TextBlock Text="1"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ui:SymbolIcon Symbol="Tv20" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                        </Grid>
+                        <ui:SymbolIcon Symbol="ArrowLeft20" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Grid>
+                            <TextBlock Text="2"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ui:SymbolIcon Symbol="Tv20" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                        </Grid>
+
+                    </StackPanel>
                 </Button>
 
+                <Button Height="60" Name="endATaskButton">
+                    <ui:SymbolIcon Symbol="ShareScreenStop24" FontSize="40"/>
+                </Button>
             </StackPanel>
             
         </StackPanel>
