@@ -17,7 +17,7 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
     /// </summary>
     public partial class Window_UserControl : ControllerUserControl
     {
-        Process process;
+        public Process process;
         IntPtr windowHandle;
 
        
@@ -27,6 +27,11 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
             //set variables
             process = proc;
             windowHandle = proc.MainWindowHandle;
+
+            //set virtual border
+            borderControl = border;
+
+
             //set control
             ConfigureControl();
         }

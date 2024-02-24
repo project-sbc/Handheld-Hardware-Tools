@@ -6,32 +6,57 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Everything_Handhelds_Tool.AppWindows.WindowManager"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+   xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       Title="WindowManagerPage">
 
     <Grid   >
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition  />
-            <RowDefinition Height="40" />
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal" Background="Transparent">
 
-            <Viewbox   VerticalAlignment="Bottom" HorizontalAlignment="Left"   >
+        <StackPanel Grid.Row="1">
+            <Image Name="largeImage" VerticalAlignment="Top"  />
+            <Viewbox Height="40"  VerticalAlignment="Bottom" HorizontalAlignment="Center"   >
 
-                <TextBlock VerticalAlignment="Bottom"  Text="{DynamicResource MainWindow_NavigationViewMenuItem_Home}" />
+                <TextBlock Name="textProcessTitle" />
 
             </Viewbox>
+            
+            <Viewbox Height="30"   VerticalAlignment="Bottom" HorizontalAlignment="Center"   >
+
+                <TextBlock Name="textProcessName"  />
+
+            </Viewbox>
+
+            <StackPanel Orientation="Horizontal">
+                <Button >
+                    <ui:SymbolIcon Symbol="FullScreenMaximize20" FontSize="40" />
+                </Button>
+
+                <Button >
+                    <ui:SymbolIcon Symbol="CalendarCancel20" FontSize="40"/>
+                </Button>
+
+                <Button >
+                    <Grid>
+                        <ui:SymbolIcon Symbol="Tv20" FontSize="30"/>
+                        <ui:SymbolIcon Symbol="Tv20" FontSize="30" Margin="45,0,0,0"/>
+                    </Grid>
+                </Button>
+
+            </StackPanel>
+            
         </StackPanel>
+        
 
-
-        <ScrollViewer Grid.Row="1" Grid.Column="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Auto" Background="Transparent">
-            <StackPanel Name="stackPanel" >
+        <ScrollViewer Grid.Row="1" Grid.Column="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Visible" >
+            <StackPanel Name="stackPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
 
 
             </StackPanel>

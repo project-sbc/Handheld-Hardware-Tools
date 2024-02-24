@@ -16,8 +16,13 @@
         Title="WindowManager" Height="450" Width="800">
     <Border CornerRadius="7" Background="DimGray">
         <Grid   >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
             <Frame Name="frame" Source="WindowManagerPage.xaml" />
-            <Frame Name="controllerFrame"  />
+          
+         
             
         </Grid>
     </Border>

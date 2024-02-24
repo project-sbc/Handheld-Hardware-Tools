@@ -276,15 +276,19 @@ namespace Everything_Handhelds_Tool
 
         public override void HandleControllerInputTopLevel(object? sender, controllerInputEventArgs e)
         {
-            if (!controllerNavigateWindow)
-            {//if not navigating at the window level pass input to page level
-                ControllerPage a = (ControllerPage)frame.Content;
-                a.HandleControllerInput(e.Action);
+            if(this.Visibility == Visibility.Visible)
+            {
+                if (!controllerNavigateWindow)
+                {//if not navigating at the window level pass input to page level
+                    ControllerPage a = (ControllerPage)frame.Content;
+                    a.HandleControllerInput(e.Action);
+                }
+                else
+                {//send input to window handler
+                    HandleControllerInput(e.Action);
+                }
             }
-            else
-            {//send input to window handler
-                HandleControllerInput(e.Action);
-            }
+         
         }
         private void HandleControllerInput(string action)
         {
@@ -380,9 +384,6 @@ namespace Everything_Handhelds_Tool
         {
             //Tasks to do when window is reopening
 
-            //make controller input class register button presses
-            controllerInput.mainWindowShowing = true;
-
             //update status bar because timer takes 5 seconds to update
             UpdateStatusBar();
 
@@ -434,9 +435,7 @@ namespace Everything_Handhelds_Tool
         {
             //Tasks to do when window is hiding
 
-            //make controller input class stop registering button presses (only hot keys will work)
-            controllerInput.mainWindowShowing = false;
-
+      
             //Stop statusbar update timer
             statusBarDispatcherTimer.Stop();
 

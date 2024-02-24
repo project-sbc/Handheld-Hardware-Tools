@@ -31,7 +31,7 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
             SubscribeControllerEvents();
             controllerNavigateWindow = false;
             commonFrame = frame;
-            instructionFrame = controllerFrame;
+           // instructionFrame = controllerFrame;
         }
         public override void SetControllerInputPage(string pageName)
         {//ADD THIS FOR TESTING REAL QUICK

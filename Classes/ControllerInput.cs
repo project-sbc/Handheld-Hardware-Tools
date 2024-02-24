@@ -39,20 +39,6 @@ namespace Everything_Handhelds_Tool.Classes
         private bool suspendEventsForOSK { get; set; } = false;
 
 
-        //set a bool to control if the window is showing
-        private bool _mainWindowShowing = true;
-        public bool mainWindowShowing {
-            get
-            {
-                return _mainWindowShowing;
-            }
-
-
-            set {
-                _mainWindowShowing = value;
-            }
-        }
-
         public bool publicSuspendEventsForOSK
         {
             get
@@ -164,35 +150,31 @@ namespace Everything_Handhelds_Tool.Classes
 
 
                         //this is the normal business routine after hotkey checking
-                        //first check if window is showing
-                        if (_mainWindowShowing)
+                        foreach (GamepadButtonFlags gbf in gamepadButtonFlags)
                         {
-                            foreach (GamepadButtonFlags gbf in gamepadButtonFlags)
+                            if (gbf.ToString().Contains("DPad"))
                             {
-                                if (gbf.ToString().Contains("DPad"))
+                                //call routine to send controller input events and track for continous input for any dpad input
+                                string result = HandleDPadInput(gbf, currentGamepadState, previousGamepadState);
+                                if (result != "") { continousInputCurrent = result; }
+                            }
+                            else
+                            {
+                                if (currentGamepadState.Buttons.HasFlag(gbf) && !previousGamepadState.Buttons.HasFlag(gbf))
                                 {
-                                    //call routine to send controller input events and track for continous input for any dpad input
-                                    string result = HandleDPadInput(gbf, currentGamepadState, previousGamepadState);
-                                    if (result != "") { continousInputCurrent = result; }
+                                    //raise event for button press
+                                    buttonPressEvent.raiseControllerInput(gbf.ToString());
                                 }
-                                else
-                                {
-                                    if (currentGamepadState.Buttons.HasFlag(gbf) && !previousGamepadState.Buttons.HasFlag(gbf))
-                                    {
-                                        //raise event for button press
-                                        buttonPressEvent.raiseControllerInput(gbf.ToString());
-                                    }
-                                }
-
                             }
 
-
-                            //call routine that handles continous input controller input events and counts usage
-                            continousInputCounter = HandleContinousInput(continousInputCurrent, continousInputPrevious, continousInputCounter);
                         }
 
 
-                    
+                        //call routine that handles continous input controller input events and counts usage
+                        continousInputCounter = HandleContinousInput(continousInputCurrent, continousInputPrevious, continousInputCounter);
+
+
+
 
 
                     continueloop:

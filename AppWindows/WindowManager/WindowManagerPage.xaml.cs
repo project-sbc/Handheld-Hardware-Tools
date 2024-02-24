@@ -14,6 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Everything_Handhelds_Tool.AppWindows.WindowManager
 {
@@ -22,29 +23,150 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
     /// </summary>
     public partial class WindowManagerPage : ControllerPage
     {
+        Process selectedProcess;
+
         public WindowManagerPage()
         {
             InitializeComponent();
+            virtualStackPanel = stackPanel;
 
             PopulateStackPanelWithProcesses();
+
+            SetLargeViewerToFirstListViewItem();
         }
+        private void SetLargeViewerToFirstListViewItem()
+        {
+            if (userControls.Count > 0)
+            {
+                if (userControls[0] != null)
+                {
+                    Window_UserControl wuc = userControls[0] as Window_UserControl;
+                    UpdateProcessLargeViewer(wuc);
+                }
+            }
+        }
+
+
+
+
+
+        // Import the necessary Windows APIs
+
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetWindow(IntPtr hWnd, uint uCmd);
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetTopWindow(IntPtr hWnd);
+
+
+        private const uint GW_HWNDNEXT = 2;
+
         private void PopulateStackPanelWithProcesses()
         {
+            //we start by getting a list of windows open in top most z order (the most visible window)
+            //we can use this list to organize our processes by window order starting with the topmost window
+            List<IntPtr> listWindowZOrder = new List<IntPtr>();
+
+            IntPtr windowIntPtr = GetTopWindow(IntPtr.Zero);
+            while (windowIntPtr != IntPtr.Zero)
+            {
+                listWindowZOrder.Add(windowIntPtr);
+                windowIntPtr = GetWindow(windowIntPtr, GW_HWNDNEXT);
+            }
+
+
+            //now lets get processes and compare the maindinowhandle to the list generated above
+
             Process[] processes = Process.GetProcesses().Where(p => p.MainWindowHandle != IntPtr.Zero).ToArray();
+
+            List<Process> finalProcessList = new List<Process>();
 
             foreach (Process process in processes)
             {
                 if (!ExclusionProcessList.Contains(process.ProcessName))
                 {
-                    Window_UserControl wuc = new Window_UserControl(process);
-                    stackPanel.Children.Add(wuc);
+                    //Okay here's my logic, find what order the window is and insert the process
+                    //into the final list at that index location IF the final list count is greater than the index - 1 value
+                    //otherwise it doesn't have enough objects and we just add it to the end.
+
+                    //This is OK because as more items get added, any item that should have gone before this added item will
+                    //fall into the insert part
+                    int indexMainWindowHandleInZOrder = listWindowZOrder.IndexOf(process.MainWindowHandle);
+
+                    if (indexMainWindowHandleInZOrder > -1)
+                    {
+                        if (finalProcessList.Count > indexMainWindowHandleInZOrder - 1)
+                        {
+                            finalProcessList.Insert(indexMainWindowHandleInZOrder, process);
+                        }
+                        else
+                        {
+                            finalProcessList.Add(process);
+                        }
+                    }
+                    else
+                    {
+                        finalProcessList.Add(process);
+                    }
 
                 }
 
             }
 
 
+            foreach(Process process in finalProcessList)
+            {
+                Window_UserControl wuc = new Window_UserControl(process);
+                stackPanel.Children.Add(wuc);
+                userControls.Add(wuc);
+            }
+
         }
+
+        public override void HandleUserControlNavigation(string action)
+        {
+            //run base routine, because it handles usercontrol highlighting and indexing for the movement
+            base.HandleUserControlNavigation(action);
+
+            //here we will handle updating the main image and allow end task, move window, etc
+            if (highlightedUserControl > -1) //make sure a user control is highlighted
+            {
+                if (userControls[highlightedUserControl] != null)
+                {
+                    Window_UserControl wuc = userControls[highlightedUserControl] as Window_UserControl;
+                    UpdateProcessLargeViewer(wuc);
+                }
+
+            }
+
+        }
+
+        private void UpdateProcessLargeViewer(Window_UserControl wuc)
+        {
+            //updates the large image, text etc to reflect the selected process
+            largeImage.Source = wuc.image.Source;
+
+            Process process = wuc.process;
+            if (process != null)
+            {
+                selectedProcess = process;
+                if (!process.HasExited)
+                {
+                    textProcessName.Text = process.ProcessName;
+                    textProcessTitle.Text = process.MainWindowTitle;
+
+                }
+            }
+            else
+            {//the way i am going to handle this is that I always want to account for the selected process whether its controller or mouse input
+             //I need to set the selectedProcess to null when something goes wrong so we don't inadverently end the wrong process when requested
+                selectedProcess = null;
+            }
+            
+            
+        }
+
 
         private List<string> ExclusionProcessList = new List<string>()
         {
@@ -52,7 +174,8 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
            {"steamwebhelper"},
            {"svchost"},
            {"Taskmgr"},
-           {"explorer"}
+           {"explorer"},
+           {"ApplicationFrameHost"},
 
          };
 
