@@ -9,7 +9,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
-
+using System.Windows.Media.Imaging;
 using Point = System.Drawing.Point;
 using Size = System.Drawing.Size;
 
@@ -58,8 +58,21 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
 
         private void CreateImageOfWindow()
         {
-            System.Windows.Media.Imaging.BitmapImage bitmap = BitmapToImageSource(PrintWindow(windowHandle));
-            image.Source = bitmap;
+
+            if (1 == 1)
+            {
+                System.Windows.Media.Imaging.BitmapImage bitmap = BitmapToImageSource(PrintWindow(windowHandle));
+                image.Source = bitmap;
+            }
+            else
+            {
+                using (Icon ico = Icon.ExtractAssociatedIcon(process.MainModule.FileName))
+                {
+                    image.Source = Imaging.CreateBitmapSourceFromHIcon(ico.Handle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                }
+            }
+
+           
 
         }
 

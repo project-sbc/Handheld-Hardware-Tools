@@ -66,7 +66,7 @@ namespace Everything_Handhelds_Tool.UserControls.PowerPageUserControls
                 {
                     Debug.WriteLine(p.ProcessName);
 
-                    if (!listProcesses.Contains(p) && FullScreenProgram_Management.IsForegroundFullScreen(new HandleRef(null, p.MainWindowHandle), null) && !FullScreenProgram_Management.ExcludeFullScreenProcessList.Contains(p.ProcessName))
+                    if (!listProcesses.Contains(p) && ScreenProgram_Management.IsForegroundFullScreen(new HandleRef(null, p.MainWindowHandle), null) && !ScreenProgram_Management.ExcludeFullScreenProcessList.Contains(p.ProcessName))
                     {
                         currentProcess = p; 
                 

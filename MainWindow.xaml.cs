@@ -418,7 +418,7 @@ namespace Everything_Handhelds_Tool
                 {
                     Debug.WriteLine(p.ProcessName);
 
-                    if (FullScreenProgram_Management.IsForegroundFullScreen(new HandleRef(null, p.MainWindowHandle), null) && !FullScreenProgram_Management.ExcludeFullScreenProcessList.Contains(p.ProcessName))
+                    if (ScreenProgram_Management.IsForegroundFullScreen(new HandleRef(null, p.MainWindowHandle), null) && !ScreenProgram_Management.ExcludeFullScreenProcessList.Contains(p.ProcessName))
                     {
                         //this is where we will make app non focusable
                         SetWindowAsNonFocusable();
