@@ -123,6 +123,22 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
 
            
         }
+        public void UnsubscribeControllerEvents()
+        {
+            MainWindow mw = (MainWindow)Application.Current.MainWindow;
+            if (mw != null)
+            {
+                if (mw.controllerInput != null)
+                {
+                    //subscribe to controller input
+                    mw.controllerInput.buttonPressEvent.controllerInputEvent -= HandleControllerInputTopLevel;
+                    //subscribe to controller connection changed event
+                    mw.controllerInput.controllerConnectionChangedEvent.controllerConnectionChangedEvent -= HandleControllerConnectionChanged;
+                }
+            }
+
+
+        }
         private void HandleControllerConnectionChanged(object sender, controllerConnectionChangedEventArgs e)
         {
             if (e.Connected) { SetControllerInputPage("SelectHide"); }

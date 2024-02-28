@@ -126,9 +126,15 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK
                     //add all joystick inputs to determine if we should trigger the movement event, use absolute value and add to see if > 0 otherwise DONT SEND EVENT
 
 
+                    //APPLY DEADZONE BECAUSE SMALL DRIFT KILLS THIS
+                 
 
-
-                    if (currentGamepadState.LeftThumbX != 0 || currentGamepadState.LeftThumbY != 0 || currentGamepadState.RightThumbX != 0 || currentGamepadState.RightThumbY != 0)
+                    int ly = currentGamepadState.LeftThumbY;
+                    int lx = currentGamepadState.LeftThumbX;
+                    int ry = currentGamepadState.RightThumbY;
+                    int rx = currentGamepadState.RightThumbX;
+                    int deadZone = 2500;
+                    if (Math.Abs(lx) > deadZone || Math.Abs(ly) > deadZone || Math.Abs(rx) > deadZone || Math.Abs(ry) > deadZone)
                     {
                         buttonPressEvent.raiseStickInput(currentGamepadState.LeftThumbX, currentGamepadState.LeftThumbY, currentGamepadState.RightThumbX, currentGamepadState.RightThumbY);
                     }

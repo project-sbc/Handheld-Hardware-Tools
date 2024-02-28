@@ -238,8 +238,11 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
                         shiftButton.Background = Brushes.LightBlue;
                     }
                 }
-                ToggleShift(value);
                 _shiftPressed = value;
+                ToggleShift(value);
+             
+         
+              
             }
         }
         private bool capsPressed
@@ -265,8 +268,9 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
                         capsButton.Background = Brushes.LightBlue;
                     }
                 }
-                ToggleCaps(value);
                 _capsPressed = value;
+                ToggleCaps(value);
+           
             }
         }
 
@@ -465,7 +469,7 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
                             }
                             break;
                         case "Letter":
-                            if (shiftPressed)
+                            if (capsPressed && !shiftPressed || shiftPressed && !capsPressed)
                             {
                                 button.Content = button.Content.ToString().ToUpper();
                             }
@@ -513,7 +517,7 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
                     {
 
                         case "Letter":
-                            if (capsPressed)
+                            if (capsPressed && !shiftPressed || shiftPressed && !capsPressed)
                             {
                                 button.Content = button.Content.ToString().ToUpper();
                             }

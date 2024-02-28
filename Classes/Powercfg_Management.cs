@@ -84,24 +84,26 @@ namespace Everything_Handhelds_Tool.Classes
             string Power = SystemParameters.PowerLineStatus.ToString();
             if (Power == "Online")
             {
-                Run_CLI.Instance.RunCommand(" /setacvalueindex scheme_current sub_processor " + powercfgString + " " + value, false, "C:\\windows\\system32\\powercfg.exe", 1000);
+                Run_CLI.Instance.RunCommand(" /setacvalueindex scheme_current sub_processor " + powercfgString + " " + value, true, "C:\\windows\\system32\\powercfg.exe", 3000, true);
             }
             else
             {
-                Run_CLI.Instance.RunCommand(" /setdcvalueindex scheme_current sub_processor " + powercfgString + " " + value, false, "C:\\windows\\system32\\powercfg.exe", 1000);
+                Run_CLI.Instance.RunCommand(" /setdcvalueindex scheme_current sub_processor " + powercfgString + " " + value, true, "C:\\windows\\system32\\powercfg.exe", 3000, true);
             }
-            Run_CLI.Instance.RunCommand(" /S scheme_current", false, "C:\\windows\\system32\\powercfg.exe", 1000);
+            Run_CLI.Instance.RunCommand(" /S scheme_current", true, "C:\\windows\\system32\\powercfg.exe", 3000, true);
         }
 
         public void UnhidePowerCfgSettings()
         {
             //unhides epp, active core, etc, otherwise these values can't be changed
-            Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR PROCFREQMAX -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 1000);
-            Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR PROCTHROTTLEMAX -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 1000);
-            Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR CPMAXCORES -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 1000);
-            Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR CPMINCORES -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 1000);
-            Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR PERFEPP -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 1000);
-            Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR PERFEPP1 -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 1000);
+
+         
+            Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR PROCFREQMAX -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 3000);
+            Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR PROCTHROTTLEMAX -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 3000);
+            Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR CPMAXCORES -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 3000);
+            Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR CPMINCORES -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 3000);
+            Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR PERFEPP -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 3000);
+            Run_CLI.Instance.RunCommand(" -attributes SUB_PROCESSOR PERFEPP1 -ATTRIB_HIDE", false, "C:\\windows\\system32\\powercfg.exe", 3000);
 
         }
 
@@ -181,17 +183,8 @@ namespace Everything_Handhelds_Tool.Classes
             //unlimited and if turbo is enabled or disabled
 
             ReadMaxCPUClock();
-            ReadTurboEnabled();
-            if (turboEnabled && maxCPUClock == 0) { return true; }
-            else 
-            { 
-                if (maxCPUClock != 0 && !turboEnabled)
-                {
-                    //fix powercfg, if max cpu is set then we dont need maxthrottleproc set to less than 100%
-                    PowercfgChangeValueHandler("100", "PROCTHROTTLEMAX");
-                }
-                return false; 
-            }
+            return turboEnabled;
+         
         }
 
         public int ReadAndReturnMaxCPUClock()
@@ -211,24 +204,29 @@ namespace Everything_Handhelds_Tool.Classes
         public bool ReadAndReturnCPUTurboStatus()
         {
             //use this for the TurboCPU_ToggleSwitch control
+
             ReadMaxCPUClock();
-            ReadTurboEnabled();
-            if (turboEnabled && maxCPUClock == 0) { return true; }
-            else
-            {
-                return false;
-            }
+            return turboEnabled;
+
         }
         public void ToggleCPUTurboStatus(bool toggle)
         { //use this for the TurboCPU_ToggleSwitch control
-            PowercfgChangeValueHandler("0", "PROCFREQMAX");
+       
             if (toggle) 
             {
-                PowercfgChangeValueHandler("100", "PROCTHROTTLEMAX");
+                PowercfgChangeValueHandler("0", "PROCFREQMAX");
             }
             else
             {
-                PowercfgChangeValueHandler("99", "PROCTHROTTLEMAX");
+                Device device = Local_Object.Instance.GetMainWindowDevice();
+                if (device != null)
+                {
+                    if (device.maxNonTurboCPUFrequnecy > -1)
+                    {
+                        PowercfgChangeValueHandler(device.maxNonTurboCPUFrequnecy.ToString(), "PROCFREQMAX");
+                    }
+                }
+                
             }
         }
 
@@ -237,12 +235,8 @@ namespace Everything_Handhelds_Tool.Classes
             string result = Run_CLI.Instance.RunCommand(" -Q SCHEME_CURRENT sub_processor PROCFREQMAX", true, "C:\\windows\\system32\\powercfg.exe", 1000).Trim();
             int value = PowercfgResultHandler(result);
             maxCPUClock = value;
-        }
-        private void ReadTurboEnabled()
-        {
-            string result = Run_CLI.Instance.RunCommand(" -Q SCHEME_CURRENT sub_processor PROCTHROTTLEMAX", true, "C:\\windows\\system32\\powercfg.exe", 1000).Trim();
-            int value = PowercfgResultHandler(result);
-            if (value < 100)
+
+            if (maxCPUClock != 0)
             {
                 turboEnabled = false;
             }
@@ -251,6 +245,7 @@ namespace Everything_Handhelds_Tool.Classes
                 turboEnabled = true;
             }
         }
+ 
         public void ChangeMaxCPUClock(int value)
         {
             //when setting the max cpu clock, make sure the procthrottle max isn't 99% or less
@@ -261,20 +256,7 @@ namespace Everything_Handhelds_Tool.Classes
             PowercfgChangeValueHandler(value.ToString(), "PROCFREQMAX");
             maxCPUClock = value;
         }
-        public void ChangeTurboEnabledState(bool value)
-        {
-            //Convert the bool value of enabling turbo to either 100% state for allow turbo
-            //or 99% state to disable turbo
-            //MAKE SURE PROCFREQMAX IS 0!!!! changing processor max frequency is one step below enable disable turbo
-            //That will be a separate call the user will make afterward
-            //setting procthrottlemax to 99 will disable turbo regardless of max proc freq so just leave max proc freq out
-            //by setting to 0
-            int sendValue = 100;
-            if (!value) { sendValue = 99; }
-            PowercfgChangeValueHandler("0", "PROCFREQMAX");
-            PowercfgChangeValueHandler(sendValue.ToString(), "PROCTHROTTLEMAX");
-            turboEnabled = value;
-        }
+       
 
         #endregion
 

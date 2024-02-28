@@ -33,9 +33,10 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
             InitializeComponent();
             virtualStackPanel = stackPanel;
 
-            PopulateStackPanelWithProcesses();
+          
 
-            SetLargeViewerToFirstListViewItem();
+          
+
         }
         private void SetLargeViewerToFirstListViewItem()
         {
@@ -64,9 +65,9 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
                 if (selectedProcess.MainWindowHandle != IntPtr.Zero)
                 {
                     //WE NEED TO GET CURRENT STATE OF WINDOW BECAUSE MOVING IT WHILE NOT OPEN MAKES IT NOT WORK THE FIRST TIME
-                    var placement = ScreenProgram_Management.GetPlacement(selectedProcess.MainWindowHandle);
+    
 
-                    WindowState windowState = GetWindowState(placement.showCmd.ToString());
+                    WindowState windowState = ScreenProgram_Management.GetWindowState(selectedProcess.MainWindowHandle);
 
 
                     //if (windowState != WindowState.Maximized)
@@ -129,9 +130,8 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
                 if (selectedProcess.MainWindowHandle != IntPtr.Zero)
                 {
                     //WE NEED TO GET CURRENT STATE OF WINDOW BECAUSE MOVING IT WHILE NOT OPEN MAKES IT NOT WORK THE FIRST TIME
-                    var placement = ScreenProgram_Management.GetPlacement(selectedProcess.MainWindowHandle);
 
-                    WindowState windowState = GetWindowState(placement.showCmd.ToString());
+                    WindowState windowState = ScreenProgram_Management.GetWindowState(selectedProcess.MainWindowHandle);
 
 
                     //if (windowState != WindowState.Maximized)
@@ -199,7 +199,7 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
                 {
                     var placement = ScreenProgram_Management.GetPlacement(selectedProcess.MainWindowHandle);
 
-                    WindowState windowState = GetWindowState(placement.showCmd.ToString());
+                    WindowState windowState = ScreenProgram_Management.GetWindowState(selectedProcess.MainWindowHandle);
                     
                     if (windowState == WindowState.Maximized)
                     {
@@ -214,29 +214,13 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
             }
         }
 
-        private WindowState GetWindowState(string cmdPlacement)
-        {
-            switch (cmdPlacement)
-            {
-                case "Normal":
-                    return WindowState.Normal;
-                case "Minimized":
-                    return WindowState.Minimized;
-                case "Maximized":
-                    return WindowState.Maximized;
-                default:
-                    return WindowState.Normal;
-            }
-
-        }
+      
 
     
         #endregion
         #endregion
 
 
-
-        // Import the necessary Windows APIs
 
 
 
@@ -320,7 +304,29 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
 
         }
 
-        private void UpdateProcessLargeViewer(Window_UserControl wuc)
+        public void HandleMouseTouchSelection(Window_UserControl wuc)
+        {
+            if (wuc != null)
+            {
+                //lets make sure the wuc selected is in the list of usercontrols
+                int index = userControls.IndexOf(wuc);
+                if (index != -1)
+                {
+                    //if in the list we can continue
+                    //lets compare to the current selected one
+
+                    UnhighlightUserControl();
+                    highlightedUserControl = index;
+                    SelectUserControl();
+                    UpdateProcessLargeViewer(wuc);
+
+                }
+                              
+
+            }
+        }
+
+        public void UpdateProcessLargeViewer(Window_UserControl wuc)
         {
             //updates the large image, text etc to reflect the selected process
             largeImage.Source = wuc.image.Source;
@@ -354,10 +360,17 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
            {"Taskmgr"},
            {"explorer"},
            {"ApplicationFrameHost"},
+           {"Everything Handhelds Tool"},
 
          };
 
-     
+        private void ControllerPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            PopulateStackPanelWithProcesses();
+
+            SetLargeViewerToFirstListViewItem();
+
+        }
     }
 
    

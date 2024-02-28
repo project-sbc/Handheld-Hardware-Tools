@@ -14,7 +14,7 @@
                 ShowActivated="False"
         ResizeMode="NoResize"
         
-        Title="OSK" Height="240" Width="1000"
+        Title="OSK" Height="0" Width="0"
         Opacity=".95"  Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"
         >
     <DockPanel>

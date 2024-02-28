@@ -31,7 +31,7 @@ namespace Everything_Handhelds_Tool.Classes
             }
         }
 
-        public string RunCommand(string arguments, bool readOutput, string processName = "cmd.exe", int waitExit = 6000, bool runasadmin = true)
+        public string RunCommand(string arguments, bool readOutput, string processName = "cmd.exe", int waitExit = 6000, bool runasadmin = true, bool shellExecute = false)
         {
             //Runs CLI, if readOutput is true then returns output
 
@@ -40,7 +40,7 @@ namespace Everything_Handhelds_Tool.Classes
 
                 System.Diagnostics.Process process = new System.Diagnostics.Process();
                 System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-                startInfo.UseShellExecute = false;
+                startInfo.UseShellExecute = shellExecute;
                 if (readOutput) { startInfo.RedirectStandardOutput = true; } else { startInfo.RedirectStandardOutput = false; }
 
                 startInfo.FileName = processName;

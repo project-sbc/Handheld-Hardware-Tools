@@ -65,22 +65,17 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
         {
             HighlightControl();
 
-            //use this code to work up the visual tree until you hit a controllerpage
-            DependencyObject parent = VisualTreeHelper.GetParent(this);
-
-            // Traverse up the visual tree until we find a page
-            while (parent != null && !(parent is ControllerPage))
-            {
-                parent = VisualTreeHelper.GetParent(parent);
-            }
+            ControllerPage page = Local_Object.Instance.GetGeneralWindowPage(this);
 
             // Check if we found a page
-            if (parent is ControllerPage)
+            if (page != null)
             {
-                ControllerPage page = (ControllerPage)parent;
-                page.controllerNavigatePage = true;
+                if (page is ControllerPage)
+                {
+                    page.controllerNavigatePage = true;
+                }
             }
-
+         
             
         }
 

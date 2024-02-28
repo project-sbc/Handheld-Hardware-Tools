@@ -7,11 +7,12 @@
       xmlns:local="clr-namespace:Everything_Handhelds_Tool.AppWindows.WindowManager"
       mc:Ignorable="d" 
    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                        Loaded="ControllerPage_Loaded"
       Title="WindowManagerPage">
 
     <Grid   >
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
+      
             <RowDefinition  />
 
         </Grid.RowDefinitions>
@@ -20,7 +21,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="0">
             <Image Name="largeImage" Height="225" VerticalAlignment="Top"  />
             <Viewbox Height="40"  VerticalAlignment="Bottom" HorizontalAlignment="Center"   >
 

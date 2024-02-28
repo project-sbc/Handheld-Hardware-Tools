@@ -47,11 +47,28 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
             }
             else
             {//send input to window handler
-                //HandleControllerInput(e.Action);
+                switch (e.Action)
+                {
+                    case "B":
+                        CloseWindow();
+                        break;
+                    default:
+                        controllerNavigateWindow = true;
+                        break;
+                }
             }
         }
 
+        private void CloseWindow()
+        {
+            UnsubscribeControllerEvents();
+            this.Close();
+        }
 
+        private void closeWindow_Click(object sender, RoutedEventArgs e)
+        {
+            CloseWindow();
+        }
     }
   
 }

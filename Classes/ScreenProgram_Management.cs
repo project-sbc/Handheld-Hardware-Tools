@@ -155,6 +155,8 @@ namespace Everything_Handhelds_Tool.Classes
         public static extern bool GetWindowRect(HandleRef hWnd, [In, Out] ref RECT rect);
 
 
+        [DllImport("user32.dll")]
+        public static extern bool PrintWindow(IntPtr hWnd, IntPtr hdcBlt, int nFlags);
         //returns the foreground window handle
         [DllImport("user32.dll")]
         public static extern IntPtr GetForegroundWindow();
@@ -243,10 +245,9 @@ namespace Everything_Handhelds_Tool.Classes
         [DllImport("user32.dll")]
         public static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
         //same as above, snapshot window manager app
-        [DllImport("user32.dll")]
-        public static extern bool PrintWindow(IntPtr hWnd, IntPtr hdcBlt, int nFlags);
+     
         //same as above, snapshot window manager app
-        public static Bitmap PrintWindow(IntPtr hwnd)
+        public static Bitmap ScreenshotWindow(IntPtr hwnd)
         {
             RECT rc;
             GetWindowRect(hwnd, out rc);
@@ -300,6 +301,31 @@ namespace Everything_Handhelds_Tool.Classes
             // Call ShowWindow with the appropriate window handle and command
             ShowWindow(hWnd, nCmdShow);
         }
+
+        public static WindowState GetWindowState(IntPtr handle)
+        {
+            if (handle != null)
+            {
+                var placement = ScreenProgram_Management.GetPlacement(handle);
+
+
+                switch (placement.showCmd.ToString())
+                {
+                    case "Normal":
+                        return WindowState.Normal;
+                    case "Minimized":
+                        return WindowState.Minimized;
+                    case "Maximized":
+                        return WindowState.Maximized;
+                    default:
+                        return WindowState.Normal;
+                }
+            }
+
+            return WindowState.Normal;
+
+        }
+
 
         [DllImport("user32.dll")]
         public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);

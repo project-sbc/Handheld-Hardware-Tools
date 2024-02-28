@@ -2,37 +2,36 @@
 using System.Linq;
 using System.Windows;
 using Everything_Handhelds_Tool.AppWindows.OSK;
-using Everything_Handhelds_Tool.UserControls.PowerPageUserControls;
+using Everything_Handhelds_Tool.AppWindows.WindowManager;
 namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
 {
-    public class Toggle_OSK : Action
+    public class Toggle_WindowManager : Action
     {
-        public Toggle_OSK()
+        public Toggle_WindowManager()
         {
-            actionName = "Toggle_OSK";
+            actionName = "Toggle_WindowManager";
             //arguments = new List<string>();
         }
         public override void OnActivate()
         {
-
+          
 
             Application.Current.Dispatcher.BeginInvoke(() =>
-            {
-                if (!Application.Current.Windows.OfType<OSK>().Any())
+            {//NEEDS TO RUN ON UI THREAD OR ELSE ERROR
+                if (!Application.Current.Windows.OfType<WindowManager>().Any())
                 {
-                    OSK osk = new OSK();
-                    osk.Show();
+                    WindowManager windowManager = new WindowManager();
+                    windowManager.Show();
                 }
 
                 MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
                 if (mainWindow != null)
                 {
-                    mainWindow.controllerInput.publicSuspendEventsForOSK = true;
                     if (mainWindow.Visibility == Visibility.Visible)
-                    {//menu if open, we dont want it getting in the way
+                    {
                         mainWindow.ToggleWindow();
                     }
-                 
+            
                 }
 
 
