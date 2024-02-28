@@ -134,6 +134,9 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     case "Cycle_Volume":
                         newAction = new Classes.Actions.ActionClass.Cycle_Volume();
                         break;
+                    case "Toggle_WindowManager":
+                        newAction = new Classes.Actions.ActionClass.Toggle_WindowManager();
+                        break;
                     default:
                         MessageBox.Show("NO HANDLER FOR THIS ACTION, ADD IT YOU DUMMY. EditAction_ComboBox.xaml.cs " + actionLookup);
                         break;

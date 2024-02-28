@@ -68,6 +68,7 @@
     <system:String x:Key="Action_Toggle_VolumeMute">Toggle Volume Mute</system:String>
     <system:String x:Key="Action_Toggle_WinOSK">Toggle Windows OSK</system:String>
     <system:String x:Key="Action_Toggle_OSK">Toggle OSK</system:String>
+    <system:String x:Key="Action_Toggle_WindowManager">Toggle Window Manager</system:String>
     <system:String x:Key="Action_Toggle_Desktop">Toggle Desktop</system:String>
     <system:String x:Key="Action_Toggle_RSR">Toggle RSR</system:String>
 

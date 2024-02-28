@@ -31,6 +31,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
     [XmlInclude(typeof(Toggle_BT))]
     [XmlInclude(typeof(Toggle_WinOSK))]
     [XmlInclude(typeof(Toggle_OSK))]
+    [XmlInclude(typeof(Toggle_WindowManager))]
     [XmlInclude(typeof(Toggle_Desktop))]
     public class Action
     {
@@ -71,6 +72,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
             this.Add("Toggle_WinOSK", Application.Current.Resources["Action_Toggle_WinOSK"].ToString());
             this.Add("Toggle_OSK", Application.Current.Resources["Action_Toggle_OSK"].ToString());
             this.Add("Toggle_Desktop", Application.Current.Resources["Action_Toggle_Desktop"].ToString());
+            this.Add("Toggle_WindowManager", Application.Current.Resources["Action_Toggle_WindowManager"].ToString());
             this.Add("Toggle_QAM", Application.Current.Resources["Action_Toggle_QAM"].ToString());
 
 
