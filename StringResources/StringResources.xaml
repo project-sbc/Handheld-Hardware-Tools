@@ -30,6 +30,16 @@
     <system:String x:Key="Usercontrol_IntelTDPType">Intel TDP Type</system:String>
 
 
+        <!-- window manager app stings -->
+    <system:String x:Key="Usercontrol_ToggleWindow">Toggle Window</system:String>
+    <system:String x:Key="Usercontrol_CloseProgramWM">Close Program</system:String>
+    <system:String x:Key="Usercontrol_MoveMonitor">Move Monitor</system:String>
+    <system:String x:Key="Usercontrol_KillTask">Kill Process</system:String>
+        
+        
+        
+        
+
     <system:String x:Key="Usercontrol_EPP">EPP</system:String>
     <system:String x:Key="Usercontrol_FPSLimit">FPS Limit</system:String>
     <system:String x:Key="Usercontrol_ActiveCores">Active CPU Cores</system:String>

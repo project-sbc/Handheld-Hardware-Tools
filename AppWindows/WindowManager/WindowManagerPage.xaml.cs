@@ -361,6 +361,7 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
            {"explorer"},
            {"ApplicationFrameHost"},
            {"Everything Handhelds Tool"},
+           {"ShellExperienceHost"},
 
          };
 

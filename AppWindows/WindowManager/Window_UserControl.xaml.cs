@@ -51,7 +51,7 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
             }
             else
             {
-                ProcessName.Text = process.ProcessName;
+                ProcessName.Text = process.MainWindowTitle;
             }
 
            //handle image

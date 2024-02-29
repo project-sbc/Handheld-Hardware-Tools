@@ -9,11 +9,13 @@
    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                         Loaded="ControllerPage_Loaded"
       Title="WindowManagerPage">
-
-    <Grid   >
+ 
+    <Grid  Margin="9" >
         <Grid.RowDefinitions>
       
-            <RowDefinition  />
+ 
+            <RowDefinition Height="7*" />
+            <RowDefinition Height="*" />
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -21,7 +23,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0">
+        <StackPanel Grid.Row="0" VerticalAlignment="Stretch">
             <Image Name="largeImage" Height="225" VerticalAlignment="Top"  />
             <Viewbox Height="40"  VerticalAlignment="Bottom" HorizontalAlignment="Center"   >
 
@@ -35,63 +37,73 @@
 
             </Viewbox>
 
-            <StackPanel Orientation="Horizontal">
-                <Button Height="60" Name="maximizeButton" Click="maximizeButton_Click">
-                    <ui:SymbolIcon Symbol="FullScreenMaximize20" FontSize="40" />
-                </Button>
-
-                <Button Height="60" Name="closeButton">
-                    <ui:SymbolIcon Symbol="CalendarCancel20" FontSize="40"/>
-                </Button>
-
-                <Button Height="60" Name="monitorMoveRight">
-                    <StackPanel Orientation="Horizontal">
-                        <Grid>
-                            <TextBlock Text="1"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <ui:SymbolIcon Symbol="Tv20" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        
-                        </Grid>
-                        <ui:SymbolIcon Symbol="ArrowRight20" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        <Grid>
-                            <TextBlock Text="2"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <ui:SymbolIcon Symbol="Tv20" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
-
-                        </Grid>
-                        
-                    </StackPanel>
-                </Button>
-                <Button Height="60" Name="monitorMoveLeft">
-                    <StackPanel Orientation="Horizontal">
-                        <Grid>
-                            <TextBlock Text="1"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <ui:SymbolIcon Symbol="Tv20" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
-
-                        </Grid>
-                        <ui:SymbolIcon Symbol="ArrowLeft20" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        <Grid>
-                            <TextBlock Text="2"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <ui:SymbolIcon Symbol="Tv20" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
-
-                        </Grid>
-
-                    </StackPanel>
-                </Button>
-
-                <Button Height="60" Name="endATaskButton">
-                    <ui:SymbolIcon Symbol="ShareScreenStop24" FontSize="40"/>
-                </Button>
-            </StackPanel>
+          
             
         </StackPanel>
         
 
-        <ScrollViewer Grid.Row="1" Grid.Column="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Visible" >
-            <StackPanel Name="stackPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+        <ScrollViewer Grid.Row="0" Grid.Column="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Visible"   >
+            <StackPanel Name="stackPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
 
 
             </StackPanel>
         </ScrollViewer>
+        <StackPanel  Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
+            <Button Height="60" Name="maximizeButton" Click="maximizeButton_Click" Margin="10,0,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <ui:SymbolIcon Symbol="FullScreenMaximize20" FontSize="40" />
+                    <Viewbox Height="22" >
+                        <TextBlock  Text="{DynamicResource Usercontrol_ToggleWindow}" />
+                    </Viewbox>
 
+                    
+                </StackPanel>
+               
+            </Button>
+
+            <Button Height="60" Name="closeButton" Margin="10,0,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <ui:SymbolIcon Symbol="CalendarCancel20" FontSize="40"/>
+                    <Viewbox Height="22" >
+                        <TextBlock  Text="{DynamicResource Usercontrol_CloseProgramWM}" />
+                    </Viewbox>
+
+
+                </StackPanel>
+
+               
+            </Button>
+
+            <Button Height="60" Name="monitorMoveRight" Margin="10,0,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <Grid>
+                        <TextBlock Text="1"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <ui:SymbolIcon Symbol="Tv20" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                    </Grid>
+                    <ui:SymbolIcon Symbol="ArrowRight20" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Grid>
+                        <TextBlock Text="2"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <ui:SymbolIcon Symbol="Tv20" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                    </Grid>
+                    <Viewbox Height="22" >
+                        <TextBlock  Text="{DynamicResource Usercontrol_MoveMonitor}" />
+                    </Viewbox>
+                </StackPanel>
+            </Button>
+
+
+            <Button Height="60" Name="endATaskButton" Margin="10,0,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <ui:SymbolIcon Symbol="ShareScreenStop24" FontSize="40"/>
+                    <Viewbox Height="22" >
+                        <TextBlock  Text="{DynamicResource Usercontrol_KillTask}" />
+                    </Viewbox>
+                </StackPanel>
+  
+            </Button>
+        </StackPanel>
 
     </Grid>
 </classes:ControllerPage>

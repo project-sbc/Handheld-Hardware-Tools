@@ -251,17 +251,20 @@ namespace Everything_Handhelds_Tool.Classes
         {
             RECT rc;
             GetWindowRect(hwnd, out rc);
+            if (rc.Width > 0 && rc.Height > 0)
+            {
+                Bitmap bmp = new Bitmap(rc.Width, rc.Height, PixelFormat.Format32bppArgb);
+                Graphics gfxBmp = Graphics.FromImage(bmp);
+                IntPtr hdcBitmap = gfxBmp.GetHdc();
 
-            Bitmap bmp = new Bitmap(rc.Width, rc.Height, PixelFormat.Format32bppArgb);
-            Graphics gfxBmp = Graphics.FromImage(bmp);
-            IntPtr hdcBitmap = gfxBmp.GetHdc();
+                PrintWindow(hwnd, hdcBitmap, 2);
 
-            PrintWindow(hwnd, hdcBitmap, 2);
+                gfxBmp.ReleaseHdc(hdcBitmap);
+                gfxBmp.Dispose();
 
-            gfxBmp.ReleaseHdc(hdcBitmap);
-            gfxBmp.Dispose();
-
-            return bmp;
+                return bmp;
+            }
+            return null;
         }
 
 
