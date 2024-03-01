@@ -15,94 +15,107 @@
       
  
             <RowDefinition Height="7*" />
-            <RowDefinition Height="*" />
+            <RowDefinition MaxHeight="65" />
+            <RowDefinition MaxHeight="65" />
+         
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" VerticalAlignment="Stretch">
-            <Image Name="largeImage" Height="225" VerticalAlignment="Top"  />
-            <Viewbox Height="40"  VerticalAlignment="Bottom" HorizontalAlignment="Center"   >
+        <Image Name="largeImage" Grid.Row="0" Height="Auto" VerticalAlignment="Center"  />
+        <StackPanel VerticalAlignment="Bottom" Grid.Row="1">
+            <Viewbox MaxHeight="40"  VerticalAlignment="Bottom" HorizontalAlignment="Center"   >
 
-                <TextBlock Name="textProcessTitle" />
+                <TextBlock  Name="textProcessTitle" />
 
             </Viewbox>
-            
-            <Viewbox Height="30"   VerticalAlignment="Bottom" HorizontalAlignment="Center"   >
+
+            <Viewbox MaxHeight="30"   VerticalAlignment="Bottom" HorizontalAlignment="Center"   >
 
                 <TextBlock Name="textProcessName"  />
 
             </Viewbox>
-
-          
-            
         </StackPanel>
-        
 
-        <ScrollViewer Grid.Row="0" Grid.Column="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Visible"   >
+
+
+        <ScrollViewer Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" x:Name="scrollViewer"  VerticalScrollBarVisibility="Visible"   >
             <StackPanel Name="stackPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
 
 
             </StackPanel>
         </ScrollViewer>
-        <StackPanel  Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
-            <Button Height="60" Name="maximizeButton" Click="maximizeButton_Click" Margin="10,0,0,0">
+
+        <Grid Grid.Row="2" MaxHeight="60" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  />
+                <ColumnDefinition />
+                <ColumnDefinition  />
+                <ColumnDefinition/>
+       
+            </Grid.ColumnDefinitions>
+            <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Name="maximizeButton" Click="maximizeButton_Click" Margin="2">
                 <StackPanel Orientation="Horizontal">
-                    <ui:SymbolIcon Symbol="FullScreenMaximize20" FontSize="40" />
-                    <Viewbox Height="22" >
-                        <TextBlock  Text="{DynamicResource Usercontrol_ToggleWindow}" />
+                    <Viewbox>
+                        <ui:SymbolIcon Symbol="FullScreenMaximize20"  />
+                    </Viewbox>
+                 
+                    <Viewbox MaxHeight="22"  >
+                        <TextBlock  Text="{DynamicResource Usercontrol_ToggleWindow}" TextWrapping="WrapWithOverflow" />
                     </Viewbox>
 
-                    
-                </StackPanel>
-               
-            </Button>
 
-            <Button Height="60" Name="closeButton" Margin="10,0,0,0">
+                </StackPanel>
+
+            </Button>
+            <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Name="closeButton" Margin="2" Click="closeButton_Click">
                 <StackPanel Orientation="Horizontal">
-                    <ui:SymbolIcon Symbol="CalendarCancel20" FontSize="40"/>
-                    <Viewbox Height="22" >
-                        <TextBlock  Text="{DynamicResource Usercontrol_CloseProgramWM}" />
+                    <Viewbox>
+                        <ui:SymbolIcon Symbol="CalendarCancel20" />
+                    </Viewbox>
+                  
+                    <Viewbox MaxHeight="22" >
+                        <TextBlock  Text="{DynamicResource Usercontrol_CloseProgramWM}" TextWrapping="WrapWithOverflow" />
                     </Viewbox>
 
 
                 </StackPanel>
 
-               
+
             </Button>
-
-            <Button Height="60" Name="monitorMoveRight" Margin="10,0,0,0">
+            <Button Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="monitorMoveRight" Margin="2">
+           
                 <StackPanel Orientation="Horizontal">
-                    <Grid>
-                        <TextBlock Text="1"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <ui:SymbolIcon Symbol="Tv20" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
-
-                    </Grid>
-                    <ui:SymbolIcon Symbol="ArrowRight20" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    <Grid>
-                        <TextBlock Text="2"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <ui:SymbolIcon Symbol="Tv20" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
-
-                    </Grid>
-                    <Viewbox Height="22" >
-                        <TextBlock  Text="{DynamicResource Usercontrol_MoveMonitor}" />
+                    <Viewbox>
+                        <ui:SymbolIcon Symbol="WindowMultipleSwap20" />
+                    </Viewbox>
+                    <Viewbox MaxHeight="22"  >
+                        <TextBlock  Text="{DynamicResource Usercontrol_MoveMonitor}" TextWrapping="WrapWithOverflow" />
                     </Viewbox>
                 </StackPanel>
             </Button>
 
-
-            <Button Height="60" Name="endATaskButton" Margin="10,0,0,0">
+            <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="3" Name="endTaskButton" Margin="2" Click="endTaskButton_Click">
                 <StackPanel Orientation="Horizontal">
-                    <ui:SymbolIcon Symbol="ShareScreenStop24" FontSize="40"/>
-                    <Viewbox Height="22" >
-                        <TextBlock  Text="{DynamicResource Usercontrol_KillTask}" />
+                    <Viewbox>
+                        <ui:SymbolIcon Symbol="ShareScreenStop24" />
+                    </Viewbox>
+                    <Viewbox MaxHeight="22"  >
+                        <TextBlock  Text="{DynamicResource Usercontrol_KillTask}" TextWrapping="WrapWithOverflow" />
                     </Viewbox>
                 </StackPanel>
-  
+
             </Button>
+        </Grid>
+        <StackPanel  Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="1">
+           
+
+            
+           
+
         </StackPanel>
 
     </Grid>

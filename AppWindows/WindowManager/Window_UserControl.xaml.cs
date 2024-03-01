@@ -109,6 +109,9 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
                         case "LeftShoulder":
                             pageManager.MoveWindowToPreviousMonitorAsync();
                             break;
+                        case "X":
+                            pageManager.CloseProgram();
+                            break;
                         default:
                             MessageBox.Show("FINIUSH THIS HERE");
                             break;

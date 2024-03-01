@@ -63,8 +63,7 @@ namespace Everything_Handhelds_Tool
 
             //Application.Current.Resources.MergedDictionaries.Add(((ResourceDictionary)XamlReader.Load(xamlFile)));
 
-            AppWindows.WindowManager.WindowManager wm = new AppWindows.WindowManager.WindowManager();
-            wm.Show();
+          
         }
 
       

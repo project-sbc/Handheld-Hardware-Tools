@@ -55,7 +55,15 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
         {
             ToggleWindowState();
         }
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            CloseProgram();
+        }
 
+        private void endTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         #region move window to different monitor
 
         public async Task MoveWindowToNextMonitorAsync()
@@ -188,7 +196,42 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
         }
         #endregion
 
+        public async void CloseProgram()
+        {
+            if (highlightedUserControl > -1)
+            {
+                Window_UserControl wuc = (Window_UserControl)userControls[highlightedUserControl];
+                string processName = wuc.process.ProcessName;
+                if (wuc.process != null)
+                {//double check process is running
+                    if (Process.GetProcessesByName(wuc.process.ProcessName).Length > 0)
+                    {
+                        wuc.process.CloseMainWindow();
+                        wuc.process.Close();
+                    }
+                   
+                }
 
+
+                int x = 0;
+
+                while(Process.GetProcessesByName(processName).Length > 0 && x < 20)
+                {
+
+                    x++;
+                    await Task.Delay(100);
+                }
+                if (Process.GetProcessesByName(processName).Length == 0)
+                {
+
+                    userControls.Remove(wuc);
+                    stackPanel.Children.Remove(wuc);
+
+                }
+
+
+            }
+        }
 
         #region handle window state toggle
         public void ToggleWindowState()
@@ -372,6 +415,8 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
             SetLargeViewerToFirstListViewItem();
 
         }
+
+      
     }
 
    
