@@ -8,9 +8,10 @@
       mc:Ignorable="d" 
    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                         Loaded="ControllerPage_Loaded"
+                      
       Title="WindowManagerPage">
  
-    <Grid  Margin="9" >
+    <Grid  Margin="9">
         <Grid.RowDefinitions>
       
  
@@ -22,18 +23,18 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
 
         <Image Name="largeImage" Grid.Row="0" Height="Auto" VerticalAlignment="Center"  />
         <StackPanel VerticalAlignment="Bottom" Grid.Row="1">
-            <Viewbox MaxHeight="40"  VerticalAlignment="Bottom" HorizontalAlignment="Center"   >
+            <Viewbox MaxHeight="20"  VerticalAlignment="Bottom" HorizontalAlignment="Center"   >
 
                 <TextBlock  Name="textProcessTitle" />
 
             </Viewbox>
 
-            <Viewbox MaxHeight="30"   VerticalAlignment="Bottom" HorizontalAlignment="Center"   >
+            <Viewbox MaxHeight="20"   VerticalAlignment="Bottom" HorizontalAlignment="Center"   >
 
                 <TextBlock Name="textProcessName"  />
 
@@ -63,7 +64,7 @@
                         <ui:SymbolIcon Symbol="FullScreenMaximize20"  />
                     </Viewbox>
                  
-                    <Viewbox MaxHeight="22"  >
+                    <Viewbox MaxHeight="15"  >
                         <TextBlock  Text="{DynamicResource Usercontrol_ToggleWindow}" TextWrapping="WrapWithOverflow" />
                     </Viewbox>
 
@@ -77,7 +78,7 @@
                         <ui:SymbolIcon Symbol="CalendarCancel20" />
                     </Viewbox>
                   
-                    <Viewbox MaxHeight="22" >
+                    <Viewbox MaxHeight="15" >
                         <TextBlock  Text="{DynamicResource Usercontrol_CloseProgramWM}" TextWrapping="WrapWithOverflow" />
                     </Viewbox>
 
@@ -92,7 +93,7 @@
                     <Viewbox>
                         <ui:SymbolIcon Symbol="WindowMultipleSwap20" />
                     </Viewbox>
-                    <Viewbox MaxHeight="22"  >
+                    <Viewbox MaxHeight="15"  >
                         <TextBlock  Text="{DynamicResource Usercontrol_MoveMonitor}" TextWrapping="WrapWithOverflow" />
                     </Viewbox>
                 </StackPanel>
@@ -103,7 +104,7 @@
                     <Viewbox>
                         <ui:SymbolIcon Symbol="ShareScreenStop24" />
                     </Viewbox>
-                    <Viewbox MaxHeight="22"  >
+                    <Viewbox MaxHeight="15"  >
                         <TextBlock  Text="{DynamicResource Usercontrol_KillTask}" TextWrapping="WrapWithOverflow" />
                     </Viewbox>
                 </StackPanel>

@@ -57,11 +57,14 @@ namespace Everything_Handhelds_Tool.Classes
                 case SymbolRegular.Power20:
                     returnPage = new PowerPage();
                     break;
-                case SymbolRegular.Flash20:
+                case SymbolRegular.Play12:
                     returnPage = new ActionPage();
                     break;
                 case SymbolRegular.Settings20:
                     returnPage = new SettingsPage();
+                    break;
+                case SymbolRegular.Info16:
+                    returnPage = new InfoPage();
                     break;
                 default:
                     returnPage = new Pages.HomePage();

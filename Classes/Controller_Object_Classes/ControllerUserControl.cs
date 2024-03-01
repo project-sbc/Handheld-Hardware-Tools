@@ -143,7 +143,17 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
             if (mainControl is System.Windows.Controls.Button) { HandleButtonInput(action); }
             if (mainControl is ComboBox) { HandleComboBoxInput(action); }
             if (mainControl is ListView) { HandleListViewInput(action); }
+            if (mainControl is Hyperlink) { HandleListViewInput(action); }
     
+        }
+
+        private void HandleHyperlinkInput(string action)
+        {
+            if(action == "A")
+            {
+                Hyperlink hyperlink = (Hyperlink)mainControl;
+                hyperlink.RaiseEvent(new RoutedEventArgs(Hyperlink.ClickEvent));
+            }
         }
         private void HandleToggleSwitchInput(string action)
         {

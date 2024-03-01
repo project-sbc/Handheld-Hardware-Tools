@@ -226,8 +226,19 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
 
                     userControls.Remove(wuc);
                     stackPanel.Children.Remove(wuc);
-
+                    ReturnControlToPage();
+                    if (userControls.Count > 1)
+                    {
+                       
+                        highlightedUserControl = highlightedUserControl - 1;
+                        HighlightUserControl();
+                    }
+                    else
+                    {
+                        highlightedUserControl = -1;
+                    }
                 }
+         
 
 
             }

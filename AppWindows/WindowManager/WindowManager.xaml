@@ -10,22 +10,29 @@
                             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                      Topmost="True"
                         
-            Left="50"
-        
-             Background="Transparent"
          
+        
+            WindowStyle="None"
+            AllowsTransparency="True"
          WindowStartupLocation="CenterScreen"
-        Title="WindowManager" Height="500" Width="1000">
-    <Border  Background="DimGray">
+        Title="WindowManager" Height="500" Width="800">
+    <Border  Background="DimGray" >
         <Grid   >
             <Grid.RowDefinitions>
-                <RowDefinition Height="11*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="12*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Frame Name="frame"  Source="WindowManagerPage.xaml" VerticalAlignment="Stretch"  />
+            <Frame Name="frame" Grid.Row="1"  Source="WindowManagerPage.xaml" VerticalAlignment="Stretch"  />
 
-          
-          
+
+            <Button HorizontalAlignment="Right" VerticalAlignment="Stretch" Grid.Column="0" Name="closeButton" Click="closeWindow_Click" Margin="2">
+                <Viewbox VerticalAlignment="Stretch">
+                    <ui:FontIcon Glyph="&#xE711;"   />
+                </Viewbox>
+            </Button>
+
+
 
 
         </Grid>
