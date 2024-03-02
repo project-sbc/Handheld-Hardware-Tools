@@ -23,6 +23,7 @@ namespace Everything_Handhelds_Tool.Classes
 
         public ButtonPressEvent buttonPressEvent = new ButtonPressEvent();
         public ControllerConnectionChangedEvent controllerConnectionChangedEvent = new ControllerConnectionChangedEvent();
+        public JoystickEvent joystickEvent = new JoystickEvent();
         public Controller? controller;
 
            
@@ -149,26 +150,50 @@ namespace Everything_Handhelds_Tool.Classes
                         }
 
 
+                        //add all joystick inputs to determine if we should trigger the movement event, use absolute value and add to see if > 0 otherwise DONT SEND EVENT
+
+
+                        //APPLY DEADZONE BECAUSE SMALL DRIFT KILLS THIS
+
+
+                        int ly = currentGamepadState.LeftThumbY;
+                        int lx = currentGamepadState.LeftThumbX;
+                        int ry = currentGamepadState.RightThumbY;
+                        int rx = currentGamepadState.RightThumbX;
+                        int deadZone = 2500;
+                        if (Math.Abs(lx) > deadZone || Math.Abs(ly) > deadZone || Math.Abs(rx) > deadZone || Math.Abs(ry) > deadZone)
+                        {
+                            joystickEvent.raiseStickInput(currentGamepadState.LeftThumbX, currentGamepadState.LeftThumbY, currentGamepadState.RightThumbX, currentGamepadState.RightThumbY);
+                        }
+
                         //this is the normal business routine after hotkey checking
                         foreach (GamepadButtonFlags gbf in gamepadButtonFlags)
                         {
-                            if (gbf.ToString().Contains("DPad"))
+                            if (currentGamepadState.Buttons.HasFlag(gbf) && !previousGamepadState.Buttons.HasFlag(gbf))
                             {
-                                //call routine to send controller input events and track for continous input for any dpad input
-                                string result = HandleDPadInput(gbf, currentGamepadState, previousGamepadState);
-                                if (result != "") { continousInputCurrent = result; }
+                                //raise event for button press
+                                buttonPressEvent.raiseControllerInput(gbf.ToString());
+
                             }
-                            else
+                            if (currentGamepadState.Buttons.HasFlag(gbf) && previousGamepadState.Buttons.HasFlag(gbf))
                             {
-                                if (currentGamepadState.Buttons.HasFlag(gbf) && !previousGamepadState.Buttons.HasFlag(gbf))
-                                {
-                                    //raise event for button press
-                                    buttonPressEvent.raiseControllerInput(gbf.ToString());
-                                }
+                                continousInputCurrent = gbf.ToString();
+
                             }
+                                                      
 
                         }
 
+                        //handle triggers
+                        if (currentGamepadState.LeftTrigger > 80 && previousGamepadState.LeftTrigger <= 80)
+                        {
+                            buttonPressEvent.raiseControllerInput("LeftTrigger");
+                        }
+
+                        if (currentGamepadState.RightTrigger > 80 && previousGamepadState.RightTrigger <= 80)
+                        {
+                            buttonPressEvent.raiseControllerInput("RightTrigger");
+                        }
 
                         //call routine that handles continous input controller input events and counts usage
                         continousInputCounter = HandleContinousInput(continousInputCurrent, continousInputPrevious, continousInputCounter);
@@ -381,12 +406,44 @@ namespace Everything_Handhelds_Tool.Classes
             });
         }
     }
+
+    public class JoystickEvent
+    {
+
+        public event EventHandler<controllerJoystickEventArgs> controllerJoystickEvent;
+
+        public void raiseStickInput(double lx, double ly, double rx, double ry)
+        {
+            System.Windows.Application.Current.Dispatcher.BeginInvoke(() =>
+            {
+                controllerJoystickEvent?.Invoke(this, new controllerJoystickEventArgs(lx, ly, rx, ry));
+            });
+
+
+        }
+    }
+
     public class controllerInputEventArgs : EventArgs
     {
         public string Action { get; set; }
         public controllerInputEventArgs(string action)
         {
             this.Action = action;
+        }
+    }
+
+    public class controllerJoystickEventArgs : EventArgs
+    {
+        public double lx { get; set; }
+        public double ly { get; set; }
+        public double rx { get; set; }
+        public double ry { get; set; }
+        public controllerJoystickEventArgs(double lx, double ly, double rx, double ry)
+        {
+            this.lx = lx;
+            this.ly = ly;
+            this.rx = rx;
+            this.ry = ry;
         }
     }
 

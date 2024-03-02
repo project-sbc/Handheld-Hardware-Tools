@@ -25,6 +25,9 @@ namespace Everything_Handhelds_Tool.Classes.Actions
 
             Toggle_WinOSK toggle_WOSK = new Toggle_WinOSK() { ID = 3, displayInActionPanel = true };
             this.Add(toggle_WOSK);
+
+            Toggle_WindowManager toggle_WM = new Toggle_WindowManager() { ID = 4, displayInActionPanel = true };
+            this.Add(toggle_WM);
         }
     }
 

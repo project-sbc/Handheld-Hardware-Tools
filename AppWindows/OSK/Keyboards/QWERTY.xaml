@@ -436,7 +436,7 @@
                         <TextBlock TextWrapping="Wrap" Text="Enter" />
                     </Viewbox>
                     <Viewbox Grid.Column="1" Margin="10,0,0,0"  Name="controllerIconViewbox3">
-                        <TextBlock TextWrapping="Wrap" Text="" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
+                        <TextBlock TextWrapping="Wrap" Text="&#xEDE3;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
                     </Viewbox>
 
                 </Grid>
@@ -561,8 +561,48 @@
 
                 </Grid>
             </Button>
-            <Button Grid.Row="4" Grid.Column="19" Grid.ColumnSpan="3" Margin="3,3,3,6" />
-            <Button Grid.Row="4" Grid.Column="22" Grid.ColumnSpan="3" Margin="3,3,3,6" />
+            <Button Grid.Row="4" Grid.Column="19" Grid.ColumnSpan="3" Margin="3,3,3,6" Tag="Special" CommandParameter="LeftArrow">
+                <Grid  VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox >
+                        <TextBlock Text="&#xF0B0;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
+                    </Viewbox>
+
+
+                </Grid>
+
+
+
+            </Button>
+            <Button Grid.Row="4" Grid.Column="22" Grid.ColumnSpan="3" Margin="3,3,3,6" Tag="Special" CommandParameter="RightArrow">
+                <Grid  VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox >
+                        <TextBlock Text="&#xF0AF;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
+                    </Viewbox>
+
+
+                </Grid>
+
+
+
+            </Button>
             <Button Grid.Row="4" Grid.Column="25" Grid.ColumnSpan="3" Margin="3,3,3,6" Tag="Special" CommandParameter="Hide">
                 <Grid  VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>

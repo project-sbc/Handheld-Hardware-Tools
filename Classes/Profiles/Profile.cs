@@ -10,9 +10,9 @@ namespace Everything_Handhelds_Tool.Classes.Profiles
 {
     public class Profile
     {
-        public string processExe;
-        public ProfileActionList actionList;
-        public string profileName;
+        public string processExe { get; set; } = "";
+        public ProfileActionList actionList { get; set; } = new ProfileActionList();
+        public string profileName { get; set; } = "";
 
         public virtual void ApplyProfile()
         {
