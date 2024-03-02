@@ -17,6 +17,7 @@ using System.Windows.Threading;
 using WindowsInput.Native;
 using WindowsInput;
 using System.Windows.Controls.Primitives;
+using Everything_Handhelds_Tool.Classes;
 
 namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
 {
@@ -27,6 +28,8 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
     public partial class QWERTY : Page
     {
         ControllerInputOSK inputOSK = null;
+
+        ControllerInput controllerInput;
         Button leftButton = null;
         Button rightButton = null;
         List<Button> buttons;
@@ -165,6 +168,27 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
             hideCirclesTimer.Tick += HideCirclesTimer_Tick;
         }
 
+    
+
+        private void ButtonPressEvent_controllerJoystickEventOSK(object? sender, controllerJoystickEventArgsOSK e)
+        {
+            
+            Application.Current.Dispatcher.BeginInvoke(() =>
+            {
+                HandleLeftCircleMovement(e.lx, e.ly);
+                HandleRightCircleMovement(e.rx, e.ry);
+            }
+   );
+
+        }
+
+        private void HandleJoystickInput(double lx, double ly, double rx, double ry)
+        {
+            //IM PUTTING THIS HERE TO TRY TO GET AROUND THE CIRCLE DISAPPEARING ISSUE
+            HandleLeftCircleMovement(lx, ly);
+            HandleRightCircleMovement(rx, ry);
+
+        }
         private void ButtonPressEvent_controllerConnectedDisconnectedEventOSK(object? sender, controllerInputEventArgsOSK e)
         {
             if (e.Action == "Connected")
@@ -553,9 +577,9 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
 
 
 
-        private void HandleLeftCircleMovement(controllerJoystickEventArgsOSK e)
+        private void HandleLeftCircleMovement(double lx, double ly)
         {
-            Button newButton = HandleCircleMovement(e.lx, e.ly, leftPoint, leftButton, leftCircle, true);
+            Button newButton = HandleCircleMovement(lx, ly, leftPoint, leftButton, leftCircle, true);
             if (newButton != leftButton)
             {
                 UnhighlightButton(leftButton);
@@ -563,9 +587,9 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
                 leftButton = newButton;
             }
         }
-        private void HandleRightCircleMovement(controllerJoystickEventArgsOSK e)
+        private void HandleRightCircleMovement(double rx, double ry)
         {
-            Button newButton = HandleCircleMovement(e.rx, e.ry, rightPoint, rightButton, rightCircle, false);
+            Button newButton = HandleCircleMovement(rx, ry, rightPoint, rightButton, rightCircle, false);
 
             if (newButton != rightButton)
             {
@@ -574,16 +598,7 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
                 rightButton = newButton;
             }
         }
-        private void ButtonPressEvent_controllerJoystickEventOSK(object? sender, controllerJoystickEventArgsOSK e)
-        {
-          
-            Application.Current.Dispatcher.BeginInvoke(() =>
-            {
-                HandleLeftCircleMovement(e);
-                HandleRightCircleMovement(e);
-            });
-
-        }
+ 
 
         private Button HandleCircleMovement(double x, double y, Point point, Button button, Ellipse ellipse, bool left)
         {
@@ -777,6 +792,7 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
 
         private void HideCirclesTimer_Tick(object? sender, EventArgs e)
         {
+
             hideCirclesTimer.Stop();
             leftCircle.Visibility = Visibility.Collapsed;
             rightCircle.Visibility = Visibility.Collapsed;

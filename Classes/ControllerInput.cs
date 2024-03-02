@@ -110,7 +110,7 @@ namespace Everything_Handhelds_Tool.Classes
                 {
 
 
-                    if (!suspendEventsForHotKeyProgramming && !suspendEventsForNewHotKeyList && !suspendEventsForOSK)
+                    if (!suspendEventsForHotKeyProgramming && !suspendEventsForNewHotKeyList)
                     {
                         //var watch = System.Diagnostics.Stopwatch.StartNew();
                         //main controller thread is here. Start with getting controller

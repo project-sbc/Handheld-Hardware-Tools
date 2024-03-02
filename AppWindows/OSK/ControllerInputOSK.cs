@@ -26,7 +26,6 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK
             get
             {
                 return _controllerConnected;
-
             }
 
             set
