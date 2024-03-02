@@ -36,8 +36,24 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                         //make sure a control is highlighted (index not -1), otherwise there is a navigation bug that comes up
                         if (highlightedUserControl > -1)
                         {
-                            controllerNavigatePage = false;
-                            SelectUserControl();
+                            //I AM ADDING THIS SPECIAL BUTTON A action so that
+                            //people dont need to press A twice for button stuff
+                            //otherwise they have to press A twice to click a button
+                            //WE CHECK TO SEE IF MAINCONTROL IS BUTTON AND THERE ISNT A TOGGLE SWITCH
+                            //OTHERWISE WE SELECT THE CONTROL
+                            ControllerUserControl uc = userControls[highlightedUserControl];
+                            if (uc.mainControl is System.Windows.Controls.Button && uc.toggleSwitchControl == null)
+                            {
+                                SendControllerInputToUserControl("Button_A");
+                            }
+                            else
+                            {
+                                controllerNavigatePage = false;
+                                SelectUserControl();
+                            }
+                            
+                          
+                            
                         }
             
                         break;

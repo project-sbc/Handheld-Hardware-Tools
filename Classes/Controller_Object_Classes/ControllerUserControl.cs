@@ -174,7 +174,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
             System.Windows.Controls.Button button = mainControl as System.Windows.Controls.Button;
             switch (action)
             {
-                case "A":
+                case "A" or "Button_A":
                     button.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
                     break;
                 case "B":

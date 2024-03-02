@@ -22,11 +22,11 @@ namespace Everything_Handhelds_Tool.UserControls.InfoPageUserControls
     /// <summary>
     /// Interaction logic for TDP_Slider.xaml
     /// </summary>
-    public partial class YoutubePage_Button : ControllerUserControl
+    public partial class KofiDonate_Button : ControllerUserControl
     {
 
       
-        public YoutubePage_Button()
+        public KofiDonate_Button()
         {
             InitializeComponent();
 

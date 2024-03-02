@@ -22,11 +22,11 @@ namespace Everything_Handhelds_Tool.UserControls.InfoPageUserControls
     /// <summary>
     /// Interaction logic for TDP_Slider.xaml
     /// </summary>
-    public partial class YoutubePage_Button : ControllerUserControl
+    public partial class TutorialVideosPage_Button : ControllerUserControl
     {
 
       
-        public YoutubePage_Button()
+        public TutorialVideosPage_Button()
         {
             InitializeComponent();
 
@@ -44,8 +44,13 @@ namespace Everything_Handhelds_Tool.UserControls.InfoPageUserControls
         }
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            
-            Process.Start(new ProcessStartInfo(hyperlink.NavigateUri) { UseShellExecute = true });
+            //navigate to the specific settings page
+
+
+            Page page = new TutorialVideosPage();
+
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow.frame.Content = page;
         }
     }
 }
