@@ -139,7 +139,7 @@ namespace Everything_Handhelds_Tool.Pages
 
             //set controller input class to update controller hotkey dictionary
             MainWindow mw = (MainWindow)Application.Current.MainWindow;
-            mw.controllerInput.publicSuspendEventsForNewHotKeyList = true;
+            mw.controllerInput.suspendEventsForNewHotKeyList = true;
         }
 
         public void HandleUserControlInputs(UserControl userControl, string action)

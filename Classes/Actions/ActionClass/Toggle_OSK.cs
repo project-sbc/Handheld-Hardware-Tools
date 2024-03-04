@@ -27,7 +27,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
                 MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
                 if (mainWindow != null)
                 {
-                    mainWindow.controllerInput.publicSuspendEventsForOSK = true;
+                   
                     if (mainWindow.Visibility == Visibility.Visible)
                     {//menu if open, we dont want it getting in the way
                         mainWindow.ToggleWindow();

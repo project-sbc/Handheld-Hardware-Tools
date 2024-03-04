@@ -261,7 +261,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             
             //do controller first
             MainWindow mainWindow = Local_Object.Instance.GetMainWindow();
-            mainWindow.controllerInput.publicSuspendEventsForHotKeyProgrammingt = true;
+            mainWindow.controllerInput.suspendEventsForHotKeyProgramming = true;
 
 
             //set gamepad states to 0
@@ -298,7 +298,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             //set variables to allow the normal function of keyboard/controller input
             //do controller first
             MainWindow mainWindow = Local_Object.Instance.GetMainWindow();
-            mainWindow.controllerInput.publicSuspendEventsForHotKeyProgrammingt = false;
+            mainWindow.controllerInput.suspendEventsForHotKeyProgramming = false;
 
             //now keyboard
             // FIX THIS NO KEYBOARD IN YET: MouseKeyHook.programmingKeystroke = false;

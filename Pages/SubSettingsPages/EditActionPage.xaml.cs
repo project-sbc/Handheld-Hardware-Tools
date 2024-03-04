@@ -132,7 +132,7 @@ namespace Everything_Handhelds_Tool.Pages
 
             if (updateControllerHotKeyDictionary)
             {
-                mainWindow.controllerInput.publicSuspendEventsForNewHotKeyList = true;
+                mainWindow.controllerInput.suspendEventsForNewHotKeyList = true;
             }
             if (updateKBHotKeyDictionary)
             {

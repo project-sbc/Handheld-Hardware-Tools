@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -14,6 +15,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WindowsInput;
 
 namespace Everything_Handhelds_Tool.AppWindows.OSK
 {
@@ -22,6 +24,7 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK
     /// </summary>
     public partial class OSK : Window
     {
+
         public OSK()
         {
             InitializeComponent();
@@ -34,8 +37,10 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK
         private void Initialize()
         {
             SetLocation();
+
             frame.Source = new Uri("Keyboards\\QWERTY.xaml", UriKind.RelativeOrAbsolute);
 
+     
         }
 
 

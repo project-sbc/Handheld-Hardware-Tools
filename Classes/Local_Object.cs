@@ -1,4 +1,6 @@
-﻿using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
+﻿using Everything_Handhelds_Tool.AppWindows.OSK;
+using Everything_Handhelds_Tool.AppWindows.OSK.Keyboards;
+using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
 using Everything_Handhelds_Tool.Classes.Devices;
 using System;
 using System.Collections.Generic;
@@ -62,6 +64,29 @@ namespace Everything_Handhelds_Tool.Classes
 
         }
 
+        public Window GetGeneralWindow(DependencyObject page)
+        {
+
+            //use this code to work up the visual tree until you hit a controllerpage
+            DependencyObject parent = System.Windows.Media.VisualTreeHelper.GetParent(page);
+
+            // Traverse up the visual tree until we find a page
+            while (parent != null && !(parent is Window))
+            {
+                parent = System.Windows.Media.VisualTreeHelper.GetParent(parent);
+            }
+
+            if (parent != null)
+            {
+                if (parent is Window)
+                {
+                    return (Window)parent;
+                }
+            }
+
+            return null;
+
+        }
 
         public Page GetMainWindowFramePage()
         {
@@ -81,7 +106,28 @@ namespace Everything_Handhelds_Tool.Classes
             return mw.device;
            
         }
+        public OSK GetOSKWindow()
+        {//used in 
+            OSK osk = (OSK)Application.Current.Windows.OfType<OSK>().First();
+            if (osk != null)
+            {
+                return osk;
+            }
+            return null;
+        }
 
+        public KeyboardPage GetOSKKeyboard()
+        {
+            OSK osk = GetOSKWindow();
+            if (osk != null)
+            {
+                if (osk.frame.Content != null)
+                {
+                    return (KeyboardPage)osk.frame.Content;
+                }
+            }
+            return null;
+        }
         public MainWindow GetMainWindow()
         {
             return ((MainWindow)Application.Current.MainWindow);
