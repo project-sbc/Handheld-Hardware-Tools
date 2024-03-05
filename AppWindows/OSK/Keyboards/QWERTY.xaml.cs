@@ -56,9 +56,9 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
 
         }
 
-        public override void ToggleControllerIconViewbox()
+        public override void ToggleControllerIconViewbox(bool connected)
         {
-            if (controllerIconViewbox1.Visibility == Visibility.Collapsed)
+            if (connected)
             {
                 controllerIconViewbox1.Visibility = Visibility.Visible;
                 controllerIconViewbox2.Visibility = Visibility.Visible;
@@ -363,7 +363,7 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            inputOSK = null;
+          
         }
 
 

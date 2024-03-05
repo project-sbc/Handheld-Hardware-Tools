@@ -40,7 +40,48 @@ namespace Everything_Handhelds_Tool.Classes
         private bool _suspendEventsForHotKeyProgramming { get; set; } = false;
         private bool _suspendEventsForNewHotKeyList { get; set; } = false;
         private bool _suspendEventsForOSK { get; set; } = false;
+        private bool _suspendEventsMouseModeProfileUpdate { get; set; } = false;
 
+        //mouse mode enabled will go through the loop of 
+        private bool _mouseModeEnabled { get; set; } = false;
+        private bool _mouseModeOSK { get; set; } = false;
+
+        public bool mouseModeOSK
+        {
+            get
+            {
+                return _mouseModeOSK;
+            }
+            set
+            {
+                _mouseModeOSK = value;
+            }
+        }
+
+        public bool mouseModeEnabled
+        {
+            get
+            {
+                return _mouseModeEnabled;
+            }
+            set
+            {
+                _mouseModeEnabled = value;
+            }
+        }
+
+
+        public bool suspendEventsMouseModeProfileUpdate
+        {
+            get
+            {
+                return _suspendEventsMouseModeProfileUpdate;
+            }
+            set
+            {
+                _suspendEventsMouseModeProfileUpdate = value;
+            }
+        }
 
         public bool suspendEventsForOSK
         {
@@ -112,7 +153,7 @@ namespace Everything_Handhelds_Tool.Classes
                 {
                     //check bool suspendEventsForNewHotKeyList to see if the hot key list needs updating
                     //if true it needs to be handled separately because live updating while it loops causes an error when it hits the hotkey detection
-                    if (!suspendEventsForNewHotKeyList)
+                    if (!suspendEventsForNewHotKeyList && !suspendEventsMouseModeProfileUpdate)
                     {
 
                         //main controller thread is here. Start with getting controller
@@ -174,7 +215,7 @@ namespace Everything_Handhelds_Tool.Classes
                             }    
                         }
                         //add additional delay as it isnt necessary to make this thread refresh every 10 ms until its safe to resume
-                        await Task.Delay(50);
+                
 
                     }
                     else

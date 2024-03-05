@@ -7,17 +7,24 @@ using System.Text;
 using System.Threading.Tasks;
 using WindowsInput;
 
-namespace Everything_Handhelds_Tool.Classes.MouseMode
+namespace Everything_Handhelds_Tool.Classes.MouseMode.Actions
 {
     public class MouseLeftClick : MouseAction
     {
-        
-        public override void ClickEvent()
+
+        public override void ClickEvent(bool pressed)
         {
             KeyboardPage keyboardPage = Local_Object.Instance.GetOSKKeyboard();
-            if (keyboardPage != null )
+            if (keyboardPage != null)
             {
-                keyboardPage.inputSimulator.Mouse.LeftButtonClick();
+                if (pressed)
+                {
+                    keyboardPage.inputSimulator.Mouse.LeftButtonDown();
+                }
+                else
+                {
+                    keyboardPage.inputSimulator.Mouse.LeftButtonUp();
+                }
             }
         }
     }

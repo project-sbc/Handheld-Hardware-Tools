@@ -8,11 +8,11 @@ using WindowsInput;
 using WindowsInput.Native;
 
 
-namespace Everything_Handhelds_Tool.Classes.MouseMode
+namespace Everything_Handhelds_Tool.Classes.MouseMode.Actions
 {
 
     public class MouseAction
     {
-        public virtual void ClickEvent() { }
+        public virtual void ClickEvent(bool pressed) { }
     }
 }
