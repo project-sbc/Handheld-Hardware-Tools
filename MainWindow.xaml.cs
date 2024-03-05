@@ -23,6 +23,8 @@ using System.Windows.Interop;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using Everything_Handhelds_Tool.AppWindows.WindowManager;
+using Everything_Handhelds_Tool.Classes.MouseMode;
+using WindowsInput;
 
 
 namespace Everything_Handhelds_Tool
@@ -32,11 +34,10 @@ namespace Everything_Handhelds_Tool
     {
 
         public Device device;
-
+        public MouseMode mouseMode = null;
+        public InputSimulator inputSimulator = new InputSimulator();
         public WiFiDirectHotspotManager wifiAP = null;
-
         public ProfileManager profileManager = new ProfileManager();
-
         public MouseKeyHook mouseKeyHook = new MouseKeyHook();
 
       
@@ -66,7 +67,14 @@ namespace Everything_Handhelds_Tool
           
         }
 
-      
+        public void CloseMouseMode()
+        {//close mouse mode, make sure to unsubscribe to controller events
+            if (mouseMode != null)
+            {
+                mouseMode.UnsubscribeControllerEvents();
+                mouseMode = null;
+            }
+        }
 
 
         #region Set up

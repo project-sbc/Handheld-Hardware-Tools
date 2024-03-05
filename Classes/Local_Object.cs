@@ -2,6 +2,7 @@
 using Everything_Handhelds_Tool.AppWindows.OSK.Keyboards;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
 using Everything_Handhelds_Tool.Classes.Devices;
+using SharpDX.XInput;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using WindowsInput;
 
 namespace Everything_Handhelds_Tool.Classes
 {
@@ -133,7 +135,45 @@ namespace Everything_Handhelds_Tool.Classes
             return ((MainWindow)Application.Current.MainWindow);
 
         }
-
+        public ControllerInput GetMainWindowControllerInput()
+        {
+            MainWindow mw = GetMainWindow();
+            if (mw != null)
+            {
+                if (mw.controllerInput != null)
+                {
+                    return mw.controllerInput;
+                }
+            }
+            return null;
+        }
+        public InputSimulator GetMainWindowInputSimulator()
+        {
+            MainWindow mw = GetMainWindow();
+            if (mw != null)
+            {
+                if (mw.inputSimulator != null)
+                {
+                    return mw.inputSimulator;
+                }
+            }
+            return null;
+        }
+        public Controller GetMainWindowController()
+        {
+            MainWindow mw = GetMainWindow();
+            if (mw != null)
+            {
+                if (mw.controllerInput != null)
+                {
+                    if (mw.controllerInput.controller != null)
+                    {
+                        return mw.controllerInput.controller;
+                    }
+                }
+            }
+            return null;
+        }
 
 
     }

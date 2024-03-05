@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WindowsInput;
 using WindowsInput.Native;
 
 namespace Everything_Handhelds_Tool.Classes.MouseMode.Actions
@@ -11,17 +12,14 @@ namespace Everything_Handhelds_Tool.Classes.MouseMode.Actions
     public class KeyboardClick : MouseAction
     {
         public VirtualKeyCode virtualKeyCode { get; set; }
-        public override void ClickEvent(bool pressed)
+        public override void ClickEvent()
         {
-            KeyboardPage keyboardPage = Local_Object.Instance.GetOSKKeyboard();
-            if (keyboardPage != null)
+            InputSimulator inputSimulator =Local_Object.Instance.GetMainWindowInputSimulator();
+            if (inputSimulator != null)
             {
-                if (pressed)
-                {
-                    keyboardPage.inputSimulator.Keyboard.KeyPress(virtualKeyCode);
-                }
-                
+                inputSimulator.Keyboard.KeyPress(virtualKeyCode);
             }
+
         }
     }
 }

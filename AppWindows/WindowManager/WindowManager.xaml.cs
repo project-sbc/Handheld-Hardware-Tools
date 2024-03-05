@@ -34,30 +34,32 @@ namespace Everything_Handhelds_Tool.AppWindows.WindowManager
         
            // instructionFrame = controllerFrame;
         }
-        public override void SetControllerInputPage(string pageName)
-        {//ADD THIS FOR TESTING REAL QUICK
-            //base.SetControllerInputPage(pageName);
-        }
+
 
         public override void HandleControllerInputTopLevel(object? sender, controllerInputEventArgs e)
         {
-            if (!controllerNavigateWindow)
-            {//if not navigating at the window level pass input to page level
-                ControllerPage a = (ControllerPage)frame.Content;
-                a.HandleControllerInput(e.Action);
-            }
-            else
-            {//send input to window handler
-                switch (e.Action)
-                {
-                    case "B":
-                        CloseWindow();
-                        break;
-                    default:
-                        controllerNavigateWindow = true;
-                        break;
+            if (this.Visibility == Visibility.Visible)
+            {
+                if (!controllerNavigateWindow)
+                {//if not navigating at the window level pass input to page level
+                    ControllerPage a = (ControllerPage)frame.Content;
+                    a.HandleControllerInput(e.Action);
+                }
+                else
+                {//send input to window handler
+                    switch (e.Action)
+                    {
+                        case "B":
+                            CloseWindow();
+                            break;
+                        default:
+                            controllerNavigateWindow = true;
+                            break;
+                    }
                 }
             }
+
+          
         }
 
         private void CloseWindow()

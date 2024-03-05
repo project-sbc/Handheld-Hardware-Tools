@@ -363,7 +363,7 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-          
+            UnsubscribeEvents();
         }
 
 

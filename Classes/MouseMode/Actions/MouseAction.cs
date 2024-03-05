@@ -13,6 +13,6 @@ namespace Everything_Handhelds_Tool.Classes.MouseMode.Actions
 
     public class MouseAction
     {
-        public virtual void ClickEvent(bool pressed) { }
+        public virtual void ClickEvent() { }
     }
 }

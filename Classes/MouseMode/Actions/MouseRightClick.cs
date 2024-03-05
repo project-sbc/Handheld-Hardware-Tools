@@ -12,19 +12,12 @@ namespace Everything_Handhelds_Tool.Classes.MouseMode.Actions
     public class MouseRightClick : MouseAction
     {
 
-        public override void ClickEvent(bool pressed)
+        public override void ClickEvent()
         {
-            KeyboardPage keyboardPage = Local_Object.Instance.GetOSKKeyboard();
-            if (keyboardPage != null)
+            InputSimulator inputSimulator = Local_Object.Instance.GetMainWindowInputSimulator();
+            if (inputSimulator != null)
             {
-                if (pressed)
-                {
-                    keyboardPage.inputSimulator.Mouse.RightButtonDown();
-                }
-                else
-                {
-                    keyboardPage.inputSimulator.Mouse.RightButtonUp();
-                }
+                inputSimulator.Mouse.RightButtonClick();
             }
         }
     }

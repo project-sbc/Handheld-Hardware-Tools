@@ -2,6 +2,8 @@
 using Everything_Handhelds_Tool.Classes.Actions;
 using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
+using Everything_Handhelds_Tool.Classes.MouseMode;
+using Everything_Handhelds_Tool.Classes.MouseMode.Actions;
 using Everything_Handhelds_Tool.Models;
 using Everything_Handhelds_Tool.Pages;
 
@@ -29,10 +31,6 @@ namespace Everything_Handhelds_Tool.Classes
         public Controller? controller;
 
            
-        //   wasControllerConnected is a previous state condition used to determine when the controller was connected to not connected
-        // it helps fire the controllerConnectionChangedEvent
-        private bool wasControllerConnected = false;
-
         public Dictionary<ushort, Actions.Action> controllerHotKeyDictionary = new Dictionary<ushort, Actions.Action>();
 
 
@@ -42,33 +40,7 @@ namespace Everything_Handhelds_Tool.Classes
         private bool _suspendEventsForOSK { get; set; } = false;
         private bool _suspendEventsMouseModeProfileUpdate { get; set; } = false;
 
-        //mouse mode enabled will go through the loop of 
-        private bool _mouseModeEnabled { get; set; } = false;
-        private bool _mouseModeOSK { get; set; } = false;
-
-        public bool mouseModeOSK
-        {
-            get
-            {
-                return _mouseModeOSK;
-            }
-            set
-            {
-                _mouseModeOSK = value;
-            }
-        }
-
-        public bool mouseModeEnabled
-        {
-            get
-            {
-                return _mouseModeEnabled;
-            }
-            set
-            {
-                _mouseModeEnabled = value;
-            }
-        }
+      
 
 
         public bool suspendEventsMouseModeProfileUpdate
@@ -186,8 +158,7 @@ namespace Everything_Handhelds_Tool.Classes
 
                             //call routine that handles continous input controller input events and counts usage
                             continousInputCounter = HandleContinousInput(continousInputCurrent, continousInputPrevious, continousInputCounter);
-
-
+                                                       
                         continueloop:
                             //set previous states to current for reference
                             previousGamepadState = currentGamepadState;
@@ -238,6 +209,7 @@ namespace Everything_Handhelds_Tool.Classes
 
         #region support routines for main thread
 
+       
         private void UpdateHotKeyDictionary()
         {
             //IMPORTANT: updates the hot key list when an action is saved

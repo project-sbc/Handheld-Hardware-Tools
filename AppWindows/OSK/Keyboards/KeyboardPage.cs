@@ -19,7 +19,7 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
     public class KeyboardPage : Page
     {
       
-        public InputSimulator inputSimulator = new InputSimulator();
+        public InputSimulator inputSimulator = Local_Object.Instance.GetMainWindowInputSimulator();
 
         public Button leftButton;
         public Button rightButton;
@@ -325,17 +325,13 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
         
         public void CloseWindow()
         {
-           
-            Application.Current.Dispatcher.BeginInvoke(() =>
+            Window thisWindow = Local_Object.Instance.GetGeneralWindow(this);
+
+            if (thisWindow != null)
             {
-                OSK osk = Application.Current.Windows.OfType<Everything_Handhelds_Tool.AppWindows.OSK.OSK>().Any();
-                if (osk != null)
-                {
-                    osk.Close();
-                }
-
-
-            });
+                thisWindow.Close();
+            }
+          
         }
         public void SubscribeEvents()
         {
@@ -343,71 +339,107 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
            
 
             //inputOSK.buttonPressEvent.controllerJoystickEventOSK += ButtonPressEvent_controllerJoystickEventOSK;
-            MainWindow mw = Local_Object.Instance.GetMainWindow();
-            mw.controllerInput.joystickEvent.controllerJoystickEvent += JoystickEvent_controllerJoystickEvent;
-            mw.controllerInput.buttonPressEvent.controllerInputEvent += ButtonPressEvent_controllerInputEvent;
-            mw.controllerInput.controllerConnectionChangedEvent.controllerConnectionChangedEvent += ControllerConnectionChangedEvent_controllerConnectionChangedEvent;
+            ControllerInput controllerInput = Local_Object.Instance.GetMainWindowControllerInput();
+            if (controllerInput != null)
+            {
+                controllerInput.joystickEvent.controllerJoystickEvent += JoystickEvent_controllerJoystickEvent;
+                controllerInput.buttonPressEvent.controllerInputEvent += ButtonPressEvent_controllerInputEvent;
+                controllerInput.controllerConnectionChangedEvent.controllerConnectionChangedEvent += ControllerConnectionChangedEvent_controllerConnectionChangedEvent;
+            }
+           
             
             //setup timer for hiding circles
             hideCirclesTimer.Tick += HideCirclesTimer_Tick;
         }
+        public void UnsubscribeEvents()
+        {
+            //unsubscribe otherwise the class will continue to exist
+            ControllerInput controllerInput = Local_Object.Instance.GetMainWindowControllerInput();
+            if (controllerInput != null)
+            {
+                controllerInput.joystickEvent.controllerJoystickEvent += JoystickEvent_controllerJoystickEvent;
+                controllerInput.buttonPressEvent.controllerInputEvent -= ButtonPressEvent_controllerInputEvent;
+                controllerInput.controllerConnectionChangedEvent.controllerConnectionChangedEvent -= ControllerConnectionChangedEvent_controllerConnectionChangedEvent;
+            }
 
+
+            //dont forget to unsubscribe the timer and stop it
+            hideCirclesTimer.Stop();
+            hideCirclesTimer.Tick -= HideCirclesTimer_Tick;
+        }
         private void ControllerConnectionChangedEvent_controllerConnectionChangedEvent(object? sender, controllerConnectionChangedEventArgs e)
         {
             Dispatcher.Invoke(() =>
             {
-                if (e.Connected)
+                if (this.Visibility == Visibility.Visible)
                 {
-                    ControllerConnected();
+                    if (e.Connected)
+                    {
+                        ControllerConnected();
+                    }
+                    else
+                    {
+                        UnhighlightButton(leftButton);
+                        UnhighlightButton(rightButton);
+                        ToggleControllerIconViewbox(false);
+                    }
                 }
-                else
-                {
-                    UnhighlightButton(leftButton);
-                    UnhighlightButton(rightButton);
-                    ToggleControllerIconViewbox(false);
-                }
+               
             });
            
         }
 
         private void ButtonPressEvent_controllerInputEvent(object? sender, controllerInputEventArgs e)
         {
+
             Dispatcher.Invoke(() =>
             {
-                switch (e.Action)
+                if (this.Visibility == Visibility.Visible)
                 {
-                    case "LeftThumb":
-                        capsPressed = !capsPressed;
-                        break;
+                    switch (e.Action)
+                    {
+                        case "LeftThumb":
+                            capsPressed = !capsPressed;
+                            break;
 
-                    case "LeftShoulder":
-                        leftButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
-                        break;
-                    case "RightShoulder":
-                        rightButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
-                        break;
-                    case "X":
-                        inputSimulator.Keyboard.KeyPress(VirtualKeyCode.BACK);
-                        break;
-                    case "Y":
-                        inputSimulator.Keyboard.KeyPress(VirtualKeyCode.SPACE);
-                        break;
-                    case "LeftTrigger":
-                        shiftPressed = !shiftPressed;
-                        break;
-                    case "B":
-                        CloseWindow();
-                        break;
+                        case "LeftShoulder":
+                            leftButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                            break;
+                        case "RightShoulder":
+                            rightButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                            break;
+                        case "X":
+                            inputSimulator.Keyboard.KeyPress(VirtualKeyCode.BACK);
+                            break;
+                        case "Y":
+                            inputSimulator.Keyboard.KeyPress(VirtualKeyCode.SPACE);
+                            break;
+                        case "LeftTrigger":
+                            shiftPressed = !shiftPressed;
+                            break;
+                        case "B":
+                            CloseWindow();
+                            break;
+                        case "Start":
+                            inputSimulator.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+                            break;
 
+                    }
                 }
+
+               
             });
         }
 
         private void JoystickEvent_controllerJoystickEvent(object? sender, controllerJoystickEventArgs e)
         {
+           
             Dispatcher.Invoke(() =>
             {
-                HandleJoystickInput(e.lx, e.ly, e.rx, e.ry);
+                if (this.Visibility == Visibility.Visible)
+                {
+                    HandleJoystickInput(e.lx, e.ly, e.rx, e.ry);
+                }
             });
         }
 
