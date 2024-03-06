@@ -18,7 +18,8 @@ namespace Everything_Handhelds_Tool.Classes.MouseMode
             { "DPadUp", new KeyboardClick(){virtualKeyCode = WindowsInput.Native.VirtualKeyCode.UP } },
             { "DPadDown", new KeyboardClick(){virtualKeyCode = WindowsInput.Native.VirtualKeyCode.DOWN } },
             { "DPadLeft", new KeyboardClick(){virtualKeyCode = WindowsInput.Native.VirtualKeyCode.LEFT } },
-            { "DPadRight", new KeyboardClick(){virtualKeyCode = WindowsInput.Native.VirtualKeyCode.RIGHT } }
+            { "DPadRight", new KeyboardClick(){virtualKeyCode = WindowsInput.Native.VirtualKeyCode.RIGHT } },
+            { "X", new AltTab() }
         };
 
         public bool rightScroll { get; set; } = true;

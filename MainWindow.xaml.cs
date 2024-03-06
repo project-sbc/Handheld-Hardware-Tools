@@ -25,6 +25,7 @@ using System.Collections.Generic;
 using Everything_Handhelds_Tool.AppWindows.WindowManager;
 using Everything_Handhelds_Tool.Classes.MouseMode;
 using WindowsInput;
+using Everything_Handhelds_Tool.AppWindows.Guide;
 
 
 namespace Everything_Handhelds_Tool
@@ -59,12 +60,16 @@ namespace Everything_Handhelds_Tool
             instructionFrame = frameControllerInput;
 
 
+
+
             //These are for a future feature of custom formats
             //FileStream xamlFile = new FileStream("Styles\\NewTheme.xaml", FileMode.Open, FileAccess.Read);
 
             //Application.Current.Resources.MergedDictionaries.Add(((ResourceDictionary)XamlReader.Load(xamlFile)));
 
-          
+
+            Guide guide = new Guide();
+            guide.Show();
         }
 
         public void CloseMouseMode()
@@ -522,8 +527,20 @@ namespace Everything_Handhelds_Tool
         }
         private void ContextMenu_Close(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            CloseEntireApp();
         }
+
+        public void CloseEntireApp()
+        {
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window != null)
+                {
+                    window.Close();
+                }
+            }
+        }
+
         private void notifyIcon_LeftClick(NotifyIcon sender, RoutedEventArgs e)
         {
             TasksToggleWindowOpen();
