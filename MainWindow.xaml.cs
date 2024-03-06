@@ -34,7 +34,7 @@ namespace Everything_Handhelds_Tool
     {
 
         public Device device;
-        public MouseMode mouseMode = null;
+        public MouseMode mouseMode;
         public InputSimulator inputSimulator = new InputSimulator();
         public WiFiDirectHotspotManager wifiAP = null;
         public ProfileManager profileManager = new ProfileManager();
@@ -53,7 +53,7 @@ namespace Everything_Handhelds_Tool
             //run start up
             InitializeRoutines();
 
-
+            mouseMode = new MouseMode();
             //set your common items between windows (this has to do with the ControllerWindow custom class
             commonFrame = frame;
             instructionFrame = frameControllerInput;

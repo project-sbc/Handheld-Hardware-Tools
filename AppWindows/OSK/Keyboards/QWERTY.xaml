@@ -489,7 +489,7 @@
 
                 </Grid>
             </Button>
-            <Button Grid.Row="3" Grid.Column="20" Grid.ColumnSpan="2"   Tag="Dual">
+            <Button Grid.Row="3" Grid.Column="20" Grid.ColumnSpan="2" CommandParameter="."  Tag="Dual">
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*"/>

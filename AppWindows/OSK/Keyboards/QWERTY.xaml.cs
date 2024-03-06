@@ -88,7 +88,7 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
             if (button != null)
             {
                 VirtualKeyCode vkc = VirtualKeyCode.SPACE;
-                switch (button.Tag)
+                .switch (button.Tag)
                 {
                     case "Dual":
                         vkc = oskLookup[button.CommandParameter.ToString()];
@@ -191,7 +191,10 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
             {"7", VirtualKeyCode.VK_7},
             {"8", VirtualKeyCode.VK_8},
             {"9", VirtualKeyCode.VK_9},
-            {"0", VirtualKeyCode.VK_0}
+            {"0", VirtualKeyCode.VK_0},
+            {".", VirtualKeyCode.OEM_PERIOD},
+            {",", VirtualKeyCode.OEM_COMMA}
+
 
         };
 
