@@ -15,7 +15,7 @@ namespace Everything_Handhelds_Tool.Classes.MouseMode
 {
     public class MouseMode
     {
-        MouseProfile mouseProfile = new MouseProfile();
+        MouseProfile mouseProfile = (MouseProfile)XML_Management.Instance.LoadXML("MouseProfile");
         InputSimulator inputSimulator = Local_Object.Instance.GetMainWindowInputSimulator();
         public MouseMode()
         {
@@ -29,6 +29,11 @@ namespace Everything_Handhelds_Tool.Classes.MouseMode
                 controllerInput.joystickEvent.controllerJoystickEvent += JoystickEvent_controllerJoystickEvent;
                 controllerInput.buttonPressEvent.controllerInputEvent += ButtonPressEvent_controllerInputEvent;
             }
+        }
+
+        public void UpdateMouseProfile()
+        {//this should only be called if the mouse profile page was modified and saved
+            mouseProfile = (MouseProfile)XML_Management.Instance.LoadXML("MouseProfile");
         }
 
         private void ButtonPressEvent_controllerInputEvent(object? sender, controllerInputEventArgs e)
@@ -104,7 +109,7 @@ namespace Everything_Handhelds_Tool.Classes.MouseMode
             int firstIndex = 0;
             int secondIndex = 1;
             //I want to take a linear approximation between x and y values so the mouse repsonse isnt jittery when moving along the curve. This
-            //basically turns the 10 data points from step functions to a curve made of 10 straight lines
+            //basically turns the 10 data points from step functions to a semi-curve made of 10 straight lines
             for (int i = 0; i < xValueArray.Length; i++)
             {
                 if (Math.Abs(value) <= xValueArray[i])
@@ -123,7 +128,7 @@ namespace Everything_Handhelds_Tool.Classes.MouseMode
                 firstIndex = secondIndex - 1;
             }
 
-            //DONT FORGET DIVIDE 100 BECAUSE I NEVER CONVERTED TO PERCENTAGE
+            //DONT FORGET DIVIDE 100 BECAUSE I NEVER CONVERTED TO PERCENTAGE (i.e. all my values up until now are 0-100 and need to be 0-1)
             double result = (sensitivityFactor/100) * LinearInterpolation(xValueArray[firstIndex] / 100, yValueArray[firstIndex] / 100, xValueArray[secondIndex] / 100, yValueArray[secondIndex] / 100, value);
 
             return (int)Math.Round(result ,0);
@@ -156,19 +161,7 @@ namespace Everything_Handhelds_Tool.Classes.MouseMode
 
         }
 
-        private bool _updateMouseProfile { get; set; } = false;
-
-        public bool UpdateMouseProfile
-        {
-            get
-            {
-                return _updateMouseProfile;
-            }
-            set
-            {
-                _updateMouseProfile = value;
-            }
-        }
+     
 
     }
 }

@@ -33,6 +33,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
     [XmlInclude(typeof(Toggle_OSK))]
     [XmlInclude(typeof(Toggle_WindowManager))]
     [XmlInclude(typeof(Toggle_Desktop))]
+    [XmlInclude(typeof(Toggle_MouseMode))]
     public class Action
     {
         //action name is programming specific, display name will be generated at runtime based on language selected
@@ -74,6 +75,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
             this.Add("Toggle_Desktop", Application.Current.Resources["Action_Toggle_Desktop"].ToString());
             this.Add("Toggle_WindowManager", Application.Current.Resources["Action_Toggle_WindowManager"].ToString());
             this.Add("Toggle_QAM", Application.Current.Resources["Action_Toggle_QAM"].ToString());
+            this.Add("Toggle_MouseMode", Application.Current.Resources["Action_Toggle_MouseMode"].ToString());
 
 
             //new DefaultActionItem() { actionName = "Auto_TDP", displayName = "" };

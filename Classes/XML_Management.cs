@@ -1,5 +1,6 @@
 ﻿using Everything_Handhelds_Tool.Classes.Actions;
 using Everything_Handhelds_Tool.Classes.HomePage;
+using Everything_Handhelds_Tool.Classes.MouseMode;
 using Everything_Handhelds_Tool.Classes.Profiles;
 using System;
 using System.Collections.Generic;
@@ -60,6 +61,9 @@ namespace Everything_Handhelds_Tool.Classes
                 case "ProfileList":
                     folderFileName = "UserConfiguration\\Profiles\\Profiles.xml";
                     break;
+                case "MouseProfile":
+                    folderFileName = "UserConfiguration\\MouseMode\\MouseProfiles.xml";
+                    break;
             }
 
 
@@ -87,6 +91,13 @@ namespace Everything_Handhelds_Tool.Classes
                 XmlSerializer xmls = null;
                 switch (objType)
                 {
+                    case "MouseProfile":
+                        xmls = new XmlSerializer(typeof(MouseProfile));
+                        MouseProfile objMP = (MouseProfile)objClass;
+                        xmls.Serialize(sw, objMP);
+                        objMP = null;
+                        break;
+
                     case "HomePageUserControlList":
                         xmls = new XmlSerializer(typeof(HomePageUserControlList));
                         HomePageUserControlList objCM = (HomePageUserControlList)objClass;
@@ -142,6 +153,9 @@ namespace Everything_Handhelds_Tool.Classes
                 case "ProfileList":
                     filePath = "UserConfiguration\\Profiles\\Profiles.xml";
                     break;
+                case "MouseProfile":
+                    filePath = "UserConfiguration\\MouseMode\\MouseProfiles.xml";
+                    break;
             }
 
             object objObject = null;
@@ -158,6 +172,10 @@ namespace Everything_Handhelds_Tool.Classes
                             xmls = new XmlSerializer(typeof(HomePageUserControlList));
                             objObject = ((HomePageUserControlList)xmls.Deserialize(sr));
                         
+                            break;
+                        case "MouseProfile":
+                            xmls = new XmlSerializer(typeof(MouseProfile));
+                            objObject = ((MouseProfile)xmls.Deserialize(sr));
                             break;
                         case "Settings":
                             xmls = new XmlSerializer(typeof(Settings));
@@ -195,6 +213,10 @@ namespace Everything_Handhelds_Tool.Classes
                     case "ProfileList":
                         objObject = new ProfileList();
                         break;
+                    case "MouseProfile":
+                        objObject = new MouseProfile();
+                        break;
+
 
 
                 }

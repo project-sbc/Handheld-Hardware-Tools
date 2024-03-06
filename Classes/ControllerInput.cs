@@ -17,6 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 
 namespace Everything_Handhelds_Tool.Classes
@@ -172,18 +173,24 @@ namespace Everything_Handhelds_Tool.Classes
                             //this below is a safeguard to prevent the editactionpage from not flipping the bool to allow controller input to resume
                             //it checks main window page and checks if page is null or is not EditActionPage. In both cases it flips the bool to allow controller input to resume
                             //if neither case is true, editactionpage is still visible and we will rely on that to flip the bool back
-                            Page page = Local_Object.Instance.GetMainWindowFramePage();
-                            if (page != null)
+
+                            //MAKE SURE TO WRAP IN A DISPATCHER BECAUSE THIS THREAD DOESNT OWN THE PAGE THREAD
+                            Application.Current.Dispatcher.Invoke(() =>
                             {
-                                if (page is not EditActionPage)
+                                Page page = Local_Object.Instance.GetMainWindowFramePage();
+                                if (page != null)
+                                {
+                                    if (page is not EditActionPage)
+                                    {
+                                        suspendEventsForHotKeyProgramming = false;
+                                    }
+                                }
+                                else
                                 {
                                     suspendEventsForHotKeyProgramming = false;
                                 }
-                            }
-                            else 
-                            {
-                                suspendEventsForHotKeyProgramming = false;
-                            }    
+                            });
+                           
                         }
                         //add additional delay as it isnt necessary to make this thread refresh every 10 ms until its safe to resume
                 

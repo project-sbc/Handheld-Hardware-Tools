@@ -83,7 +83,7 @@ namespace Everything_Handhelds_Tool.Pages
             //There is a general function that searches the stack panel and adds to the list of ControllerUserControls. It makes sure
             //visibility isn't collapsed too
 
-            //add controls passing values as needed
+            //add controls passing values as needed. one if for an edit event and the other is for a new action event
             if (action != null) 
             {
                 actionCombobox = new EditAction_Combobox(action.actionName);
@@ -107,6 +107,7 @@ namespace Everything_Handhelds_Tool.Pages
                 stackPanel.Children.Add(new EditAction_EnableHotKey());
             }
 
+            
 
             RebaseUserControlsAfterActionTypeUpdate();
         }

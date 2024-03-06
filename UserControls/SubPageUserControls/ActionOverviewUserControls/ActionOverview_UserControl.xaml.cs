@@ -177,6 +177,10 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Keyboard24;
 
                     break;
+                case "Toggle_MouseMode":
+                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.KeyboardMouse16;
+
+                    break;
                 case "Toggle_WindowManager":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Window24;
 

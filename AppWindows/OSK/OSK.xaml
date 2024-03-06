@@ -9,13 +9,15 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Left="0"
+        Top="2000"
         Topmost="True"
         Focusable="False"
         ShowInTaskbar="True"
                 ShowActivated="False"
         ResizeMode="NoResize"
-        
+ 
         Title="OSK" Height="0" Width="0"
+      
         Opacity=".95"  Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"
         >
     <DockPanel>

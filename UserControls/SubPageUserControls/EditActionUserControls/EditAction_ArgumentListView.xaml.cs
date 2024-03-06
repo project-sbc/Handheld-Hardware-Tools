@@ -98,12 +98,17 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     }
 
                     break;
-                case "Toggle_WindowManager" or "Toggle_WifiAP" or "Toggle_QAM" or "Toggle_IntegerScaling" or "Toggle_Desktop" or "Toggle_MicrophoneMute" or "Toggle_VolumeMute" or "Toggle_Wifi" or "Toggle_BT" or "Toggle_WinOSK" or "Toggle_OSK":
-                    //this handles the non list items like toggle wifi, where this list needs to be hidden
-                    this.Visibility = Visibility.Collapsed;
-                    break;
+              
                 default:
-                    MessageBox.Show("NO HANDLER FOR THIS ACTION, ADD IT YOU DUMMY. EditAction_ArgumentListView.xaml.cs " + actionName);
+                    if (actionName.Contains("Toggle_"))
+                    {//this hides the argument list for anything that is only a toggle
+                        this.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        MessageBox.Show("NO HANDLER FOR THIS ACTION, ADD IT YOU DUMMY. EditAction_ArgumentListView.xaml.cs " + actionName);
+                    }
+                    
                     break;
             }
 

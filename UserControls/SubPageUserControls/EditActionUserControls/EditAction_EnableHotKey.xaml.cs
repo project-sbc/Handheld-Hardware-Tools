@@ -122,6 +122,8 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                         {
                             //i had to put in fancy logic to make sure the hot key dictionaries in controller and keyboard events would be updated appropriately
                             //depending on the various scenarios
+                            //lookback reminder: this part handles if someone makes a controller hotkey a keyboard one or vice versa, in that case
+                            //BOTH dictionaries need to be updated, one to remove and one to add
                             if (hotKeyType == "Controller")
                             {
                                 if (editActionPage.action.hotkeyType == "Keyboard")
@@ -183,9 +185,16 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             ControlChangeValueHandler();
         }
 
+        private Dictionary<ushort, Classes.Actions.Action> controllerHotKeyDictionary;
         private void button_Click(object sender, RoutedEventArgs e)
         {
+            //get dictionaries to make sure hotkeys are duplicated
+            ActionList actions = (ActionList)XML_Management.Instance.LoadXML("ActionList");
+            controllerHotKeyDictionary = actions.ReturnControllerActionHotKeyList();
             startKB_Controller_Timer();
+
+           
+
         }
 
 
@@ -231,19 +240,33 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             {
                 if (currentGamepad < previousGamepad && previousGamepad != 4096)
                 {
-                    //as soon as the button combo is LESS than the previous gamepad button AND isn't the A button (value of 4096) we know they have finished pressing all the buttons and we can now figure out what the combo is
-                    
-                    //these three variables will get passed to the action
-                    hotKeyValue = controllerButtons;
-                    hotKeyText = General_Functions.convertControllerUshortToString(controllerButtons.ToString());
-                    hotKeyType = "Controller";
+                    //IM ADDING ONE MORE STEP HERE: does this hot key combo already exist?
+                    //
 
-                    //set text block and icon
-                    textBlockHotKey.Text = hotKeyText;
-                    iconHotKeyType.Symbol = Wpf.Ui.Common.SymbolRegular.XboxController24;
+                    //do this if the hot key doesnt exist by checking if ! in dictionary is true
+                    if (!controllerHotKeyDictionary.ContainsKey(controllerButtons))
+                    {
+                        //as soon as the button combo is LESS than the previous gamepad button AND isn't the A button (value of 4096) we know they have finished pressing all the buttons and we can now figure out what the combo is
 
-                    stopKB_Controller_Timer(false);
-                    return;
+                        //these three variables will get passed to the action
+                        hotKeyValue = controllerButtons;
+                        hotKeyText = General_Functions.convertControllerUshortToString(controllerButtons.ToString());
+                        hotKeyType = "Controller";
+
+                        //set text block and icon
+                        textBlockHotKey.Text = hotKeyText;
+                        iconHotKeyType.Symbol = Wpf.Ui.Common.SymbolRegular.XboxController24;
+
+                        stopKB_Controller_Timer(false);
+                        return;
+                    }
+                    else
+                    {
+                        //do this if the hotkey combo already exsists (display error)
+                        System.Windows.MessageBox.Show("Hot key already exists. NOTE TO SELF: make disappearing error message");
+                    }
+
+                   
                 }
 
             }

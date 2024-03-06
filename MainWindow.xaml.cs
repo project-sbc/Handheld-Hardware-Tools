@@ -76,6 +76,18 @@ namespace Everything_Handhelds_Tool
             }
         }
 
+        public void ToggleMouseMode()
+        {
+            if (mouseMode != null)
+            {
+                mouseMode.UnsubscribeControllerEvents();
+                mouseMode = null;
+            }
+            else
+            {
+                mouseMode = new MouseMode();
+            }
+        }
 
         #region Set up
         private void InitializeRoutines() 

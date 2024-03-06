@@ -113,6 +113,9 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     case "Toggle_Desktop":
                         newAction = new Classes.Actions.ActionClass.Toggle_Desktop();
                         break;
+                    case "Toggle_MouseMode":
+                        newAction = new Classes.Actions.ActionClass.Toggle_MouseMode();
+                        break;
                     case "Cycle_TDP":
                         newAction = new Classes.Actions.ActionClass.Cycle_TDP();
                         break;
