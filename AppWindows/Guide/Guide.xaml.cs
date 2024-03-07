@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Everything_Handhelds_Tool.Classes.Actions;
+using Everything_Handhelds_Tool.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +24,28 @@ namespace Everything_Handhelds_Tool.AppWindows.Guide
         public Guide()
         {
             InitializeComponent();
-            //this.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(128, 255, 255, 255));
+
+          
+
+        }
+
+        private void AddHotKeys()
+        {
+
+            double height = (leftWrapPanel.ActualHeight/8);
+            double width =(leftWrapPanel.ActualWidth/2);
+
+            List<Classes.Actions.Action> list = ((ActionList)XML_Management.Instance.LoadXML("ActionList")).Where(p => p.hotKey != "").OrderBy(o => o.hotkeyType).ToList();
+
+            foreach (Classes.Actions.Action action in list)
+            {
+                leftWrapPanel.Children.Add(new ActionHotkeyGuide_UserControl(action, height, width));
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            AddHotKeys();
         }
     }
 }

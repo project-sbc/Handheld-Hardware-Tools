@@ -5,13 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Everything_Handhelds_Tool.AppWindows.Guide"
         mc:Ignorable="d"
-        Background="#80808080"
+        Background="#60808080"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowState="Maximized"
-        
-        Title="Guide" Height="450" Width="800" ResizeMode="NoResize">
+        Loaded="Window_Loaded"
+        Title="Guide"  ResizeMode="NoResize">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="18*"/>
+            <RowDefinition  Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Viewbox Grid.Row="1" Grid.Column="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <TextBlock Text="Mouse Mode Hotkeys" />
+        </Viewbox>
+        <Viewbox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <TextBlock Text="Action Hotkeys" />
+        </Viewbox>
+        <WrapPanel Name="leftWrapPanel" Grid.Row="2"  Grid.Column="1" Orientation="Vertical">
+            
+        </WrapPanel>
+        <WrapPanel Name="rightWrapPanel" Grid.Row="2" Grid.Column="3"  Orientation="Vertical">
+
+        </WrapPanel>
+
     </Grid>
 </Window>

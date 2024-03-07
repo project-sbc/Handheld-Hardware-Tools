@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Everything_Handhelds_Tool.AppWindows.Guide.ActionHotkeyGuide_UserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+ xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                               mc:Ignorable="d" 
+              Margin="0,0,0,0" >
+    <Border Style="{StaticResource userControlBorder}" Name="border">
+        <Grid>
+            <ui:Card Background="DimGray">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="5*" />
+                    </Grid.ColumnDefinitions>
+                    <Viewbox Height="Auto" Width="Auto">
+                        <ui:SymbolIcon Name="hotkeyTypeSymbolIcon"     />
+                    </Viewbox>
+
+                    <Viewbox Grid.Column="1">
+                        <TextBlock Name="textblockActionName" Text="" />
+                    </Viewbox>
+
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" Name="stackPanelActionHotKey">
+
+                    </StackPanel>
+
+                </Grid>
+            </ui:Card>
+        </Grid>
+
+
+
+    </Border>
+
+</UserControl>

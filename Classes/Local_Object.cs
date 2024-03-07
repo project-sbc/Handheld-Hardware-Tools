@@ -147,6 +147,18 @@ namespace Everything_Handhelds_Tool.Classes
             }
             return null;
         }
+        public MouseMode.MouseMode GetMainWindowMouseMode()
+        {
+            MainWindow mw = GetMainWindow();
+            if (mw != null)
+            {
+                if (mw.mouseMode != null)
+                {
+                    return mw.mouseMode;
+                }
+            }
+            return null;
+        }
         public InputSimulator GetMainWindowInputSimulator()
         {
             MainWindow mw = GetMainWindow();
