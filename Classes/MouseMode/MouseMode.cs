@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -17,6 +18,9 @@ namespace Everything_Handhelds_Tool.Classes.MouseMode
     {
         MouseProfile mouseProfile = (MouseProfile)XML_Management.Instance.LoadXML("MouseProfile");
         InputSimulator inputSimulator = Local_Object.Instance.GetMainWindowInputSimulator();
+
+        //xValues never change so im going to leave that here
+        private double[] xValueArray { get; set; } = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
         public MouseMode()
         {
             SubscribeControllerEvents();
@@ -70,25 +74,73 @@ namespace Everything_Handhelds_Tool.Classes.MouseMode
 
             }
         }
+
+
+        private int cycleCounter = 0;
         private void HandleMouseMovement(controllerJoystickEventArgs e)
         {
-            int xValue = 0;
-            int yValue = 0;
+            int xValueMouse = 0;
+            int yValueMouse = 0;
+
+         
             if (mouseProfile.rightScroll)
             {
-                xValue = ApplyCurveAndSensitivityFactor(NormalizeJoystickInput(e.lx, mouseProfile.deadZone), mouseProfile.xValues, mouseProfile.yValues, mouseProfile.sensitivityValue);
-                yValue = ApplyCurveAndSensitivityFactor(NormalizeJoystickInput(e.ly, mouseProfile.deadZone), mouseProfile.xValues, mouseProfile.yValues, mouseProfile.sensitivityValue);
-                
+                xValueMouse = ApplyCurveAndSensitivityFactor(NormalizeJoystickInput(e.lx, mouseProfile.deadZone),  mouseProfile.yValuesMouse, mouseProfile.sensitivityMouseValue);
+                yValueMouse = ApplyCurveAndSensitivityFactor(NormalizeJoystickInput(e.ly, mouseProfile.deadZone),  mouseProfile.yValuesMouse, mouseProfile.sensitivityMouseValue);
+
+              
+
             }
             else
             {
-                xValue = ApplyCurveAndSensitivityFactor(NormalizeJoystickInput(e.rx, mouseProfile.deadZone), mouseProfile.xValues, mouseProfile.yValues, mouseProfile.sensitivityValue);
-                yValue = ApplyCurveAndSensitivityFactor(NormalizeJoystickInput(e.ry, mouseProfile.deadZone), mouseProfile.xValues, mouseProfile.yValues, mouseProfile.sensitivityValue);
+                xValueMouse = ApplyCurveAndSensitivityFactor(NormalizeJoystickInput(e.rx, mouseProfile.deadZone), mouseProfile.yValuesMouse, mouseProfile.sensitivityMouseValue);
+                yValueMouse = ApplyCurveAndSensitivityFactor(NormalizeJoystickInput(e.ry, mouseProfile.deadZone),  mouseProfile.yValuesMouse, mouseProfile.sensitivityMouseValue);
+
+               
 
             }
 
             //apply negative to yvalue because controller Y axis is reversed from typical coordinate plane
-            inputSimulator.Mouse.MoveMouseBy((int)xValue, (int)-yValue);
+            inputSimulator.Mouse.MoveMouseBy((int)xValueMouse, (int)-yValueMouse);
+
+
+
+            //cyclecounter is a cute way to combat how quickly scrolling can be with input simulator. Because joystick events happen so frequently
+            //scrolling even dialed down is too quick, so we have to introduce some method to prevent it from firing every cycle. 
+
+            //this makes it fire once every few cycles so scrolling isnt so fast
+            if (cycleCounter > 6)
+            {
+                int xValueScroll = 0;
+                int yValueScroll = 0;
+
+                if (mouseProfile.rightScroll)
+                {
+                    xValueScroll = ApplyCurveAndSensitivityFactor(NormalizeJoystickInput(e.rx, mouseProfile.deadZone), mouseProfile.yValuesScroll, mouseProfile.sensitivityScrollValue);
+                    yValueScroll = ApplyCurveAndSensitivityFactor(NormalizeJoystickInput(e.ry, mouseProfile.deadZone), mouseProfile.yValuesScroll, mouseProfile.sensitivityScrollValue);
+                }
+                else
+                {
+                    xValueScroll = ApplyCurveAndSensitivityFactor(NormalizeJoystickInput(e.lx, mouseProfile.deadZone), mouseProfile.yValuesScroll, mouseProfile.sensitivityScrollValue);
+                    yValueScroll = ApplyCurveAndSensitivityFactor(NormalizeJoystickInput(e.ly, mouseProfile.deadZone), mouseProfile.yValuesScroll, mouseProfile.sensitivityScrollValue);
+                }
+
+
+
+                //reverse Y value if the profile wants it
+                if (mouseProfile.reverseVerticalScroll) { yValueScroll = -yValueScroll; }
+
+                inputSimulator.Mouse.VerticalScroll((int)yValueScroll);
+                inputSimulator.Mouse.HorizontalScroll((int)xValueScroll);
+                cycleCounter = 0;
+            }
+            else
+            {
+                cycleCounter++;
+            }
+
+
+          
         }
 
         private double NormalizeJoystickInput(double value, double deadZone)
@@ -104,7 +156,7 @@ namespace Everything_Handhelds_Tool.Classes.MouseMode
          
         }
 
-        private int ApplyCurveAndSensitivityFactor(double value, double[] xValueArray, double[]yValueArray, double sensitivityFactor)
+        private int ApplyCurveAndSensitivityFactor(double value, double[]yValueArray, double sensitivityFactor)
         {
             int firstIndex = 0;
             int secondIndex = 1;
