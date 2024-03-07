@@ -54,12 +54,13 @@ namespace Everything_Handhelds_Tool
             //run start up
             InitializeRoutines();
 
-            mouseMode = new MouseMode();
-            //set your common items between windows (this has to do with the ControllerWindow custom class
+            
+            //set your common items between windows (this has to do with the ControllerWindow custom class)
             commonFrame = frame;
             instructionFrame = frameControllerInput;
 
-
+            //run this so that everything shuts down when the main window closes
+            Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
 
             //These are for a future feature of custom formats
@@ -527,19 +528,10 @@ namespace Everything_Handhelds_Tool
         }
         private void ContextMenu_Close(object sender, RoutedEventArgs e)
         {
-            CloseEntireApp();
+            this.Close();
         }
 
-        public void CloseEntireApp()
-        {
-            foreach (Window window in Application.Current.Windows)
-            {
-                if (window != null)
-                {
-                    window.Close();
-                }
-            }
-        }
+      
 
         private void notifyIcon_LeftClick(NotifyIcon sender, RoutedEventArgs e)
         {
