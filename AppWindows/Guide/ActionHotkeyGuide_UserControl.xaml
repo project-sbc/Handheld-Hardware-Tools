@@ -5,32 +5,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                                mc:Ignorable="d" 
-              Margin="0,0,0,0" >
-    <Border Style="{StaticResource userControlBorder}" Name="border">
-        <Grid>
-            <ui:Card Background="DimGray">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="5*" />
-                        <ColumnDefinition Width="5*" />
-                    </Grid.ColumnDefinitions>
-                    <Viewbox Height="Auto" Width="Auto">
-                        <ui:SymbolIcon Name="hotkeyTypeSymbolIcon"     />
-                    </Viewbox>
+               >
+    <Border CornerRadius="10" Name="border" Background="DimGray" Margin="3">
+        <ui:Card HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+                <Viewbox Height="Auto" Width="Auto">
+                    <ui:SymbolIcon Name="hotkeyTypeSymbolIcon"     />
+                </Viewbox>
+                
+                
+                <Viewbox Grid.Column="1" Name="viewboxActionName" HorizontalAlignment="Left">
+                    <TextBlock Name="textblockActionName" Text="" TextWrapping="Wrap"/>
+                </Viewbox>
 
-                    <Viewbox Grid.Column="1">
-                        <TextBlock Name="textblockActionName" Text="" />
-                    </Viewbox>
+                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Name="stackPanelActionHotKey">
 
-                    <StackPanel Grid.Column="2" Orientation="Horizontal" Name="stackPanelActionHotKey">
+                </StackPanel>
 
-                    </StackPanel>
-
-                </Grid>
-            </ui:Card>
-        </Grid>
-
+            </Grid>
+        </ui:Card>
 
 
     </Border>

@@ -135,9 +135,22 @@ namespace Everything_Handhelds_Tool
         private void SetAppLocationHeight()
         {
             Double height = General_Functions.GetWindowHeight(this);
-            this.Height = height * 0.98;
-            this.MinHeight = height * 0.98;
-            this.Top = height * 0.01;
+
+            if (1 == 0)
+            {
+                this.Height = height * 0.98;
+                this.MinHeight = height * 0.98;
+                this.MaxHeight = height * 0.98;
+                this.Top = height * 0.01;
+            }
+            else
+            {
+                this.Height = height;
+                this.MinHeight = height ;
+                this.MaxHeight = height;
+                this.Top = 0;
+            }
+
 
         }
 

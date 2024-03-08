@@ -24,22 +24,33 @@ namespace Everything_Handhelds_Tool.AppWindows.Guide
         public Guide()
         {
             InitializeComponent();
-
-          
+                     
 
         }
 
         private void AddHotKeys()
         {
-
-            double height = (leftWrapPanel.ActualHeight/8);
-            double width =(leftWrapPanel.ActualWidth/2);
-
             List<Classes.Actions.Action> list = ((ActionList)XML_Management.Instance.LoadXML("ActionList")).Where(p => p.hotKey != "").OrderBy(o => o.hotkeyType).ToList();
 
+         
+
+            double height = (wrapPanel.ActualHeight/10);
+            double width = (wrapPanel.ActualWidth);
+            int numCols = 1;
+
+            if (width > 500)
+            {
+                numCols = (int)Math.Round((width - 500) / 500, 0,MidpointRounding.AwayFromZero);
+            }
+         
+
+
+            width = wrapPanel.ActualWidth/numCols;
+
+           
             foreach (Classes.Actions.Action action in list)
             {
-                leftWrapPanel.Children.Add(new ActionHotkeyGuide_UserControl(action, height, width));
+                wrapPanel.Children.Add(new ActionHotkeyGuide_UserControl(action, height, width));
             }
         }
 

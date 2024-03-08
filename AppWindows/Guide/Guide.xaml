@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Everything_Handhelds_Tool.AppWindows.Guide"
         mc:Ignorable="d"
-        Background="#60808080"
+        Background="#AA535353"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowState="Maximized"
@@ -21,23 +21,18 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="10*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="10*" />
+        
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Viewbox Grid.Row="1" Grid.Column="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <TextBlock Text="Mouse Mode Hotkeys" />
-        </Viewbox>
+       
         <Viewbox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TextBlock Text="Action Hotkeys" />
         </Viewbox>
-        <WrapPanel Name="leftWrapPanel" Grid.Row="2"  Grid.Column="1" Orientation="Vertical">
+        <WrapPanel Name="wrapPanel" Grid.Row="2"  Grid.Column="1" Orientation="Vertical">
             
         </WrapPanel>
-        <WrapPanel Name="rightWrapPanel" Grid.Row="2" Grid.Column="3"  Orientation="Vertical">
-
-        </WrapPanel>
+       
 
     </Grid>
 </Window>

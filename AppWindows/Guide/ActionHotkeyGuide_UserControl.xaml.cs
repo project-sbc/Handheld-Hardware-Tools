@@ -31,8 +31,8 @@ namespace Everything_Handhelds_Tool.AppWindows.Guide
 
             InitializeComponent();
             SetupHotKeyTypeIcon(action.hotkeyType);
-            SetupButtonCombo(action);
-            SetupActionName(action);
+            SetupButtonCombo(action, height);
+            SetupActionName(action, height);
         }
 
         private void SetupHotKeyTypeIcon(string type)
@@ -48,12 +48,13 @@ namespace Everything_Handhelds_Tool.AppWindows.Guide
             
         }
 
-        private void SetupActionName(Classes.Actions.Action action)
+        private void SetupActionName(Classes.Actions.Action action, double height)
         {
-            textblockActionName.Text = action.actionName;
+            textblockActionName.Text = Application.Current.Resources["Action_" + action.actionName].ToString();
+            viewboxActionName.MaxHeight = 0.3 * height;
         }
 
-        private void SetupButtonCombo(Classes.Actions.Action action)
+        private void SetupButtonCombo(Classes.Actions.Action action, double height)
         {
             if (action.hotkeyType == "Keyboard")
             {
@@ -70,7 +71,8 @@ namespace Everything_Handhelds_Tool.AppWindows.Guide
                 foreach(string hotkey in parsedHotKey)
                 {
                     FontIcon fontIcon = new FontIcon();
-                    fontIcon.Glyph = hotkeyToFontLabel[hotkey]; 
+                    fontIcon.Glyph = hotkeyToFontLabel[hotkey];
+                    fontIcon.FontSize = 0.35 * height;
                     stackPanelActionHotKey.Children.Add(fontIcon);
 
                     if (parsedHotKey.IndexOf(hotkey) < parsedHotKey.Count - 1)
