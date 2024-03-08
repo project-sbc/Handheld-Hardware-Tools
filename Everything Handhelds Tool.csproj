@@ -234,6 +234,12 @@
     <Compile Update="UserControls\HomePageUserControls\Brightness_Slider.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControls\SubPageUserControls\EditMouseModeUserControls\MouseMovementStick_ToggleSwitch.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\SubPageUserControls\EditMouseModeUserControls\InvertScroll_ToggleSwitch.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

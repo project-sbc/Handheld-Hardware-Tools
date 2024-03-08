@@ -7,7 +7,7 @@
          xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"
  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"  
       mc:Ignorable="d" 
-        xmlns:uc="clr-namespace:Everything_Handhelds_Tool.UserControls.SubPageUserControls.WifiAPSettingsPageUserControls"
+        xmlns:uc="clr-namespace:Everything_Handhelds_Tool.UserControls.SubPageUserControls.EditMouseModeUserControls"
       Title="HomePage"     
                  xmlns:UpperCase="clr-namespace:Everything_Handhelds_Tool.Classes.Converters"
                        
@@ -21,10 +21,10 @@
        
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" >
-            <ui:SymbolIcon Symbol="Router24" Filled="True" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" Margin="0,0,10,0"  FontSize="33"/>
+            <ui:SymbolIcon Symbol="KeyboardMouse16" Filled="True" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" Margin="0,0,10,0"  FontSize="33"/>
             <Viewbox   VerticalAlignment="Bottom" HorizontalAlignment="Left"   >
 
-                <TextBlock VerticalAlignment="Bottom"  Text="{DynamicResource Usercontrol_LANWifiSettings}" />
+                <TextBlock VerticalAlignment="Bottom"  Text="{DynamicResource Usercontrol_MouseModeSettings}" />
 
             </Viewbox>
             <Button x:Name="Back" Click="Back_Click"  Margin="4" Background="{DynamicResource ControlsBackground}">
@@ -37,7 +37,10 @@
 
         <ScrollViewer Grid.Row="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Auto">
             <StackPanel  x:Name="stackPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-               
+                <uc:MouseMovementStick_ToggleSwitch />
+                <uc:MouseSensitivity_Slider />
+                <uc:ScrollSensitivity_Slider />
+                <uc:InvertScroll_ToggleSwitch />
             </StackPanel>
         </ScrollViewer>
        

@@ -2,6 +2,7 @@
 using Everything_Handhelds_Tool.Classes;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
 using Everything_Handhelds_Tool.Classes.Models;
+using Everything_Handhelds_Tool.Classes.MouseMode;
 using Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls;
 using Everything_Handhelds_Tool.UserControls.HomePageUserControls;
 using System;
@@ -21,6 +22,7 @@ namespace Everything_Handhelds_Tool.Pages
     public partial class MouseModeSettingsPage : ControllerPage
     {
         
+        public MouseProfile mouseProfile = (MouseProfile)XML_Management.Instance.LoadXML("MouseProfile");
         public MouseModeSettingsPage()
         {
             //Move initilize components to sub routine and async it to make pages feel smoother

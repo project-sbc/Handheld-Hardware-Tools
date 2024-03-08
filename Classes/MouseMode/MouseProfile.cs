@@ -26,7 +26,7 @@ namespace Everything_Handhelds_Tool.Classes.MouseMode
         public bool reverseVerticalScroll { get; set; } = false;
 
  
-        public double sensitivityMouseValue { get; set; } = 15;
+        public double sensitivityMouseValue { get; set; } = 30;
         public double sensitivityScrollValue { get; set; } = 3;
         //read as percentage of total joystick range (i.e. 4 = 4% which is 0.04*32600 for maximum joystick output)
         public double deadZone { get; set; } = 4;

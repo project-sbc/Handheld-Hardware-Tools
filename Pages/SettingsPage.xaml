@@ -32,6 +32,7 @@
 
         <ScrollViewer Grid.Row="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Auto">
             <StackPanel  x:Name="stackPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                <uc:EditMouseMode_Button />
                 <uc:LANWifiSettings_Button/>
                 <uc:EditActionsSettings_Button/>
                 <uc:EditHomepageSettings_Button/>

@@ -116,10 +116,12 @@ features such as TDP and fan control.
     <!-- these are the power plan strings used on the homepage control to select the power plan !-->
 
     <system:String x:Key="Usercontrol_LANWifiSettings">Wifi AP Settings</system:String>
+    <system:String x:Key="Usercontrol_MouseModeSettings">Mouse Mode Settings</system:String>
     <system:String x:Key="Usercontrol_EditHomepageSettings">Edit Home Page</system:String>
     <system:String x:Key="Usercontrol_WifiAPSSID">Wifi AP SSID</system:String>
     <system:String x:Key="Usercontrol_WifiAPPassword">Wifi AP Password</system:String>
     <system:String x:Key="Usercontrol_EditActions">Edit Actions</system:String>
+    <system:String x:Key="Usercontrol_EditMouseMode">Edit Mouse Mode</system:String>
     <system:String x:Key="Usercontrol_EditAction">Edit Action</system:String>
     <system:String x:Key="Usercontrol_NewAction">New Action</system:String>
     <system:String x:Key="Usercontrol_Save">Save</system:String>
@@ -178,7 +180,12 @@ features such as TDP and fan control.
     <system:String x:Key="ContextMenu_Show">Show</system:String>
     <system:String x:Key="ContextMenu_Close">Close</system:String>
 
-
+    <system:String x:Key="Usercontrol_MouseSensitivity">Mouse Sensitivity</system:String>
+    <system:String x:Key="Usercontrol_ScrollSensitivity">Scroll Sensitivity</system:String>
+    <system:String x:Key="Usercontrol_InvertVerticalScroll">Invert Vertical Scroll Direction</system:String>
+    <system:String x:Key="Usercontrol_MouseMovementStick">Mouse Movement Joystick</system:String>
+    <system:String x:Key="Usercontrol_MouseMovementLeftStick">Left</system:String>
+    <system:String x:Key="Usercontrol_MouseMovementRightStick">Right</system:String>
         
         
         <!---->
@@ -255,8 +262,7 @@ features such as TDP and fan control.
     <system:String x:Key="Usercontrol_CheckUpdate">Check For Updates</system:String>
     <system:String x:Key="Usercontrol_Version">Version: </system:String>
     <system:String x:Key="Usercontrol_DefaultMouseMode">Default Mode</system:String>
-    <system:String x:Key="Usercontrol_MouseSensitivity">Mouse Sensitivity</system:String>
-    <system:String x:Key="Usercontrol_ScrollSensitivity">Scroll Sensitivity</system:String>
+
     <system:String x:Key="Usercontrol_AppType">Application Type</system:String>
     <system:String x:Key="Usercontrol_SyncGames">Sync Games</system:String>
     <system:String x:Key="Usercontrol_SyncEpicGames">Sync Epic Games</system:String>
