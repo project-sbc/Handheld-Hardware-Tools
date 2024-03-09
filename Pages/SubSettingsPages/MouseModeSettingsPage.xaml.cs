@@ -5,6 +5,7 @@ using Everything_Handhelds_Tool.Classes.Models;
 using Everything_Handhelds_Tool.Classes.MouseMode;
 using Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls;
 using Everything_Handhelds_Tool.UserControls.HomePageUserControls;
+using Everything_Handhelds_Tool.UserControls.SubPageUserControls.EditMouseModeUserControls;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -40,8 +41,13 @@ namespace Everything_Handhelds_Tool.Pages
         {
             //There is a general function that searches the stack panel and adds to the list of ControllerUserControls. It makes sure
             //visibility isn't collapsed too
-            
-            userControls= General_Functions.SearchStackPanelReturnArray(stackPanel);
+
+            stackPanel.Children.Add(new MouseMovementStick_ToggleSwitch(mouseProfile.rightScroll));
+            stackPanel.Children.Add(new MouseSensitivity_Slider(mouseProfile.sensitivityMouseValue));
+            stackPanel.Children.Add(new ScrollSensitivity_Slider(mouseProfile.sensitivityScrollValue));
+            stackPanel.Children.Add(new InvertScroll_ToggleSwitch(mouseProfile.reverseVerticalScroll));
+
+            userControls = General_Functions.SearchStackPanelReturnArray(stackPanel);
         }
 
         public override void PressBPageHandler()

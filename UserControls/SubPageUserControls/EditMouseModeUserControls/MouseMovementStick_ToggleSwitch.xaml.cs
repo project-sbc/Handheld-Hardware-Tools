@@ -1,5 +1,4 @@
-﻿using AudioSwitcher.AudioApi;
-using Everything_Handhelds_Tool.Classes;
+﻿using Everything_Handhelds_Tool.Classes;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
 using Everything_Handhelds_Tool.Classes.Devices;
 using Everything_Handhelds_Tool.Pages;
@@ -16,7 +15,7 @@ namespace Everything_Handhelds_Tool.UserControls.SubPageUserControls.EditMouseMo
     public partial class MouseMovementStick_ToggleSwitch : ControllerUserControl
     {
       
-        public MouseMovementStick_ToggleSwitch()
+        public MouseMovementStick_ToggleSwitch(bool value)
         {
             InitializeComponent();
             //set virtual border
@@ -24,17 +23,12 @@ namespace Everything_Handhelds_Tool.UserControls.SubPageUserControls.EditMouseMo
             mainControl = toggleSwitch;
      
             //set control
-            ConfigureControl();
+            ConfigureControl(value);
         }
-        private void ConfigureControl()
+        private void ConfigureControl(bool value)
         {
-            
-            MouseModeSettingsPage mouseModeSettingsPage = (MouseModeSettingsPage)Local_Object.Instance.GetMainWindowFramePage();
 
-            if (mouseModeSettingsPage != null)
-            {
-                toggleSwitch.IsChecked = mouseModeSettingsPage.mouseProfile.rightScroll;
-            }
+            toggleSwitch.IsChecked = value;
 
         }
 

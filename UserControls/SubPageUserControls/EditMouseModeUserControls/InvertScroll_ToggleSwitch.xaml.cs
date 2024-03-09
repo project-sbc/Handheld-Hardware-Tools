@@ -16,7 +16,7 @@ namespace Everything_Handhelds_Tool.UserControls.SubPageUserControls.EditMouseMo
     public partial class InvertScroll_ToggleSwitch : ControllerUserControl
     {
       
-        public InvertScroll_ToggleSwitch()
+        public InvertScroll_ToggleSwitch(bool value)
         {
             InitializeComponent();
             //set virtual border
@@ -24,17 +24,12 @@ namespace Everything_Handhelds_Tool.UserControls.SubPageUserControls.EditMouseMo
             mainControl = toggleSwitch;
      
             //set control
-            ConfigureControl();
+            ConfigureControl(value);
         }
-        private void ConfigureControl()
+        private void ConfigureControl(bool value)
         {
-            
-            MouseModeSettingsPage mouseModeSettingsPage = (MouseModeSettingsPage)Local_Object.Instance.GetGeneralWindowPage(this);
 
-            if (mouseModeSettingsPage != null)
-            {
-                toggleSwitch.IsChecked = mouseModeSettingsPage.mouseProfile.reverseVerticalScroll;
-            }
+            toggleSwitch.IsChecked = value;
 
         }
 

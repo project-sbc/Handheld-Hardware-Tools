@@ -37,10 +37,7 @@
 
         <ScrollViewer Grid.Row="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Auto">
             <StackPanel  x:Name="stackPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                <uc:MouseMovementStick_ToggleSwitch />
-                <uc:MouseSensitivity_Slider />
-                <uc:ScrollSensitivity_Slider />
-                <uc:InvertScroll_ToggleSwitch />
+    
             </StackPanel>
         </ScrollViewer>
        

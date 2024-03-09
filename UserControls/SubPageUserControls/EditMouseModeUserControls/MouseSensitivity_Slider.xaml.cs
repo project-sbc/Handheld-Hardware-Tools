@@ -26,7 +26,7 @@ namespace Everything_Handhelds_Tool.UserControls.SubPageUserControls.EditMouseMo
     {
 
         private bool dragStarted = false;
-        public MouseSensitivity_Slider()
+        public MouseSensitivity_Slider(double value)
         {
             InitializeComponent();
 
@@ -37,7 +37,7 @@ namespace Everything_Handhelds_Tool.UserControls.SubPageUserControls.EditMouseMo
             mainControl = slider;
 
             //set control
-           ConfigureControl();
+           ConfigureControl(value);
 
         }
         public override void ChangeMainWindowControllerInstructionPage()
@@ -45,15 +45,10 @@ namespace Everything_Handhelds_Tool.UserControls.SubPageUserControls.EditMouseMo
             General_Functions.ChangeControllerInstructionPage("ChangeBack");
         }
 
-        private void ConfigureControl()
+        private void ConfigureControl(double value)
         {
-            MouseModeSettingsPage mouseModeSettingsPage = (MouseModeSettingsPage)Local_Object.Instance.GetGeneralWindowPage(this);
+            slider.Value = value;
 
-            if (mouseModeSettingsPage != null)
-            {
-                slider.Value = mouseModeSettingsPage.mouseProfile.sensitivityMouseValue;
-            }
-           
         }
 
      
