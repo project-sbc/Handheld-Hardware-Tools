@@ -206,6 +206,7 @@ namespace Everything_Handhelds_Tool.Classes
                     await Task.Delay(10);
 
                 }
+   
                 Log_Writer.Instance.writeLog("Ending MainControllerThreadLoop");
             }
             catch (Exception ex)

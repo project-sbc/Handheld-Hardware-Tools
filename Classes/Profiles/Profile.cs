@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Everything_Handhelds_Tool.Classes.Profiles.ProfileActions.ProfileActionClass;
 
 namespace Everything_Handhelds_Tool.Classes.Profiles
 {
     public class Profile
     {
         public string processExe { get; set; } = "";
-        public ProfileActionList actionList { get; set; } = new ProfileActionList();
+        public ProfileActionList actionList { get; set; } = new ProfileActionList() { new SetTDP() { ChangeWithPowerState = false, Value = "20" } };
         public string profileName { get; set; } = "";
 
         public virtual void ApplyProfile()
