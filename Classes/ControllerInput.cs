@@ -297,15 +297,26 @@ namespace Everything_Handhelds_Tool.Classes
                 if (controllerHotKeyDictionary.ContainsKey(currentButtonCombo))
                 {
                     //Add the current vs previous gamepad button state to prevent mutliple actions from being called back to back
-                    if (currentGamepadState.Buttons != previousGamepadState.Buttons)
+                    Actions.Action action;
+                    if (controllerHotKeyDictionary.TryGetValue(currentButtonCombo, out action))
                     {
-                        Actions.Action action;
-                        if (controllerHotKeyDictionary.TryGetValue(currentButtonCombo, out action))
+                        if (currentGamepadState.Buttons != previousGamepadState.Buttons)
                         {
                             action.OnActivate();
                             return true;
                         }
+                        else
+                        {//this is a hold button action for keeping the guide up for reference, its action handler will take care of this
+                            if (action is Toggle_Guide)
+                            {
+                                action.OnActivate();
+                            }
+                        }
                     }
+
+                   
+
+
 
                 }
 

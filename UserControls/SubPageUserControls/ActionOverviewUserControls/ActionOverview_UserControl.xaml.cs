@@ -141,6 +141,10 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Router24;
 
                     break;
+                case "Toggle_Guide":
+                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.BookStar20;
+
+                    break;
                 case "Toggle_Desktop":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.TabDesktopBottom24;
 

@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Everything_Handhelds_Tool.AppWindows.Guide
 {
@@ -21,11 +22,27 @@ namespace Everything_Handhelds_Tool.AppWindows.Guide
     /// </summary>
     public partial class Guide : Window
     {
+        DispatcherTimer closeWindow = new DispatcherTimer() { Interval = new TimeSpan(0,0,0,0,400) };
+
+
         public Guide()
         {
             InitializeComponent();
-                     
 
+            SubscribeEvents();
+        }
+        private void SubscribeEvents()
+        {
+            closeWindow.Tick += CloseWindow_Tick;
+            closeWindow.Start();
+        }
+
+        private void CloseWindow_Tick(object? sender, EventArgs e)
+        {
+            //this routine will automatically close the window, its designed to stay open as long as you hold the hotkey button
+            closeWindow.Stop();
+            closeWindow.Tick -= CloseWindow_Tick;
+            this.Close();
         }
 
         private void AddHotKeys()
@@ -51,6 +68,14 @@ namespace Everything_Handhelds_Tool.AppWindows.Guide
             foreach (Classes.Actions.Action action in list)
             {
                 wrapPanel.Children.Add(new ActionHotkeyGuide_UserControl(action, height, width));
+            }
+        }
+        public void ResetTimer()
+        {//this resets timer when hotkey is still pressed
+            if (closeWindow.IsEnabled)
+            {
+                closeWindow.Stop();
+                closeWindow.Start();
             }
         }
 

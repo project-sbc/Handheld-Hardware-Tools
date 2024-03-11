@@ -146,6 +146,7 @@ features such as TDP and fan control.
     <system:String x:Key="Action_Toggle_Desktop">Toggle Desktop</system:String>
     <system:String x:Key="Action_Toggle_RSR">Toggle RSR</system:String>
     <system:String x:Key="Action_Toggle_MouseMode">Toggle Mouse Mode</system:String>
+    <system:String x:Key="Action_Toggle_Guide">Toggle Controller Guide</system:String>
 
     <system:String x:Key="ActionUserControl_Enabled">Enabled</system:String>
     <system:String x:Key="ActionUserControl_Disabled">Disabled</system:String>

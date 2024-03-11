@@ -34,6 +34,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
     [XmlInclude(typeof(Toggle_WindowManager))]
     [XmlInclude(typeof(Toggle_Desktop))]
     [XmlInclude(typeof(Toggle_MouseMode))]
+    [XmlInclude(typeof(Toggle_Guide))]
     public class Action
     {
         //action name is programming specific, display name will be generated at runtime based on language selected
@@ -76,13 +77,12 @@ namespace Everything_Handhelds_Tool.Classes.Actions
             this.Add("Toggle_WindowManager", Application.Current.Resources["Action_Toggle_WindowManager"].ToString());
             this.Add("Toggle_QAM", Application.Current.Resources["Action_Toggle_QAM"].ToString());
             this.Add("Toggle_MouseMode", Application.Current.Resources["Action_Toggle_MouseMode"].ToString());
+            this.Add("Toggle_Guide", Application.Current.Resources["Action_Toggle_Guide"].ToString());
 
 
             //new DefaultActionItem() { actionName = "Auto_TDP", displayName = "" };
-            //new DefaultActionItem() { actionName = "Toggle_Controller_Keyboard", displayName = "" };
-            //new DefaultActionItem() { actionName = "Toggle_Windows_Keyboard", displayName = "" };
-       
-            //new DefaultActionItem() { actionName = "Toggle_Microphone_Mute", displayName = "" };
+
+
             //new DefaultActionItem() { actionName = "Open_Steam_Big_Picture", displayName = "" };
             //new DefaultActionItem() { actionName = "Open_Playnite", displayName = "" };
             //new DefaultActionItem() { actionName = "Change_Brightness", displayName = "" };

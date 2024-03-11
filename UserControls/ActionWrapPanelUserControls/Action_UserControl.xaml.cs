@@ -89,6 +89,11 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
                 case "Toggle_MouseMode":
                     actionHandler = new ActionUserControl_Toggle_MouseMode(action);
                     break;
+
+                case "Toggle_Guide":
+                    actionHandler = new ActionUserControl_Toggle_Guide(action);
+                    break;
+                    
                 default:
                     MessageBox.Show("NO HANDLER FOR THIS ACTION, ADD IT YOU DUMMY. Action_UserControl.xaml.cs " + action.actionName);
                     break;

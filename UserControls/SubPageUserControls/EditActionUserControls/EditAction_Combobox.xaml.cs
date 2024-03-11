@@ -122,6 +122,9 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     case "Toggle_IntegerScaling":
                         newAction = new Classes.Actions.ActionClass.Toggle_IntegerScaling();
                         break;
+                    case "Toggle_Guide":
+                        newAction = new Classes.Actions.ActionClass.Toggle_Guide();
+                        break;
                     case "Toggle_MicrophoneMute":
                         newAction = new Classes.Actions.ActionClass.Toggle_MicrophoneMute();
                         break;
