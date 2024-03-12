@@ -43,12 +43,21 @@ namespace Everything_Handhelds_Tool.Classes.Actions
         public int ID = -1;
         public string actionName;
         public bool displayInActionPanel;
+        public bool displayNotification;
         public string hotkeyType = "";
         public string hotKey = "";
         public List<string> parameters;
 
         //This routine is going to be the onclick event
         public virtual void OnActivate() { }
+
+        public void DisplayNotification(string title, string message)
+        {
+            if (displayNotification == true)
+            {
+                Notification_Management.Instance.TaskbarNotification(title + ": " + message);
+            }
+        }
 
         public virtual bool UsableOnDevice() { return true; }
        

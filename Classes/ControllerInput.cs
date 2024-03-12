@@ -283,14 +283,38 @@ namespace Everything_Handhelds_Tool.Classes
             {
                 continousInputCurrent = "Joystick_DPadRight";
             }
-            if (currentGamepadState.LeftThumbX > 12000 && previousGamepadState.LeftThumbX <= 12000)
+
+
+            if (currentGamepadState.LeftThumbX < -12000 && previousGamepadState.LeftThumbX >= -12000)
             {
                 //raise event for button press
-                buttonPressEvent.raiseControllerInput("Joystick_DPadRight");
+                buttonPressEvent.raiseControllerInput("Joystick_DPadLeft");
             }
-            if (currentGamepadState.LeftThumbX > 12000 && previousGamepadState.LeftThumbX > 12000)
+            if (currentGamepadState.LeftThumbX < -12000 && previousGamepadState.LeftThumbX >= -12000)
             {
-                continousInputCurrent = "Joystick_DPadRight";
+                continousInputCurrent = "Joystick_DPadLeft";
+            }
+
+            //handle joystick directions (they produce an aciton called Joystick_DPad[direction])
+            if (currentGamepadState.LeftThumbY > 12000 && previousGamepadState.LeftThumbY <= 12000)
+            {
+                //raise event for button press
+                buttonPressEvent.raiseControllerInput("Joystick_DPadUp");
+            }
+            if (currentGamepadState.LeftThumbY > 12000 && previousGamepadState.LeftThumbY > 12000)
+            {
+                continousInputCurrent = "Joystick_DPadUp";
+            }
+
+
+            if (currentGamepadState.LeftThumbY < -12000 && previousGamepadState.LeftThumbY >= -12000)
+            {
+                //raise event for button press
+                buttonPressEvent.raiseControllerInput("Joystick_DPadDown");
+            }
+            if (currentGamepadState.LeftThumbY < -12000 && previousGamepadState.LeftThumbY >= -12000)
+            {
+                continousInputCurrent = "Joystick_DPadDown";
             }
 
             return continousInputCurrent;

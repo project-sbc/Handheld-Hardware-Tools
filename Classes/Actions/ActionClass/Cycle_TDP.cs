@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using Windows.ApplicationModel.Store;
 
 namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
 {
@@ -35,6 +37,10 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
                 int.TryParse(parameters[index], out intTDP);
 
                 TDP_Management.Instance.ChangeSustainedBoostTDP(intTDP, intTDP);
+
+                //displaynotification
+                DisplayNotification(Application.Current.Resources["Action_" + actionName].ToString(), (intTDP).ToString() + " W");
+
             }
         }
     }

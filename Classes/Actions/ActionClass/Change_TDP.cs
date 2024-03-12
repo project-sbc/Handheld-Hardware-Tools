@@ -40,6 +40,10 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
                 }
 
                 TDP_Management.Instance.ChangeSustainedBoostTDP(currentTDP + changeTDP, currentTDP + changeTDP);
+
+                //displaynotification
+                DisplayNotification(Application.Current.Resources["Action_" + actionName].ToString(), (currentTDP + changeTDP).ToString() + " W");
+
             }
         }
     }

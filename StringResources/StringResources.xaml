@@ -26,6 +26,7 @@
     <system:String x:Key="Usercontrol_ActionEnableHotKey">Enable Hotkey</system:String>
     <system:String x:Key="Usercontrol_ActionArguments">Action Parameters</system:String>
     <system:String x:Key="Usercontrol_ActionDisplayInPanel">Display In Panel</system:String>
+    <system:String x:Key="Usercontrol_DisplayNotifications">Display Notifications</system:String>
     <system:String x:Key="Usercontrol_ClickToSetHotKey">Click Button To Set Hotkey</system:String>
     <system:String x:Key="Usercontrol_PowerPlan">Power Plan</system:String>
     <system:String x:Key="Usercontrol_IntelTDPType">Intel TDP Type</system:String>
@@ -159,6 +160,8 @@ features such as TDP and fan control.
 
     <system:String x:Key="ActionUserControl_DisplayInPanel">Displayed In Menu</system:String>
     <system:String x:Key="ActionUserControl_HiddenInPanel">Hidden In Menu</system:String>
+    <system:String x:Key="ActionUserControl_DisplayNotifications">Display Notifications</system:String>
+    <system:String x:Key="ActionUserControl_HideNotifications">Hide Notifications</system:String>
 
     <system:String x:Key="Instruction_Toggle">TOGGLE</system:String>
     <system:String x:Key="Instruction_Confirm">CONFIRM</system:String>

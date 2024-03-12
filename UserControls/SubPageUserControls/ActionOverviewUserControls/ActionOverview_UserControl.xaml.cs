@@ -79,6 +79,19 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
                 actionPanelVisible.Text = Application.Current.Resources["ActionUserControl_HiddenInPanel"].ToString();
             }
         }
+        private void SetNotificationsTextBlock()
+        {
+            if (action.displayNotification)
+            {
+                actionNotification.Text = Application.Current.Resources["ActionUserControl_DisplayNotifications"].ToString();
+            }
+            else
+            {
+                actionNotification.Text = Application.Current.Resources["ActionUserControl_HideNotifications"].ToString();
+            }
+
+        }
+
         private void SetHotKeyTextBlockAndIcon()
         {
             if (action.hotkeyType == "")
