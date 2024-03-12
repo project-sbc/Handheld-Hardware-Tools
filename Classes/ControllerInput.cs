@@ -247,6 +247,15 @@ namespace Everything_Handhelds_Tool.Classes
 
             }
 
+
+            //this routine handles the ability to use the joysticks as dpad, for easier app navigation
+            string joystickDPadDirection = HandleJoystickToDPadInput(currentGamepadState, previousGamepadState);
+
+            //if this returns "", DO NOT REPLACE CONTINOUSINPUTCURRENT, otherwise this becomes the currentinputcurrent
+            if (joystickDPadDirection != "") { continousInputCurrent = joystickDPadDirection; }
+            
+
+
             //handle triggers
             if (currentGamepadState.LeftTrigger > 80 && previousGamepadState.LeftTrigger <= 80)
             {
@@ -259,6 +268,35 @@ namespace Everything_Handhelds_Tool.Classes
             }
             return continousInputCurrent;
         }
+
+        private string HandleJoystickToDPadInput(Gamepad currentGamepadState, Gamepad previousGamepadState)
+        {
+            string continousInputCurrent = "";
+
+            //handle joystick directions (they produce an aciton called Joystick_DPad[direction])
+            if (currentGamepadState.LeftThumbX > 12000 && previousGamepadState.LeftThumbX <= 12000)
+            {
+                //raise event for button press
+                buttonPressEvent.raiseControllerInput("Joystick_DPadRight");
+            }
+            if (currentGamepadState.LeftThumbX > 12000 && previousGamepadState.LeftThumbX > 12000)
+            {
+                continousInputCurrent = "Joystick_DPadRight";
+            }
+            if (currentGamepadState.LeftThumbX > 12000 && previousGamepadState.LeftThumbX <= 12000)
+            {
+                //raise event for button press
+                buttonPressEvent.raiseControllerInput("Joystick_DPadRight");
+            }
+            if (currentGamepadState.LeftThumbX > 12000 && previousGamepadState.LeftThumbX > 12000)
+            {
+                continousInputCurrent = "Joystick_DPadRight";
+            }
+
+            return continousInputCurrent;
+
+        }
+
         private void HandleJoystickDetection(Gamepad currentGamepadState, Gamepad previousGamepadState)
         {
             //IMPORANT MAIN THREAD ROUTINE
@@ -483,7 +521,7 @@ namespace Everything_Handhelds_Tool.Classes
                 bool joystickInputDirectionCorrect = false;
 
                 //set short variables based on dpad, use absolute values so we don't have to make different cases for up or down/left or right which requires different >=  or <= operators. Makes it simple
-                if (gbf == GamepadButtonFlags.DPadUp && currentGamepadState.LeftThumbY > 12000 || gbf == GamepadButtonFlags.DPadDown && currentGamepadState.LeftThumbY < -12000)
+                if (currentGamepadState.LeftThumbY > 12000 || currentGamepadState.LeftThumbY < -12000)
                 {
                     joystickInputDirectionCorrect = true;
                     previousInputValue = Math.Abs((decimal)previousGamepadState.LeftThumbY);

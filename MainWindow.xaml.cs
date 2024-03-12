@@ -316,14 +316,21 @@ namespace Everything_Handhelds_Tool
         {
             if(this.Visibility == Visibility.Visible)
             {
+                //THIS IS NEW CODE, I WANT TO USE JOYSTICK ONLY ON CERTAIN OBJECTS, for this window i want the newly added
+                //joystick inputs with a string of  Joystick_DPadLeft etc etc... to work as normal dpad inputs so im going to convert it at the object level back to DPadLeft
+                string action = e.Action;
+                //this replaces joystick identifier to make joystick to dpad work
+                if (action.Contains("Joystick_")) { action = action.Replace("Joystick_", ""); }
+
+
                 if (!controllerNavigateWindow)
                 {//if not navigating at the window level pass input to page level
                     ControllerPage a = (ControllerPage)frame.Content;
-                    a.HandleControllerInput(e.Action);
+                    a.HandleControllerInput(action);
                 }
                 else
                 {//send input to window handler
-                    HandleControllerInput(e.Action);
+                    HandleControllerInput(action);
                 }
             }
          
