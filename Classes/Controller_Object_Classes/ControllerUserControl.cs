@@ -73,6 +73,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
                 if (page is ControllerPage)
                 {
                     page.controllerNavigatePage = true;
+                    page.SetPageDefaultInstruction();
                 }
             }
          
