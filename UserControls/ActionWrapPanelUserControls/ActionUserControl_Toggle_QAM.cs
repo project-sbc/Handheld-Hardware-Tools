@@ -22,9 +22,10 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
             textBlock2.Text = Application.Current.Resources["Action_Toggle_QAM"].ToString();
 
             symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.WindowHeaderVertical20;
-            textBlock.Text = Application.Current.Resources["ActionUserControl_Toggle"].ToString();
+            textBlock.Text = "";
 
-           
+            iconGrid.HorizontalAlignment = HorizontalAlignment.Center;
+
 
         }
 

@@ -492,7 +492,7 @@ namespace Everything_Handhelds_Tool.Classes
             //lets start by determing if it should run, do a date time delta 
             TimeSpan timeDifference = DateTime.Now - dateTimeControllerCheck;
             //if time is less than 2 seconds return, dont finish the routine
-            if (timeDifference.Seconds < 2) { return; }
+            if (timeDifference.Seconds < 1) { return; }
 
             //reset time checked, if this doesnt happen then it will do this check every cycle
             dateTimeControllerCheck = DateTime.Now;
@@ -507,10 +507,14 @@ namespace Everything_Handhelds_Tool.Classes
                         Gamepad gamepad = newController.GetState().Gamepad;
                         if (gamepad.Buttons.HasFlag(GamepadButtonFlags.Start) && gamepad.Buttons.HasFlag(GamepadButtonFlags.Back))
                         {
-                            controller = newController;
-                            controllerConnected = true;
-
-                            return;
+                            if (newController.UserIndex != controller.UserIndex)
+                            {
+                                controller = newController;
+                                controllerConnected = true;
+                                Notification_Management.Instance.TaskbarNotification("Controller " + ui.ToString() + " Controlling App");
+                                return;
+                            }
+                  
                         }
 
                     }
