@@ -1,4 +1,5 @@
 ﻿using Everything_Handhelds_Tool.Classes;
+using Everything_Handhelds_Tool.Classes.MouseMode;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,21 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
             textBlock2.Text = Application.Current.Resources["Action_Toggle_MouseMode"].ToString();
 
             symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.KeyboardMouse16;
-            textBlock.Text = Application.Current.Resources["ActionUserControl_Toggle"].ToString();
 
-           
+
+            MouseMode mm = Local_Object.Instance.GetMainWindowMouseMode();
+            if (mm != null)
+            {
+                textBlock.Text = Application.Current.Resources["ActionUserControl_Enabled"].ToString();
+
+            }
+            else
+            {
+                textBlock.Text = Application.Current.Resources["ActionUserControl_Disabled"].ToString();
+
+            }
+
+
 
         }
 
@@ -32,8 +45,19 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
         public override void ButtonPress(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled) 
         {
             action.OnActivate();
-          
-        
+
+            //update label depending on status
+            MouseMode mm = Local_Object.Instance.GetMainWindowMouseMode();
+            if (mm != null)
+            {
+                textBlock.Text = Application.Current.Resources["ActionUserControl_Enabled"].ToString();
+
+            }
+            else
+            {
+                textBlock.Text = Application.Current.Resources["ActionUserControl_Disabled"].ToString();
+
+            }
         }
 
 

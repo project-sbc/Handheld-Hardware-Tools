@@ -28,6 +28,21 @@ namespace Everything_Handhelds_Tool.Classes.Actions
 
             Toggle_WindowManager toggle_WM = new Toggle_WindowManager() { ID = 4, displayInActionPanel = true };
             this.Add(toggle_WM);
+
+            Toggle_MouseMode toggle_MM = new Toggle_MouseMode() { ID = 5, displayInActionPanel = true,  };
+            this.Add(toggle_MM);
+
+            Toggle_VolumeMute toggle_VM = new Toggle_VolumeMute() { ID = 6, displayInActionPanel = true };
+            this.Add(toggle_VM);
+
+            Toggle_MicrophoneMute toggle_MicM = new Toggle_MicrophoneMute() { ID = 7, displayInActionPanel = true };
+            this.Add(toggle_MicM);
+
+            Toggle_Wifi toggle_wifi = new Toggle_Wifi() { ID = 8, displayInActionPanel = true };
+            this.Add(toggle_wifi);
+
+            Toggle_BT toggle_BT = new Toggle_BT() { ID = 9, displayInActionPanel = true };
+            this.Add(toggle_BT);
         }
     }
 

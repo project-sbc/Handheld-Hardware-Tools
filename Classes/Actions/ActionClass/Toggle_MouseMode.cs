@@ -17,7 +17,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
         public override void OnActivate()
         {
             //calls main window toggle window
-            Application.Current.Dispatcher.BeginInvoke(() =>
+            Application.Current.Dispatcher.Invoke(() =>
             {
                 MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
                 mainWindow.ToggleMouseMode();

@@ -226,10 +226,15 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
                     break;
             }
             //hide arguments if there are none in the action
-            if (action.parameters.Count == 0)
+            if (action.parameters != null)
             {
-                viewboxArguments.Visibility = Visibility.Collapsed;
+                if (action.parameters.Count == 0)
+                {
+                    viewboxArguments.Visibility = Visibility.Collapsed;
+                }
             }
+            else {  viewboxArguments.Visibility = Visibility.Collapsed;}
+
         }
 
         #endregion
