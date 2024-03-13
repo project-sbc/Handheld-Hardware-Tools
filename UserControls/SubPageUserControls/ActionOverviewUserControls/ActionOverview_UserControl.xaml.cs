@@ -63,6 +63,8 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
             //set main icon and arguments
             SetMainIconAndArguments();
 
+
+            SetNotificationsTextBlock();
         }
         private void SetActionNameTextBlock()
         {
@@ -96,8 +98,9 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
         {
             if (action.hotkeyType == "")
             {
-                symbolIconHotKey.Visibility = Visibility.Collapsed;
-                actionHotKey.Visibility = Visibility.Collapsed;
+                
+                symbolIconHotKeyCrossout.Visibility = Visibility.Visible;
+                actionHotKey.Text = Application.Current.Resources["Usercontrol_NoHotkey"].ToString();
             }
             else
             {
@@ -221,6 +224,11 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
                 default:
                     MessageBox.Show("NO HANDLER FOR THIS ACTION, ADD IT YOU DUMMY. ActionOverview_UserControl.xaml.cs " + action.actionName);
                     break;
+            }
+            //hide arguments if there are none in the action
+            if (action.parameters.Count == 0)
+            {
+                viewboxArguments.Visibility = Visibility.Collapsed;
             }
         }
 

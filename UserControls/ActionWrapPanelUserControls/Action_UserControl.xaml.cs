@@ -98,6 +98,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
                     MessageBox.Show("NO HANDLER FOR THIS ACTION, ADD IT YOU DUMMY. Action_UserControl.xaml.cs " + action.actionName);
                     break;
             }
+            
         }
 
         public override void ChangeMainWindowControllerInstructionPage()

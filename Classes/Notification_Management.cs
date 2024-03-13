@@ -50,6 +50,9 @@ namespace Everything_Handhelds_Tool.Classes
             __NotificationManager = null;
 
         }
+        public void AppWindowNotification (string message)
+        {
 
+        }
     }
 }
