@@ -16,7 +16,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
         {
         }
 
-        public override async void ConfigureControls(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled)
+        public override async void ConfigureControls(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled, Grid iconGrid)
         {
            
             textBlock2.Text = Application.Current.Resources["Action_Toggle_MouseMode"].ToString();

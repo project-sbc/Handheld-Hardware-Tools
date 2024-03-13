@@ -16,14 +16,14 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
         {
         }
 
-        public override void ConfigureControls(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled)
+        public override void ConfigureControls(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled, Grid iconGrid)
         {
             symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Keyboard24;
             textBlock2.Text = Application.Current.Resources["Action_Toggle_WinOSK"].ToString();
 
-            textBlock.Text = Application.Current.Resources["ActionUserControl_Enabled"].ToString();
+            textBlock.Text = "";
 
-          
+            iconGrid.HorizontalAlignment = HorizontalAlignment.Center;
 
         }
         public override void ButtonPress(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled) 

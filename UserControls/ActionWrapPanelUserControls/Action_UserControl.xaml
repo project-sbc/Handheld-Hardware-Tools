@@ -18,8 +18,12 @@
                     <RowDefinition Height="55" />
                     <RowDefinition Height="27" />
                 </Grid.RowDefinitions>
-                <ui:SymbolIcon x:Name="symbolIcon" HorizontalAlignment="Center" FontSize="50"   />
-                <ui:SymbolIcon x:Name="symbolIconDisabled" Symbol="Line20" FontSize="50" FontWeight="UltraBold"  Visibility="Hidden"     />
+
+                <Grid Grid.ColumnSpan="2" HorizontalAlignment="Left" Name="iconGrid">
+                    <ui:SymbolIcon x:Name="symbolIcon"  FontSize="50"   />
+                    <ui:SymbolIcon x:Name="symbolIconDisabled" Symbol="Line20" FontSize="50" FontWeight="UltraBold"  Visibility="Hidden"     />
+                </Grid>
+                
 
                 <Viewbox Height="25"   Grid.Column="1"   HorizontalAlignment="Center"  >
                     <TextBlock x:Name="textBlock" Text="" TextWrapping="WrapWithOverflow" />

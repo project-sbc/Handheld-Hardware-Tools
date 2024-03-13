@@ -16,15 +16,15 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
         {
         }
 
-        public override async void ConfigureControls(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled)
+        public override async void ConfigureControls(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled, Grid iconGrid)
         {
            
             textBlock2.Text = Application.Current.Resources["Action_Toggle_Desktop"].ToString();
 
             symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.TabDesktopBottom24;
-            textBlock.Text = Application.Current.Resources["ActionUserControl_Toggle"].ToString();
+            textBlock.Text = "";
 
-           
+            iconGrid.HorizontalAlignment = HorizontalAlignment.Center;
 
         }
 

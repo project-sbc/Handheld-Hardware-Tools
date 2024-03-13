@@ -108,7 +108,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
 
         private void ConfigureTextAndSymbol()
         {
-            actionHandler.ConfigureControls(textBlock, textBlock2, symbolIcon, symbolIconDisabled);
+            actionHandler.ConfigureControls(textBlock, textBlock2, symbolIcon, symbolIconDisabled, iconGrid);
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
