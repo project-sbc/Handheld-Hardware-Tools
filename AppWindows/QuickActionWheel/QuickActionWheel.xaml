@@ -1,0 +1,121 @@
+﻿<Window x:Class="Everything_Handhelds_Tool.AppWindows.QuickActionWheel.QuickActionWheel"
+        xmlns:wuc="clr-namespace:Everything_Handhelds_Tool.AppWindows.WindowManager"
+                           xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Everything_Handhelds_Tool.AppWindows.WindowManager" xmlns:local1="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
+        mc:Ignorable="d"
+                            xmlns:RadialMenu="clr-namespace:RadialMenu.Controls;assembly=RadialMenu"
+                     Topmost="True"
+                        Loaded="Window_Loaded"
+           Background="Transparent"
+      WindowStyle="None"
+      AllowsTransparency="True"
+     xmlns:fa="http://schemas.fontawesome.io/icons/"
+         WindowStartupLocation="CenterScreen"
+         Height="700" Width="700">
+    <Window.Resources>
+        <Style  TargetType="RadialMenu:RadialMenuCentralItem" BasedOn="{StaticResource {x:Type RadialMenu:RadialMenuCentralItem}}">
+
+            <Setter Property="Background" Value="#FF3C3C3C"/>
+            <Setter Property="BorderBrush" Value="DimGray"/>
+            <Setter Property="BorderThickness" Value="4"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="150"/>
+
+        </Style>
+
+        <Style  TargetType="RadialMenu:RadialMenuItem" BasedOn="{StaticResource {x:Type RadialMenu:RadialMenuItem}}">
+
+            <Setter Property="Background" Value="#FF3C3C3C"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="InnerRadius" Value="170"/>
+            <Setter Property="OuterRadius" Value="300"/>
+            <Setter Property="ContentRadius" Value="230"/>
+
+            <Setter Property="EdgeBackground" Value="#FF212121"/>
+            <Setter Property="EdgePadding" Value="7"/>
+            <Setter Property="EdgeInnerRadius" Value="280"/>
+            <Setter Property="EdgeOuterRadius" Value="295"/>
+
+            <Setter Property="ArrowBackground" Value="#FF3C3C3C"/>
+            <Setter Property="ArrowRadius" Value="288"/>
+
+        </Style>
+    </Window.Resources>
+    <Grid  Background="Transparent" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="610"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <RadialMenu:RadialMenu IsOpen="True"  Name="radialMenu" >
+
+            <!-- CentralMenuItem -->
+
+            <RadialMenu:RadialMenu.CentralItem >
+                <RadialMenu:RadialMenuCentralItem Name="centralItem">
+                    <TextBlock>Close</TextBlock>
+                </RadialMenu:RadialMenuCentralItem>
+            </RadialMenu:RadialMenu.CentralItem>
+
+            <!-- MenuItems Around -->
+
+            <RadialMenu:RadialMenuItem Command="{Binding DeleteCommand}" >
+                <StackPanel>
+                    <fa:FontAwesome Icon="Steam" FontSize="30"/>
+                    <TextBlock Text="Open Steam Big Picture"/>
+                </StackPanel>
+            </RadialMenu:RadialMenuItem>
+            <RadialMenu:RadialMenuItem Command="{Binding DeleteCommand}" >
+                <StackPanel>
+                    <fa:FontAwesome Icon="Steam" FontSize="30"/>
+                    <TextBlock Text="Open Steam Big Picture"/>
+                </StackPanel>
+            </RadialMenu:RadialMenuItem>
+
+            <RadialMenu:RadialMenuItem Command="{Binding DeleteCommand}" >
+                <StackPanel>
+                    <fa:FontAwesome Icon="Steam" FontSize="30"/>
+                    <TextBlock Text="Open Steam Big Picture"/>
+                </StackPanel>
+            </RadialMenu:RadialMenuItem>
+            <RadialMenu:RadialMenuItem Command="{Binding DeleteCommand}" >
+                <StackPanel>
+                    <fa:FontAwesome Icon="Steam" FontSize="30"/>
+                    <TextBlock Text="Open Steam Big Picture"/>
+                </StackPanel>
+            </RadialMenu:RadialMenuItem>
+            <RadialMenu:RadialMenuItem Command="{Binding DeleteCommand}" >
+                <StackPanel>
+                    <fa:FontAwesome Icon="Steam" FontSize="30"/>
+                    <TextBlock Text="Open Steam Big Picture"/>
+                </StackPanel>
+            </RadialMenu:RadialMenuItem>
+            <RadialMenu:RadialMenuItem Command="{Binding DeleteCommand}" >
+                <StackPanel>
+                    <fa:FontAwesome Icon="Steam" FontSize="30"/>
+                    <TextBlock Text="Open Steam Big Picture"/>
+                </StackPanel>
+            </RadialMenu:RadialMenuItem>
+            <RadialMenu:RadialMenuItem Command="{Binding DeleteCommand}" >
+                <StackPanel>
+                    <fa:FontAwesome Icon="Steam" FontSize="30"/>
+                    <TextBlock Text="Open Steam Big Picture"/>
+                </StackPanel>
+            </RadialMenu:RadialMenuItem>
+            <RadialMenu:RadialMenuItem Command="{Binding DeleteCommand}" >
+                <StackPanel>
+                    <fa:FontAwesome Icon="Steam" FontSize="30"/>
+                    <TextBlock Text="Open Steam Big Picture"/>
+                </StackPanel>
+            </RadialMenu:RadialMenuItem>
+            <!-- Add items as you want... -->
+
+        </RadialMenu:RadialMenu>
+        
+        
+    </Grid>
+
+</Window>

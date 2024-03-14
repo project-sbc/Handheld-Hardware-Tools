@@ -6,7 +6,10 @@
              xmlns:local="clr-namespace:Everything_Handhelds_Tool.UserControls.PowerPageUserControls"
              xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                                mc:Ignorable="d" 
-            Height="100" Width="148"  Margin="2" >
+            Height="100" Width="148"  Margin="2" 
+                                xmlns:fa="http://schemas.fontawesome.io/icons/" 
+                               
+                               >
     <Border Style="{StaticResource userControlBorder}" Name="border">
         <Button   x:Name="button" Width="Auto"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Click="button_Click">
             <Grid     >
@@ -20,7 +23,8 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.ColumnSpan="2" HorizontalAlignment="Left" Name="iconGrid">
-                    <ui:SymbolIcon x:Name="symbolIcon"  FontSize="50"   />
+                    <fa:FontAwesome   x:Name="faIcon"  FontSize="50"  Visibility="Collapsed" />
+                    <ui:SymbolIcon  x:Name="symbolIcon"  FontSize="50"   />
                     <ui:SymbolIcon x:Name="symbolIconDisabled" Symbol="Line20" FontSize="50" FontWeight="UltraBold"  Visibility="Hidden"     />
                 </Grid>
                 
