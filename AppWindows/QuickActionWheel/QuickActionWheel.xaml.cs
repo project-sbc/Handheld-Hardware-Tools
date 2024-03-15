@@ -1,4 +1,7 @@
-﻿using Everything_Handhelds_Tool.Classes;
+﻿using Everything_Handhelds_Tool.AppWindows.QuickActionWheel.QuickActionWheelItem_Actions;
+using Everything_Handhelds_Tool.Classes;
+using Everything_Handhelds_Tool.Classes.Actions;
+using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
 using Everything_Handhelds_Tool.Classes.Devices;
 using RadialMenu.Controls;
@@ -28,17 +31,35 @@ namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel
         RadialMenuCentralItem highlightCentralItem = null;
         System.Windows.Media.Brush defaultBrush = null;
 
-
-        List<RadialMenuItem> mainLevelItems = null;
+        List<QuickActionWheelItem> quickActionWheelItems = new List<QuickActionWheelItem>();
+        List<RadialMenuItem> mainLevelItems = new List<RadialMenuItem>();
         List<RadialMenuItem> subLevelItems = null;
 
+        bool navigateMainLevel = true;
 
         public QuickActionWheel()
         {
             InitializeComponent();
 
+            GetMainLevelItems();
         }
                
+        private void GetMainLevelItems()
+        {
+            ActionList actions = (ActionList)XML_Management.Instance.LoadXML("ActionList");
+
+            foreach (Classes.Actions.Action action in actions)
+            {
+               
+                quickActionWheelItems.Add(QuickActionWheelItemConverter.ActionToQuickActionWheelItemConverter(action));
+            }
+
+
+            radialMenu.Items.Add(quickActionWheelItems[0].mainRadialMenuItem);
+        }
+
+        
+
         private void SubscribeEvents()
         {
             ControllerInput controllerInput = Local_Object.Instance.GetMainWindowControllerInput();
