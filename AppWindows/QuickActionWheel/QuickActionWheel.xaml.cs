@@ -194,7 +194,7 @@ namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel
             ConvertJoystickToPolarCoordinates(x/33000,y/33000,out angle, out radius);
 
             Debug.WriteLine(angle);
-            if (radius > 0.4)
+            if (radius > 0.6)
             {
                 HighlightRadialMenuItem(angle);
             }
