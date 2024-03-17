@@ -27,7 +27,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
             }
         }
 
-        public override void OnActivate()
+        public override void OnActivate(string quickActionWheelParameter = "")
         {
             //calls main window toggle window
             if (ADLX_Management.HasIntegerScalingSupport())

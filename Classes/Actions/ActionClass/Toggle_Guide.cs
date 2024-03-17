@@ -14,7 +14,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
             actionName = "Toggle_Guide";
             //arguments = new List<string>();
         }
-        public override void OnActivate()
+        public override void OnActivate(string quickActionWheelParameter = "")
         {
 
             Application.Current.Dispatcher.BeginInvoke(() =>

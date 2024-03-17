@@ -14,7 +14,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
             actionName = "Toggle_WifiAP";
             //arguments = new List<string>();
         }
-        public override void OnActivate()
+        public override void OnActivate(string quickActionWheelParameter = "")
         {
             //calls main window toggle window
             MainWindow mW = Local_Object.Instance.GetMainWindow();

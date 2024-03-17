@@ -34,7 +34,6 @@ namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel
         //
         public virtual void SetUpUserControlIcons(SymbolIcon symbolIcon, FontAwesome.WPF.FontAwesome fontAwesomeIcon) { }
         public virtual void SetUpUserControlTextblock(TextBlock textBlock, Classes.Actions.Action action) { }
-        public virtual void OnClickEvent() { }
         public virtual void SetUpRadialCentralMenuItem(Classes.Actions.Action action, out RadialMenuCentralItem radialMenuCentralItem) { radialMenuCentralItem = null; }
     }
 

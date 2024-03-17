@@ -43,17 +43,7 @@ namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel
 
         public void ClickEvent()
         {
-            if (quickActionWheelItem_Handler != null)
-            {
-                if (subRadialMenuItems != null)
-                {
-                    //do sub menu stuff
-                }
-                else
-                {
-                    quickActionWheelItem_Handler.OnClickEvent();
-                }
-            }
+            action.OnActivate();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

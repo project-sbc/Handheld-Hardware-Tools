@@ -16,7 +16,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
             actionName = "Change_TDP";
             
         }
-        public override void OnActivate()
+        public override void OnActivate(string quickActionWheelParameter = "")
         {
             ActionTask();
       

@@ -40,6 +40,8 @@ namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel
 
         bool navigateMainLevel = true;
 
+       
+
         public QuickActionWheel()
         {
             InitializeComponent();
@@ -311,37 +313,74 @@ namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel
 
         private void HandleRadialMenuItemClick(RadialMenuItem rmi)
         {
-            if (rmi != null)
+            if (navigateMainLevel)
             {
-                if (rmi.ArrowBackground == System.Windows.Media.Brushes.Transparent)
+                if (rmi != null)
                 {
-                    if (rmi.Content is RadialMenu_UserControl)
+                    if (rmi.ArrowBackground == System.Windows.Media.Brushes.Transparent)
                     {
-                        RadialMenu_UserControl rmuc = rmi.Content as RadialMenu_UserControl;
-                        if (rmuc != null)
+                        if (rmi.Content is RadialMenu_UserControl)
                         {
-                            rmuc.ClickEvent();
-                            HandleCloseWindow();
+                            RadialMenu_UserControl rmuc = rmi.Content as RadialMenu_UserControl;
+                            if (rmuc != null)
+                            {
+                                rmuc.ClickEvent();
+                                HandleCloseWindow();
+                            }
                         }
                     }
+                    else
+                    {//we set it up so that items with a sub menu dont have transparent arrow head background
+                        NavigateToSubMenu(rmi);
+                    }
                 }
-                else
-                {//we set it up so that items with a sub menu dont have transparent arrow head background
-                    NavigateToSubMenu(rmi);
+            }
+            else
+            {
+               
+                if (rmi != null)
+                {
+                    if (rmi.Content is TextBlock)
+                    {
+                        TextBlock textBlock = (TextBlock)rmi.Content;
+                        if (textBlock != null)
+                        {
+                            string argument = textBlock.Text.ToString();
+                            HandleSubRadialMenuItemClick(selectedItem, argument);
+                        }
+                    }
+
+                    
+                }
+
+
+            }
+
+
+
+            
+        }
+
+        private void HandleSubRadialMenuItemClick(RadialMenuItem rmi, string argument)
+        {
+            if (rmi != null)
+            {
+                if (rmi.Content is RadialMenu_UserControl)
+                {
+                    RadialMenu_UserControl rmuc = rmi.Content as RadialMenu_UserControl;
+                    if (rmuc != null)
+                    {
+                        rmuc.action.OnActivate(argument);
+                        HandleCloseWindow();
+                    }
                 }
             }
         }
 
+
         private void RadialMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            if (navigateMainLevel)
-            {
-                HandleRadialMenuItemClick(sender as RadialMenuItem);
-            }
-            else
-            {
-
-            }
+          
         }
 
         private void centralItem_Click(object sender, RoutedEventArgs e)

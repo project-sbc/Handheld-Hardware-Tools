@@ -20,7 +20,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
             actionName = "Toggle_Desktop";
             //arguments = new List<string>();
         }
-        public override void OnActivate()
+        public override void OnActivate(string quickActionWheelParameter = "")
         {
             //Shell objects need to run on STA thread, thats why i need to use a new thread, otherwise it wont work
 

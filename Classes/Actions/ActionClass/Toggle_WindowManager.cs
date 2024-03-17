@@ -12,7 +12,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
             actionName = "Toggle_WindowManager";
             //arguments = new List<string>();
         }
-        public override void OnActivate()
+        public override void OnActivate(string quickActionWheelParameter = "")
         {
           
 

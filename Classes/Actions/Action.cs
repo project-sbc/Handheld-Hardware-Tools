@@ -48,8 +48,9 @@ namespace Everything_Handhelds_Tool.Classes.Actions
         public string hotKey = "";
         public List<string> parameters;
 
-        //This routine is going to be the onclick event
-        public virtual void OnActivate() { }
+        //This routine is going to be the onclick event. string quickActionWheelParameter is for the quick action wheel menu only, its meant to integrate actions with quick action wheel menu easily
+        //only a few will use this though
+        public virtual void OnActivate(string quickActionWheelParameter = "") { }
 
         public void DisplayNotification(string title, string message)
         {
