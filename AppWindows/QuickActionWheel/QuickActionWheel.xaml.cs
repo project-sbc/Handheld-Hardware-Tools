@@ -4,6 +4,7 @@ using Everything_Handhelds_Tool.Classes.Actions;
 using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
 using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
 using Everything_Handhelds_Tool.Classes.Devices;
+using Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls;
 using RadialMenu.Controls;
 using System;
 using System.Collections.Generic;
@@ -53,29 +54,36 @@ namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel
         {
             ActionList actions = (ActionList)XML_Management.Instance.LoadXML("ActionList");
 
+
+
             foreach (Classes.Actions.Action action in actions)
             {
-                RadialMenuItem rmi = new RadialMenuItem();
-                RadialMenu_UserControl rmuc = new RadialMenu_UserControl(action);
-                rmi.Content = rmuc;
-
-
-                //this hides the arrow if there isn't a sub menu
-                if (rmuc.subRadialMenuItems != null) 
+                if (action.displayInRadialMenu && action.UsableOnDevice())
                 {
-                    if (rmuc.subRadialMenuItems.Count == 0)
+                    RadialMenuItem rmi = new RadialMenuItem();
+                    RadialMenu_UserControl rmuc = new RadialMenu_UserControl(action);
+                    rmi.Content = rmuc;
+
+
+                    //this hides the arrow if there isn't a sub menu
+                    if (rmuc.subRadialMenuItems != null)
+                    {
+                        if (rmuc.subRadialMenuItems.Count == 0)
+                        {
+                            rmi.ArrowBackground = System.Windows.Media.Brushes.Transparent;
+
+                        }
+                    }
+                    else
                     {
                         rmi.ArrowBackground = System.Windows.Media.Brushes.Transparent;
-                                      
+
                     }
-                }
-                else
-                {
-                    rmi.ArrowBackground = System.Windows.Media.Brushes.Transparent;
-              
+
+                    mainLevelItems.Add(rmi);
                 }
 
-                mainLevelItems.Add(rmi);
+                
             }
 
             radialMenu.Items = mainLevelItems;

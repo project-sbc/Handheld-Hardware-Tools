@@ -219,6 +219,10 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Window24;
 
                     break;
+                case "Toggle_QuickActionWheel":
+                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.ArrowSyncCircle20;
+
+                    break;
                 case "Cycle_Volume":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Speaker216;
                     if (action.parameters != null)

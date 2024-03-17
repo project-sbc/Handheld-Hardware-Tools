@@ -86,6 +86,9 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
                 case "Toggle_WindowManager":
                     actionHandler = new ActionUserControl_Toggle_WindowManager(action);
                     break;
+                case "Toggle_QuickActionWheel":
+                    actionHandler = new ActionUserControl_Toggle_QuickActionWheel(action);
+                    break;
                 case "Toggle_MouseMode":
                     actionHandler = new ActionUserControl_Toggle_MouseMode(action);
                     break;

@@ -146,6 +146,7 @@ features such as TDP and fan control.
     <system:String x:Key="Action_Toggle_WinOSK">Toggle Windows OSK</system:String>
     <system:String x:Key="Action_Toggle_OSK">Toggle OSK</system:String>
     <system:String x:Key="Action_Toggle_WindowManager">Toggle Window Manager</system:String>
+    <system:String x:Key="Action_Toggle_QuickActionWheel">Toggle Quick Action Wheel</system:String>
     <system:String x:Key="Action_Toggle_Desktop">Toggle Desktop</system:String>
     <system:String x:Key="Action_Toggle_RSR">Toggle RSR</system:String>
     <system:String x:Key="Action_Toggle_MouseMode">Toggle Mouse Mode</system:String>
@@ -163,8 +164,8 @@ features such as TDP and fan control.
     <system:String x:Key="ActionUserControl_DisplayInPanel">Displayed In Menu</system:String>
     <system:String x:Key="ActionUserControl_HiddenInPanel">Hidden In Menu</system:String>
 
-    <system:String x:Key="ActionUserControl_DisplayInRadialMenu">Displayed In Radial Menu</system:String>
-    <system:String x:Key="ActionUserControl_HiddenInRadialMenu">Hidden In Radial Menu</system:String>
+    <system:String x:Key="ActionUserControl_DisplayInRadialMenu">Displayed In Wheel Menu</system:String>
+    <system:String x:Key="ActionUserControl_HiddenInRadialMenu">Hidden In Wheel Menu</system:String>
 
     <system:String x:Key="ActionUserControl_DisplayNotifications">Display Notifications</system:String>
     <system:String x:Key="ActionUserControl_HideNotifications">Hide Notifications</system:String>

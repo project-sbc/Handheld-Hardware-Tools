@@ -32,6 +32,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
     [XmlInclude(typeof(Toggle_WinOSK))]
     [XmlInclude(typeof(Toggle_OSK))]
     [XmlInclude(typeof(Toggle_WindowManager))]
+    [XmlInclude(typeof(Toggle_QuickActionWheel))]
     [XmlInclude(typeof(Toggle_Desktop))]
     [XmlInclude(typeof(Toggle_MouseMode))]
     [XmlInclude(typeof(Toggle_Guide))]
@@ -86,6 +87,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
             this.Add("Toggle_OSK", Application.Current.Resources["Action_Toggle_OSK"].ToString());
             this.Add("Toggle_Desktop", Application.Current.Resources["Action_Toggle_Desktop"].ToString());
             this.Add("Toggle_WindowManager", Application.Current.Resources["Action_Toggle_WindowManager"].ToString());
+            this.Add("Toggle_QuickActionWheel", Application.Current.Resources["Action_Toggle_QuickActionWheel"].ToString());
             this.Add("Toggle_QAM", Application.Current.Resources["Action_Toggle_QAM"].ToString());
             this.Add("Toggle_MouseMode", Application.Current.Resources["Action_Toggle_MouseMode"].ToString());
             this.Add("Toggle_Guide", Application.Current.Resources["Action_Toggle_Guide"].ToString());
