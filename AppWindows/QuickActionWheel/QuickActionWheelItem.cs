@@ -46,6 +46,22 @@ namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel
                 case Cycle_TDP:
                     return new QuickActionWheelItem_Cycle_TDP();
                     break;
+                case Change_TDP:
+                    return new QuickActionWheelItem_Change_TDP();
+                    break;
+                case Toggle_OSK:
+                    return new QuickActionWheelItem_Toggle_OSK();
+                    break;
+                case Toggle_QAM:
+                    return new QuickActionWheelItem_Toggle_QAM();
+                    break;
+                case Toggle_WindowManager:
+                    return new QuickActionWheelItem_Toggle_WindowManager();
+                    break;
+                case Toggle_Guide:
+                    return new QuickActionWheelItem_Toggle_Guide();
+                    break;
+
             }
             return null;
         }

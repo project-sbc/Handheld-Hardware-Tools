@@ -93,6 +93,7 @@ namespace Everything_Handhelds_Tool.Pages
 
                 
                 stackPanel.Children.Add(new EditAction_InActionPanelToggleSwitch(action.displayInActionPanel));
+                stackPanel.Children.Add(new EditAction_InRadialMenuToggleSwitch(action.displayInRadialMenu));
                 stackPanel.Children.Add(new EditAction_NotificationsToggleSwitch(action.displayNotification));
                 stackPanel.Children.Add(new EditAction_EnableHotKey(action.hotKey, action.hotkeyType));
             }
@@ -103,6 +104,7 @@ namespace Everything_Handhelds_Tool.Pages
                 actionArgumentListView = new EditAction_ArgumentListView();
                 stackPanel.Children.Add(actionArgumentListView);
                 stackPanel.Children.Add(new EditAction_InActionPanelToggleSwitch());
+                stackPanel.Children.Add(new EditAction_InRadialMenuToggleSwitch());
                 stackPanel.Children.Add(new EditAction_NotificationsToggleSwitch());
 
                 stackPanel.Children.Add(new EditAction_EnableHotKey());

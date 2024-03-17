@@ -43,6 +43,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
         public int ID = -1;
         public string actionName;
         public bool displayInActionPanel;
+        public bool displayInRadialMenu;
         public bool displayNotification;
         public string hotkeyType = "";
         public string hotKey = "";

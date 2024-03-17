@@ -57,6 +57,9 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
             //display in panel textblock
             SetIsActionDisplayedInPanelTextBlock();
 
+            //display in radial menu textblock
+            SetIsActionDisplayedInRadialMenuTextBlock();
+
             //set hotkey icon and text
             SetHotKeyTextBlockAndIcon();
 
@@ -69,6 +72,17 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
         private void SetActionNameTextBlock()
         {
             actionName.Text = Application.Current.Resources["Action_" + action.actionName].ToString();
+        }
+        private void SetIsActionDisplayedInRadialMenuTextBlock()
+        {
+            if (action.displayInRadialMenu)
+            {
+                actionRadialMenuVisible.Text = Application.Current.Resources["ActionUserControl_DisplayInRadialMenu"].ToString();
+            }
+            else
+            {
+                actionRadialMenuVisible.Text = Application.Current.Resources["ActionUserControl_HiddenInRadialMenu"].ToString();
+            }
         }
         private void SetIsActionDisplayedInPanelTextBlock()
         {
