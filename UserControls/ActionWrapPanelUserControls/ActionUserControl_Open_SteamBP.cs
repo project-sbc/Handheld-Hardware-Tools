@@ -10,15 +10,17 @@ using Wpf.Ui.Controls;
 
 namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
 {
-    public partial class ActionUserControl_Toggle_Guide : ActionUserControl_DefaultHandler
+    public partial class ActionUserControl_Open_SteamBP : ActionUserControl_DefaultHandler
     {
-        public ActionUserControl_Toggle_Guide(Classes.Actions.Action newAction) : base(newAction)
+        public ActionUserControl_Open_SteamBP(Classes.Actions.Action newAction) : base(newAction)
         {
         }
 
         public override void ConfigureControls(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled, Grid iconGrid, FontAwesome.WPF.FontAwesome faIcon)
         {
-            symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.BookStar20;
+            symbolIcon.Visibility = Visibility.Collapsed;
+            faIcon.Visibility = Visibility.Visible;
+            faIcon.Icon = FontAwesome.WPF.FontAwesomeIcon.Steam;
             textBlock2.Text = Application.Current.Resources["Action_Toggle_Guide"].ToString();
 
             textBlock.Text = Application.Current.Resources["ActionUserControl_Enabled"].ToString();

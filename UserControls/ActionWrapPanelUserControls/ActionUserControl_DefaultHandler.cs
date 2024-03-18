@@ -19,7 +19,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
             action = newAction;
         }
 
-        public virtual void ConfigureControls(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled, Grid iconGrid)  {}
+        public virtual void ConfigureControls(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled, Grid iconGrid, FontAwesome.WPF.FontAwesome faIcon = null)  {}
 
         public virtual void ButtonPress(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled) { }
 

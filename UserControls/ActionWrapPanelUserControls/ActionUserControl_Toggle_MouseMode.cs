@@ -17,7 +17,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
         {
         }
 
-        public override async void ConfigureControls(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled, Grid iconGrid)
+        public override async void ConfigureControls(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled, Grid iconGrid, FontAwesome.WPF.FontAwesome faIcon)
         {
            
             textBlock2.Text = Application.Current.Resources["Action_Toggle_MouseMode"].ToString();

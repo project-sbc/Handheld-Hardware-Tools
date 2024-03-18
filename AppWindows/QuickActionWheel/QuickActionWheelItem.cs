@@ -61,7 +61,15 @@ namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel
                 case Toggle_Guide:
                     return new QuickActionWheelItem_Toggle_Guide();
                     break;
-
+                case Toggle_MouseMode:
+                    return new QuickActionWheelItem_Toggle_MouseMode();
+                    break;
+                case Cycle_Volume:
+                    return new QuickActionWheelItem_Cycle_Volume();
+                    break;
+                case Toggle_Desktop:
+                    return new QuickActionWheelItem_Toggle_Desktop();
+                    break;
             }
             return null;
         }
