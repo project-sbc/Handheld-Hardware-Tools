@@ -11,7 +11,7 @@
                                    xmlns:uc="clr-namespace:Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls" Loaded="ControllerWrapPanelPage_Loaded"
                                  >
 
-    <Grid >
+    <Grid Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition  />

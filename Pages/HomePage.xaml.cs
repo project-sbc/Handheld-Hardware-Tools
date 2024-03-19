@@ -11,6 +11,8 @@ using System.Windows.Controls;
 using System.Windows.Forms.Integration;
 using System;
 using Everything_Handhelds_Tool.UserControls.EditActionUserControls;
+using Everything_Handhelds_Tool.AppWindows.MainWindow;
+using System.Windows;
 
 namespace Everything_Handhelds_Tool.Pages
 {
@@ -32,6 +34,13 @@ namespace Everything_Handhelds_Tool.Pages
             InitializeComponent();
             virtualStackPanel = stackPanel;
             AddUserControlsToStackPanel();
+
+            //hide top row when in main window, but keep when in QAM
+            Window parentWindow = Local_Object.Instance.GetGeneralWindow(this);
+            if (parentWindow is MainWindow)
+            {
+                grid.RowDefinitions[0].Height = new GridLength(0);
+            }
         }
 
         public void AddUserControlsToStackPanel()

@@ -12,6 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms.Integration;
 using Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls;
+using Everything_Handhelds_Tool.AppWindows.MainWindow;
 
 namespace Everything_Handhelds_Tool.Pages
 {
@@ -26,6 +27,8 @@ namespace Everything_Handhelds_Tool.Pages
             //Move initilize components to sub routine and async it to make pages feel smoother
             Dispatcher.BeginInvoke(new System.Action(() => Initialize()));
 
+
+
         }
 
         private void Initialize()
@@ -33,7 +36,12 @@ namespace Everything_Handhelds_Tool.Pages
             InitializeComponent();
             virtualWrapPanel = wrapPanel;
 
-           
+            //hide top row when in main window, but keep when in QAM
+            Window parentWindow = Local_Object.Instance.GetGeneralWindow(this);
+            if (parentWindow is MainWindow)
+            {
+                grid.RowDefinitions[0].Height = new GridLength(0) ;
+            }
         }
         private void AddControlsToArray()
         {

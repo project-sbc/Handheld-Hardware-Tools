@@ -27,6 +27,7 @@ using Everything_Handhelds_Tool.Classes.MouseMode;
 using WindowsInput;
 using Everything_Handhelds_Tool.AppWindows.Guide;
 using Everything_Handhelds_Tool.AppWindows.QuickActionWheel;
+using Everything_Handhelds_Tool.AppWindows.MainWindow;
 
 
 namespace Everything_Handhelds_Tool
@@ -69,7 +70,7 @@ namespace Everything_Handhelds_Tool
 
             //Application.Current.Resources.MergedDictionaries.Add(((ResourceDictionary)XamlReader.Load(xamlFile)));
 
-            QuickActionWheel guide = new QuickActionWheel();
+            MainWindow guide = new MainWindow();
             guide.Show();
 
         }

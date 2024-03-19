@@ -16,7 +16,47 @@
         xmlns:local="clr-namespace:Everything_Handhelds_Tool.AppWindows.MainWindow"
 
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Background="{DynamicResource MainWindowBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="9*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="9*" />
+            <ColumnDefinition  MinWidth="520" Width="5*" MaxWidth="650"/>
+            <ColumnDefinition Width="40" />
+        </Grid.ColumnDefinitions>
+
+        <ui:Card Grid.Row="1" Grid.Column="1"  Name="cardBorder3" Grid.RowSpan="2"  Margin="6"  Background="{DynamicResource PageBackground}" BorderBrush="Blue"    VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Top">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="*" />
+          
+   
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="*" />
+              
+                </Grid.ColumnDefinitions>
+                <Image Source="/Resources/MainWindowDeviceImages/Minisforum_UM780_XTX.png"   Grid.RowSpan="2" Grid.ColumnSpan="2"  />
+            </Grid>
+            
+        </ui:Card>
         
+        <ui:Card Grid.Row="1" Grid.Column="2"  Name="cardBorder"   Margin="6"  Background="{DynamicResource PageBackground}"     VerticalAlignment="Stretch" VerticalContentAlignment="Top">
+
+            <Frame x:Name="frame"   HorizontalAlignment="Stretch" Source="/Pages/HomePage.xaml"   />
+        </ui:Card>
+
+        <ui:Card Grid.Row="2" Grid.Column="2"  Name="cardBorder2"   Margin="6"  Background="{DynamicResource PageBackground}"     VerticalAlignment="Stretch" VerticalContentAlignment="Top">
+
+            <Frame x:Name="frame2"   HorizontalAlignment="Stretch" Source="/Pages/ActionPage.xaml"   />
+        </ui:Card>
+
     </Grid>
 </classes:ControllerWindow>

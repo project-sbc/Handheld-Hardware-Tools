@@ -13,7 +13,7 @@
                       
                         >
 
-    <Grid   >
+    <Grid  Name="grid" >
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition  />
