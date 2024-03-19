@@ -92,20 +92,20 @@ namespace Everything_Handhelds_Tool.Classes
 
         public Page GetMainWindowFramePage()
         {
-            return (Page)((MainWindow)Application.Current.MainWindow).frame.Content;
+            return (Page)((QuickAccessMenu)Application.Current.MainWindow).frame.Content;
         }
 
         public string DeviceCPUType()
         {
             string cpuType = "";
-            cpuType = ((MainWindow)Application.Current.MainWindow).device.cpuType;
+            cpuType = ((QuickAccessMenu)Application.Current.MainWindow).device.cpuType;
             return cpuType;
         }
 
         public Device GetMainWindowDevice()
         {
-            MainWindow mw = GetMainWindow();
-            return mw.device;
+            QuickAccessMenu qam = GetQAMWindow();
+            return qam.device;
            
         }
         public OSK GetOSKWindow()
@@ -130,57 +130,57 @@ namespace Everything_Handhelds_Tool.Classes
             }
             return null;
         }
-        public MainWindow GetMainWindow()
+        public QuickAccessMenu GetQAMWindow()
         {
-            return ((MainWindow)Application.Current.MainWindow);
+            return ((QuickAccessMenu)Application.Current.MainWindow);
 
         }
         public ControllerInput GetMainWindowControllerInput()
         {
-            MainWindow mw = GetMainWindow();
-            if (mw != null)
+            QuickAccessMenu qam = GetQAMWindow();
+            if (qam != null)
             {
-                if (mw.controllerInput != null)
+                if (qam.controllerInput != null)
                 {
-                    return mw.controllerInput;
+                    return qam.controllerInput;
                 }
             }
             return null;
         }
         public MouseMode.MouseMode GetMainWindowMouseMode()
         {
-            MainWindow mw = GetMainWindow();
-            if (mw != null)
+            QuickAccessMenu qam = GetQAMWindow();
+            if (qam != null)
             {
-                if (mw.mouseMode != null)
+                if (qam.mouseMode != null)
                 {
-                    return mw.mouseMode;
+                    return qam.mouseMode;
                 }
             }
             return null;
         }
         public InputSimulator GetMainWindowInputSimulator()
         {
-            MainWindow mw = GetMainWindow();
-            if (mw != null)
+            QuickAccessMenu qam = GetQAMWindow();
+            if (qam != null)
             {
-                if (mw.inputSimulator != null)
+                if (qam.inputSimulator != null)
                 {
-                    return mw.inputSimulator;
+                    return qam.inputSimulator;
                 }
             }
             return null;
         }
         public Controller GetMainWindowController()
         {
-            MainWindow mw = GetMainWindow();
-            if (mw != null)
+            QuickAccessMenu qam = GetQAMWindow();
+            if (qam != null)
             {
-                if (mw.controllerInput != null)
+                if (qam.controllerInput != null)
                 {
-                    if (mw.controllerInput.controller != null)
+                    if (qam.controllerInput.controller != null)
                     {
-                        return mw.controllerInput.controller;
+                        return qam.controllerInput.controller;
                     }
                 }
             }

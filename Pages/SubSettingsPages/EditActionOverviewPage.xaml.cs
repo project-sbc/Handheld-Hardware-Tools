@@ -138,7 +138,7 @@ namespace Everything_Handhelds_Tool.Pages
 
 
             //set controller input class to update controller hotkey dictionary
-            MainWindow mw = (MainWindow)Application.Current.MainWindow;
+            QuickAccessMenu mw = (QuickAccessMenu)Application.Current.MainWindow;
             mw.controllerInput.suspendEventsForNewHotKeyList = true;
         }
 
@@ -178,7 +178,7 @@ namespace Everything_Handhelds_Tool.Pages
                         ActionOverview_UserControl actionOverview_UserControl = (ActionOverview_UserControl)userControl;
                         System.Windows.Controls.Page page = new EditActionPage(actionOverview_UserControl.action);
 
-                        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                        QuickAccessMenu mainWindow = (QuickAccessMenu)Application.Current.MainWindow;
                         mainWindow.frame.Content = page;
 
                         break;
@@ -218,7 +218,7 @@ namespace Everything_Handhelds_Tool.Pages
             //override base function to send you back to general settings page
             System.Windows.Controls.Page page = new SettingsPage();
 
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            QuickAccessMenu mainWindow = (QuickAccessMenu)Application.Current.MainWindow;
             mainWindow.frame.Content = page;
         }
 
@@ -235,7 +235,7 @@ namespace Everything_Handhelds_Tool.Pages
         {
             System.Windows.Controls.Page page = new EditActionPage();
 
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            QuickAccessMenu mainWindow = (QuickAccessMenu)Application.Current.MainWindow;
             mainWindow.frame.Content = page;
         }
 

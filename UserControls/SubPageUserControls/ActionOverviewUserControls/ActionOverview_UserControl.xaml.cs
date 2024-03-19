@@ -312,7 +312,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
 
         private void SendCommandToEditActionOverviewPage(string action)
         {
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            QuickAccessMenu mainWindow = (QuickAccessMenu)Application.Current.MainWindow;
 
             EditActionOverviewPage editActionOverviewPage = Local_Object.Instance.GetMainWindowFramePage() as EditActionOverviewPage;
 

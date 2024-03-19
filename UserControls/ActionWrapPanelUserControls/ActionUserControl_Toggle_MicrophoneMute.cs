@@ -23,7 +23,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
 
 
 
-            MainWindow mW = Local_Object.Instance.GetMainWindow();
+            QuickAccessMenu mW = Local_Object.Instance.GetQAMWindow();
 
             if (Volume_Management.Instance.ReadAndReturnMicrophoneMute() == true)
             {

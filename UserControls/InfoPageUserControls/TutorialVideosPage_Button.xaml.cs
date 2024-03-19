@@ -49,7 +49,7 @@ namespace Everything_Handhelds_Tool.UserControls.InfoPageUserControls
 
             Page page = new TutorialVideosPage();
 
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            QuickAccessMenu mainWindow = (QuickAccessMenu)Application.Current.MainWindow;
             mainWindow.frame.Content = page;
         }
     }

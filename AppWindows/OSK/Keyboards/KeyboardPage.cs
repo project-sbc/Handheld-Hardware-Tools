@@ -307,7 +307,7 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
             virtualMainCanvas.Children.Add(rightCircle);
 
             //hide all the viewboxes with controller icons
-            MainWindow mainwindow = Local_Object.Instance.GetMainWindow();
+            QuickAccessMenu mainwindow = Local_Object.Instance.GetQAMWindow();
             if (mainwindow.controllerInput.controller != null)
             {
                 if (mainwindow.controllerInput.controller.IsConnected)

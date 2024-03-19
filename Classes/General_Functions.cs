@@ -40,7 +40,7 @@ namespace Everything_Handhelds_Tool.Classes
         {
 
             //use this to access sub setting pages from outside the mainwindow navigation menu, like wifi AP settings page
-            MainWindow window = (MainWindow)Application.Current.MainWindow;
+            QuickAccessMenu window = (QuickAccessMenu)Application.Current.MainWindow;
             Uri uriLink = new Uri(uri, UriKind.RelativeOrAbsolute);
             window.LoadPageInFrameExternal(uriLink);
         }
@@ -79,7 +79,7 @@ namespace Everything_Handhelds_Tool.Classes
             //serves as a intermediary function to mainwindow from different usercontrols and pages to update controller instructions
             if (Application.Current.MainWindow != null)
             {
-                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                QuickAccessMenu mainWindow = (QuickAccessMenu)Application.Current.MainWindow;
                 mainWindow.SetControllerInputPage(pageName);
             }
         }

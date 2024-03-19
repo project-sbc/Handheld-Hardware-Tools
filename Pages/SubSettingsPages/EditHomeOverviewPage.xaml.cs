@@ -158,7 +158,7 @@ namespace Everything_Handhelds_Tool.Pages
             //override base function to send you back to general settings page
             System.Windows.Controls.Page page = new SettingsPage();
 
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            QuickAccessMenu mainWindow = (QuickAccessMenu)Application.Current.MainWindow;
             mainWindow.frame.Content = page;
         }
 

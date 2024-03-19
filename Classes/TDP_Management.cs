@@ -348,7 +348,7 @@ namespace Everything_Handhelds_Tool.Classes
 
         private string DeviceMCHBAR()
         {
-            MainWindow mw = Local_Object.Instance.GetMainWindow();
+            QuickAccessMenu mw = Local_Object.Instance.GetQAMWindow();
 
             if (mw!= null)
             {

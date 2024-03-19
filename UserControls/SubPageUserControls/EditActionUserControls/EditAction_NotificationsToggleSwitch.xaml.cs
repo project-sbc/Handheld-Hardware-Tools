@@ -83,7 +83,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             }
 
 
-            MainWindow mainWindow = Local_Object.Instance.GetMainWindow();
+            QuickAccessMenu mainWindow = Local_Object.Instance.GetQAMWindow();
 
             if (mainWindow.frame.Content is EditActionPage)
             {

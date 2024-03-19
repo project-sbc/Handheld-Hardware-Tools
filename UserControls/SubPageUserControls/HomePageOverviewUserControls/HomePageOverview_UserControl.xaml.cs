@@ -124,7 +124,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
 
         private void SendCommandToHomePageOverviewPage(string action)
         {
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            QuickAccessMenu mainWindow = (QuickAccessMenu)Application.Current.MainWindow;
 
             EditHomeOverviewPage editHomeOverviewPage = Local_Object.Instance.GetMainWindowFramePage() as EditHomeOverviewPage;
 

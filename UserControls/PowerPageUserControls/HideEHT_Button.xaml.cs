@@ -44,7 +44,7 @@ namespace Everything_Handhelds_Tool.UserControls.PowerPageUserControls
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mW = (MainWindow)Application.Current.MainWindow;
+            QuickAccessMenu mW = (QuickAccessMenu)Application.Current.MainWindow;
             if (mW != null) { mW.ToggleWindow(); }
    
         }

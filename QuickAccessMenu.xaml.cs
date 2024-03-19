@@ -32,7 +32,7 @@ using Everything_Handhelds_Tool.AppWindows.QuickActionWheel;
 namespace Everything_Handhelds_Tool
 {
         
-    public partial class MainWindow : ControllerWindow 
+    public partial class QuickAccessMenu : ControllerWindow 
     {
 
         public Device device;
@@ -43,7 +43,7 @@ namespace Everything_Handhelds_Tool
         public MouseKeyHook mouseKeyHook = new MouseKeyHook();
 
       
-        public MainWindow()
+        public QuickAccessMenu()
         {
             //Get the device type (i.e. win max 2, one x fly, etc)
             device = new Device_Management().device;

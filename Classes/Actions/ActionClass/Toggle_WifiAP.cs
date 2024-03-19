@@ -17,7 +17,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
         public override void OnActivate(string quickActionWheelParameter = "")
         {
             //calls main window toggle window
-            MainWindow mW = Local_Object.Instance.GetMainWindow();
+            QuickAccessMenu mW = Local_Object.Instance.GetQAMWindow();
 
             if (mW.wifiAP == null)
             {

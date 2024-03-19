@@ -51,7 +51,7 @@ namespace Everything_Handhelds_Tool.UserControls.SettingsPageUserControls
 
             Page page = new EditActionOverviewPage();
 
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            QuickAccessMenu mainWindow = (QuickAccessMenu)Application.Current.MainWindow;
             mainWindow.frame.Content = page;
 
         }

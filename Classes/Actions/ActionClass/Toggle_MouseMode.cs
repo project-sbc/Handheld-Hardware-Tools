@@ -19,7 +19,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
             //calls main window toggle window
             Application.Current.Dispatcher.Invoke(() =>
             {
-                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                QuickAccessMenu mainWindow = (QuickAccessMenu)Application.Current.MainWindow;
                 mainWindow.ToggleMouseMode();
 
             });

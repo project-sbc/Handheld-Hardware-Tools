@@ -33,7 +33,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
                     }
                 }
 
-                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                QuickAccessMenu mainWindow = (QuickAccessMenu)Application.Current.MainWindow;
                 if (mainWindow != null)
                 {
                     if (mainWindow.Visibility == Visibility.Visible)

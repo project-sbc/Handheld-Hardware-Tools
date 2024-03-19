@@ -109,7 +109,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             }
 
 
-            MainWindow mainWindow = Local_Object.Instance.GetMainWindow();
+            QuickAccessMenu mainWindow = Local_Object.Instance.GetQAMWindow();
 
             if (mainWindow.frame.Content is EditActionPage)
             {
@@ -217,7 +217,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
         private void gamepad_Tick(object sender, EventArgs e)
         {
             //get gamepad from mainwindow
-            MainWindow mainWindow = Local_Object.Instance.GetMainWindow();
+            QuickAccessMenu mainWindow = Local_Object.Instance.GetQAMWindow();
             //get the state and turn it into a ushort
             if (mainWindow.controllerInput.controller == null)
             {
@@ -283,7 +283,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             //set variables to stop controller / kb input from being registered
             
             //do controller first
-            MainWindow mainWindow = Local_Object.Instance.GetMainWindow();
+            QuickAccessMenu mainWindow = Local_Object.Instance.GetQAMWindow();
             mainWindow.controllerInput.suspendEventsForHotKeyProgramming = true;
 
 
@@ -320,7 +320,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
 
             //set variables to allow the normal function of keyboard/controller input
             //do controller first
-            MainWindow mainWindow = Local_Object.Instance.GetMainWindow();
+            QuickAccessMenu mainWindow = Local_Object.Instance.GetQAMWindow();
             mainWindow.controllerInput.suspendEventsForHotKeyProgramming = false;
 
             //now keyboard

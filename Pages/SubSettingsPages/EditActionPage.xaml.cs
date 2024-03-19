@@ -131,7 +131,7 @@ namespace Everything_Handhelds_Tool.Pages
             EditActionOverviewPage editActionOverviewPage = new EditActionOverviewPage(action);
             
             //get mainwindow frame
-            MainWindow mainWindow = Local_Object.Instance.GetMainWindow();
+            QuickAccessMenu mainWindow = Local_Object.Instance.GetQAMWindow();
             mainWindow.frame.Content = editActionOverviewPage;
 
             if (updateControllerHotKeyDictionary)
@@ -166,7 +166,7 @@ namespace Everything_Handhelds_Tool.Pages
             //override base function to send you back to general settings page
             System.Windows.Controls.Page page = new EditActionOverviewPage();
 
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            QuickAccessMenu mainWindow = (QuickAccessMenu)Application.Current.MainWindow;
             mainWindow.frame.Content = page;
         }
 

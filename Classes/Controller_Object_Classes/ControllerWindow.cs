@@ -38,7 +38,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
 
         public bool DetermineControllerConnected()
         {
-            MainWindow mw = (MainWindow)Application.Current.MainWindow;
+            QuickAccessMenu mw = (QuickAccessMenu)Application.Current.MainWindow;
             if (mw.controllerInput != null)
             {
                 if (mw.controllerInput.controller != null)
@@ -109,7 +109,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
 
         public void SubscribeControllerEvents()
         {
-            MainWindow mw = (MainWindow)Application.Current.MainWindow;
+            QuickAccessMenu mw = (QuickAccessMenu)Application.Current.MainWindow;
             if (mw != null)
             {
                 if (mw.controllerInput != null)
@@ -125,7 +125,7 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
         }
         public void UnsubscribeControllerEvents()
         {
-            MainWindow mw = (MainWindow)Application.Current.MainWindow;
+            QuickAccessMenu mw = (QuickAccessMenu)Application.Current.MainWindow;
             if (mw != null)
             {
                 if (mw.controllerInput != null)
