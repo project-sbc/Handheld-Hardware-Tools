@@ -388,7 +388,7 @@ namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel
 
         private void RadialMenuItem_Click(object sender, RoutedEventArgs e)
         {
-          
+            HandleRadialMenuItemClick(sender as RadialMenuItem);
         }
 
         private void centralItem_Click(object sender, RoutedEventArgs e)

@@ -70,6 +70,10 @@ namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel
                 case Toggle_Desktop:
                     return new QuickActionWheelItem_Toggle_Desktop();
                     break;
+                case Open_SteamBP:
+                    return new QuickActionWheelItem_Open_SteamBP();
+                    break;
+
             }
             return null;
         }

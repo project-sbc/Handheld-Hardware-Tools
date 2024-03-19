@@ -247,6 +247,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="AppWindows\WelcomeWindow\" />
     <Folder Include="Resources\Icons\" />
   </ItemGroup>
 

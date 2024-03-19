@@ -98,7 +98,10 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     }
 
                     break;
-              
+                case "Open_SteamBP":
+                    this.Visibility = Visibility.Collapsed;
+                    break;
+
                 default:
                     if (actionName.Contains("Toggle_"))
                     {//this hides the argument list for anything that is only a toggle

@@ -92,7 +92,9 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
                 case "Toggle_MouseMode":
                     actionHandler = new ActionUserControl_Toggle_MouseMode(action);
                     break;
-
+                case "Open_SteamBP":
+                    actionHandler = new ActionUserControl_Open_SteamBP(action);
+                    break;
                 case "Toggle_Guide":
                     actionHandler = new ActionUserControl_Toggle_Guide(action);
                     break;
@@ -111,7 +113,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
 
         private void ConfigureTextAndSymbol()
         {
-            actionHandler.ConfigureControls(textBlock, textBlock2, symbolIcon, symbolIconDisabled, iconGrid);
+            actionHandler.ConfigureControls(textBlock, textBlock2, symbolIcon, symbolIconDisabled, iconGrid, faIcon);
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

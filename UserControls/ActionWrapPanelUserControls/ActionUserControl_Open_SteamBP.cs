@@ -21,11 +21,11 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
             symbolIcon.Visibility = Visibility.Collapsed;
             faIcon.Visibility = Visibility.Visible;
             faIcon.Icon = FontAwesome.WPF.FontAwesomeIcon.Steam;
-            textBlock2.Text = Application.Current.Resources["Action_Toggle_Guide"].ToString();
+            textBlock2.Text = Application.Current.Resources["Action_Open_SteamBP"].ToString();
 
-            textBlock.Text = Application.Current.Resources["ActionUserControl_Enabled"].ToString();
+            textBlock.Text = "";
 
-          
+            iconGrid.HorizontalAlignment = HorizontalAlignment.Center;
 
         }
         public override void ButtonPress(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled) 

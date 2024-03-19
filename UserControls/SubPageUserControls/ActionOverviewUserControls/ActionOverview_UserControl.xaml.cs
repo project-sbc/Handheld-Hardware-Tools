@@ -223,6 +223,12 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.ArrowSyncCircle20;
 
                     break;
+                case "Open_SteamBP":
+                    symbolIcon.Visibility = Visibility.Collapsed;
+                    faIcon.Visibility = Visibility.Visible;
+                    faIcon.Icon = FontAwesome.WPF.FontAwesomeIcon.Steam;
+
+                    break;
                 case "Cycle_Volume":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Speaker216;
                     if (action.parameters != null)
