@@ -48,7 +48,8 @@
     <None Remove="Resources\Intel\MSR\WinIo64.sys" />
     <None Remove="Resources\Intel\MSR\WinRing0x64.dll" />
     <None Remove="Resources\Intel\MSR\WinRing0x64.sys" />
-    <None Remove="Resources\MainWindowDeviceImages\Minisforum_UM780_XTX.png" />
+    <None Remove="Resources\MainWindowImages\Devices\Minisforum_UM780_XTX.png" />
+    <None Remove="Resources\MainWindowImages\Logos\Minisforum_Logo.png" />
     <None Remove="Resources\QRes\QRes.exe" />
     <None Remove="Resources\RTSS\RTSSHooks64.dll" />
     <None Remove="Resources\RTSS\RTSSSharedMemoryNET.dll" />
@@ -79,6 +80,7 @@
     <Content Include="Resources\AMD\ADLX\ADLX_3DSettings.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+
     <Content Include="Resources\AMD\ADLX\ADLX_AutoTuning.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -152,6 +154,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Intel\MSR\WinRing0x64.sys">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\MainWindowImages\Devices\Minisforum_UM780_XTX.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\MainWindowImages\Logos\Minisforum_Logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\QRes\QRes.exe">

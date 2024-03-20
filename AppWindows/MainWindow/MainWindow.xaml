@@ -15,7 +15,7 @@
    
         xmlns:local="clr-namespace:Everything_Handhelds_Tool.AppWindows.MainWindow"
 
-        Title="MainWindow" Height="450" Width="800">
+        Title="Handheld Hardware Tools" Height="450" Width="800">
     <Grid Background="{DynamicResource MainWindowBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
@@ -30,11 +30,12 @@
             <ColumnDefinition Width="40" />
         </Grid.ColumnDefinitions>
 
-        <ui:Card Grid.Row="1" Grid.Column="1"  Name="cardBorder3" Grid.RowSpan="2"  Margin="6"  Background="{DynamicResource PageBackground}" BorderBrush="Blue"    VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Top">
+        <ui:Card Grid.Row="1" Grid.Column="1"  Name="cardBorder3" Grid.RowSpan="2"  Margin="6"  Background="{DynamicResource PageBackground}"    VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalContentAlignment="Top">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="6*" />
+                    <RowDefinition Height="2*" />
           
    
                 </Grid.RowDefinitions>
@@ -43,7 +44,22 @@
                     <ColumnDefinition Width="*" />
               
                 </Grid.ColumnDefinitions>
-                <Image Source="/Resources/MainWindowDeviceImages/Minisforum_UM780_XTX.png"   Grid.RowSpan="2" Grid.ColumnSpan="2"  />
+                <Border   HorizontalAlignment="Left" Panel.ZIndex="1" Background="White" CornerRadius="8">
+                    <Image Margin="15" Source="/Resources/MainWindowImages/Logos/Minisforum_Logo.png"    />
+                </Border>
+               
+                
+                
+                <Image Source="/Resources/MainWindowImages/Devices/Minisforum_UM780_XTX.png" VerticalAlignment="Top"  Grid.Row="1" Grid.ColumnSpan="2"  />
+
+
+                <StackPanel>
+                    <font
+                    
+                    
+                </StackPanel>
+                
+                
             </Grid>
             
         </ui:Card>
