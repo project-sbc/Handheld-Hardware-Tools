@@ -10,8 +10,8 @@
                      
                         
         WindowState="Maximized"
-       
-        
+               xmlns:outlineTB="clr-namespace:Everything_Handhelds_Tool.Classes"
+        xmlns:materialIcons="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
    
         xmlns:local="clr-namespace:Everything_Handhelds_Tool.AppWindows.MainWindow"
 
@@ -35,7 +35,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="6*" />
-                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="120" />
           
    
                 </Grid.RowDefinitions>
@@ -53,11 +53,32 @@
                 <Image Source="/Resources/MainWindowImages/Devices/Minisforum_UM780_XTX.png" VerticalAlignment="Top"  Grid.Row="1" Grid.ColumnSpan="2"  />
 
 
-                <StackPanel>
-                    <font
+                <Grid Grid.Row="2" HorizontalAlignment="Left" Panel.ZIndex="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+
+
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="4*" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <materialIcons:MaterialIcon Grid.Row="0" Grid.Column="0" Kind="Cogs"  HorizontalAlignment="Right" />
+                    <outlineTB:OutlinedTextBlock Grid.Row="0" Grid.Column="1" x:Name="manufacturerOutlineTextblock" Text="Minisforum UM780 XTX" FontSize="22" StrokeThickness="4" Stroke="White" Fill="#FF3C3C3C" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"  />
+
+
+                    <materialIcons:MaterialIcon Grid.Row="1" Grid.Column="0" Kind="Memory"  HorizontalAlignment="Right" />
+                    <outlineTB:OutlinedTextBlock Grid.Row="1" Grid.Column="1" x:Name="processorOutlineTextblock" Text="AMD Ryzen z1 extreme" FontSize="22" StrokeThickness="4" Stroke="White" Fill="#FF3C3C3C" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"  />
+
                     
-                    
-                </StackPanel>
+                    <materialIcons:MaterialIcon Grid.Row="2" Grid.Column="0" Kind="Chip"  HorizontalAlignment="Right" />
+                    <outlineTB:OutlinedTextBlock Grid.Row="2" Grid.Column="1" x:Name="ramOutlineTextblock" Text="16 GB" FontSize="22" StrokeThickness="4" Stroke="White" Fill="#FF3C3C3C" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"  />
+                </Grid>
                 
                 
             </Grid>

@@ -48,6 +48,7 @@
     <None Remove="Resources\Intel\MSR\WinIo64.sys" />
     <None Remove="Resources\Intel\MSR\WinRing0x64.dll" />
     <None Remove="Resources\Intel\MSR\WinRing0x64.sys" />
+    <None Remove="Resources\MainWindowDeviceImages\Minisforum_UM780_XTX.png" />
     <None Remove="Resources\MainWindowImages\Devices\Minisforum_UM780_XTX.png" />
     <None Remove="Resources\MainWindowImages\Logos\Minisforum_Logo.png" />
     <None Remove="Resources\QRes\QRes.exe" />
@@ -190,6 +191,7 @@
     <PackageReference Include="InputSimulator" Version="1.0.4" />
     <PackageReference Include="MahApps.Metro.IconPacks.FontAwesome" Version="4.11.0" />
     <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
+    <PackageReference Include="Material.Icons.WPF" Version="2.1.0" />
     <PackageReference Include="MouseKeyHook" Version="5.7.1" />
     <PackageReference Include="Nefarius.Utilities.DeviceManagement" Version="3.17.406" />
     <PackageReference Include="Notification.Wpf" Version="8.0.0" />
