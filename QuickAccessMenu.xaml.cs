@@ -70,8 +70,8 @@ namespace Everything_Handhelds_Tool
 
             //Application.Current.Resources.MergedDictionaries.Add(((ResourceDictionary)XamlReader.Load(xamlFile)));
 
-            MainWindow guide = new MainWindow();
-            guide.Show();
+            //MainWindow guide = new MainWindow();
+            //guide.Show();
 
         }
 

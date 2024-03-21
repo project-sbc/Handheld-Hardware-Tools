@@ -14,22 +14,22 @@ namespace Everything_Handhelds_Tool.Classes.Actions
     {
         public DefaultActionList() 
         {
-            Cycle_TDP cycle_TDP = new Cycle_TDP() { parameters = new List<string> { "10", "15", "20" }, ID = 0, displayInActionPanel = true };
+            Cycle_TDP cycle_TDP = new Cycle_TDP() { parameters = new List<string> { "10", "15", "20" }, ID = 0, displayInActionPanel = true, displayInRadialMenu = true };
             this.Add(cycle_TDP);
 
-            Toggle_QAM toggle_QAM = new Toggle_QAM() {ID = 1, displayInActionPanel = true };
+            Toggle_QAM toggle_QAM = new Toggle_QAM() {ID = 1, displayInActionPanel = true, hotkeyType="Controller", hotKey="772" };
             this.Add(toggle_QAM);
 
-            Toggle_OSK toggle_OSK = new Toggle_OSK() { ID = 2, displayInActionPanel = true };
+            Toggle_OSK toggle_OSK = new Toggle_OSK() { ID = 2, displayInActionPanel = true, hotkeyType = "Controller", hotKey = "770" };
             this.Add(toggle_OSK);
 
             Toggle_WinOSK toggle_WOSK = new Toggle_WinOSK() { ID = 3, displayInActionPanel = true };
             this.Add(toggle_WOSK);
 
-            Toggle_WindowManager toggle_WM = new Toggle_WindowManager() { ID = 4, displayInActionPanel = true };
+            Toggle_WindowManager toggle_WM = new Toggle_WindowManager() { ID = 4, displayInActionPanel = true, displayInRadialMenu = true };
             this.Add(toggle_WM);
 
-            Toggle_MouseMode toggle_MM = new Toggle_MouseMode() { ID = 5, displayInActionPanel = true,  };
+            Toggle_MouseMode toggle_MM = new Toggle_MouseMode() { ID = 5, displayInActionPanel = true,  displayInRadialMenu = true };
             this.Add(toggle_MM);
 
             Toggle_VolumeMute toggle_VM = new Toggle_VolumeMute() { ID = 6, displayInActionPanel = true };
@@ -43,6 +43,11 @@ namespace Everything_Handhelds_Tool.Classes.Actions
 
             Toggle_BT toggle_BT = new Toggle_BT() { ID = 9, displayInActionPanel = true };
             this.Add(toggle_BT);
+
+            Toggle_QuickActionWheel toggle_QAW = new Toggle_QuickActionWheel() { ID=10, displayInActionPanel = true , hotkeyType = "Controller", hotKey = "769" };
+            this.Add(toggle_QAW);
+
+             
         }
     }
 
