@@ -12,40 +12,38 @@ using Wpf.Ui.Controls;
 
 namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel.QuickActionWheelItem_Actions
 {
-    public class QuickActionWheelItem_Cycle_Volume : QuickActionWheelItem
+    public class QuickActionWheelItem_Toggle_BT : QuickActionWheelItem
     {
-        public bool hasSubMenu = true;
+        public bool hasSubMenu = false;
 
         public override void SetUpIconsAndTextblock(SymbolIcon symbolIcon, FontAwesome.WPF.FontAwesome fontAwesomeIcon, TextBlock textBlock, out List<RadialMenuItem> subRadialMenuItems, RadialMenuCentralItem radialMenuCentralItem, Classes.Actions.Action action, out string displayName)
         {
             base.SetUpIconsAndTextblock(symbolIcon, fontAwesomeIcon, textBlock, out subRadialMenuItems, radialMenuCentralItem, action, out displayName);
         }
-               
+                      
 
-        public override List<RadialMenuItem> SetUpSubRadialMenu(Classes.Actions.Action action)
-        {
-            List<RadialMenuItem> subRadialMenuItems = new List<RadialMenuItem>();
-            foreach (string vol in action.parameters)
-            {
-                RadialMenuItem rmi = new RadialMenuItem()
-                {
-                    Content = new TextBlock() { FontSize = 30, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, Text = vol + " %" },
-
-                };
-               
-                subRadialMenuItems.Add(rmi);
-            }
-            return subRadialMenuItems;
-        }
-
-        public override void SetUpUserControlIcons(SymbolIcon symbolIcon, FontAwesome.WPF.FontAwesome fontAwesomeIcon) 
+        public override async void SetUpUserControlIcons(SymbolIcon symbolIcon, FontAwesome.WPF.FontAwesome fontAwesomeIcon) 
         {
             fontAwesomeIcon.Visibility = Visibility.Collapsed;
-            symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Speaker224;
+
+            bool BTON = await Task.Run(() => Wifi_BT_Management.Instance.GetBTIsEnabledAsync());
+
+
+            if (BTON == false)
+            {
+                symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.BluetoothDisabled20;
+                
+            }
+            else
+            {
+                symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.BluetoothConnected20;
+               
+            }
+            
         }
         public override void SetUpUserControlTextblock(TextBlock textBlock, Classes.Actions.Action action) 
         {
-            textBlock.Text = Volume_Management.Instance.ReadAndReturnVolume().ToString() + " %";
+            textBlock.Text = Application.Current.Resources["Action_" + action.actionName].ToString();
     }
         public override void SetUpRadialCentralMenuItem(Classes.Actions.Action action, out RadialMenuCentralItem radialMenuCentralItem)
         {

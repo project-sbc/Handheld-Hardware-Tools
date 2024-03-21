@@ -38,16 +38,26 @@ namespace Everything_Handhelds_Tool.Classes.Actions
             Toggle_MicrophoneMute toggle_MicM = new Toggle_MicrophoneMute() { ID = 7, displayInActionPanel = true };
             this.Add(toggle_MicM);
 
-            Toggle_Wifi toggle_wifi = new Toggle_Wifi() { ID = 8, displayInActionPanel = true };
+            Toggle_Wifi toggle_wifi = new Toggle_Wifi() { ID = 8, displayInActionPanel = true, displayInRadialMenu = true };
             this.Add(toggle_wifi);
 
-            Toggle_BT toggle_BT = new Toggle_BT() { ID = 9, displayInActionPanel = true };
+            Toggle_BT toggle_BT = new Toggle_BT() { ID = 9, displayInActionPanel = true, displayInRadialMenu = true };
             this.Add(toggle_BT);
 
             Toggle_QuickActionWheel toggle_QAW = new Toggle_QuickActionWheel() { ID=10, displayInActionPanel = true , hotkeyType = "Controller", hotKey = "769" };
             this.Add(toggle_QAW);
 
-             
+            Toggle_Desktop toggle_Desktop = new Toggle_Desktop() { ID=11, displayInRadialMenu= true, displayInActionPanel = true };
+            this.Add(toggle_Desktop);   
+
+            Cycle_Volume cycle_Volume = new Cycle_Volume() { ID=12, displayInRadialMenu = true, displayInActionPanel = true, parameters = new List<string> { "0", "10", "20", "30", "50", "70", "80", "90", "100" } };
+            this.Add(cycle_Volume);
+
+            Toggle_Guide toggle_Guide = new Toggle_Guide() { ID = 13, hotkeyType = "Controller", hotKey = "771" };
+            this.Add(toggle_Guide);
+
+            Toggle_VolumeMute toggle_VolumeMute = new Toggle_VolumeMute() { ID=14, displayInActionPanel= true, displayInRadialMenu=true };
+            this.Add(toggle_VolumeMute);
         }
     }
 

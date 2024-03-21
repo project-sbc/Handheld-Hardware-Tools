@@ -73,6 +73,15 @@ namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel
                 case Open_SteamBP:
                     return new QuickActionWheelItem_Open_SteamBP();
                     break;
+                case Toggle_Wifi:
+                    return new QuickActionWheelItem_Toggle_Wifi();
+                    break;
+                case Toggle_BT:
+                    return new QuickActionWheelItem_Toggle_BT();
+                    break;
+                case Toggle_VolumeMute:
+                    return new QuickActionWheelItem_Toggle_VolumeMute();
+                    break;
 
             }
             return null;
