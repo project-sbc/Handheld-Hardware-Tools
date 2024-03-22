@@ -88,6 +88,10 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
             if (button != null)
             {
                 VirtualKeyCode vkc = VirtualKeyCode.SPACE;
+
+                //sendCharacter updates preview textbox
+                string sendCharacter = "";
+
                 switch (button.Tag)
                 {
                     case "Dual":
@@ -101,6 +105,7 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
                         {
                             case "Backspace":
                                 vkc = VirtualKeyCode.BACK;
+                                
                                 break;
                             case "Shift":
 
@@ -113,22 +118,31 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
                             case "CapsLock":
                                 capsPressed = !capsPressed;
                                 break;
+                            case "Enter":
+                                vkc = VirtualKeyCode.RETURN;
+                                break;
                         }
                         break;
                 }
 
                 //send keyboard input
-
-
+         
+                
                 if (button.Tag.ToString() == "Letter")
                 {//logical XOR operator so that it is false when both are true or both are false
                     if (capsPressed ^ shiftPressed)
                     {//if both pressed they cancel and make a lower case
                         inputSimulator.Keyboard.ModifiedKeyStroke(VirtualKeyCode.SHIFT, vkc);
+
+                        //sendCharacter updates preview textbox
+                        sendCharacter = vkc.ToString().Replace("VK_","").ToUpper();
                     }
                     else
                     {
                         inputSimulator.Keyboard.KeyPress(vkc);
+
+                        //sendCharacter updates preview textbox
+                        sendCharacter = vkc.ToString().Replace("VK_", "").ToLower();
                     }
                 }
                 else
@@ -136,21 +150,58 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
                     if (shiftPressed)
                     {
                         inputSimulator.Keyboard.ModifiedKeyStroke(VirtualKeyCode.SHIFT, vkc);
+                        sendCharacter = oskShiftLookup[vkc].ToString();
                     }
                     else
                     {
+                        //sendCharacter updates preview textbox
+                        sendCharacter = oskLookup.FirstOrDefault(x => x.Value == vkc).Key;
+
                         inputSimulator.Keyboard.KeyPress(vkc);
                     }
                 }
 
-
+                SendOutlinePreviewTextUpdate(sendCharacter);
+               
             }
 
 
 
         }
 
-       
+        private void SendOutlinePreviewTextUpdate(string text)
+        {
+            var window = Local_Object.Instance.GetGeneralWindow(this);
+
+            if (window is OSK)
+            {
+                OSK osk = (OSK)window;
+                osk.UpdateOutlinePreviewText(text);
+            }
+        }
+
+
+        private Dictionary<VirtualKeyCode, string> oskShiftLookup = new Dictionary<VirtualKeyCode, string>()
+        {
+
+
+            { VirtualKeyCode.VK_1, "!" },
+            { VirtualKeyCode.VK_2, "@"},
+            {VirtualKeyCode.VK_3 , "#"},
+            {VirtualKeyCode.VK_4 , "$"},
+            {VirtualKeyCode.VK_5 , "%"},
+            {VirtualKeyCode.VK_6 , "^"},
+            {VirtualKeyCode.VK_7 , "&"},
+            {VirtualKeyCode.VK_8 , "*"},
+            {VirtualKeyCode.VK_9 , "("},
+            {VirtualKeyCode.VK_0 , ")"},
+            {VirtualKeyCode.OEM_PERIOD , ">"},
+            {VirtualKeyCode.OEM_COMMA , "<"},
+            {VirtualKeyCode.BACK , "BACKSPACE"},
+            {VirtualKeyCode.RETURN , "ENTER"}
+
+
+        };
 
 
         private Dictionary<string, VirtualKeyCode> oskLookup = new Dictionary<string, VirtualKeyCode>()

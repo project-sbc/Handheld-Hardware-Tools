@@ -15,12 +15,22 @@
         ShowInTaskbar="True"
                 ShowActivated="False"
         ResizeMode="NoResize"
- 
+  xmlns:outlineTB="clr-namespace:Everything_Handhelds_Tool.Classes"
         Title="OSK" Height="0" Width="0"
       
         Opacity=".95"  Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"
         >
-    <DockPanel>
-        <Frame Name="frame" NavigationUIVisibility="Hidden"/>
-    </DockPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>r
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <outlineTB:OutlinedTextBlock x:Name="outlineTextblock" HorizontalAlignment="Center" FontSize="20" Fill="Blue" />
+
+        <DockPanel Grid.Row="1">
+            <Frame Name="frame" NavigationUIVisibility="Hidden"/>
+        </DockPanel>
+    </Grid>
+    
+
 </Window>

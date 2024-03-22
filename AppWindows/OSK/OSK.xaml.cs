@@ -85,6 +85,27 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK
 
         }
 
+        public void UpdateOutlinePreviewText(string text)
+        {
+            if (text.Length > 1)
+            {
+                switch(text)
+                {
+                    case "ENTER":
+                        outlineTextblock.Text = "";
+                        break;
+                    case "BACKSPACE":
+                        outlineTextblock.Text = outlineTextblock.Text.Substring(0, outlineTextblock.Text.Length - 1);
+                        break;
+
+                }
+            }
+            else
+            {
+                outlineTextblock.Text = outlineTextblock.Text + text;
+            }
+        }
+
         private void SetLocation()
         {
             this.Width = SystemParameters.FullPrimaryScreenWidth;
