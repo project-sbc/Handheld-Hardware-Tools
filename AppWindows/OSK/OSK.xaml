@@ -22,11 +22,10 @@
         >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>r
+            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <outlineTB:OutlinedTextBlock x:Name="outlineTextblock" HorizontalAlignment="Center" FontSize="20" Fill="Blue" />
-
+        <outlineTB:OutlinedTextBlock x:Name="outlineTextblock" HorizontalAlignment="Center" FontSize="35" Fill="DimGray" StrokeThickness="" />
         <DockPanel Grid.Row="1">
             <Frame Name="frame" NavigationUIVisibility="Hidden"/>
         </DockPanel>

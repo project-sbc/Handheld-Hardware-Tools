@@ -20,12 +20,14 @@ namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel.QuickActionWheel
         {
             base.SetUpIconsAndTextblock(symbolIcon, fontAwesomeIcon, textBlock, out subRadialMenuItems, radialMenuCentralItem, action, out displayName);
         }
-                      
+
+        
 
         public override void SetUpUserControlIcons(SymbolIcon symbolIcon, FontAwesome.WPF.FontAwesome fontAwesomeIcon) 
         {
             symbolIcon.Visibility = Visibility.Collapsed;
             fontAwesomeIcon.Icon = FontAwesome.WPF.FontAwesomeIcon.Steam;
+            fontAwesomeIcon.Visibility = Visibility.Visible;
         }
         public override void SetUpUserControlTextblock(TextBlock textBlock, Classes.Actions.Action action) 
         {

@@ -68,7 +68,7 @@ namespace Everything_Handhelds_Tool.Classes
 
 
         }
-        private string GetSteamDirectory()
+        public string GetSteamDirectory()
         {
             try
             {

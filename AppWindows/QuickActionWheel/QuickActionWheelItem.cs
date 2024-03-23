@@ -31,6 +31,8 @@ namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel
         //this can be overridden at the individual class level, default returns null
         public virtual List<RadialMenuItem> SetUpSubRadialMenu(Classes.Actions.Action action) { return null; }
 
+
+
         //
         public virtual void SetUpUserControlIcons(SymbolIcon symbolIcon, FontAwesome.WPF.FontAwesome fontAwesomeIcon) { }
         public virtual void SetUpUserControlTextblock(TextBlock textBlock, Classes.Actions.Action action) { }

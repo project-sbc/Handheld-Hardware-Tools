@@ -28,6 +28,7 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
             iconGrid.HorizontalAlignment = HorizontalAlignment.Center;
 
         }
+
         public override void ButtonPress(TextBlock textBlock, TextBlock textBlock2, SymbolIcon symbolIcon, SymbolIcon symbolIconDisabled) 
         {
             action.OnActivate();
