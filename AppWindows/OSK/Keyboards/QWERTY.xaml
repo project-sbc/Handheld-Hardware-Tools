@@ -230,7 +230,7 @@
 
                 </Grid>
             </Button>
-            <Button Grid.Column="21" Grid.ColumnSpan="2" Margin="3,6,3,3" Tag="Dual">
+            <Button Grid.Column="21" Grid.ColumnSpan="2" Margin="3,6,3,3" Tag="Dual" CommandParameter="-">
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*"/>
@@ -245,7 +245,7 @@
 
                 </Grid>
             </Button>
-            <Button Grid.Column="23" Grid.ColumnSpan="2" Margin="3,6,3,3" Tag="Dual">
+            <Button Grid.Column="23" Grid.ColumnSpan="2" Margin="3,6,3,3" Tag="Dual" CommandParameter="=">
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*"/>
@@ -311,7 +311,7 @@
             <Button Grid.Row="1" Grid.Column="16" Grid.ColumnSpan="2"  Content="i" Tag="Letter"/>
             <Button Grid.Row="1" Grid.Column="18" Grid.ColumnSpan="2"  Content="o" Tag="Letter"/>
             <Button Grid.Row="1" Grid.Column="20" Grid.ColumnSpan="2"  Content="p" Tag="Letter"/>
-            <Button Grid.Row="1" Grid.Column="22" Grid.ColumnSpan="2"  Tag="Dual">
+            <Button Grid.Row="1" Grid.Column="22" Grid.ColumnSpan="2"  Tag="Dual" CommandParameter="LBracket">
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*"/>
@@ -325,12 +325,16 @@
                         </TextBlock>
                     </Viewbox>
                     <Viewbox Grid.Row="1" Tag="1" >
-                        <TextBlock Text="[" Foreground="White"/>
+                        <TextBlock Text="]" Foreground="White">
+                            <TextBlock.RenderTransform>
+                                <ScaleTransform ScaleX="-1" />
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
                     </Viewbox>
 
                 </Grid>
             </Button>
-            <Button Grid.Row="1" Grid.Column="24" Grid.ColumnSpan="2" Tag="Dual">
+            <Button Grid.Row="1" Grid.Column="24" Grid.ColumnSpan="2" Tag="Dual"  CommandParameter="RBracket">
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*"/>
@@ -345,7 +349,7 @@
 
                 </Grid>
             </Button>
-            <Button Grid.Row="1" Grid.Column="26" Grid.ColumnSpan="2" Margin="3,3,6,3" Tag="Dual">
+            <Button Grid.Row="1" Grid.Column="26" Grid.ColumnSpan="2" Margin="3,3,6,3" Tag="Dual" CommandParameter="Slash">
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*"/>
@@ -363,7 +367,7 @@
 
 
 
-            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="6,3,3,3" Tag="Special" CommandParameter="CapsLock" Name="capsButton">
+            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="6,3,3,3" Tag="Special" CommandParameter="CapsLock" Name="capsButton" >
                 <Grid  VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*" />
@@ -392,7 +396,7 @@
             <Button Grid.Row="2" Grid.Column="15" Grid.ColumnSpan="2"  Content="j"  Tag="Letter"/>
             <Button Grid.Row="2" Grid.Column="17" Grid.ColumnSpan="2"  Content="k" Tag="Letter"/>
             <Button Grid.Row="2" Grid.Column="19" Grid.ColumnSpan="2"  Content="l" Tag="Letter"/>
-            <Button Grid.Row="2" Grid.Column="21" Grid.ColumnSpan="2" Tag="Dual">
+            <Button Grid.Row="2" Grid.Column="21" Grid.ColumnSpan="2" Tag="Dual" CommandParameter=";">
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*"/>
@@ -407,17 +411,17 @@
 
                 </Grid>
             </Button>
-            <Button Grid.Row="2" Grid.Column="23" Grid.ColumnSpan="2"  Tag="Dual">
+            <Button Grid.Row="2" Grid.Column="23" Grid.ColumnSpan="2"  Tag="Dual" CommandParameter="'">
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*"/>
                         <RowDefinition Height="4*"/>
                     </Grid.RowDefinitions>
                     <Viewbox Tag="2">
-                        <TextBlock  Text="'" Foreground="DarkGray"/>
+                        <TextBlock  Text="&quot;" Foreground="DarkGray"/>
                     </Viewbox>
                     <Viewbox Grid.Row="1" Tag="1" >
-                        <TextBlock Text="&quot;" Foreground="White"/>
+                        <TextBlock Text="'" Foreground="White"/>
                     </Viewbox>
 
                 </Grid>
@@ -474,7 +478,7 @@
             <Button Grid.Row="3" Grid.Column="12" Grid.ColumnSpan="2"   Content="b"  Tag="Letter"/>
             <Button Grid.Row="3" Grid.Column="14" Grid.ColumnSpan="2"   Content="n"  Tag="Letter"/>
             <Button Grid.Row="3" Grid.Column="16" Grid.ColumnSpan="2"   Content="m"  Tag="Letter"/>
-            <Button Grid.Row="3" Grid.Column="18" Grid.ColumnSpan="2"   Tag="Dual">
+            <Button Grid.Row="3" Grid.Column="18" Grid.ColumnSpan="2"   Tag="Dual" CommandParameter=",">
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*"/>
@@ -504,7 +508,7 @@
 
                 </Grid>
             </Button>
-            <Button Grid.Row="3" Grid.Column="22" Grid.ColumnSpan="2"   Tag="Dual">
+            <Button Grid.Row="3" Grid.Column="22" Grid.ColumnSpan="2"   Tag="Dual" CommandParameter="/">
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*"/>

@@ -17,16 +17,16 @@
         ResizeMode="NoResize"
   xmlns:outlineTB="clr-namespace:Everything_Handhelds_Tool.Classes"
         Title="OSK" Height="0" Width="0"
-      
-        Opacity=".95"  Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"
+        Background="Transparent"
+        Opacity=".95"  
         >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <outlineTB:OutlinedTextBlock x:Name="outlineTextblock" HorizontalAlignment="Center" FontSize="35" Fill="DimGray" StrokeThickness="" />
-        <DockPanel Grid.Row="1">
+        <outlineTB:OutlinedTextBlock x:Name="outlineTextblock" HorizontalAlignment="Center" FontSize="35" Fill="White" Stroke="Black" StrokeThickness="4" />
+        <DockPanel Grid.Row="1" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}">
             <Frame Name="frame" NavigationUIVisibility="Hidden"/>
         </DockPanel>
     </Grid>

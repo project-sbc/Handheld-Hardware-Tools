@@ -97,7 +97,15 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK
                     case "BACKSPACE":
                         outlineTextblock.Text = outlineTextblock.Text.Substring(0, outlineTextblock.Text.Length - 1);
                         break;
-
+                    case "LBracket":
+                        outlineTextblock.Text = outlineTextblock.Text + "[";
+                        break;
+                    case "RBracket":
+                        outlineTextblock.Text = outlineTextblock.Text + "]";
+                        break;
+                    case "Slash":
+                        outlineTextblock.Text = outlineTextblock.Text + "\\";
+                        break;
                 }
             }
             else

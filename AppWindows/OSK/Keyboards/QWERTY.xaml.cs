@@ -198,9 +198,19 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
             {VirtualKeyCode.OEM_PERIOD , ">"},
             {VirtualKeyCode.OEM_COMMA , "<"},
             {VirtualKeyCode.BACK , "BACKSPACE"},
-            {VirtualKeyCode.RETURN , "ENTER"}
+            {VirtualKeyCode.RETURN , "ENTER"},
+            {VirtualKeyCode.SUBTRACT, "_" },
+            {VirtualKeyCode.OEM_PLUS, "+"},
+            {VirtualKeyCode.OEM_4, "{" },
+            {VirtualKeyCode.OEM_6, "}"},
+            {VirtualKeyCode.OEM_5 , "|" },
+            {VirtualKeyCode.OEM_1 , ":" },
+            {VirtualKeyCode.OEM_7 , "\"" },
 
 
+            {VirtualKeyCode.OEM_2, "?" },
+
+             
         };
 
 
@@ -243,10 +253,19 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
             {"8", VirtualKeyCode.VK_8},
             {"9", VirtualKeyCode.VK_9},
             {"0", VirtualKeyCode.VK_0},
-            {".", VirtualKeyCode.OEM_PERIOD},
-            {",", VirtualKeyCode.OEM_COMMA}
-
-
+            {"=", VirtualKeyCode.OEM_PLUS},
+       
+            {"BACKSPACE", VirtualKeyCode.BACK},
+            {"ENTER", VirtualKeyCode.RETURN },
+            {"-", VirtualKeyCode.OEM_MINUS  },
+            {"LBracket", VirtualKeyCode.OEM_4  },
+            {"RBracket" , VirtualKeyCode.OEM_6  },
+            {"Slash", VirtualKeyCode.OEM_5 },
+            {";", VirtualKeyCode.OEM_1 },
+            {"'", VirtualKeyCode.OEM_7 },
+            {",", VirtualKeyCode.OEM_COMMA },
+            {".", VirtualKeyCode.OEM_PERIOD },
+            {"/", VirtualKeyCode.OEM_2 },
         };
 
 
