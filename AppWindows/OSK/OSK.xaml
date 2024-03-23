@@ -20,7 +20,7 @@
         Background="Transparent"
         Opacity=".95"  
         >
-    <Grid>
+    <Grid x:Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>

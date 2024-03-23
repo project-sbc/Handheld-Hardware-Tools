@@ -114,7 +114,9 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
                             case "Hide":
                                 CloseWindow();
                                 return;
-
+                            case "Esc":
+                                vkc = VirtualKeyCode.ESCAPE;
+                                break;
                             case "CapsLock":
                                 capsPressed = !capsPressed;
                                 break;
@@ -147,7 +149,7 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
                 }
                 else
                 {
-                    if (shiftPressed)
+                     if (shiftPressed)
                     {
                         inputSimulator.Keyboard.ModifiedKeyStroke(VirtualKeyCode.SHIFT, vkc);
                         sendCharacter = oskShiftLookup[vkc].ToString();
@@ -209,6 +211,7 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
 
 
             {VirtualKeyCode.OEM_2, "?" },
+            {VirtualKeyCode.ESCAPE, "" },
 
              
         };
@@ -266,6 +269,7 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
             {",", VirtualKeyCode.OEM_COMMA },
             {".", VirtualKeyCode.OEM_PERIOD },
             {"/", VirtualKeyCode.OEM_2 },
+            {"", VirtualKeyCode.ESCAPE },
         };
 
 

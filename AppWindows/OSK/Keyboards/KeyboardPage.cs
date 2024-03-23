@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using WindowsInput;
 using WindowsInput.Native;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
 {
@@ -50,8 +51,11 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
         {
             //IM PUTTING THIS HERE TO TRY TO GET AROUND THE CIRCLE DISAPPEARING ISSUE
             HandleLeftCircleMovement(lx, ly);
-            HandleRightCircleMovement(rx, ry);
+            if (lx != 0  || ly != 0) { ShowLeftCircle(); }
 
+
+            HandleRightCircleMovement(rx, ry);
+            if (rx != 0 || ry != 0) { ShowRightCircle(); }
         }
 
       
@@ -257,7 +261,7 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
             //identify start buttons and make input circles but keep them transparent. This prevents any kind of error due to the circles not being generated when the controller connected event happens
 
             //set upperLimitY based on window size
-            foreach (OSK mw in Application.Current.Windows.OfType<OSK>())
+            foreach (OSK mw in System.Windows.Application.Current.Windows.OfType<OSK>())
             {
                 upperLimitY = mw.Top - circleDiameter / 2;
             }
@@ -346,10 +350,15 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
                 controllerInput.buttonPressEvent.controllerInputEvent += ButtonPressEvent_controllerInputEvent;
                 controllerInput.controllerConnectionChangedEvent.controllerConnectionChangedEvent += ControllerConnectionChangedEvent_controllerConnectionChangedEvent;
             }
-           
-            
+
+
             //setup timer for hiding circles
-            hideCirclesTimer.Tick += HideCirclesTimer_Tick;
+            hideLeftCircleTimer.Tick += HideLeftCircleTimer_Tick;
+            hideRightCircleTimer.Tick += HideRightCircleTimer_Tick;
+            hideLeftButtonTimer.Tick += HideLeftButtonTimer_Tick;
+            hideRightButtonTimer.Tick += HideRightButtonTimer_Tick;
+
+            
         }
         public void UnsubscribeEvents()
         {
@@ -364,8 +373,14 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
 
 
             //dont forget to unsubscribe the timer and stop it
-            hideCirclesTimer.Stop();
-            hideCirclesTimer.Tick -= HideCirclesTimer_Tick;
+            hideLeftCircleTimer.Stop();
+            hideRightCircleTimer.Stop();
+            hideLeftButtonTimer.Stop();
+            hideRightButtonTimer.Stop();
+            hideLeftCircleTimer.Tick -= HideLeftCircleTimer_Tick;
+            hideRightCircleTimer.Tick -= HideRightCircleTimer_Tick;
+            hideLeftButtonTimer.Tick -= HideLeftButtonTimer_Tick;
+            hideRightButtonTimer.Tick -= HideRightButtonTimer_Tick;
         }
         private void ControllerConnectionChangedEvent_controllerConnectionChangedEvent(object? sender, controllerConnectionChangedEventArgs e)
         {
@@ -401,7 +416,9 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
                         case "LeftThumb":
                             capsPressed = !capsPressed;
                             break;
+                        case "RightThumb":
 
+                            break;
                         case "LeftShoulder":
                             leftButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
                             break;
@@ -410,9 +427,11 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
                             break;
                         case "X":
                             inputSimulator.Keyboard.KeyPress(VirtualKeyCode.BACK);
+                            SendOutlinePreviewTextUpdate("BACKSPACE");
                             break;
                         case "Y":
                             inputSimulator.Keyboard.KeyPress(VirtualKeyCode.SPACE);
+                            SendOutlinePreviewTextUpdate("SPACE");
                             break;
                         case "LeftTrigger":
                             shiftPressed = !shiftPressed;
@@ -422,6 +441,7 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
                             break;
                         case "Start":
                             inputSimulator.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+                            SendOutlinePreviewTextUpdate("ENTER");
                             break;
 
                     }
@@ -431,6 +451,27 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
             });
         }
 
+        private void ToggleOutlineTextBlock()
+        {
+            var window = Local_Object.Instance.GetGeneralWindow(this);
+
+            if (window is OSK)
+            {
+                OSK osk = (OSK)window;
+                osk.ToggleOutlineTextBlock();
+            }
+        }
+
+        private void SendOutlinePreviewTextUpdate(string text)
+        {
+            var window = Local_Object.Instance.GetGeneralWindow(this);
+
+            if (window is OSK)
+            {
+                OSK osk = (OSK)window;
+                osk.UpdateOutlinePreviewText(text);
+            }
+        }
         private void JoystickEvent_controllerJoystickEvent(object? sender, controllerJoystickEventArgs e)
         {
            
@@ -439,6 +480,8 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
                 if (this.Visibility == Visibility.Visible)
                 {
                     HandleJoystickInput(e.lx, e.ly, e.rx, e.ry);
+
+                
                 }
             });
         }
@@ -513,7 +556,7 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
             Button newButton = MoveCircleAndHitTest(ellipse, newPoint, button);
 
 
-            if (newButton != leftButton && newButton != rightButton)
+            if ((newButton != leftButton && left) || (newButton != rightButton && !left))
             {
                 return newButton;
             }
@@ -584,7 +627,7 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
         public double JoystickToCircleMovementOffset(double Input)
         {
             //
-            ShowCircles();
+            
 
             //Convert short from joystick to double, divide by largest value, and round to largest nubmer away from zero
             double absInput = Math.Abs(Input);
@@ -668,17 +711,32 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
         }
 
         //set up dispatcher timer to hide the circles after 2 seconds of inactivity, this makes it look cleaner when using
-        DispatcherTimer hideCirclesTimer = new DispatcherTimer()
+        DispatcherTimer hideLeftCircleTimer = new DispatcherTimer()
         {
             Interval = new TimeSpan(0, 0, 1)
         };
+
+        DispatcherTimer hideRightCircleTimer = new DispatcherTimer()
+        {
+            Interval = new TimeSpan(0, 0, 1)
+        };
+
+        DispatcherTimer hideLeftButtonTimer = new DispatcherTimer()
+        {
+            Interval = new TimeSpan(0, 0, 6)
+        };
+
+        DispatcherTimer hideRightButtonTimer = new DispatcherTimer()
+        {
+            Interval = new TimeSpan(0, 0, 6)
+        };
         public void ControllerConnected()
         {
-            HighlightButton(leftButton);
-            HighlightButton(rightButton);
+            //HighlightButton(leftButton);
+            //HighlightButton(rightButton);
 
 
-            ShowCircles();
+            
 
             leftCircle.Fill = Brushes.DarkGray;
             rightCircle.Fill = Brushes.DarkGray;
@@ -688,27 +746,75 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
 
         }
 
-        public void HideCirclesTimer_Tick(object? sender, EventArgs e)
+        public void HideLeftCircleTimer_Tick(object? sender, EventArgs e)
         {
 
-            hideCirclesTimer.Stop();
+            hideLeftCircleTimer.Stop();
             leftCircle.Visibility = Visibility.Collapsed;
-            rightCircle.Visibility = Visibility.Collapsed;
+          
 
         }
-        public void ShowCircles()
+        public void HideRightCircleTimer_Tick(object? sender, EventArgs e)
+        {
+
+            hideRightCircleTimer.Stop();
+            rightCircle.Visibility = Visibility.Collapsed;
+
+
+        }
+        public void HideRightButtonTimer_Tick(object? sender, EventArgs e)
+        {
+
+            hideRightButtonTimer.Stop();
+            UnhighlightButton(rightButton);
+
+
+        }
+        public void HideLeftButtonTimer_Tick(object? sender, EventArgs e)
+        {
+
+            hideLeftButtonTimer.Stop();
+            UnhighlightButton(leftButton);
+
+
+        }
+
+        public void ShowLeftCircle()
         {
             //runs during the joystick movement event
             if (leftCircle.Visibility == Visibility.Collapsed)
             {
                 leftCircle.Visibility = Visibility.Visible;
-                rightCircle.Visibility = Visibility.Visible;
-                hideCirclesTimer.Start();
+                HighlightButton(leftButton);
+                hideLeftCircleTimer.Start();
+                hideLeftButtonTimer.Start();
             }
             else
             {//reset timer using stop and then start
-                hideCirclesTimer.Stop();
-                hideCirclesTimer.Start();
+                hideLeftCircleTimer.Stop();
+                hideLeftCircleTimer.Start();
+
+                hideLeftButtonTimer.Stop();
+                hideLeftButtonTimer.Start();
+            }
+        }
+        public void ShowRightCircle()
+        {
+            //runs during the joystick movement event
+            if (rightCircle.Visibility == Visibility.Collapsed)
+            {
+                rightCircle.Visibility = Visibility.Visible;
+                HighlightButton(rightButton);
+                hideRightCircleTimer.Start();
+                hideRightButtonTimer.Start();
+            }
+            else
+            {//reset timer using stop and then start
+                hideRightCircleTimer.Stop();
+                hideRightCircleTimer.Start();
+
+                hideRightButtonTimer.Stop();
+                hideRightButtonTimer.Start();
             }
         }
 

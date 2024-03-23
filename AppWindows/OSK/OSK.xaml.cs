@@ -87,30 +87,65 @@ namespace Everything_Handhelds_Tool.AppWindows.OSK
 
         public void UpdateOutlinePreviewText(string text)
         {
-            if (text.Length > 1)
+            if (text != null)
             {
-                switch(text)
+                if (text.Length > 1)
                 {
-                    case "ENTER":
-                        outlineTextblock.Text = "";
-                        break;
-                    case "BACKSPACE":
-                        outlineTextblock.Text = outlineTextblock.Text.Substring(0, outlineTextblock.Text.Length - 1);
-                        break;
-                    case "LBracket":
-                        outlineTextblock.Text = outlineTextblock.Text + "[";
-                        break;
-                    case "RBracket":
-                        outlineTextblock.Text = outlineTextblock.Text + "]";
-                        break;
-                    case "Slash":
-                        outlineTextblock.Text = outlineTextblock.Text + "\\";
-                        break;
+                    switch (text)
+                    {
+                        case "ENTER":
+                            outlineTextblock.Text = "";
+                            break;
+                        case "BACKSPACE":
+                            if (outlineTextblock.Text != null)
+                            {
+                                if (outlineTextblock.Text.Length > 0)
+                                {
+                                    outlineTextblock.Text = outlineTextblock.Text.Substring(0, outlineTextblock.Text.Length - 1);
+                                }
+                            }
+                            break;
+                        case "SPACE":
+                            outlineTextblock.Text = outlineTextblock.Text + " ";
+                            break;
+                        case "LBracket":
+                            outlineTextblock.Text = outlineTextblock.Text + "[";
+                            break;
+                        case "RBracket":
+                            outlineTextblock.Text = outlineTextblock.Text + "]";
+                            break;
+                        case "Slash":
+                            outlineTextblock.Text = outlineTextblock.Text + "\\";
+                            break;
+                    }
                 }
+                else
+                {
+                    outlineTextblock.Text = outlineTextblock.Text + text;
+                }
+
+                if (outlineTextblock.ActualWidth > frame.ActualWidth * 0.4 && outlineTextblock.Text != null)
+                {
+                    if (outlineTextblock.Text.Length > 0)
+                    {
+                        outlineTextblock.Text = outlineTextblock.Text.Substring(1, outlineTextblock.Text.Length - 1);
+                    }
+
+                }
+            }
+           
+        }
+
+        public void ToggleOutlineTextBlock()
+        {
+            if (outlineTextblock.Visibility == Visibility.Visible)
+            {
+                outlineTextblock.Text = "";
+                outlineTextblock.Visibility = Visibility.Collapsed;
             }
             else
             {
-                outlineTextblock.Text = outlineTextblock.Text + text;
+                outlineTextblock.Visibility = Visibility.Visible;
             }
         }
 
