@@ -19,6 +19,7 @@ namespace Everything_Handhelds_Tool.Classes.Devices
         public string mchBar { get; set; } = string.Empty;
 
         public int maxNonTurboCPUFrequnecy { get; set; } = -1;
+        public int maxGPUFrequency { get; set; } = 1500;
         public virtual bool ManualFanControlEnabled() 
         {
             //This will return false for any device that doesnt have fan control

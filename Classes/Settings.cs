@@ -16,6 +16,7 @@ namespace Everything_Handhelds_Tool.Classes
         public int defaultTDP { get; set; } = 15;
         public int maxTDP { get; set; } = 30;
         public int minTDP { get; set; } = 5;
+        public int maxGPUClock { get; set; } = -1;
         public string intelTDPType { get; set; } = "MMIO";
 
         public bool syncSustainedBoostTDP = true;

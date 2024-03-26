@@ -234,6 +234,9 @@
     <Compile Update="UserControls\HomePageUserControls\ActiveCores_Slider.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControls\HomePageUserControls\GPUClock_Slider.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\HomePageUserControls\TurboCPU_ToggleSwitch.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

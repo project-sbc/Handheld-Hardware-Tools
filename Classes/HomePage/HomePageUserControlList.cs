@@ -60,6 +60,9 @@ namespace Everything_Handhelds_Tool.Classes.HomePage
             this.Add("Usercontrol_EPP", true);
             this.Add("Usercontrol_ActiveCores", true);
             this.Add("Usercontrol_CPUTurbo", true);
+            this.Add("Usercontrol_PowerBalanceCPU", true);
+            this.Add("Usercontrol_PowerBalanceGPU", true);
+            this.Add("Usercontrol_GPUCLK", true);
 
         }
 

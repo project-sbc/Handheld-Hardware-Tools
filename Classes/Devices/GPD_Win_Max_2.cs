@@ -14,7 +14,7 @@ namespace Everything_Handhelds_Tool.Classes.Devices
             deviceFanControlCapable = true;
             deviceGyroControlCapable = true;
             deviceName = "GPD Win Max 2";
-
+            maxGPUFrequency = 2200;
         }
 
         public override void EnableAutomaticFanControl()

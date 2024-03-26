@@ -92,6 +92,16 @@ namespace Everything_Handhelds_Tool.Pages
                     return new MaxCPU_Slider();
                 case "Usercontrol_CPUTurbo":
                     return new TurboCPU_ToggleSwitch();
+
+                case "Usercontrol_PowerBalanceCPU":
+                    return new IntelCPUPowerBalance_Slider();
+                case "Usercontrol_PowerBalanceGPU":
+                    return new IntelGPUPowerBalance_Slider();
+
+                case "Usercontrol_GPUCLK":
+                    return new GPUClock_Slider();
+
+
                 default:
                     return null;
             }

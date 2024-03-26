@@ -12,11 +12,10 @@ namespace Everything_Handhelds_Tool.Classes.Devices
         public AMD_Generic() 
         {
 
-
             deviceFanControlCapable = false;
             deviceGyroControlCapable = false;
             deviceName = "AMD Generic Device";
-
+            maxGPUFrequency = 2200;
         }
 
      
