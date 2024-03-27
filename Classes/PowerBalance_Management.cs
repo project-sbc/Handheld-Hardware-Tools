@@ -88,14 +88,14 @@ namespace Everything_Handhelds_Tool.Classes
             }
         }
       
-        private string ConvertPowerToHexMSR(int tdp)
+        private string ConvertPowerToHexMSR(int val)
         {
             //Convert integer TDP value to Hex for rw.exe
             //Must use formula (TDP in watt   *1000/125) +32768 and convert to hex
             try
             {
-                int newTDP = (tdp * 8);
-                return newTDP.ToString("X");
+                int newVal = (val * 8);
+                return newVal.ToString("X");
 
             }
             catch (Exception ex)
@@ -200,51 +200,7 @@ namespace Everything_Handhelds_Tool.Classes
             
             }
         }
-        private string ParseHexFromResultMSRConvertToTDP(string result, bool isPL1)
-        {
-            int FindString = -1;
-            string hexResult = "";
-            try
-            {
-
-                float intResult;
-                if (isPL1)
-                {
-                    FindString = result.IndexOf("0x00000610") + 29;
-                    hexResult = result.Substring(FindString, 3).Trim();
-                    intResult = (Convert.ToInt32(hexResult, 16)) / 8;
-                    return intResult.ToString();
-
-                }
-                else
-                {
-                    FindString = result.IndexOf("0x00000610") + 18;
-                    hexResult = result.Substring(FindString, 3).Trim();
-                    intResult = (Convert.ToInt32(hexResult, 16)) / 8;
-                    return intResult.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-              
-                return "Error";
-            }
-
-
-
-        }
-     
-      
-
-      
-
-
-
-
-      
-
        
-      
       
       
     }
