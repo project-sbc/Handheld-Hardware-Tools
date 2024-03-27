@@ -37,6 +37,7 @@
                 <uc:EditActionsSettings_Button/>
                 <uc:EditHomepageSettings_Button/>
                 <uc:IntelTDPType_Combobox/>
+                <uc:AutoStart_ToggleSwitch />
             </StackPanel>
         </ScrollViewer>
        

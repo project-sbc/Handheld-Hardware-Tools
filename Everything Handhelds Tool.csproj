@@ -199,6 +199,7 @@
     <PackageReference Include="RadialMenu.WPF" Version="1.3.0" />
     <PackageReference Include="SharpDX.XInput" Version="4.2.0" />
     <PackageReference Include="System.Management" Version="7.0.2" />
+    <PackageReference Include="TaskScheduler" Version="2.10.1" />
     <PackageReference Include="WPF-UI" Version="2.1.0" />
   </ItemGroup>
 
@@ -252,6 +253,9 @@
     <Compile Update="UserControls\HomePageUserControls\Brightness_Slider.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControls\SettingsPageUserControls\AutoStart_ToggleSwitch.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\SubPageUserControls\EditMouseModeUserControls\MouseMovementStick_ToggleSwitch.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -262,6 +266,12 @@
 
   <ItemGroup>
     <Folder Include="Resources\Icons\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UserControls\SettingsPageUserControls\AutoStart_ToggleSwitch.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 

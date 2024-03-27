@@ -34,7 +34,7 @@
     <system:String x:Key="Usercontrol_PowerPlan">Power Plan</system:String>
     <system:String x:Key="Usercontrol_IntelTDPType">Intel TDP Type</system:String>
     <system:String x:Key="Usercontrol_NoHotkey">No Hotkey</system:String>
-
+    <system:String x:Key="Usercontrol_Autostart">Autostart </system:String>
 
         <!-- window manager app stings -->
     <system:String x:Key="Usercontrol_ToggleWindow">Toggle Window</system:String>
@@ -258,7 +258,7 @@ features such as TDP and fan control.
     <system:String x:Key="Usercontrol_ProfileName">Profile Name</system:String>
     <system:String x:Key="Usercontrol_Exe">Process Exe</system:String>
     <system:String x:Key="Usercontrol_DefaultProfile">Default Profile</system:String>
-    <system:String x:Key="Usercontrol_Autostart">Autostart</system:String>
+
     <system:String x:Key="Usercontrol_StartRTSS">Autostart RTSS</system:String>
     <system:String x:Key="Usercontrol_MaxTDP">Max TDP</system:String>
     <system:String x:Key="Usercontrol_MinTDP">Min TDP</system:String>
