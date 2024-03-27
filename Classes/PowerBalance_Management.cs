@@ -111,11 +111,11 @@ namespace Everything_Handhelds_Tool.Classes
             {
                 if (cpuOrGPU == "CPU")
                 {
-                    changePowerBalance(value, "0x63a 0x00000000");
+                    changePowerBalance(value, "0x0000063a 0x00000000");
                 }
                 if (cpuOrGPU == "GPU")
                 {
-                    changePowerBalance(value, "0x642 0x00000000");
+                    changePowerBalance(value, "0x00000642 0x00000000");
                 }
             }
         }
@@ -128,7 +128,7 @@ namespace Everything_Handhelds_Tool.Classes
             try
             {
                 string hexvalue;
-                hexvalue = "0x" + value.ToString("X32");
+                hexvalue = "0x" + value.ToString("X");
 
 
                 commandArguments = " -s write " + addressCPUorGPU + " " + hexvalue;
@@ -156,9 +156,13 @@ namespace Everything_Handhelds_Tool.Classes
                 string result = Run_CLI.Instance.RunCommand(commandArguments, true, processMSR);
                 if (result != null)
                 {
-                    MessageBox.Show("ADD THE POWER BALANCE READ STUFF HERE YOU DUMMY + " + result);
+                    string findstring = "0x00000642 0x00000000 ";
+                    int index = result.IndexOf(findstring)+findstring.Length+2;
+                    result = result.Substring(index, 8);
 
+                    int value = Convert.ToInt32(result, 16);
 
+                    powerBalanceGPU = value;
 
                 }
 
@@ -179,9 +183,14 @@ namespace Everything_Handhelds_Tool.Classes
                 string result = Run_CLI.Instance.RunCommand(commandArguments, true, processMSR);
                 if (result != null)
                 {
-                    MessageBox.Show("ADD THE POWER BALANCE READ STUFF HERE YOU DUMMY + " + result);
+                    //MessageBox.Show("ADD THE POWER BALANCE READ STUFF HERE YOU DUMMY + " + result);
+                    string findstring = "0x0000063a 0x00000000 ";
+                    int index = result.IndexOf(findstring) + findstring.Length+2;
+                    result = result.Substring(index, 8);
 
-                    
+                    int value = Convert.ToInt32(result,16);
+
+                    powerBalanceCPU = value;
 
                 }
 
