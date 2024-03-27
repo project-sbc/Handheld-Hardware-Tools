@@ -4,13 +4,13 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
-    <RootNamespace>Everything_Handhelds_Tool</RootNamespace>
+    <RootNamespace>Handheld_Hardware_Tools</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
 	  <UseWindowsForms>true</UseWindowsForms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>HH Tool icon v2 - Merged Down.ico</ApplicationIcon>
-    <StartupObject>Everything_Handhelds_Tool.App</StartupObject>
+    <StartupObject>Handheld_Hardware_Tools.App</StartupObject>
 	
   </PropertyGroup>
 

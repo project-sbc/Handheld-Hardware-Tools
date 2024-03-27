@@ -19,8 +19,8 @@
     <system:String x:Key="Usercontrol_MaxCPUClock">Set Max CPU Frequency</system:String>
     <system:String x:Key="Usercontrol_CPUTurbo">CPU Turbo Boost</system:String>
     <system:String x:Key="Usercontrol_Brightness">Brightness</system:String>
-    <system:String x:Key="Usercontrol_CloseEHT">Close Everything Handheld Tools</system:String>
-    <system:String x:Key="Usercontrol_HideEHT">Hide Everything Handheld Tools</system:String>
+    <system:String x:Key="Usercontrol_CloseEHT">Close Handheld Hardware Tools</system:String>
+    <system:String x:Key="Usercontrol_HideEHT">Hide Handheld Hardware Tools</system:String>
     <system:String x:Key="Usercontrol_CloseProgram">Close - </system:String>
     <system:String x:Key="Usercontrol_ShutdownPC">Shut Down PC</system:String>
     <system:String x:Key="Usercontrol_RestartPC">Restart PC</system:String>
