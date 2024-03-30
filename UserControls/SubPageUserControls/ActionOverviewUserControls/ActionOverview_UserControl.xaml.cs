@@ -167,6 +167,24 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
 
 
                     break;
+                case "Cycle_EPP":
+                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
+                    if (action.parameters != null)
+                    {
+                        if (action.parameters.Count > 0)
+                        {
+                            string totalEPPString = "";
+                            foreach (string epp in action.parameters)
+                            {
+                                totalEPPString = totalEPPString + epp + " %; ";
+                            }
+                            actionArguments.Text = totalEPPString;
+                        }
+
+                    }
+
+
+                    break;
                 case "Toggle_WifiAP":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Router24;
 

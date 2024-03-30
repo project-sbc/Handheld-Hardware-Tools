@@ -48,6 +48,9 @@ namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel
                 case Cycle_TDP:
                     return new QuickActionWheelItem_Cycle_TDP();
                     break;
+                case Cycle_EPP:
+                    return new QuickActionWheelItem_Cycle_EPP();
+                    break;
                 case Change_TDP:
                     return new QuickActionWheelItem_Change_TDP();
                     break;

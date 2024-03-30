@@ -37,6 +37,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
     [XmlInclude(typeof(Toggle_MouseMode))]
     [XmlInclude(typeof(Toggle_Guide))]
     [XmlInclude(typeof(Open_SteamBP))]
+    [XmlInclude(typeof(Cycle_EPP))]
     public class Action
     {
         //action name is programming specific, display name will be generated at runtime based on language selected
@@ -77,6 +78,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
         {
             this.Add("Change_TDP", Application.Current.Resources["Action_Change_TDP"].ToString());
             this.Add("Cycle_TDP", Application.Current.Resources["Action_Cycle_TDP"].ToString());
+            this.Add("Cycle_EPP", Application.Current.Resources["Action_Cycle_EPP"].ToString());
             this.Add("Cycle_Volume", Application.Current.Resources["Action_Cycle_Volume"].ToString());
             this.Add("Toggle_Wifi", Application.Current.Resources["Action_Toggle_Wifi"].ToString());
             this.Add("Toggle_WifiAP", Application.Current.Resources["Action_Toggle_WifiAP"].ToString());

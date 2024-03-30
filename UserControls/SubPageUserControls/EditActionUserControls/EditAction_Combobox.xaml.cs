@@ -140,6 +140,9 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     case "Cycle_Volume":
                         newAction = new Classes.Actions.ActionClass.Cycle_Volume();
                         break;
+                    case "Cycle_EPP":
+                        newAction = new Classes.Actions.ActionClass.Cycle_EPP();
+                        break;
                     case "Toggle_WindowManager":
                         newAction = new Classes.Actions.ActionClass.Toggle_WindowManager();
                         break;

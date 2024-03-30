@@ -136,6 +136,7 @@ features such as TDP and fan control.
         <!-- actionusercontrol strings are for the action panel, and action strings are for editing/adding new controls-->
     <system:String x:Key="Action_Change_TDP">Change TDP</system:String>
     <system:String x:Key="Action_Cycle_TDP">Change TDP Mode</system:String>
+    <system:String x:Key="Action_Cycle_EPP">Change EPP Mode</system:String>
     <system:String x:Key="Action_Cycle_Volume">Change Volume Mode</system:String>
 
     <system:String x:Key="Action_Toggle_WifiAP">Toggle Wifi AP</system:String>

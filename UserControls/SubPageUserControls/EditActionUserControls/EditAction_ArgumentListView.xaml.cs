@@ -89,6 +89,19 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     }
 
                     break;
+                case "Cycle_EPP":
+                    listView.SelectionMode = SelectionMode.Multiple;
+
+
+                    //add all the options, check to see if the value is divisible by 5 to see if you should add 3 or 2
+                    int epp = 0;
+                    while (epp <= 100)
+                    {
+                        listView.Items.Add(new ListViewItem { Content = epp.ToString() });
+                        epp = epp + 5;
+                    }
+
+                    break;
                 case "Change_TDP":
                     int x = -5;
                     while (x <=5)

@@ -47,6 +47,9 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
                 case "Cycle_TDP":
                     actionHandler = new ActionUserControl_Cycle_TDP(action);
                     break;
+                case "Cycle_EPP":
+                    actionHandler = new ActionUserControl_Cycle_EPP (action);
+                    break;
                 case "Cycle_Volume":
                     actionHandler = new ActionUserControl_Cycle_Volume(action);
                     break;
