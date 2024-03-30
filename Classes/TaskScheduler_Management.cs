@@ -69,8 +69,8 @@ namespace Everything_Handhelds_Tool.Classes
             bool checkStart = false;
 
             TaskService ts = new TaskService();
-            Task task = ts.GetTask("Handheld_Control_Panel");
-            string BaseDir = AppDomain.CurrentDomain.BaseDirectory;
+            Task task = ts.GetTask(appName);
+         
             if (task != null)
             {
                 TaskDefinition td = task.Definition;
@@ -82,7 +82,7 @@ namespace Everything_Handhelds_Tool.Classes
 
                         if (action.ActionType == TaskActionType.Execute)
                         {
-                            if (String.Compare(Path.GetFullPath(action.ToString()), Path.GetFullPath(BaseDir + "\\Handheld Control Panel.exe"), StringComparison.InvariantCultureIgnoreCase) == 0)
+                            if (String.Compare(Path.GetFullPath(action.ToString()), Path.GetFullPath(BaseDir + "\\" + appName + ".exe"), StringComparison.InvariantCultureIgnoreCase) == 0)
                             {
                                 checkStart = true;
                             }
@@ -91,7 +91,7 @@ namespace Everything_Handhelds_Tool.Classes
                                 //this code deletes a task IF the app running directory doesn't match the task directory.
                                 //its just to clean up outdated tasks and doesn't actually delete the current task
                                 task.RegisterChanges();
-                                ts.RootFolder.DeleteTask("Handheld_Control_Panel");
+                                ts.RootFolder.DeleteTask(appName);
                             }
                         }
                     }
