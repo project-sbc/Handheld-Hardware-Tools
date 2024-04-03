@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using HHT_Installer.Pages;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,16 @@ namespace HHT_Installer
         public MainWindow()
         {
             InitializeComponent();
+
+            LoadPage();
+        }
+
+        private void LoadPage()
+        {
+            //loads a page depending if software is installed or not
+            Installation installation = new Installation();
+            frame.Content = installation;
+
         }
     }
 }
