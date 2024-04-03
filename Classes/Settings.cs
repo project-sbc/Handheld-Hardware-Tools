@@ -25,6 +25,9 @@ namespace Everything_Handhelds_Tool.Classes
         public string passwordWifiAP { get; set; } = "eh123456";
 
 
+        public bool checkUpdatesAtStart { get; set; } = false;
+        public DateTime lastUpdateCheck { get; set; } = DateTime.Now;
+
         public void SaveToXML()
         {
             XML_Management.Instance.SaveXML("Settings", this);
