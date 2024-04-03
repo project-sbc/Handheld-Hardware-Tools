@@ -37,19 +37,16 @@ namespace Everything_Handhelds_Tool.Classes
             }
         }
 
-       
-        public bool startUp = false;
-        public void bindUpdateEvent()
-        {
-            AutoUpdater.InstallationPath = AppDomain.CurrentDomain.BaseDirectory; ;
-            AutoUpdater.CheckForUpdateEvent += (args) => AutoUpdaterOnCheckForUpdateEvent(args);
-        }
+   
       
         public void checkForUpdates(bool startUpRoutine = false)
         {
             //check for updates if this is called at startup and the setting for allow check at startup is on OR if this is not at startup and called from settings
-            startUp = startUpRoutine;
-            if (startUp)
+
+            AutoUpdater.InstallationPath = AppDomain.CurrentDomain.BaseDirectory; ;
+            AutoUpdater.CheckForUpdateEvent += (args) => AutoUpdaterOnCheckForUpdateEvent(args);
+
+            if (startUpRoutine)
             {
                 AutoUpdater.InstallationPath = AppDomain.CurrentDomain.BaseDirectory; ;
                 AutoUpdater.Start("https://raw.githubusercontent.com/project-sbc/Handheld-Control-Panel/master/Update.xml");
