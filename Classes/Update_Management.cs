@@ -37,19 +37,16 @@ namespace Everything_Handhelds_Tool.Classes
             }
         }
 
-       
-        public bool startUp = false;
-        public void bindUpdateEvent()
-        {
-            AutoUpdater.InstallationPath = AppDomain.CurrentDomain.BaseDirectory; ;
-            AutoUpdater.CheckForUpdateEvent += (args) => AutoUpdaterOnCheckForUpdateEvent(args);
-        }
+   
       
         public void checkForUpdates(bool startUpRoutine = false)
         {
             //check for updates if this is called at startup and the setting for allow check at startup is on OR if this is not at startup and called from settings
-            startUp = startUpRoutine;
-            if (startUp)
+
+            AutoUpdater.InstallationPath = AppDomain.CurrentDomain.BaseDirectory; ;
+            AutoUpdater.CheckForUpdateEvent += (args) => AutoUpdaterOnCheckForUpdateEvent(args);
+
+            if (startUpRoutine)
             {
                 AutoUpdater.InstallationPath = AppDomain.CurrentDomain.BaseDirectory; ;
                 AutoUpdater.Start("https://raw.githubusercontent.com/project-sbc/Handheld-Control-Panel/master/Update.xml");
@@ -114,7 +111,7 @@ namespace Everything_Handhelds_Tool.Classes
                 }
                 else
                 {
-                    if (!startUp)
+                    if (1==1)
                     {
                         System.Windows.Forms.MessageBox.Show(@"There is no update available please try again later.", @"No update available",
           MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -126,7 +123,7 @@ namespace Everything_Handhelds_Tool.Classes
             {
                 if (args.Error is WebException)
                 {
-                    if (!startUp)
+                    if (1==1)
                         System.Windows.Forms.MessageBox.Show(
                             @"There is a problem reaching update server. Please check your internet connection and try again later.",
                             @"Update Check Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
