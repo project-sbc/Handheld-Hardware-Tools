@@ -37,16 +37,11 @@ namespace Everything_Handhelds_Tool.Classes
             }
         }
 
-        //reg keys for my software if INSTALLED   Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Handheld Hardware Tools
-        //could have versions key, file path
-
-
-
-
+       
         public bool startUp = false;
         public void bindUpdateEvent()
         {
-            AutoUpdater.InstallationPath = AppDomain.CurrentDomain.BaseDirectory;
+            AutoUpdater.InstallationPath = AppDomain.CurrentDomain.BaseDirectory; ;
             AutoUpdater.CheckForUpdateEvent += (args) => AutoUpdaterOnCheckForUpdateEvent(args);
         }
       
