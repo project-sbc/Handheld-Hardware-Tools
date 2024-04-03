@@ -111,7 +111,7 @@ namespace Everything_Handhelds_Tool.Classes
                 }
                 else
                 {
-                    if (!startUp)
+                    if (1==1)
                     {
                         System.Windows.Forms.MessageBox.Show(@"There is no update available please try again later.", @"No update available",
           MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -123,7 +123,7 @@ namespace Everything_Handhelds_Tool.Classes
             {
                 if (args.Error is WebException)
                 {
-                    if (!startUp)
+                    if (1==1)
                         System.Windows.Forms.MessageBox.Show(
                             @"There is a problem reaching update server. Please check your internet connection and try again later.",
                             @"Update Check Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
