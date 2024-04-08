@@ -11,6 +11,7 @@ using System.Windows;
 using PowerManagerAPI;
 using System.Diagnostics;
 using SharpDX;
+using System.Runtime.InteropServices;
 
 namespace Everything_Handhelds_Tool.Classes
 {
@@ -258,80 +259,33 @@ namespace Everything_Handhelds_Tool.Classes
             PowercfgChangeValueHandler(value.ToString(), "PROCFREQMAX");
             maxCPUClock = value;
         }
-       
+
 
         #endregion
 
 
         #region set high perf/balanced/saver plan or get active plan
-        public void SetHighPerformancePlan()
-        {
-            string result = Run_CLI.Instance.RunCommand(" -s 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c", true, "C:\\windows\\system32\\powercfg.exe", 1000);
-        }
-        public void SetBalancedPlan()
-        {
-            string result = Run_CLI.Instance.RunCommand(" -s 381b4222-f694-41f0-9685-ff5bb260df2e​", true, "C:\\windows\\system32\\powercfg.exe", 1000);
-        }
-        public void SetPowerSaver()
-        {
-            string result = Run_CLI.Instance.RunCommand(" -s a1841308-3541-4fab-bc81-f71556f20b4a", true, "C:\\windows\\system32\\powercfg.exe", 1000);
-        }
+
         #endregion
 
 
         #region import/set hyatice plan
-        public void SetHyaticePowerPlanModePowercfg()
-        {
-
-            importHyaticePowerPlan();
-
-            string result = Run_CLI.Instance.RunCommand(" /l", true, "C:\\windows\\system32\\powercfg.exe", 1000);
-
-            string[] array = result.Split('\n');
-
-            foreach (string str in array)
-            {
-                if (str.Contains("Optimized Power Saver"))
-                {
-
-                    Run_CLI.Instance.RunCommand(" /s " + GetGUID(str), false, "C:\\windows\\system32\\powercfg.exe", 1000);
-                }
 
 
-            }
-
-        }
-        public string GetActiveScheme()
+        public Guid GetActiveScheme()
         {
 
             string activePlan = "";
             string result = Run_CLI.Instance.RunCommand(" getactivescheme", true, "C:\\windows\\system32\\powercfg.exe", 1000);
 
-            string name = GetSchemeName(result);
-            string GUID = GetGUID(result);
-      
-            switch (GUID)
-            {
-                case "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c":
-                    return "High_Performance";
-                    break;
-                case "381b4222-f694-41f0-9685-ff5bb260df2e":
-                    return "Balanced";
-                    break;
-                case "a1841308-3541-4fab-bc81-f71556f20b4a":
-                    return "Power_Saver";
-                    break;
-                default:
-                    if (name == "Optimized Power Saver")
-                    {
-                        return "Optimized_Power_Saver";
-                    }
-                    break;
-            }
 
-            return activePlan;
+            string GUID = GetGUID(result);
+
+          
+            return new Guid(GUID);
 
         }
+
 
         private string GetGUID(string input)
         {
@@ -362,6 +316,8 @@ namespace Everything_Handhelds_Tool.Classes
             else { return false; }
         }
 
+
+
         public void importHyaticePowerPlan()
         {
             if (!HyaticePowerPlanInstalled())
@@ -385,5 +341,120 @@ namespace Everything_Handhelds_Tool.Classes
         }
 
         #endregion
+    }
+    public static class PowerplanHelper
+    {
+        [DllImport("powrprof.dll", CharSet = CharSet.Unicode)]
+        public static extern uint PowerGetActiveScheme(IntPtr UserPowerKey, ref Guid SchemeGuid);
+
+        [DllImport("powrprof.dll", CharSet = CharSet.Unicode)]
+        public static extern uint PowerEnumerate(IntPtr RootPowerKey, ref Guid SchemeGuid, ref Guid SubGroupOfPowerSettingsGuid, uint AccessFlags, uint Index, ref Guid Buffer, ref uint BufferSize);
+
+        [DllImport("powrprof.dll", CharSet = CharSet.Unicode)]
+        public static extern uint PowerReadFriendlyName(IntPtr RootPowerKey, ref Guid SchemeGuid, IntPtr SubGroupOfPowerSettingsGuid, IntPtr PowerSettingGuid, IntPtr Buffer, ref uint BufferSize);
+
+        [DllImport("powrprof.dll", CharSet = CharSet.Unicode)]
+        public static extern uint PowerSetActiveScheme(IntPtr UserPowerKey, ref Guid SchemeGuid);
+
+        public static bool SetActivePowerScheme(Guid schemeGuid)
+        {
+            uint result = PowerSetActiveScheme(IntPtr.Zero, ref schemeGuid);
+            return result == 0; // 0 indicates success
+        }
+        public static Dictionary<string, Guid> GetPowerSchemes()
+        {
+            Dictionary<string, Guid> schemes = new Dictionary<string, Guid>();
+            uint index = 0;
+            uint bufferSize = 128; // Start with a small buffer size
+
+            // Loop through all power schemes
+            while (true)
+            {   
+                Guid schemeGuid = Guid.Empty;
+                Guid emptyGuid = Guid.Empty;
+                Guid emptyGuid2 = Guid.Empty;
+
+                uint result = PowerEnumerate(IntPtr.Zero, ref emptyGuid, ref emptyGuid2, 16 /*ACCESS_SCHEME*/, index, ref schemeGuid, ref bufferSize);
+
+
+                if (result != 0)
+                {
+                    //lets check for saver, balanced, and performance the default plans
+
+
+                    Guid powerSaver = new Guid("a1841308-3541-4fab-bc81-f71556f20b4a");
+                    Guid balanced = new Guid("381b4222-f694-41f0-9685-ff5bb260df2e");
+                    Guid highPerformance = new Guid("8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c");
+
+                    if (!schemes.ContainsValue(powerSaver))
+                    {
+                        string keyName = GetPowerSchemeName(powerSaver);
+                        schemes.Add(keyName, powerSaver);
+                    }
+                    if (!schemes.ContainsValue(balanced))
+                    {
+                        string keyName = GetPowerSchemeName(balanced);
+                        schemes.Add(keyName, balanced);
+                    }
+                    if (!schemes.ContainsValue(highPerformance))
+                    {
+                        string keyName = GetPowerSchemeName(highPerformance);
+                        schemes.Add(keyName, highPerformance);
+                    }
+                  
+
+                    if (result == 2) // No more power schemes available
+                        break;
+                    else
+                    {
+                        Console.WriteLine($"Failed to enumerate power schemes. Error code: {result}");
+                        return schemes;
+                    }
+                }
+
+                string schemeName = GetPowerSchemeName(schemeGuid);
+                schemes.Add(schemeName, schemeGuid);
+                index++;
+            }
+
+
+
+            return schemes;
+
+        }
+        public static string GetActivePowerSchemeName()
+        {
+            Guid activeScheme = Powercfg_Management.Instance.GetActiveScheme();
+
+            return GetPowerSchemeName(activeScheme);
+        }
+        public static string GetPowerSchemeName(Guid schemeGuid)
+        {
+            uint bufferSize = 128;
+
+            // Retrieve the size of the buffer required to hold the scheme name
+            uint result = PowerReadFriendlyName(IntPtr.Zero, ref schemeGuid, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero, ref bufferSize);
+            if (result != 0)
+                return "Unknown";
+
+            // Allocate memory for the scheme name
+            IntPtr bufferPtr = Marshal.AllocHGlobal((int)bufferSize);
+
+            // Retrieve the friendly name of the power scheme
+            result = PowerReadFriendlyName(IntPtr.Zero, ref schemeGuid, IntPtr.Zero, IntPtr.Zero, bufferPtr, ref bufferSize);
+            if (result != 0)
+            {
+                Marshal.FreeHGlobal(bufferPtr);
+                return "Unknown";
+            }
+
+            // Convert the buffer to a string
+            string schemeName = Marshal.PtrToStringUni(bufferPtr);
+
+            // Free allocated memory
+            Marshal.FreeHGlobal(bufferPtr);
+
+            return schemeName;
+        }
     }
 }

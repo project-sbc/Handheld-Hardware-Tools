@@ -25,7 +25,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
     public partial class PowerPlan_Combobox : ControllerUserControl
     {
         int originalSelectedIndex = -1;
-
+        Dictionary<string, Guid> powerPlanLookup = PowerplanHelper.GetPowerSchemes();
         public PowerPlan_Combobox()
         {
             InitializeComponent();
@@ -46,7 +46,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             General_Functions.ChangeControllerInstructionPage("ChangeBack");
         }
 
-        private Dictionary<string,string> powerPlanLookup = new Dictionary<string, string>()
+        private Dictionary<string,string> powerPlanLookup2 = new Dictionary<string, string>()
         {
             { Application.Current.Resources["Usercontrol_PowerPlanHighPerformance"].ToString(), "High_Performance" },
             { Application.Current.Resources["Usercontrol_PowerPlanBalanced"].ToString(), "Balanced" },
@@ -58,11 +58,11 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
         {
             comboBox.ItemsSource = powerPlanLookup;
 
-            string getActiveScheme = Powercfg_Management.Instance.GetActiveScheme();
+            string getActiveScheme = PowerplanHelper.GetActivePowerSchemeName();
 
-            foreach (KeyValuePair<string,string> pair in comboBox.ItemsSource)
+            foreach (KeyValuePair<string,Guid> pair in comboBox.ItemsSource)
             {
-                if (pair.Value == getActiveScheme)
+                if (pair.Key == getActiveScheme)
                 {
                     comboBox.SelectedItem = pair;
                     originalSelectedIndex = comboBox.SelectedIndex;
@@ -99,23 +99,14 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             {
                 originalSelectedIndex = comboBox.SelectedIndex;
 
-                KeyValuePair<string, string> selectedItem = (KeyValuePair<string, string>)comboBox.SelectedItem;
+                KeyValuePair<string, Guid> selectedItem = (KeyValuePair<string, Guid>)comboBox.SelectedItem;
        
-                switch (selectedItem.Value)
+                if (selectedItem.Value != null)
                 {
-                    case "High_Performance":
-                        Powercfg_Management.Instance.SetHighPerformancePlan();
-                        break;
-                    case "Balanced":
-                        Powercfg_Management.Instance.SetBalancedPlan();
-                        break;
-                    case "Power_Saver":
-                        Powercfg_Management.Instance.SetPowerSaver();
-                        break;
-                    case "Optimized_Power_Saver":
-                        Powercfg_Management.Instance.SetHyaticePowerPlanModePowercfg();
-                        break;
+
                 }
+
+               
             }
         }
 
