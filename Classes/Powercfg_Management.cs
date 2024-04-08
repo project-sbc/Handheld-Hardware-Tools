@@ -141,7 +141,8 @@ namespace Everything_Handhelds_Tool.Classes
         public void ChangeActiveCores(int cores)
         {
             //convert core number to total percentage using CPU total # cores
-            string CorePercentage = (Math.Round((double)(cores / maxNumberCores), 2) * 100).ToString();
+         
+            string CorePercentage = (Math.Round((double)(cores*100 / maxNumberCores), 0) ).ToString();
             PowercfgChangeValueHandler(CorePercentage, "CPMAXCORES");
             PowercfgChangeValueHandler(CorePercentage, "CPMINCORES");      
             
