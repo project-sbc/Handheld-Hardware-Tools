@@ -134,7 +134,7 @@ namespace Everything_Handhelds_Tool
         
 
 
-        private void SetAppLocationHeight()
+        public void SetAppLocationHeight()
         {
             Double height = General_Functions.GetWindowHeight(this);
 

@@ -46,7 +46,7 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
 
             foreach (Tuple<int,int> pair in comboBox.ItemsSource)
             {
-                if (pair == currentResolution)
+                if (pair.Item1 == currentResolution.Item1 && pair.Item2 == currentResolution.Item2)
                 {
                     comboBox.SelectedItem = pair;
                     originalSelectedIndex = comboBox.SelectedIndex;
