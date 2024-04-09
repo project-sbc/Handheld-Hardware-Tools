@@ -201,6 +201,10 @@ namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Blur20;
 
                     break;
+                case "Toggle_FreeSync":
+                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.DesktopSync24;
+
+                    break;
                 case "Toggle_MicrophoneMute":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Mic20;
 

@@ -38,6 +38,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
     [XmlInclude(typeof(Toggle_Guide))]
     [XmlInclude(typeof(Open_SteamBP))]
     [XmlInclude(typeof(Cycle_EPP))]
+    [XmlInclude(typeof(Toggle_FreeSync))]
     public class Action
     {
         //action name is programming specific, display name will be generated at runtime based on language selected
@@ -94,6 +95,7 @@ namespace Everything_Handhelds_Tool.Classes.Actions
             this.Add("Toggle_QAM", Application.Current.Resources["Action_Toggle_QAM"].ToString());
             this.Add("Toggle_MouseMode", Application.Current.Resources["Action_Toggle_MouseMode"].ToString());
             this.Add("Toggle_Guide", Application.Current.Resources["Action_Toggle_Guide"].ToString());
+            this.Add("Toggle_FreeSync", Application.Current.Resources["Action_Toggle_FreeSync"].ToString());
             this.Add("Open_SteamBP", Application.Current.Resources["Action_Open_SteamBP"].ToString());
 
 

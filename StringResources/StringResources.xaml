@@ -35,8 +35,9 @@
     <system:String x:Key="Usercontrol_IntelTDPType">Intel TDP Type</system:String>
     <system:String x:Key="Usercontrol_NoHotkey">No Hotkey</system:String>
     <system:String x:Key="Usercontrol_Autostart">Autostart </system:String>
-
-        <!-- window manager app stings -->
+    <system:String x:Key="Usercontrol_Resolution">Resolution</system:String>
+    <system:String x:Key="Usercontrol_RefreshRate">Refresh Rate</system:String>
+    <!-- window manager app stings -->
     <system:String x:Key="Usercontrol_ToggleWindow">Toggle Window</system:String>
     <system:String x:Key="Usercontrol_CloseProgramWM">Close Program</system:String>
     <system:String x:Key="Usercontrol_MoveMonitor">Move Monitor</system:String>
@@ -145,6 +146,7 @@ features such as TDP and fan control.
     <system:String x:Key="Action_Toggle_QAM">Toggle Menu</system:String>
     <system:String x:Key="Action_Toggle_MicrophoneMute">Toggle Microphone Mute</system:String>
     <system:String x:Key="Action_Toggle_IntegerScaling">Toggle Integer Scaling</system:String>
+    <system:String x:Key="Action_Toggle_FreeSync">Toggle FreeSync</system:String>
     <system:String x:Key="Action_Toggle_VolumeMute">Toggle Volume Mute</system:String>
     <system:String x:Key="Action_Toggle_WinOSK">Toggle Windows OSK</system:String>
     <system:String x:Key="Action_Toggle_OSK">Toggle OSK</system:String>
@@ -243,8 +245,8 @@ features such as TDP and fan control.
 
    
     <system:String x:Key="Usercontrol_VolumeMute">Volume Mute</system:String>
-    <system:String x:Key="Usercontrol_Resolution">Resolution</system:String>
-    <system:String x:Key="Usercontrol_RefreshRate">Refresh Rate</system:String>
+  
+
 
 
  
