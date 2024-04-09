@@ -1,6 +1,7 @@
 ﻿using Everything_Handhelds_Tool.Classes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using static Handheld_Hardware_Tools.Classes.DisplayHelper;
@@ -157,6 +158,16 @@ namespace Handheld_Hardware_Tools.Classes
         public Tuple<int, int> GetPrimaryMonitorResolution()
         {
             DISPLAY_DEVICE displayDevice = new DISPLAY_DEVICE();
+          
+            DEVMODE devMode = new DEVMODE();
+            EnumDisplaySettings(displayDevice.DeviceName, -1, ref devMode);
+
+            return new Tuple<int, int>(devMode.dmPelsWidth, devMode.dmPelsHeight);
+        }
+
+        public int GetPrimaryMonitorRefreshRate()
+        {
+            DISPLAY_DEVICE displayDevice = GetPrimaryDisplayDevice();
             displayDevice.cb = Marshal.SizeOf(displayDevice);
 
             EnumDisplayDevices(null, 0, ref displayDevice, 0);
@@ -164,103 +175,149 @@ namespace Handheld_Hardware_Tools.Classes
             DEVMODE devMode = new DEVMODE();
             EnumDisplaySettings(displayDevice.DeviceName, -1, ref devMode);
 
-            return new Tuple<int, int>(devMode.dmPelsWidth, devMode.dmPelsHeight);
+            return devMode.dmDisplayFrequency;
         }
-
-
         public void ChangePrimaryMonitorResolution(int newWidth, int newHeight)
         {
-            //changes monitor resolution and adjust frequency as needed
+            // Get primary display device
+            DISPLAY_DEVICE primaryDevice = GetPrimaryDisplayDevice();
 
-            DISPLAY_DEVICE primaryDevice = new DISPLAY_DEVICE();
-            primaryDevice.cb = Marshal.SizeOf(primaryDevice);
-
-            EnumDisplayDevices(null, 0, ref primaryDevice, 0);
-
-            DEVMODE devMode = new DEVMODE();
-            devMode.dmSize = (short)Marshal.SizeOf(devMode);
-
-            if (EnumDisplaySettings(primaryDevice.DeviceName, ENUM_CURRENT_SETTINGS, ref devMode))
+            if (primaryDevice.cb > 0)
             {
-                devMode.dmPelsWidth = newWidth;
-                devMode.dmPelsHeight = newHeight;
+                DEVMODE devMode = new DEVMODE();
+                devMode.dmSize = (short)Marshal.SizeOf(devMode);
 
-
-                //we need to check if the frequency is available at the new resolution, so lets grab a list
-                List<int> displayFrequency = GetAvailableRefreshRatesForPrimaryMonitor();
-                //below checks if the current refresh rate is in the list and fires the if statement if NOT
-                if (!displayFrequency.Contains(devMode.dmDisplayFrequency))
+                if (EnumDisplaySettings(primaryDevice.DeviceName, ENUM_CURRENT_SETTINGS, ref devMode))
                 {
-                    if (displayFrequency.Count > 0)
+                    devMode.dmPelsWidth = newWidth;
+                    devMode.dmPelsHeight = newHeight;
+
+                    // Retrieve available refresh rates for the primary monitor
+                    List<int> displayFrequencies = GetAvailableRefreshRatesForPrimaryMonitor();
+
+                    // Check if the current refresh rate is in the list and adjust if not
+                    if (!displayFrequencies.Contains(devMode.dmDisplayFrequency))
                     {
-                        //set it to the highest frequency for the resolution
-                        devMode.dmDisplayFrequency = displayFrequency[displayFrequency.Count - 1];
+                        if (displayFrequencies.Count > 0)
+                        {
+                            // Set it to the highest frequency for the resolution
+                            devMode.dmDisplayFrequency = displayFrequencies[displayFrequencies.Count - 1];
+                        }
+                    }
+
+                    // Change display settings
+                    int result = ChangeDisplaySettings(ref devMode, 0);
+                    if (result != DISP_CHANGE_SUCCESSFUL)
+                    {
+                        // Failed to change display settings
+                        Console.WriteLine("Failed to change display settings.");
+                    }
+                    else
+                    {
+                        // Display settings changed successfully
+                        Console.WriteLine("Display settings changed successfully.");
                     }
                 }
-
-
-                int result = ChangeDisplaySettings(ref devMode, 0);
-                if (result != DISP_CHANGE_SUCCESSFUL)
+                else
                 {
-
+                    // Failed to retrieve current display settings
+                    Console.WriteLine("Failed to retrieve current display settings.");
                 }
             }
             else
             {
+                // Primary display device not found
+                Console.WriteLine("Primary display device not found.");
             }
+
+           
         }
 
         public void ChangePrimaryMonitorRefreshRate(int newRefreshRate)
         {
-            DISPLAY_DEVICE primaryDevice = new DISPLAY_DEVICE();
-            primaryDevice.cb = Marshal.SizeOf(primaryDevice);
+            // Get primary display device
+            DISPLAY_DEVICE primaryDevice = GetPrimaryDisplayDevice();
 
-            EnumDisplayDevices(null, 0, ref primaryDevice, 0);
-
-            DEVMODE devMode = new DEVMODE();
-            devMode.dmSize = (short)Marshal.SizeOf(devMode);
-
-            if (EnumDisplaySettings(primaryDevice.DeviceName, ENUM_CURRENT_SETTINGS, ref devMode))
+            if (primaryDevice.cb > 0)
             {
-                devMode.dmDisplayFrequency = newRefreshRate;
+                DEVMODE devMode = new DEVMODE();
+                devMode.dmSize = (short)Marshal.SizeOf(devMode);
 
-                if (ChangeDisplaySettingsEx(primaryDevice.DeviceName, ref devMode, IntPtr.Zero, ChangeDisplaySettingsFlags.CDS_UPDATEREGISTRY, IntPtr.Zero) != DISP_CHANGE_SUCCESSFUL)
+                if (EnumDisplaySettings(primaryDevice.DeviceName, ENUM_CURRENT_SETTINGS, ref devMode))
                 {
+                    devMode.dmDisplayFrequency = newRefreshRate;
 
+                    if (ChangeDisplaySettingsEx(primaryDevice.DeviceName, ref devMode, IntPtr.Zero, ChangeDisplaySettingsFlags.CDS_UPDATEREGISTRY | ChangeDisplaySettingsFlags.CDS_SET_PRIMARY, IntPtr.Zero) != DISP_CHANGE_SUCCESSFUL)
+                    {
+                        // Failed to change display settings
+                        Console.WriteLine("Failed to change display settings.");
+                    }
+                    else
+                    {
+                        // Refresh rate changed successfully
+                        Console.WriteLine("Refresh rate changed successfully.");
+                    }
+                }
+                else
+                {
+                    // Failed to retrieve current display settings
+                    Console.WriteLine("Failed to retrieve current display settings.");
                 }
             }
             else
             {
-
+                // Primary display device not found
+                Console.WriteLine("Primary display device not found.");
             }
         }
+        private DISPLAY_DEVICE GetPrimaryDisplayDevice()
+        {//used to get primary display
+            DISPLAY_DEVICE displayDevice = new DISPLAY_DEVICE();
+            displayDevice.cb = Marshal.SizeOf(displayDevice);
+            uint deviceIndex = 0;
 
+            while (EnumDisplayDevices(null, deviceIndex, ref displayDevice, 0))
+            {
+                if (displayDevice.StateFlags.HasFlag(DisplayDeviceStateFlags.PrimaryDevice)) // Check if the device is the primary display
+                {
+                    return displayDevice;
+                }
+                deviceIndex++;
+            }
+
+            return new DISPLAY_DEVICE();
+        }
         public List<Tuple<int, int>> GetAvailableResolutionsForPrimaryMonitor()
         {
+           
             List<Tuple<int, int>> resolutions = new List<Tuple<int, int>>();
 
-            DISPLAY_DEVICE primaryDevice = new DISPLAY_DEVICE();
-            primaryDevice.cb = Marshal.SizeOf(primaryDevice);
+            DISPLAY_DEVICE displayDevice = new DISPLAY_DEVICE();
+            displayDevice.cb = Marshal.SizeOf(displayDevice);
+            uint deviceIndex = 0;
 
-            EnumDisplayDevices(null, 0, ref primaryDevice, 0);
-
-            DEVMODE devMode = new DEVMODE();
-            int iModeNum = 0;
-
-
-            while (EnumDisplaySettings(primaryDevice.DeviceName, iModeNum, ref devMode))
+            while (EnumDisplayDevices(null, deviceIndex, ref displayDevice, 0))
             {
-
-                Tuple<int, int> resolution = new Tuple<int, int>(devMode.dmPelsWidth, devMode.dmPelsHeight);
-                if (!resolutions.Contains(resolution))
+                if (displayDevice.StateFlags.HasFlag(DisplayDeviceStateFlags.PrimaryDevice)) // Check if device is the primary display
                 {
-                    resolutions.Add(resolution);
+                    DEVMODE devMode = new DEVMODE();
+                    int modeIndex = 0;
+                    while (EnumDisplaySettings(displayDevice.DeviceName, modeIndex, ref devMode))
+                    {
+                        Tuple<int, int> resolution = new Tuple<int, int>(devMode.dmPelsWidth, devMode.dmPelsHeight);
+                        if (!resolutions.Contains(resolution))
+                        {
+                            resolutions.Add(resolution);
+                        }
+                        modeIndex++;
+                    }
+                    break; // Once primary display's resolutions are found, exit the loop
                 }
-
-                iModeNum++;
+                deviceIndex++;
             }
 
             return resolutions;
+
         }
 
         public List<int> GetAvailableRefreshRatesForPrimaryMonitor(int xRes = 0, int yRes = 0)
@@ -269,36 +326,45 @@ namespace Handheld_Hardware_Tools.Classes
 
             List<int> refreshRates = new List<int>();
 
-            DISPLAY_DEVICE primaryDevice = new DISPLAY_DEVICE();
-            primaryDevice.cb = Marshal.SizeOf(primaryDevice);
+            DISPLAY_DEVICE displayDevice = new DISPLAY_DEVICE();
+            displayDevice.cb = Marshal.SizeOf(displayDevice);
+            uint deviceIndex = 0;
 
-            EnumDisplayDevices(null, 0, ref primaryDevice, 0);
-
-            DEVMODE devMode = new DEVMODE();
-            int iModeNum = 0;
-
-            //we need to filter to only the current resolution (or specificed argument in function)
-            if (xRes == 0 || yRes == 0)
+            while (EnumDisplayDevices(null, deviceIndex, ref displayDevice, 0))
             {
-                xRes = devMode.dmPelsWidth;
-                yRes = devMode.dmPelsHeight;
-            }
-
-
-
-            while (EnumDisplaySettings(primaryDevice.DeviceName, iModeNum, ref devMode))
-            {
-                if (devMode.dmPelsWidth == xRes && devMode.dmPelsHeight == yRes)
+                if (displayDevice.StateFlags.HasFlag(DisplayDeviceStateFlags.PrimaryDevice)) // Check if device is the primary display
                 {
-                    int refresh = devMode.dmDisplayFrequency;
-                    if (!refreshRates.Contains(refresh))
+                    DEVMODE devMode = new DEVMODE();
+                    int iModeNum = 0;
+
+                    //we need to filter to only the current resolution (or specificed argument in function)
+                    if (xRes == 0 || yRes == 0)
                     {
-                        refreshRates.Add(refresh);
+                        xRes = devMode.dmPelsWidth;
+                        yRes = devMode.dmPelsHeight;
                     }
 
-                }
 
-                iModeNum++;
+
+                    while (EnumDisplaySettings(displayDevice.DeviceName, iModeNum, ref devMode))
+                    {
+                        if (devMode.dmPelsWidth == xRes && devMode.dmPelsHeight == yRes)
+                        {
+                            int refresh = devMode.dmDisplayFrequency;
+                            if (!refreshRates.Contains(refresh))
+                            {
+                                refreshRates.Add(refresh);
+                            }
+
+                        }
+
+                        iModeNum++;
+                    }
+                    return refreshRates;
+
+
+                }
+                deviceIndex++;
             }
 
             return refreshRates;

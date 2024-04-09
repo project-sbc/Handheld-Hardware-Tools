@@ -5,18 +5,29 @@ using Everything_Handhelds_Tool.Pages;
 using Handheld_Hardware_Tools.Classes;
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
 {
     /// <summary>
     /// Interaction logic for TDP_Slider.xaml
     /// </summary>
-    public partial class DisplayResolution_Combobox : ControllerUserControl
+    public partial class DisplayRefreshRate_Combobox : ControllerUserControl
     {
         int originalSelectedIndex = -1;
-        List<Tuple<int,int>> displayResolution = Display_Management.Instance.GetAvailableResolutionsForPrimaryMonitor();
-        public DisplayResolution_Combobox()
+        List<int> displayRefreshRates = Display_Management.Instance.GetAvailableRefreshRatesForPrimaryMonitor();
+        public DisplayRefreshRate_Combobox()
         {
             InitializeComponent();
 
@@ -40,15 +51,15 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
         
         private void ConfigureControl()
         {
-            comboBox.ItemsSource = displayResolution;
+            comboBox.ItemsSource = displayRefreshRates;
 
-            Tuple<int,int> currentResolution = Display_Management.Instance.GetPrimaryMonitorResolution();
+            int currentRefreshRate = Display_Management.Instance.GetPrimaryMonitorRefreshRate();
 
-            foreach (Tuple<int,int> pair in comboBox.ItemsSource)
+            foreach (int rr in comboBox.ItemsSource)
             {
-                if (pair == currentResolution)
+                if (rr == currentRefreshRate)
                 {
-                    comboBox.SelectedItem = pair;
+                    comboBox.SelectedItem = rr;
                     originalSelectedIndex = comboBox.SelectedIndex;
                 }
             }
@@ -83,11 +94,11 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
             {
                 originalSelectedIndex = comboBox.SelectedIndex;
 
-                Tuple<int, int> selectedItem = (Tuple<int, int>)comboBox.SelectedItem;
+                int selectedItem = (int)comboBox.SelectedItem;
        
                 if (selectedItem != null)
                 {
-                    Display_Management.Instance.ChangePrimaryMonitorResolution(selectedItem.Item1, selectedItem.Item2);
+                    Display_Management.Instance.ChangePrimaryMonitorRefreshRate(selectedItem);
                 }
 
                

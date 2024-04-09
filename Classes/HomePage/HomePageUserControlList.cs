@@ -63,6 +63,8 @@ namespace Everything_Handhelds_Tool.Classes.HomePage
             this.Add("Usercontrol_PowerBalanceCPU", true);
             this.Add("Usercontrol_PowerBalanceGPU", true);
             this.Add("Usercontrol_GPUCLK", true);
+            this.Add("Usercontrol_DisplayResolution", true);
+            this.Add("Usercontrol_DisplayRefreshRate", true);
 
         }
 

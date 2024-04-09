@@ -1,4 +1,4 @@
-﻿<classes:ControllerUserControl x:Class="Everything_Handhelds_Tool.UserControls.EditActionUserControls.DisplayResolution_Combobox"
+﻿<classes:ControllerUserControl x:Class="Everything_Handhelds_Tool.UserControls.EditActionUserControls.DisplayRefreshRate_Combobox"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -21,20 +21,7 @@
                 </DockPanel>
 
 
-                <ComboBox x:Name="comboBox"  Margin="5,5,5,0" DropDownClosed="comboBox_DropDownClosed"    >
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock>
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0} x {1}">
-                                        <Binding Path="Item1"/>
-                                        <Binding Path="Item2"/>
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+                <ComboBox x:Name="comboBox"  Margin="5,5,5,0" DropDownClosed="comboBox_DropDownClosed"  DisplayMemberPath="Item1"   />
             </DockPanel>
         </ui:Card>
 

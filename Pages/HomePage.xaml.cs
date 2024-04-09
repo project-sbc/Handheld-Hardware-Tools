@@ -100,8 +100,10 @@ namespace Everything_Handhelds_Tool.Pages
 
                 case "Usercontrol_GPUCLK":
                     return new GPUClock_Slider();
-
-
+                case "Usercontrol_DisplayResolution":
+                    return new DisplayResolution_Combobox();
+                case "Usercontrol_DisplayRefreshRate":
+                    return new DisplayRefreshRate_Combobox();
                 default:
                     return null;
             }
