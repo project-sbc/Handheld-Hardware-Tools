@@ -23,9 +23,9 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
 
 
 
-            if (ADLX_Management.HasFreeSyncSupport())
+            if (ADLX_Management.HasFreeSyncSupport1())
             {
-                if (ADLX_Management.IsFreeSyncEnabled())
+                if (ADLX_Management.IsFreeSyncEnabled1())
                 {
                     symbolIconDisabled.Visibility = Visibility.Hidden;
                     textBlock.Text = Application.Current.Resources["ActionUserControl_Enabled"].ToString();
@@ -37,9 +37,18 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
                 }
             
             }
-            else
+            if (ADLX_Management.HasFreeSyncSupport2())
             {
-                
+                if (ADLX_Management.IsFreeSyncEnabled2())
+                {
+                    symbolIconDisabled.Visibility = Visibility.Hidden;
+                    textBlock.Text = Application.Current.Resources["ActionUserControl_Enabled"].ToString();
+                }
+                else
+                {
+                    symbolIconDisabled.Visibility = Visibility.Visible;
+                    textBlock.Text = Application.Current.Resources["ActionUserControl_Disabled"].ToString();
+                }
 
             }
 

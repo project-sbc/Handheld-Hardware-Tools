@@ -247,15 +247,17 @@ namespace Handheld_Hardware_Tools.Classes
                 {
                     devMode.dmDisplayFrequency = newRefreshRate;
 
-                    if (ChangeDisplaySettingsEx(primaryDevice.DeviceName, ref devMode, IntPtr.Zero, ChangeDisplaySettingsFlags.CDS_UPDATEREGISTRY | ChangeDisplaySettingsFlags.CDS_SET_PRIMARY, IntPtr.Zero) != DISP_CHANGE_SUCCESSFUL)
+                    // Change display settings
+                    int result = ChangeDisplaySettings(ref devMode, 0);
+                    if (result != DISP_CHANGE_SUCCESSFUL)
                     {
                         // Failed to change display settings
                         Console.WriteLine("Failed to change display settings.");
                     }
                     else
                     {
-                        // Refresh rate changed successfully
-                        Console.WriteLine("Refresh rate changed successfully.");
+                        // Display settings changed successfully
+                        Console.WriteLine("Display settings changed successfully.");
                     }
                 }
                 else
@@ -340,8 +342,9 @@ namespace Handheld_Hardware_Tools.Classes
                     //we need to filter to only the current resolution (or specificed argument in function)
                     if (xRes == 0 || yRes == 0)
                     {
-                        xRes = devMode.dmPelsWidth;
-                        yRes = devMode.dmPelsHeight;
+                        Tuple<int, int> resolution = GetPrimaryMonitorResolution();
+                        xRes = resolution.Item1;
+                        yRes = resolution.Item2;
                     }
 
 

@@ -19,7 +19,14 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
         {
             try
             {
-                return ADLX_Management.HasIntegerScalingSupport();
+                if (ADLX_Management.HasIntegerScalingSupport1() || ADLX_Management.HasIntegerScalingSupport2())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch
             {
@@ -29,22 +36,36 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
 
         public override void OnActivate(string quickActionWheelParameter = "")
         {
-            //calls main window toggle window
-            if (ADLX_Management.HasIntegerScalingSupport())
+            //if first monitor
+            if (ADLX_Management.HasIntegerScalingSupport1())
             {
-                bool intScalingEnabled = ADLX_Management.IsIntegerScalingEnabled();
+                bool intScalingEnabled = ADLX_Management.IsIntegerScalingEnabled1();
                 if (intScalingEnabled)
                 {
-                    ADLX_Management.SetIntegerScaling(0);
-                    ADLX_Management.SetScalingMode(0);
+                    ADLX_Management.SetIntegerScaling1(0);
+                    ADLX_Management.SetScalingMode1(0);
                 }
                 else
                 {
-                    ADLX_Management.SetScalingMode(1);
-                    ADLX_Management.SetIntegerScaling(1);
+                    ADLX_Management.SetScalingMode1(1);
+                    ADLX_Management.SetIntegerScaling1(1);
                 }
             }
-      
+            //if second monitor
+            if (ADLX_Management.HasIntegerScalingSupport2())
+            {
+                bool intScalingEnabled = ADLX_Management.IsIntegerScalingEnabled2();
+                if (intScalingEnabled)
+                {
+                    ADLX_Management.SetIntegerScaling2(0);
+                    ADLX_Management.SetScalingMode2(0);
+                }
+                else
+                {
+                    ADLX_Management.SetScalingMode2(1);
+                    ADLX_Management.SetIntegerScaling2(1);
+                }
+            }
         }
     }
 }

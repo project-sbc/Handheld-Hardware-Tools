@@ -23,15 +23,15 @@ namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
 
 
 
-            if (!ADLX_Management.HasIntegerScalingSupport())
+            if (!ADLX_Management.HasIntegerScalingSupport1())
             {
                 System.Windows.MessageBox.Show("ActionUserControl_Toggle_IntegerScaling.cs   NEED TO FIGURE OUT HOW TO HANDLE INTERGER SCALING FOR THIS ACTION PANEL");
             }
 
 
-            if (ADLX_Management.HasIntegerScalingSupport())
+            if (ADLX_Management.HasIntegerScalingSupport1())
             {
-                if (ADLX_Management.IsIntegerScalingEnabled())
+                if (ADLX_Management.IsIntegerScalingEnabled1())
                 {
                     symbolIconDisabled.Visibility = Visibility.Hidden;
                     textBlock.Text = Application.Current.Resources["ActionUserControl_Enabled"].ToString();

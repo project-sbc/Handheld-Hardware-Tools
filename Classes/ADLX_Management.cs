@@ -58,30 +58,47 @@ namespace Everything_Handhelds_Tool.Classes
         [DllImport(CppFunctionsDLL3, CallingConvention = CallingConvention.Cdecl)] public static extern int GetRSRSharpness();
 
 
-        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool HasIntegerScalingSupport();
+        //if function ends 1, its for the first display! if ends in 2, second display
+
+        
+
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool HasIntegerScalingSupport1();
         //0 is disabled, 1 is enabled
-        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern int SetIntegerScaling(int key);
-        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool IsIntegerScalingEnabled();
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern int SetIntegerScaling1(int key);
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool IsIntegerScalingEnabled1();
 
 
-
-        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool HasGPUScalingSupport();
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool HasIntegerScalingSupport2();
         //0 is disabled, 1 is enabled
-        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern int SetGPUScaling(int key);
-        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool IsGPUScalingEnabled();
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern int SetIntegerScaling2(int key);
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool IsIntegerScalingEnabled2();
 
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool HasGPUScalingSupport1();
+        //0 is disabled, 1 is enabled
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern int SetGPUScaling1(int key);
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool IsGPUScalingEnabled1();
 
-        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool HasScalingModeSupport();
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool HasGPUScalingSupport2();
+        //0 is disabled, 1 is enabled
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern int SetGPUScaling2(int key);
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool IsGPUScalingEnabled2();
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool HasScalingModeSupport2();
 
         //Scaling Mode int to mode: 0 is preserve aspect ration, 1 is full panel, 2 is center
-        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern int SetScalingMode(int key);
-        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern int GetScalingMode();
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern int SetScalingMode1(int key);
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern int GetScalingMode1();
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern int SetScalingMode2(int key);
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern int GetScalingMode2();
 
-
-        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool HasFreeSyncSupport();      
-        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool IsFreeSyncEnabled();
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool HasFreeSyncSupport1();      
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool IsFreeSyncEnabled1();
         //freesync: 0 is off, 1 is enabled
-        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern int SetFreeSync(int key);
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern int SetFreeSync1(int key);
+
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool HasFreeSyncSupport2();
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern bool IsFreeSyncEnabled2();
+        //freesync: 0 is off, 1 is enabled
+        [DllImport(CppFunctionsDLL4, CallingConvention = CallingConvention.Cdecl)] public static extern int SetFreeSync2(int key);
         #endregion
 
     }

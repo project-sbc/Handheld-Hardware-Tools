@@ -73,6 +73,7 @@ namespace Everything_Handhelds_Tool
             //MainWindow guide = new MainWindow();
             //guide.Show();
 
+
         }
 
         public void CloseMouseMode()

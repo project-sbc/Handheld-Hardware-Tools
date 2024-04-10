@@ -58,6 +58,9 @@ namespace Everything_Handhelds_Tool.Classes.Actions
 
             Toggle_VolumeMute toggle_VolumeMute = new Toggle_VolumeMute() { ID=14, displayInActionPanel= true, displayInRadialMenu=true };
             this.Add(toggle_VolumeMute);
+
+            Toggle_FreeSync toggle_FreeSync = new Toggle_FreeSync() { ID = 15, displayInActionPanel = true }; 
+            this.Add(toggle_FreeSync);
         }
     }
 

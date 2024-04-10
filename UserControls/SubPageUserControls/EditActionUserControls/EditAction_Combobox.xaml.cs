@@ -152,6 +152,9 @@ namespace Everything_Handhelds_Tool.UserControls.EditActionUserControls
                     case "Open_SteamBP":
                         newAction = new Classes.Actions.ActionClass.Open_SteamBP();
                         break;
+                    case "Toggle_FreeSync":
+                        newAction = new Classes.Actions.ActionClass.Toggle_FreeSync();
+                        break;
                     default:
                         MessageBox.Show("NO HANDLER FOR THIS ACTION, ADD IT YOU DUMMY. EditAction_ComboBox.xaml.cs " + actionLookup);
                         break;

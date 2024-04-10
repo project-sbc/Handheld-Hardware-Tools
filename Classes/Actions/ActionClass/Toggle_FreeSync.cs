@@ -19,7 +19,14 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
         {
             try
             {
-                return ADLX_Management.HasFreeSyncSupport();
+                if (ADLX_Management.HasFreeSyncSupport1() || ADLX_Management.HasFreeSyncSupport2())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch
             {
@@ -29,21 +36,34 @@ namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
 
         public override void OnActivate(string quickActionWheelParameter = "")
         {
-            //calls main window toggle window
-            if (ADLX_Management.HasFreeSyncSupport())
+            //if first monitor
+            if (ADLX_Management.HasFreeSyncSupport1())
             {
-                bool freeSyncEnabled = ADLX_Management.IsFreeSyncEnabled();
+                bool freeSyncEnabled = ADLX_Management.IsFreeSyncEnabled1();
                 if (freeSyncEnabled)
                 {
-                    ADLX_Management.SetFreeSync(0);
+                    ADLX_Management.SetFreeSync1(0);
                
                 }
                 else
                 {
-                    ADLX_Management.SetFreeSync(1);
+                    ADLX_Management.SetFreeSync1(1);
                 }
             }
-      
+            //if second monitor...
+            if (ADLX_Management.HasFreeSyncSupport2())
+            {
+                bool freeSyncEnabled = ADLX_Management.IsFreeSyncEnabled2();
+                if (freeSyncEnabled)
+                {
+                    ADLX_Management.SetFreeSync2(0);
+
+                }
+                else
+                {
+                    ADLX_Management.SetFreeSync2(1);
+                }
+            }
         }
     }
 }
