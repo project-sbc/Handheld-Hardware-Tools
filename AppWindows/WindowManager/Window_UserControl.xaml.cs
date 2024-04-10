@@ -1,7 +1,7 @@
-﻿using Everything_Handhelds_Tool.Classes;
-using Everything_Handhelds_Tool.Classes.Actions;
-using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
-using Everything_Handhelds_Tool.Classes.Devices;
+﻿using Handheld_Hardware_Tools.Classes;
+using Handheld_Hardware_Tools.Classes.Actions;
+using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
+using Handheld_Hardware_Tools.Classes.Devices;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -11,12 +11,12 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
-using static Everything_Handhelds_Tool.Classes.ScreenProgram_Management;
+using static Handheld_Hardware_Tools.Classes.ScreenProgram_Management;
 using Point = System.Drawing.Point;
 using Size = System.Drawing.Size;
 
 
-namespace Everything_Handhelds_Tool.AppWindows.WindowManager
+namespace Handheld_Hardware_Tools.AppWindows.WindowManager
 {
     /// <summary>
     /// Interaction logic for

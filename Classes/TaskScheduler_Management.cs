@@ -5,7 +5,7 @@ using System.Threading;
 using System.Windows;
 using Microsoft.Win32.TaskScheduler;
 
-namespace Everything_Handhelds_Tool.Classes
+namespace Handheld_Hardware_Tools.Classes
 {
     public class TaskScheduler_Management
     {

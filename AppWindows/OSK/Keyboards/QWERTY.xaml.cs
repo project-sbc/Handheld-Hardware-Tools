@@ -17,9 +17,9 @@ using System.Windows.Threading;
 using WindowsInput.Native;
 using WindowsInput;
 using System.Windows.Controls.Primitives;
-using Everything_Handhelds_Tool.Classes;
+using Handheld_Hardware_Tools.Classes;
 
-namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
+namespace Handheld_Hardware_Tools.AppWindows.OSK.Keyboards
 {
     /// <summary>
     /// Interaction logic for QWERTY.xaml

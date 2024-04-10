@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Windows.Devices.WiFiDirect;
 
-namespace Everything_Handhelds_Tool.Classes.Wifi_AP
+namespace Handheld_Hardware_Tools.Classes.Wifi_AP
 {
     public class WiFiDirectHotspotManager
     {

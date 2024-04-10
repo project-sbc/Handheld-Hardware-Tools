@@ -1,7 +1,7 @@
-﻿using Everything_Handhelds_Tool.Classes;
-using Everything_Handhelds_Tool.Classes.Actions;
-using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
-using Everything_Handhelds_Tool.Pages;
+﻿using Handheld_Hardware_Tools.Classes;
+using Handheld_Hardware_Tools.Classes.Actions;
+using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
+using Handheld_Hardware_Tools.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Everything_Handhelds_Tool.UserControls.SettingsPageUserControls
+namespace Handheld_Hardware_Tools.UserControls.SettingsPageUserControls
 {
     /// <summary>
     /// Interaction logic for TDP_Slider.xaml

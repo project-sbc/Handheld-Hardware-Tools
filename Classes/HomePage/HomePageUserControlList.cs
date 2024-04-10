@@ -1,7 +1,7 @@
-﻿using Everything_Handhelds_Tool.Classes;
-using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
-using Everything_Handhelds_Tool.Classes.Models;
-using Everything_Handhelds_Tool.UserControls.HomePageUserControls;
+﻿using Handheld_Hardware_Tools.Classes;
+using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
+using Handheld_Hardware_Tools.Classes.Models;
+using Handheld_Hardware_Tools.UserControls.HomePageUserControls;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Everything_Handhelds_Tool.Classes.HomePage
+namespace Handheld_Hardware_Tools.Classes.HomePage
 {
     //This is the user configuration list of user controls that has usercontrol, name in langauge, and whether to display it
     public class HomePageUserControlList : List<HomePageItem>

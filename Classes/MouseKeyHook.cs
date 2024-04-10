@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Everything_Handhelds_Tool.Classes
+namespace Handheld_Hardware_Tools.Classes
 {
     public class MouseKeyHook
     {

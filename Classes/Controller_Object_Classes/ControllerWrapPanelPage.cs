@@ -10,7 +10,7 @@ using System.Windows.Controls;
 
 using Wpf.Ui.Controls;
 
-namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
+namespace Handheld_Hardware_Tools.Classes.Controller_Object_Classes
 {
     public class ControllerWrapPanelPage : ControllerPage
     {

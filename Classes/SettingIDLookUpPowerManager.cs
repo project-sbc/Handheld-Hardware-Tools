@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Everything_Handhelds_Tool.Classes
+namespace Handheld_Hardware_Tools.Classes
 {
     public enum ErrorCode : uint
     {

@@ -1,6 +1,6 @@
-﻿using Everything_Handhelds_Tool.Classes;
-using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
-using Everything_Handhelds_Tool.Classes.Devices;
+﻿using Handheld_Hardware_Tools.Classes;
+using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
+using Handheld_Hardware_Tools.Classes.Devices;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +15,7 @@ using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 
-namespace Everything_Handhelds_Tool.AppWindows.WindowManager
+namespace Handheld_Hardware_Tools.AppWindows.WindowManager
 {
     /// <summary>
     /// Interaction logic for WindowManager.xaml

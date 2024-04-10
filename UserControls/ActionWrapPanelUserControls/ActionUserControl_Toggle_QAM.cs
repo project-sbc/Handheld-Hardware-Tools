@@ -1,4 +1,4 @@
-﻿using Everything_Handhelds_Tool.Classes;
+﻿using Handheld_Hardware_Tools.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Wpf.Ui.Controls;
 
-namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
+namespace Handheld_Hardware_Tools.UserControls.ActionWrapPanelUserControls
 {
     public partial class ActionUserControl_Toggle_QAM : ActionUserControl_DefaultHandler
     {

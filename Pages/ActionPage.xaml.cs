@@ -1,9 +1,9 @@
 ﻿
-using Everything_Handhelds_Tool.Classes;
-using Everything_Handhelds_Tool.Classes.Actions;
-using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
-using Everything_Handhelds_Tool.Classes.Models;
-using Everything_Handhelds_Tool.UserControls.HomePageUserControls;
+using Handheld_Hardware_Tools.Classes;
+using Handheld_Hardware_Tools.Classes.Actions;
+using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
+using Handheld_Hardware_Tools.Classes.Models;
+using Handheld_Hardware_Tools.UserControls.HomePageUserControls;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System;
@@ -11,10 +11,10 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms.Integration;
-using Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls;
-using Everything_Handhelds_Tool.AppWindows.MainWindow;
+using Handheld_Hardware_Tools.UserControls.ActionWrapPanelUserControls;
+using Handheld_Hardware_Tools.AppWindows.MainWindow;
 
-namespace Everything_Handhelds_Tool.Pages
+namespace Handheld_Hardware_Tools.Pages
 {
     /// <summary>
     /// Interaction logic for HomePage.xaml

@@ -1,10 +1,10 @@
-﻿using Everything_Handhelds_Tool.AppWindows.QuickActionWheel.QuickActionWheelItem_Actions;
-using Everything_Handhelds_Tool.Classes;
-using Everything_Handhelds_Tool.Classes.Actions;
-using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
-using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
-using Everything_Handhelds_Tool.Classes.Devices;
-using Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls;
+﻿using Handheld_Hardware_Tools.AppWindows.QuickActionWheel.QuickActionWheelItem_Actions;
+using Handheld_Hardware_Tools.Classes;
+using Handheld_Hardware_Tools.Classes.Actions;
+using Handheld_Hardware_Tools.Classes.Actions.ActionClass;
+using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
+using Handheld_Hardware_Tools.Classes.Devices;
+using Handheld_Hardware_Tools.UserControls.ActionWrapPanelUserControls;
 using RadialMenu.Controls;
 using System;
 using System.Collections.Generic;
@@ -23,7 +23,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel
+namespace Handheld_Hardware_Tools.AppWindows.QuickActionWheel
 {
     /// <summary>
     /// Interaction logic for WindowManager.xaml

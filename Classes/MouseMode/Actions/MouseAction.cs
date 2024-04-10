@@ -8,7 +8,7 @@ using WindowsInput;
 using WindowsInput.Native;
 
 
-namespace Everything_Handhelds_Tool.Classes.MouseMode.Actions
+namespace Handheld_Hardware_Tools.Classes.MouseMode.Actions
 {
 
     public class MouseAction

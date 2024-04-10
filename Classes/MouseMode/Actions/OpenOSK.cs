@@ -1,5 +1,5 @@
-﻿using Everything_Handhelds_Tool.AppWindows.OSK;
-using Everything_Handhelds_Tool.AppWindows.OSK.Keyboards;
+﻿using Handheld_Hardware_Tools.AppWindows.OSK;
+using Handheld_Hardware_Tools.AppWindows.OSK.Keyboards;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Windows;
 using WindowsInput;
 using WindowsInput.Native;
 
-namespace Everything_Handhelds_Tool.Classes.MouseMode.Actions
+namespace Handheld_Hardware_Tools.Classes.MouseMode.Actions
 {
     public class OpenOSK : MouseAction
     {

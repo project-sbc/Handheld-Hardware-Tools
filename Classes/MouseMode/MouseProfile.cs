@@ -1,4 +1,4 @@
-﻿using Everything_Handhelds_Tool.Classes.MouseMode.Actions;
+﻿using Handheld_Hardware_Tools.Classes.MouseMode.Actions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WindowsInput;
 
-namespace Everything_Handhelds_Tool.Classes.MouseMode
+namespace Handheld_Hardware_Tools.Classes.MouseMode
 {
     public class MouseProfile
     {

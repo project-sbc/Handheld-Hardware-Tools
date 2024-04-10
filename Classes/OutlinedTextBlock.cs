@@ -8,7 +8,7 @@ using System.Windows.Media;
 
 
 
-namespace Everything_Handhelds_Tool.Classes
+namespace Handheld_Hardware_Tools.Classes
 {
     [ContentProperty("Text")]
     public class OutlinedTextBlock : FrameworkElement

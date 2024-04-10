@@ -1,5 +1,5 @@
-﻿using Everything_Handhelds_Tool.Classes;
-using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
+﻿using Handheld_Hardware_Tools.Classes;
+using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,14 +17,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Everything_Handhelds_Tool.UserControls.ActionWrapPanelUserControls
+namespace Handheld_Hardware_Tools.UserControls.ActionWrapPanelUserControls
 {
 
     public partial class Action_UserControl : ControllerUserControl
     {
         public ActionUserControl_DefaultHandler actionHandler = null;
       
-        public Action_UserControl(Everything_Handhelds_Tool.Classes.Actions.Action newAction)
+        public Action_UserControl(Handheld_Hardware_Tools.Classes.Actions.Action newAction)
         {
             InitializeComponent();
 

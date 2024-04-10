@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Everything_Handhelds_Tool.Classes
+namespace Handheld_Hardware_Tools.Classes
 {
     public class Update_Management
     {

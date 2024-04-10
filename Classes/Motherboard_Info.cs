@@ -6,7 +6,7 @@ using System.Management;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Everything_Handhelds_Tool.Classes.Motherboard_Info
+namespace Handheld_Hardware_Tools.Classes.Motherboard_Info
 {
     public class Motherboard_Info
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Everything_Handhelds_Tool.Classes.Profiles.ProfileActions.ProfileActionClass
+namespace Handheld_Hardware_Tools.Classes.Profiles.ProfileActions.ProfileActionClass
 {
 
     public class SetTDP : ProfileAction

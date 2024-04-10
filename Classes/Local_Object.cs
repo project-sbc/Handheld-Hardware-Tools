@@ -1,7 +1,7 @@
-﻿using Everything_Handhelds_Tool.AppWindows.OSK;
-using Everything_Handhelds_Tool.AppWindows.OSK.Keyboards;
-using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
-using Everything_Handhelds_Tool.Classes.Devices;
+﻿using Handheld_Hardware_Tools.AppWindows.OSK;
+using Handheld_Hardware_Tools.AppWindows.OSK.Keyboards;
+using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
+using Handheld_Hardware_Tools.Classes.Devices;
 using SharpDX.XInput;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using WindowsInput;
 
-namespace Everything_Handhelds_Tool.Classes
+namespace Handheld_Hardware_Tools.Classes
 {
     public class Local_Object
     {

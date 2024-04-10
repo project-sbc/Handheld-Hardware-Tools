@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Everything_Handhelds_Tool.Classes
+namespace Handheld_Hardware_Tools.Classes
 {
 
    
@@ -24,6 +24,7 @@ namespace Everything_Handhelds_Tool.Classes
         public string ssidWifiAP { get; set; } = "EverythingHandheldsWifi";
         public string passwordWifiAP { get; set; } = "eh123456";
 
+        public bool hideSplashScreen { get; set; } = false;
 
         public bool checkUpdatesAtStart { get; set; } = false;
         public DateTime lastUpdateCheck { get; set; } = DateTime.Now;

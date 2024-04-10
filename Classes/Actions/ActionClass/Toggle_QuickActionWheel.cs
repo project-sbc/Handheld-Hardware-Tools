@@ -1,10 +1,10 @@
 ﻿
 using System.Linq;
 using System.Windows;
-using Everything_Handhelds_Tool.AppWindows.OSK;
-using Everything_Handhelds_Tool.AppWindows.QuickActionWheel;
-using Everything_Handhelds_Tool.AppWindows.WindowManager;
-namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
+using Handheld_Hardware_Tools.AppWindows.OSK;
+using Handheld_Hardware_Tools.AppWindows.QuickActionWheel;
+using Handheld_Hardware_Tools.AppWindows.WindowManager;
+namespace Handheld_Hardware_Tools.Classes.Actions.ActionClass
 {
     public class Toggle_QuickActionWheel : Action
     {

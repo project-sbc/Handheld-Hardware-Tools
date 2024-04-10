@@ -1,36 +1,36 @@
-﻿using Everything_Handhelds_Tool.Models;
+﻿using Handheld_Hardware_Tools.Models;
 using System;
 using System.Windows;
-using Everything_Handhelds_Tool.Classes;
-using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
+using Handheld_Hardware_Tools.Classes;
+using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
 using Microsoft.Win32;
 using System.Windows.Threading;
-using Everything_Handhelds_Tool.Classes.Models;
+using Handheld_Hardware_Tools.Classes.Models;
 using System.Globalization;
 using System.Net.NetworkInformation;
 using Wpf.Ui.Controls;
-using Everything_Handhelds_Tool.Classes.Devices;
+using Handheld_Hardware_Tools.Classes.Devices;
 using System.Diagnostics;
-using Everything_Handhelds_Tool.Classes.Wifi_AP;
+using Handheld_Hardware_Tools.Classes.Wifi_AP;
 using System.IO;
-using Everything_Handhelds_Tool.ControllerInputPages;
+using Handheld_Hardware_Tools.ControllerInputPages;
 using Wpf.Ui;
 using System.Windows.Markup;
 using System.Xml;
-using Everything_Handhelds_Tool.Classes.Profiles;
+using Handheld_Hardware_Tools.Classes.Profiles;
 
 using System.Windows.Interop;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
-using Everything_Handhelds_Tool.AppWindows.WindowManager;
-using Everything_Handhelds_Tool.Classes.MouseMode;
+using Handheld_Hardware_Tools.AppWindows.WindowManager;
+using Handheld_Hardware_Tools.Classes.MouseMode;
 using WindowsInput;
-using Everything_Handhelds_Tool.AppWindows.Guide;
-using Everything_Handhelds_Tool.AppWindows.QuickActionWheel;
-using Everything_Handhelds_Tool.AppWindows.MainWindow;
+using Handheld_Hardware_Tools.AppWindows.Guide;
+using Handheld_Hardware_Tools.AppWindows.QuickActionWheel;
+using Handheld_Hardware_Tools.AppWindows.MainWindow;
 
 
-namespace Everything_Handhelds_Tool
+namespace Handheld_Hardware_Tools
 {
         
     public partial class QuickAccessMenu : ControllerWindow 
@@ -72,7 +72,6 @@ namespace Everything_Handhelds_Tool
 
             //MainWindow guide = new MainWindow();
             //guide.Show();
-
 
         }
 

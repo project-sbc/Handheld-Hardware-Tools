@@ -1,5 +1,5 @@
-﻿using Everything_Handhelds_Tool.Classes.Devices;
-using Everything_Handhelds_Tool.Classes.Devices;
+﻿using Handheld_Hardware_Tools.Classes.Devices;
+using Handheld_Hardware_Tools.Classes.Devices;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +13,7 @@ using System.Diagnostics;
 using SharpDX;
 using System.Runtime.InteropServices;
 
-namespace Everything_Handhelds_Tool.Classes
+namespace Handheld_Hardware_Tools.Classes
 {
     public class Powercfg_Management
     {

@@ -1,4 +1,4 @@
-﻿using Everything_Handhelds_Tool.Classes;
+﻿using Handheld_Hardware_Tools.Classes;
 using RadialMenu.Controls;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel
+namespace Handheld_Hardware_Tools.AppWindows.QuickActionWheel
 {
     /// <summary>
     /// Interaction logic for RadialMenu_UserControl.xaml

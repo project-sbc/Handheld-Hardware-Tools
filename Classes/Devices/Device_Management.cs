@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Everything_Handhelds_Tool.Classes.Motherboard_Info;
+using Handheld_Hardware_Tools.Classes.Motherboard_Info;
 
-namespace Everything_Handhelds_Tool.Classes.Devices
+namespace Handheld_Hardware_Tools.Classes.Devices
 {
     public class Device_Management
     {

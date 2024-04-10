@@ -1,13 +1,13 @@
-﻿using Everything_Handhelds_Tool.Classes;
-using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
-using Everything_Handhelds_Tool.Classes.Devices;
-using Everything_Handhelds_Tool.Pages;
+﻿using Handheld_Hardware_Tools.Classes;
+using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
+using Handheld_Hardware_Tools.Classes.Devices;
+using Handheld_Hardware_Tools.Pages;
 using System;
 
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Everything_Handhelds_Tool.UserControls.SubPageUserControls.EditMouseModeUserControls
+namespace Handheld_Hardware_Tools.UserControls.SubPageUserControls.EditMouseModeUserControls
 {
     /// <summary>
     /// Interaction logic for

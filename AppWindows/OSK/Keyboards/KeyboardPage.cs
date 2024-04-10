@@ -1,5 +1,5 @@
-﻿using Everything_Handhelds_Tool.Classes;
-using Everything_Handhelds_Tool.Classes.MouseMode;
+﻿using Handheld_Hardware_Tools.Classes;
+using Handheld_Hardware_Tools.Classes.MouseMode;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ using WindowsInput;
 using WindowsInput.Native;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace Everything_Handhelds_Tool.AppWindows.OSK.Keyboards
+namespace Handheld_Hardware_Tools.AppWindows.OSK.Keyboards
 {
     public class KeyboardPage : Page
     {

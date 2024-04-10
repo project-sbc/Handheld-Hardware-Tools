@@ -1,4 +1,4 @@
-﻿using Everything_Handhelds_Tool.Classes;
+﻿using Handheld_Hardware_Tools.Classes;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

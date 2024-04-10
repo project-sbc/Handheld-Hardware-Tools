@@ -1,10 +1,10 @@
-﻿using Everything_Handhelds_Tool.Classes.Models;
+﻿using Handheld_Hardware_Tools.Classes.Models;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
 using Wpf.Ui.Controls;
 
-namespace Everything_Handhelds_Tool.Models
+namespace Handheld_Hardware_Tools.Models
 {
     public class NavigationViewMenuItems : List<Wpf.Ui.Common.SymbolRegular>
     {

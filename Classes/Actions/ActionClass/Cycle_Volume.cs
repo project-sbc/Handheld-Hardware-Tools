@@ -1,4 +1,4 @@
-﻿using Everything_Handhelds_Tool.Classes.Profiles.ProfileActions.ProfileActionClass;
+﻿using Handheld_Hardware_Tools.Classes.Profiles.ProfileActions.ProfileActionClass;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
+namespace Handheld_Hardware_Tools.Classes.Actions.ActionClass
 {
     public class Cycle_Volume : Action
     {

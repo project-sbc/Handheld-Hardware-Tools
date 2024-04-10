@@ -1,10 +1,10 @@
-﻿<UserControl x:Class="Everything_Handhelds_Tool.AppWindows.QuickActionWheel.RadialMenu_UserControl"
+﻿<UserControl x:Class="Handheld_Hardware_Tools.AppWindows.QuickActionWheel.RadialMenu_UserControl"
    
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Everything_Handhelds_Tool.AppWindows.QuickActionWheel"
+             xmlns:local="clr-namespace:Handheld_Hardware_Tools.AppWindows.QuickActionWheel"
              mc:Ignorable="d" 
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"

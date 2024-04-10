@@ -1,4 +1,4 @@
-﻿using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
+﻿using Handheld_Hardware_Tools.Classes.Actions.ActionClass;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 using Wpf.Ui.Common;
 using Wpf.Ui.Controls;
 
-namespace Everything_Handhelds_Tool.Classes.Actions
+namespace Handheld_Hardware_Tools.Classes.Actions
 {
     //List of items in this class
 

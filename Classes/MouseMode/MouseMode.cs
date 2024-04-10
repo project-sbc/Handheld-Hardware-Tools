@@ -12,7 +12,7 @@ using System.Windows.Input;
 using WindowsInput;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace Everything_Handhelds_Tool.Classes.MouseMode
+namespace Handheld_Hardware_Tools.Classes.MouseMode
 {
     public class MouseMode
     {

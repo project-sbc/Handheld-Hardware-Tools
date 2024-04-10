@@ -1,4 +1,4 @@
-﻿using Everything_Handhelds_Tool.Classes.Devices;
+﻿using Handheld_Hardware_Tools.Classes.Devices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Everything_Handhelds_Tool.Classes
+namespace Handheld_Hardware_Tools.Classes
 {
     public class Brightness_Management
     {

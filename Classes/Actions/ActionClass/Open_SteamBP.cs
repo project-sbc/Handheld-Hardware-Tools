@@ -1,9 +1,9 @@
 ﻿
 using System.Linq;
 using System.Windows;
-using Everything_Handhelds_Tool.AppWindows.OSK;
-using Everything_Handhelds_Tool.UserControls.PowerPageUserControls;
-namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
+using Handheld_Hardware_Tools.AppWindows.OSK;
+using Handheld_Hardware_Tools.UserControls.PowerPageUserControls;
+namespace Handheld_Hardware_Tools.Classes.Actions.ActionClass
 {
     public class Open_SteamBP : Action
     {

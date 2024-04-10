@@ -1,4 +1,4 @@
-﻿using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
+﻿using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,7 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WindowsInput;
 
-namespace Everything_Handhelds_Tool.AppWindows.OSK
+namespace Handheld_Hardware_Tools.AppWindows.OSK
 {
     /// <summary>
     /// Interaction logic for OSK.xaml

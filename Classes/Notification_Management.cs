@@ -1,4 +1,4 @@
-﻿using Everything_Handhelds_Tool.Classes.Devices;
+﻿using Handheld_Hardware_Tools.Classes.Devices;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +13,7 @@ using SharpDX;
 using Notification.Wpf;
 using System.Windows.Forms;
 
-namespace Everything_Handhelds_Tool.Classes
+namespace Handheld_Hardware_Tools.Classes
 {
     public class Notification_Management
     {

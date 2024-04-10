@@ -11,7 +11,7 @@ using System.Windows;
 using WindowsInput;
 using Shell32;
 using System.Diagnostics.Eventing.Reader;
-namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
+namespace Handheld_Hardware_Tools.Classes.Actions.ActionClass
 {
     public class Toggle_Desktop : Action
     {

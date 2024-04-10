@@ -5,9 +5,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using Everything_Handhelds_Tool.Classes;
+using Handheld_Hardware_Tools.Classes;
 
-namespace Everything_Handhelds_Tool.Classes
+namespace Handheld_Hardware_Tools.Classes
 {
     [Flags]
     public enum PowerMode

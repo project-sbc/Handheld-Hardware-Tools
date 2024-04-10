@@ -1,6 +1,6 @@
-﻿<classes:ControllerWindow x:Class="Everything_Handhelds_Tool.AppWindows.MainWindow.MainWindow"
+﻿<classes:ControllerWindow x:Class="Handheld_Hardware_Tools.AppWindows.MainWindow.MainWindow"
        
-                           xmlns:classes="clr-namespace:Everything_Handhelds_Tool.Classes.Controller_Object_Classes"
+                           xmlns:classes="clr-namespace:Handheld_Hardware_Tools.Classes.Controller_Object_Classes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,10 +10,10 @@
                      
                         
         WindowState="Maximized"
-               xmlns:outlineTB="clr-namespace:Everything_Handhelds_Tool.Classes"
+               xmlns:outlineTB="clr-namespace:Handheld_Hardware_Tools.Classes"
         xmlns:materialIcons="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
    
-        xmlns:local="clr-namespace:Everything_Handhelds_Tool.AppWindows.MainWindow"
+        xmlns:local="clr-namespace:Handheld_Hardware_Tools.AppWindows.MainWindow"
 
         Title="Handheld Hardware Tools" Height="450" Width="800">
     <Grid Background="{DynamicResource MainWindowBackground}">

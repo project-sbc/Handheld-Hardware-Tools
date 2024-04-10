@@ -1,11 +1,11 @@
-﻿using Everything_Handhelds_Tool.AppWindows.OSK;
-using Everything_Handhelds_Tool.Classes.Actions;
-using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
-using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
-using Everything_Handhelds_Tool.Classes.MouseMode;
-using Everything_Handhelds_Tool.Classes.MouseMode.Actions;
-using Everything_Handhelds_Tool.Models;
-using Everything_Handhelds_Tool.Pages;
+﻿using Handheld_Hardware_Tools.AppWindows.OSK;
+using Handheld_Hardware_Tools.Classes.Actions;
+using Handheld_Hardware_Tools.Classes.Actions.ActionClass;
+using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
+using Handheld_Hardware_Tools.Classes.MouseMode;
+using Handheld_Hardware_Tools.Classes.MouseMode.Actions;
+using Handheld_Hardware_Tools.Models;
+using Handheld_Hardware_Tools.Pages;
 
 using SharpDX.XInput;
 using System;
@@ -20,7 +20,7 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 
 
-namespace Everything_Handhelds_Tool.Classes
+namespace Handheld_Hardware_Tools.Classes
 {
     public class ControllerInput
     {

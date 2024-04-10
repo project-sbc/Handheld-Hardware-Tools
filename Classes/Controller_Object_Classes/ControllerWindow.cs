@@ -10,7 +10,7 @@ using System.Windows.Controls;
 
 using Wpf.Ui.Controls;
 
-namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
+namespace Handheld_Hardware_Tools.Classes.Controller_Object_Classes
 {
     public class ControllerWindow : UiWindow
     {
@@ -109,7 +109,16 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
 
         public void SubscribeControllerEvents()
         {
-            QuickAccessMenu mw = (QuickAccessMenu)Application.Current.MainWindow;
+            QuickAccessMenu mw;
+            if (this is QuickAccessMenu)
+            {
+                mw= (QuickAccessMenu)this;
+            }
+            else
+            {
+                mw = Application.Current.MainWindow as QuickAccessMenu;
+            }
+            
             if (mw != null)
             {
                 if (mw.controllerInput != null)
@@ -125,7 +134,15 @@ namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
         }
         public void UnsubscribeControllerEvents()
         {
-            QuickAccessMenu mw = (QuickAccessMenu)Application.Current.MainWindow;
+            QuickAccessMenu mw;
+            if (this is QuickAccessMenu)
+            {
+                mw = (QuickAccessMenu)this;
+            }
+            else
+            {
+                mw = Application.Current.MainWindow as QuickAccessMenu;
+            }
             if (mw != null)
             {
                 if (mw.controllerInput != null)

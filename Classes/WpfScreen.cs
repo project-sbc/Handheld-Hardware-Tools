@@ -8,7 +8,7 @@ using System.Windows.Interop;
 using System.Windows;
 using System.Drawing;
 
-namespace Everything_Handhelds_Tool.Classes
+namespace Handheld_Hardware_Tools.Classes
 {
 
     //This class is used in the main window to get the resolution of the screen so the window can be

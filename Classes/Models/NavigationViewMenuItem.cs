@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace Everything_Handhelds_Tool.Classes.Models
+namespace Handheld_Hardware_Tools.Classes.Models
 {
     public class NavigationViewMenuItem
     {

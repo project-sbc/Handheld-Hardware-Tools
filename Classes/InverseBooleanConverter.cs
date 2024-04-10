@@ -9,7 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-namespace Everything_Handhelds_Tool.Classes.Converters
+namespace Handheld_Hardware_Tools.Classes.Converters
 {
     //this class is used for elements on the mainwindow in the XAML
     //for example, a card expander tied to a toggle switch, if i want

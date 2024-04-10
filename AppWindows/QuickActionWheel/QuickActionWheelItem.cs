@@ -1,5 +1,5 @@
-﻿using Everything_Handhelds_Tool.AppWindows.QuickActionWheel.QuickActionWheelItem_Actions;
-using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
+﻿using Handheld_Hardware_Tools.AppWindows.QuickActionWheel.QuickActionWheelItem_Actions;
+using Handheld_Hardware_Tools.Classes.Actions.ActionClass;
 using FontAwesome.WPF;
 using RadialMenu.Controls;
 using System;
@@ -11,7 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Wpf.Ui.Controls;
 
-namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel
+namespace Handheld_Hardware_Tools.AppWindows.QuickActionWheel
 {
     public class QuickActionWheelItem
     {

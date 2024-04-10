@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Everything_Handhelds_Tool.AppWindows.OSK
+namespace Handheld_Hardware_Tools.AppWindows.OSK
 {
     public class ControllerInputOSK
     {

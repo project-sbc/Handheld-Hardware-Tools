@@ -1,4 +1,4 @@
-﻿using Everything_Handhelds_Tool.Classes.Actions.ActionClass;
+﻿using Handheld_Hardware_Tools.Classes.Actions.ActionClass;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Everything_Handhelds_Tool.Classes.Actions
+namespace Handheld_Hardware_Tools.Classes.Actions
 {
     public class DefaultActionList:ActionList
     {

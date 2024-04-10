@@ -1,5 +1,5 @@
-﻿using Everything_Handhelds_Tool.Classes;
-using Everything_Handhelds_Tool.Classes.Profiles.ProfileActions.ProfileActionClass;
+﻿using Handheld_Hardware_Tools.Classes;
+using Handheld_Hardware_Tools.Classes.Profiles.ProfileActions.ProfileActionClass;
 using RadialMenu.Controls;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Wpf.Ui.Controls;
 
-namespace Everything_Handhelds_Tool.AppWindows.QuickActionWheel.QuickActionWheelItem_Actions
+namespace Handheld_Hardware_Tools.AppWindows.QuickActionWheel.QuickActionWheelItem_Actions
 {
     public class QuickActionWheelItem_Open_SteamBP : QuickActionWheelItem
     {

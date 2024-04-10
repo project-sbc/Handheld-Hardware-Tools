@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Everything_Handhelds_Tool
+namespace Handheld_Hardware_Tools
 {
     public class Log_Writer
     {

@@ -1,6 +1,6 @@
-﻿using Everything_Handhelds_Tool.Classes;
-using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
-using Everything_Handhelds_Tool.Pages;
+﻿using Handheld_Hardware_Tools.Classes;
+using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
+using Handheld_Hardware_Tools.Pages;
 using SharpDX.XInput;
 using System;
 using System.Collections.Generic;
@@ -18,16 +18,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls
+namespace Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls
 {
     /// <summary>
     /// Interaction logic for TDP_Slider.xaml
     /// </summary>
     public partial class ActionOverview_UserControl : ControllerUserControl
     {
-        public Everything_Handhelds_Tool.Classes.Actions.Action action = null;
+        public Handheld_Hardware_Tools.Classes.Actions.Action action = null;
         public bool isMovingUserControlInStackPanel = false;
-        public ActionOverview_UserControl(Everything_Handhelds_Tool.Classes.Actions.Action newAction)
+        public ActionOverview_UserControl(Handheld_Hardware_Tools.Classes.Actions.Action newAction)
         {
             InitializeComponent();
 

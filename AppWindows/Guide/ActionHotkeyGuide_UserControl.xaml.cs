@@ -1,5 +1,5 @@
-﻿using Everything_Handhelds_Tool.Classes;
-using Everything_Handhelds_Tool.Classes.Actions;
+﻿using Handheld_Hardware_Tools.Classes;
+using Handheld_Hardware_Tools.Classes.Actions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 using Windows.System.UserProfile;
 using Wpf.Ui.Controls;
 
-namespace Everything_Handhelds_Tool.AppWindows.Guide
+namespace Handheld_Hardware_Tools.AppWindows.Guide
 {
     /// <summary>
     /// Interaction logic for ActionHotkey.xaml

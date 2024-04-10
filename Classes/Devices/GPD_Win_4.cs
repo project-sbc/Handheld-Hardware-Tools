@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Everything_Handhelds_Tool.Classes.Devices
+namespace Handheld_Hardware_Tools.Classes.Devices
 {
     public class GPD_Win_4 : Device
     {

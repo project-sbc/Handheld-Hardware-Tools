@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Handheld_Hardware_Tools.ControllerInputPages
+namespace Handheld_Hardware_Tools
 {
     /// <summary>
-    /// Interaction logic for UpDownSelectBack.xaml
+    /// Interaction logic for SplashScreenStartUp.xaml
     /// </summary>
-    public partial class SelectHide : Page
+    public partial class SplashScreenStartUp : Window
     {
-        public SelectHide()
+        public SplashScreenStartUp()
         {
             InitializeComponent();
         }

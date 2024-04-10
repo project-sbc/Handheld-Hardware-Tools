@@ -1,7 +1,7 @@
-﻿using Everything_Handhelds_Tool.Classes.Actions;
-using Everything_Handhelds_Tool.Classes.HomePage;
-using Everything_Handhelds_Tool.Classes.MouseMode;
-using Everything_Handhelds_Tool.Classes.Profiles;
+﻿using Handheld_Hardware_Tools.Classes.Actions;
+using Handheld_Hardware_Tools.Classes.HomePage;
+using Handheld_Hardware_Tools.Classes.MouseMode;
+using Handheld_Hardware_Tools.Classes.Profiles;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Xml.Serialization;
 
-namespace Everything_Handhelds_Tool.Classes
+namespace Handheld_Hardware_Tools.Classes
 {
     public class XML_Management
     {

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Everything_Handhelds_Tool.ControllerInputPages
+namespace Handheld_Hardware_Tools.ControllerInputPages
 {
     /// <summary>
     /// Interaction logic for UpDownSelectBack.xaml

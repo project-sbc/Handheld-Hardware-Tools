@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="EHT LOGO.PNG" />
+
     <None Remove="Resources\AMD\ADLX\ADLX_3DSettings.dll" />
     <None Remove="Resources\AMD\ADLX\ADLX_AutoTuning.dll" />
     <None Remove="Resources\AMD\ADLX\ADLX_DisplaySettings.dll" />
@@ -204,9 +204,7 @@
     <PackageReference Include="WPF-UI" Version="2.1.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="EHT LOGO.PNG" />
-  </ItemGroup>
+
 
   <ItemGroup>
     <Compile Update="AppWindows\QuickActionWheel\QuickActionWheel.xaml.cs">
@@ -268,6 +266,8 @@
   <ItemGroup>
     <Folder Include="Resources\Icons\" />
   </ItemGroup>
+
+
 
   <ItemGroup>
     <Page Update="UserControls\SettingsPageUserControls\AutoStart_ToggleSwitch.xaml">

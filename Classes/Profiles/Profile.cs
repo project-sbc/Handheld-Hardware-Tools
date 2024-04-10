@@ -1,13 +1,13 @@
-﻿using Everything_Handhelds_Tool.Classes.Profiles.ProfileActions;
+﻿using Handheld_Hardware_Tools.Classes.Profiles.ProfileActions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using Everything_Handhelds_Tool.Classes.Profiles.ProfileActions.ProfileActionClass;
+using Handheld_Hardware_Tools.Classes.Profiles.ProfileActions.ProfileActionClass;
 
-namespace Everything_Handhelds_Tool.Classes.Profiles
+namespace Handheld_Hardware_Tools.Classes.Profiles
 {
     public class Profile
     {

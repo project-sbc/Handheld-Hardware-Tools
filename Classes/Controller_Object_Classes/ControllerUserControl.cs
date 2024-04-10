@@ -9,7 +9,7 @@ using Wpf.Ui.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
-namespace Everything_Handhelds_Tool.Classes.Controller_Object_Classes
+namespace Handheld_Hardware_Tools.Classes.Controller_Object_Classes
 {
     public class ControllerUserControl : UserControl
     {

@@ -1,5 +1,5 @@
-﻿using Everything_Handhelds_Tool.Classes;
-using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
+﻿using Handheld_Hardware_Tools.Classes;
+using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 
 
-namespace Everything_Handhelds_Tool.UserControls.HomePageUserControls
+namespace Handheld_Hardware_Tools.UserControls.HomePageUserControls
 {
     /// <summary>
     /// Interaction logic for TDP_Slider.xaml

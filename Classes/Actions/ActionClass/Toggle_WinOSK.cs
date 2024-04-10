@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Everything_Handhelds_Tool.Classes.Actions.ActionClass
+namespace Handheld_Hardware_Tools.Classes.Actions.ActionClass
 {
     public class Toggle_WinOSK : Action
     {

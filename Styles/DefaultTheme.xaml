@@ -15,7 +15,7 @@
     <SolidColorBrush x:Key="HighlightedSideMenuBackground" Color="Gray"  />
     <SolidColorBrush x:Key="ControlsBackground" Color="Transparent"  />
      
-    <BitmapImage x:Key="MainWindowLogo" UriSource="/EHT LOGO.PNG" />
+    <BitmapImage x:Key="MainWindowLogo"  />
 
 
 </ResourceDictionary>

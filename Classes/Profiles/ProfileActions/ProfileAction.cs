@@ -1,8 +1,8 @@
-﻿using Everything_Handhelds_Tool.Classes.Profiles.ProfileActions.ProfileActionClass;
+﻿using Handheld_Hardware_Tools.Classes.Profiles.ProfileActions.ProfileActionClass;
 
 using System.Xml.Serialization;
 
-namespace Everything_Handhelds_Tool.Classes.Profiles.ProfileActions
+namespace Handheld_Hardware_Tools.Classes.Profiles.ProfileActions
 {
     [XmlInclude(typeof(SetTDP))]
     public class ProfileAction

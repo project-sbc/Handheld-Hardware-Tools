@@ -1,9 +1,9 @@
 ﻿
-using Everything_Handhelds_Tool.Classes;
-using Everything_Handhelds_Tool.Classes.Controller_Object_Classes;
-using Everything_Handhelds_Tool.Classes.Models;
-using Everything_Handhelds_Tool.UserControls.ActionOverviewUserControls;
-using Everything_Handhelds_Tool.UserControls.HomePageUserControls;
+using Handheld_Hardware_Tools.Classes;
+using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
+using Handheld_Hardware_Tools.Classes.Models;
+using Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls;
+using Handheld_Hardware_Tools.UserControls.HomePageUserControls;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,7 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Forms.Integration;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace Everything_Handhelds_Tool.Pages
+namespace Handheld_Hardware_Tools.Pages
 {
     /// <summary>
     /// Interaction logic for HomePage.xaml
