@@ -28,6 +28,9 @@ using WindowsInput;
 using Handheld_Hardware_Tools.AppWindows.Guide;
 using Handheld_Hardware_Tools.AppWindows.QuickActionWheel;
 using Handheld_Hardware_Tools.AppWindows.MainWindow;
+using System.Threading;
+using Handheld_Hardware_Tools.AppWindows.OSK;
+using System.Linq;
 
 
 namespace Handheld_Hardware_Tools
@@ -44,7 +47,7 @@ namespace Handheld_Hardware_Tools
         public MouseKeyHook mouseKeyHook = new MouseKeyHook();
 
       
-        public QuickAccessMenu()
+        public QuickAccessMenu(Thread splashWindowThread = null)
         {
             //Get the device type (i.e. win max 2, one x fly, etc)
             device = new Device_Management().device;
@@ -72,6 +75,14 @@ namespace Handheld_Hardware_Tools
 
             //MainWindow guide = new MainWindow();
             //guide.Show();
+
+
+            //Close the splashscreen thread IF it was used
+            if (splashWindowThread != null )
+            {
+                ((App)Application.Current).CancelSplashScreen();
+
+            }
 
         }
 

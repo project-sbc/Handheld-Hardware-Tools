@@ -6,6 +6,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
+using System.Threading;
 
 
 namespace Handheld_Hardware_Tools
@@ -15,8 +16,8 @@ namespace Handheld_Hardware_Tools
     /// </summary>
     public partial class App : Application
     {
-   
 
+        public SplashScreenStartUp splashWindow;
 
         public App()
         {
@@ -27,8 +28,7 @@ namespace Handheld_Hardware_Tools
             
 
         }
-      
-
+                
         protected override async void OnStartup(StartupEventArgs e)
         {
      
@@ -38,21 +38,31 @@ namespace Handheld_Hardware_Tools
             {
                 quietStart = true;
             }
-
-            SplashScreenStartUp splashScreen = null;
+                      
 
 
             Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
 
+
+            QuickAccessMenu qam = null;
             if (!settings.hideSplashScreen && !quietStart)
             {
-                //if not quiet start then show splashscreen
-                splashScreen = new SplashScreenStartUp();
-                splashScreen.Show();
-            }
+                //if not quiet start then show splashscreen using separate thread so we can load the 
+                //QAM on the UI thread but at the same time not block a UI thread for the splashscreen so the window loading spins :)  <-- smiley face for me
+               
+                Thread splashScreenThread = new Thread(StartSplashScreenThread);
+               
+                splashScreenThread.SetApartmentState(ApartmentState.STA);
+                splashScreenThread.IsBackground = true;
 
+                splashScreenThread.Start();
+                qam = new QuickAccessMenu(splashScreenThread);
+            }
+            else
+            {
+                qam = new QuickAccessMenu();
+            }
             
-            QuickAccessMenu qam = await LoadMainWindowAsync();
             this.MainWindow = qam;
             
 
@@ -62,26 +72,21 @@ namespace Handheld_Hardware_Tools
             }
             else
             {
-                if (!settings.hideSplashScreen)
-                {
-                    splashScreen.Close();
-                }
                 qam.Show();
             }
 
 
         }
-
-
-        private async Task<QuickAccessMenu> LoadMainWindowAsync()
+        private void StartSplashScreenThread()
         {
-            // Simulate loading MainWindow asynchronously
-            
-
-            // Create MainWindow instance
-            var qam = new QuickAccessMenu();
-
-            return qam;
+            splashWindow = new SplashScreenStartUp();
+            splashWindow.Show();
+            System.Windows.Threading.Dispatcher.Run();
+          
+        }
+        public void CancelSplashScreen()
+        {
+            splashWindow.Dispatcher.Invoke(() => splashWindow.Close());
         }
         /// <summary>
         /// This funtion loads a ResourceDictionary from a file at runtime

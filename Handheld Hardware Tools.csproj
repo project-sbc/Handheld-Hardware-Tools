@@ -23,6 +23,8 @@
 
   <ItemGroup>
 
+    <None Remove="HH Logo.png" />
+
     <None Remove="Resources\AMD\ADLX\ADLX_3DSettings.dll" />
     <None Remove="Resources\AMD\ADLX\ADLX_AutoTuning.dll" />
     <None Remove="Resources\AMD\ADLX\ADLX_DisplaySettings.dll" />
@@ -265,6 +267,10 @@
 
   <ItemGroup>
     <Folder Include="Resources\Icons\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="HH Logo.png" />
   </ItemGroup>
 
 

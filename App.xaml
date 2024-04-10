@@ -16,7 +16,7 @@
                 <Setter Property="Foreground" Value="{DynamicResource FontIconColor}" />
             </Style>
 
-
+            <BitmapImage x:Key="SplashscreenLogo" UriSource="HH Logo.png" />
 
             <ResourceDictionary.MergedDictionaries>
 
@@ -28,7 +28,7 @@
                 <!-- -->
                 <ui:ThemesDictionary Theme="Dark" />
           
-
+                
 
                 <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>

@@ -9,8 +9,18 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        Title="SplashScreenStartUp" Height="450" Width="800">
-    <Border CornerRadius="10" Background="Blue">
-        
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        Title="SplashScreenStartUp" Height="350" Width="600">
+    <Border CornerRadius="20" >
+        <Border.Background>
+            <ImageBrush ImageSource="{DynamicResource SplashscreenLogo}"  Stretch="Fill"/>
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <fa:ImageAwesome Icon="Spinner" Spin="True" Height="48" Width="48" Grid.Row="1" Foreground="White" />
+        </Grid>
     </Border>
 </Window>
