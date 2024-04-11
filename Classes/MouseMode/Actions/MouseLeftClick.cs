@@ -19,10 +19,19 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode.Actions
             InputSimulator inputSimulator = Local_Object.Instance.GetMainWindowInputSimulator();
             if (inputSimulator != null)
             {
-                Debug.WriteLine(DateTime.Now.ToString());
-                inputSimulator.Mouse.LeftButtonClick();
+                inputSimulator.Mouse.LeftButtonDown();
             }
           
+        }
+
+        public void ReleaseClick()
+        {
+            InputSimulator inputSimulator = Local_Object.Instance.GetMainWindowInputSimulator();
+            if (inputSimulator != null)
+            {
+                inputSimulator.Mouse.LeftButtonUp();
+            }
+
         }
     }
 }

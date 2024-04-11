@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Handheld_Hardware_Tools.Classes.MouseMode.Actions;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.DirectoryServices.ActiveDirectory;
@@ -32,6 +33,23 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode
             {
                 controllerInput.joystickEvent.controllerJoystickEvent += JoystickEvent_controllerJoystickEvent;
                 controllerInput.buttonPressEvent.controllerInputEvent += ButtonPressEvent_controllerInputEvent;
+                controllerInput.buttonPressEvent.controllerInputReleaseEvent += ButtonPressEvent_controllerInputReleaseEvent;
+            }
+        }
+
+        private void ButtonPressEvent_controllerInputReleaseEvent(object? sender, controllerInputEventArgs e)
+        {
+            //THIS IS SPECIFIC TO LEFT MOUSE! yo ushould be able to drag with the left mouse so this should enable it
+            MouseLeftClick mouseLeftClick = mouseProfile.mouseActionList.Values.OfType<MouseLeftClick>().FirstOrDefault();
+
+            if (mouseLeftClick != null)
+            {
+                string value = mouseProfile.mouseActionList.FirstOrDefault(x => x.Value == mouseLeftClick).Key;
+                if (value == e.Action)
+                {
+                    mouseLeftClick.ReleaseClick();
+                }
+                
             }
         }
 
@@ -209,6 +227,7 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode
             {
                 controllerInput.joystickEvent.controllerJoystickEvent -= JoystickEvent_controllerJoystickEvent;
                 controllerInput.buttonPressEvent.controllerInputEvent -= ButtonPressEvent_controllerInputEvent;
+                controllerInput.buttonPressEvent.controllerInputReleaseEvent -= ButtonPressEvent_controllerInputReleaseEvent;
             }
 
         }

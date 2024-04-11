@@ -243,7 +243,10 @@ namespace Handheld_Hardware_Tools.Classes
                     continousInputCurrent = gbf.ToString();
 
                 }
-
+                if (!currentGamepadState.Buttons.HasFlag(gbf) && previousGamepadState.Buttons.HasFlag(gbf))
+                {
+                    buttonPressEvent.raiseControllerInputRelease(gbf.ToString());
+                }
 
             }
 
@@ -574,6 +577,8 @@ namespace Handheld_Hardware_Tools.Classes
                         //otherwise capture it as a continous movement
                         return gbf.ToString();
                     }
+
+
                 }
                 //default return value is "", only when input is continous will it return something else
 
@@ -591,12 +596,20 @@ namespace Handheld_Hardware_Tools.Classes
     {
 
         public event EventHandler<controllerInputEventArgs> controllerInputEvent;
+        public event EventHandler<controllerInputEventArgs> controllerInputReleaseEvent;
 
         public void raiseControllerInput(string action)
         {
             System.Windows.Application.Current.Dispatcher.BeginInvoke(() =>
             {
                 controllerInputEvent?.Invoke(this, new controllerInputEventArgs(action));
+            });
+        }
+        public void raiseControllerInputRelease(string action)
+        {
+            System.Windows.Application.Current.Dispatcher.BeginInvoke(() =>
+            {
+                controllerInputReleaseEvent?.Invoke(this, new controllerInputEventArgs(action));
             });
         }
     }
