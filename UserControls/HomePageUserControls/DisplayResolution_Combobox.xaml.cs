@@ -5,6 +5,7 @@ using Handheld_Hardware_Tools.Pages;
 using Handheld_Hardware_Tools.Classes;
 using System;
 using System.Collections.Generic;
+using System.Windows.Controls;
 
 
 namespace Handheld_Hardware_Tools.UserControls.EditActionUserControls
@@ -56,7 +57,16 @@ namespace Handheld_Hardware_Tools.UserControls.EditActionUserControls
         }
 
 
-
+        public override void SetComboBoxIndexToPreviousValue()
+        {
+           //Run this code when a combobox opens  but the user presses B instead of clicking a new combobox item
+           //itll set the index back to the previous value. needs to run at individual level because generic class doesnt know the index
+           if (originalSelectedIndex > -1)
+           {
+                comboBox.SelectedIndex = originalSelectedIndex;
+           }
+           
+        }
 
         public override void ReturnControlToPage()
         {

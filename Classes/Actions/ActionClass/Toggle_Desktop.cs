@@ -27,11 +27,11 @@ namespace Handheld_Hardware_Tools.Classes.Actions.ActionClass
             if (1 == 1)
             {
 
-                Thread thread = new Thread(ToggleDesktop);
-                thread.SetApartmentState(ApartmentState.STA); //Set the thread to STA
-                thread.Start();
-                Debug.WriteLine("Invoking togg desk");
-                //Application.Current.Dispatcher.BeginInvoke(() => ToggleDesktop());
+                //Thread thread = new Thread(ToggleDesktop);
+                //thread.SetApartmentState(ApartmentState.STA); //Set the thread to STA
+                //thread.Start();
+                //Debug.WriteLine("Invoking togg desk");
+                Application.Current.MainWindow.Dispatcher.Invoke(() => ToggleDesktop());
             }
            
        

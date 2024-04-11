@@ -458,6 +458,7 @@ namespace Handheld_Hardware_Tools
             DetermineAppFocusOnFullScreenGame();
 
             //set app to normal state and visible
+            this.WindowState = WindowState.Normal;
             this.Show();
 
             
@@ -479,7 +480,7 @@ namespace Handheld_Hardware_Tools
                     if (ScreenProgram_Management.IsForegroundFullScreen(new HandleRef(null, p.MainWindowHandle), null) && !ScreenProgram_Management.ExcludeFullScreenProcessList.Contains(p.ProcessName))
                     {
                         //this is where we will make app non focusable
-                        SetWindowAsNonFocusable();
+                        SetWindowAsNonFocusable(p.MainWindowHandle);
                         return;
                     }
                 }
@@ -527,20 +528,38 @@ namespace Handheld_Hardware_Tools
 
         [DllImport("user32.dll")]
         public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool SetForegroundWindow(IntPtr hWnd);
 
-        private void SetWindowAsNonFocusable()
+
+        //used to keep track of 
+        private IntPtr gameHandle = IntPtr.Zero;
+        private void SetWindowAsNonFocusable(IntPtr game)
         {
             //set app as non focusable 
             var helper = new WindowInteropHelper(this);
-            SetWindowLong(helper.Handle, GWL_EXSTYLE,
-                GetWindowLong(helper.Handle, GWL_EXSTYLE) | WS_EX_NOACTIVATE);
+            SetForegroundWindow(helper.Handle);
+            //SetWindowLong(helper.Handle, GWL_EXSTYLE, GetWindowLong(helper.Handle, GWL_EXSTYLE) | WS_EX_NOACTIVATE);
+
+           
+            //gameHandle = game;
+            //set game as non focusable to see if it stops controller input
+            //SetWindowLong(game, GWL_EXSTYLE, GetWindowLong(game, GWL_EXSTYLE) | WS_EX_NOACTIVATE);
         }
         private void SetWindowAsFocusable()
         {
             //set app as focusable 
+
             var helper = new WindowInteropHelper(this);
-            SetWindowLong(helper.Handle, GWL_EXSTYLE,
-                GetWindowLong(helper.Handle, GWL_EXSTYLE) & ~WS_EX_NOACTIVATE);
+            SetWindowLong(helper.Handle, GWL_EXSTYLE, GetWindowLong(helper.Handle, GWL_EXSTYLE) & ~WS_EX_NOACTIVATE);
+
+            if (gameHandle != IntPtr.Zero)
+            {
+                //SetWindowLong(gameHandle, GWL_EXSTYLE, GetWindowLong(gameHandle, GWL_EXSTYLE) & ~WS_EX_NOACTIVATE);
+               // gameHandle = IntPtr.Zero;
+            }
+           
         }
 
 

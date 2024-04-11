@@ -26,6 +26,8 @@ namespace Handheld_Hardware_Tools.Classes.Controller_Object_Classes
         public virtual void ControlChangeValueHandler() { }
 
         public virtual void ChangeMainWindowControllerInstructionPage() { }
+
+        public virtual void SetComboBoxIndexToPreviousValue() { }
         public virtual void HighlightControl() 
         { 
             if (borderControl != null) 
@@ -204,6 +206,7 @@ namespace Handheld_Hardware_Tools.Classes.Controller_Object_Classes
                 case "B":
                     if (comboBox.IsDropDownOpen)
                     {
+                        SetComboBoxIndexToPreviousValue();
                         comboBox.IsDropDownOpen = false;
                     }
                  

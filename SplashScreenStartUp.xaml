@@ -9,8 +9,9 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
+        ResizeMode="NoResize"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
-        Title="SplashScreenStartUp" Height="350" Width="600">
+        Title="SplashScreenStartUp" Height="250" Width="400">
     <Border CornerRadius="20" >
         <Border.Background>
             <ImageBrush ImageSource="{DynamicResource SplashscreenLogo}"  Stretch="Fill"/>

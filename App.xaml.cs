@@ -31,7 +31,7 @@ namespace Handheld_Hardware_Tools
                 
         protected override async void OnStartup(StartupEventArgs e)
         {
-     
+            //determine if this is an autostart by checking if running from system32
             bool quietStart = false;
             //if start is from system32 (task scheduled start) then set quietStart to true, means auto start
             if (String.Equals("C:\\Windows\\System32", Directory.GetCurrentDirectory(), StringComparison.OrdinalIgnoreCase))
@@ -40,7 +40,7 @@ namespace Handheld_Hardware_Tools
             }
                       
 
-
+            //lets check if quiet start is enabled (no splashscreen)
             Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
 
 
