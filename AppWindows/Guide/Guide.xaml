@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Handheld_Hardware_Tools.AppWindows.Guide"
+                xmlns:outlineTB="clr-namespace:Handheld_Hardware_Tools.Classes"
         mc:Ignorable="d"
         Background="#AA535353"
         WindowStyle="None"
@@ -27,7 +28,7 @@
 
        
         <Viewbox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <TextBlock Text="Action Hotkeys" />
+            <outlineTB:OutlinedTextBlock Text="Action Hotkeys" Fill="White" Stroke="DimGray"/>
         </Viewbox>
         <WrapPanel Name="wrapPanel" Grid.Row="2"  Grid.Column="1" Orientation="Vertical">
             

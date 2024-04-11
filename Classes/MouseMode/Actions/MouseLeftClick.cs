@@ -2,6 +2,7 @@
 using Handheld_Hardware_Tools.AppWindows.OSK.Keyboards;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode.Actions
             InputSimulator inputSimulator = Local_Object.Instance.GetMainWindowInputSimulator();
             if (inputSimulator != null)
             {
+                Debug.WriteLine(DateTime.Now.ToString());
                 inputSimulator.Mouse.LeftButtonClick();
             }
           
