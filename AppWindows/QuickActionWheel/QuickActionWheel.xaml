@@ -13,11 +13,12 @@
                      Topmost="True"
                         Loaded="Window_Loaded"
            Background="Transparent"
+        ResizeMode="NoResize"
       WindowStyle="None"
       AllowsTransparency="True"
      xmlns:fa="http://schemas.fontawesome.io/icons/"
          WindowStartupLocation="CenterScreen"
-         Height="700" Width="700">
+         Height="600" Width="700">
     <Window.Resources>
         <Style  TargetType="RadialMenu:RadialMenuCentralItem" BasedOn="{StaticResource {x:Type RadialMenu:RadialMenuCentralItem}}">
 

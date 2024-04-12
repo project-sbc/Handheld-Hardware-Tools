@@ -2,12 +2,15 @@
 using Handheld_Hardware_Tools.Classes.MouseMode;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
@@ -420,10 +423,10 @@ namespace Handheld_Hardware_Tools.AppWindows.OSK.Keyboards
 
                             break;
                         case "LeftShoulder":
-                            leftButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                            leftButton.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent));
                             break;
                         case "RightShoulder":
-                            rightButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
+                            rightButton.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent));
                             break;
                         case "X":
                             inputSimulator.Keyboard.KeyPress(VirtualKeyCode.BACK);
@@ -435,6 +438,9 @@ namespace Handheld_Hardware_Tools.AppWindows.OSK.Keyboards
                             break;
                         case "LeftTrigger":
                             shiftPressed = !shiftPressed;
+                            break;
+                        case "RightTrigger":
+                            Task.Run(() => MoveWindowToNextMonitorAsync());
                             break;
                         case "B":
                             CloseWindow();
@@ -449,6 +455,70 @@ namespace Handheld_Hardware_Tools.AppWindows.OSK.Keyboards
 
                
             });
+        }
+
+
+
+
+
+
+        public async Task MoveWindowToNextMonitorAsync()
+        {
+            //WE NEED TO GET CURRENT STATE OF WINDOW BECAUSE MOVING IT WHILE NOT OPEN MAKES IT NOT WORK THE FIRST TIME
+            OSK osk = Local_Object.Instance.GetOSKWindow();
+            var helper = new WindowInteropHelper(osk);
+
+            WindowState windowState = ScreenProgram_Management.GetWindowState(helper.Handle);
+
+
+            //if (windowState != WindowState.Maximized)
+            //{
+            ScreenProgram_Management.SetWindowState(helper.Handle, WindowState.Normal);
+            Thread.Sleep(200);
+            //}
+
+
+
+            List<System.Windows.Forms.Screen> screens = System.Windows.Forms.Screen.AllScreens.ToList();
+
+            // Get the position and size of the window
+            ScreenProgram_Management.RECT windowRect;
+            ScreenProgram_Management.GetWindowRect(helper.Handle, out windowRect);
+
+
+            // Get the screen  of the winodw
+            System.Windows.Forms.Screen windowScreen = System.Windows.Forms.Screen.FromHandle(helper.Handle);
+
+            int indexScreen = screens.IndexOf(windowScreen);
+
+
+
+            int newIndex = 0;
+            if (indexScreen != -1 && indexScreen < (screens.Count - 1))
+            {
+                newIndex = indexScreen + 1;
+            }
+
+            System.Windows.Forms.Screen targetScreen = screens[newIndex];
+            // Calculate the new position of the window relative to the target monitor
+            int newX = targetScreen.Bounds.Left; // Example: 100 pixels from the left edge
+            int newY = targetScreen.Bounds.Top; // Example: 100 pixels from the top edge
+
+
+            Debug.WriteLine(indexScreen.ToString() + " newX " + newX.ToString() + "; newY " + newY.ToString());
+
+            // Move the window to the new position
+            ScreenProgram_Management.SetWindowPos(helper.Handle, IntPtr.Zero, newX, newY, windowRect.Right - windowRect.Left, windowRect.Bottom - windowRect.Top, ScreenProgram_Management.SWP_SHOWWINDOW | ScreenProgram_Management.SWP_NOZORDER);
+
+            Thread.Sleep(400);
+            ScreenProgram_Management.SetWindowState(helper.Handle, WindowState.Maximized);
+            Thread.Sleep(400);
+            //maximize window and set to front
+
+            //ScreenProgram_Management.SetForegroundWindow(selectedProcess.MainWindowHandle);
+
+
+
         }
 
         private void ToggleOutlineTextBlock()

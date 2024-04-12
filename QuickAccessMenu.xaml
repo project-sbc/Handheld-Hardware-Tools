@@ -18,7 +18,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         SizeToContent="Height"
-        
+        ResizeMode="NoResize"
         Height="800"
         Loaded="UiWindow_Loaded"
         Closing="Window_Closing" 
