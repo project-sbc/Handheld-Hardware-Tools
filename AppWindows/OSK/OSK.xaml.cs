@@ -1,21 +1,8 @@
-﻿using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using WindowsInput;
+
 
 namespace Handheld_Hardware_Tools.AppWindows.OSK
 {
@@ -38,7 +25,7 @@ namespace Handheld_Hardware_Tools.AppWindows.OSK
         {
             SetLocation();
 
-            frame.Source = new Uri("Keyboards\\QWERTY.xaml", UriKind.RelativeOrAbsolute);
+            frame.Source = new Uri("Keyboards\\QWERTY_FlipDS.xaml", UriKind.RelativeOrAbsolute);
 
      
         }

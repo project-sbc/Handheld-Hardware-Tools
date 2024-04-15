@@ -273,8 +273,8 @@ namespace Handheld_Hardware_Tools.AppWindows.OSK.Keyboards
             //upperLimitY = mw.Top - circleDiameter / 2;
 
             //identify the start buttons for the controller input (f and j keys)
-            leftButton = (Button)virtualGrid.Children.Cast<UIElement>().First(e => Grid.GetRow(e) == 2 && Grid.GetColumn(e) == 9);
-            rightButton = (Button)virtualGrid.Children.Cast<UIElement>().First(e => Grid.GetRow(e) == 2 && Grid.GetColumn(e) == 15);
+            leftButton = (Button)virtualGrid.Children.Cast<UIElement>().First(e => Grid.GetRow(e) == 2 && Grid.GetColumn(e) == 8);
+            rightButton = (Button)virtualGrid.Children.Cast<UIElement>().First(e => Grid.GetRow(e) == 2 && Grid.GetColumn(e) == 14);
 
             //setup start points for circles
             leftPoint = leftButton.TranslatePoint(new Point(0, 0), virtualMainCanvas);
@@ -440,7 +440,7 @@ namespace Handheld_Hardware_Tools.AppWindows.OSK.Keyboards
                             shiftPressed = !shiftPressed;
                             break;
                         case "RightTrigger":
-                            Task.Run(() => MoveWindowToNextMonitorAsync());
+                            MoveWindowToNextMonitorAsync();
                             break;
                         case "B":
                             CloseWindow();
