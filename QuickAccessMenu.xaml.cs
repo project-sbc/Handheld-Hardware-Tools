@@ -83,7 +83,9 @@ namespace Handheld_Hardware_Tools
                 ((App)Application.Current).CancelSplashScreen();
 
             }
-            
+
+            Powercfg_Management.Instance.playgroundwinapi();
+
         }
 
         public void CloseMouseMode()

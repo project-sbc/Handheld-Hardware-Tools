@@ -9,8 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using PowerManagerAPI;
-using System.Diagnostics;
-using SharpDX;
+
 using System.Runtime.InteropServices;
 
 namespace Handheld_Hardware_Tools.Classes
@@ -49,8 +48,9 @@ namespace Handheld_Hardware_Tools.Classes
       
         public void playgroundwinapi()
         {
+                Guid activeplan = PowerplanHelper.GetActiveScheme();
 
-
+            var result =  PowerManager.GetPlanSetting(activeplan, SettingSubgroup.PROCESSOR_SETTINGS_SUBGROUP, Setting.PROCFREQMAX, PowerMode.AC);
         }
 
 
@@ -187,8 +187,12 @@ namespace Handheld_Hardware_Tools.Classes
   
         public void ChangeEPP(int epp)
         {
-            PowercfgChangeValueHandler(epp.ToString(), "PERFEPP");
-            PowercfgChangeValueHandler(epp.ToString(), "PERFEPP1");
+            //PowercfgChangeValueHandler(epp.ToString(), "PERFEPP");
+            //PowercfgChangeValueHandler(epp.ToString(), "PERFEPP1");
+
+            PowerManager.SetPlanSetting()
+
+
             EPP = epp;
         }
 
@@ -346,26 +350,26 @@ namespace Handheld_Hardware_Tools.Classes
         public static Guid GUID_MAX_PROC_FREQ = new Guid("893dee8e-2bef-41e0-89c6-b55d0929964b");
 
 
+        public static Guid PROC_SUB_GROUP = new Guid("{54533251-82be-4824-96c1-47b60b740d00}");
 
 
 
 
         //used to change AC values of power plan
-        [DllImport("powrprof.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern int PowerWriteACValueIndex(IntPtr RootPowerKey, ref Guid SchemeGuid, int SubGroupOfPowerSettingsGuid, uint ValueIndex);
+        [DllImport("powrprof.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        public static extern uint PowerWriteACValueIndex(IntPtr RootPowerKey, ref Guid SchemeGuid, ref Guid SubGroupOfPowerSetting, ref Guid PowerSettingGuid, uint AcValueIndex);
+        //used to change DC values of power plan
+        [DllImport("powrprof.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        public static extern uint PowerWriteDCValueIndex(IntPtr RootPowerKey, ref Guid SchemeGuid, ref Guid SubGroupOfPowerSetting, ref Guid PowerSettingGuid, uint AcValueIndex);
+
 
         //used to read AC values of power plan
-        [DllImport("powrprof.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern int PowerReadACValueIndex(IntPtr RootPowerKey, ref Guid SchemeGuid, int SubGroupOfPowerSettingsGuid, out uint AcValueIndex);
-        //used to change DC values of power plan
-        [DllImport("powrprof.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern int PowerWriteDCValueIndex(IntPtr RootPowerKey, ref Guid SchemeGuid, int SubGroupOfPowerSettingsGuid, uint ValueIndex);
+        [DllImport("powrprof.dll")]
+        public static extern uint PowerReadACValue(IntPtr RootPowerKey,ref Guid SchemeGuid,ref Guid SubGroupOfPowerSettingGuid, ref Guid PowerSettingGuid, ref int Type, ref int Buffer, ref uint BufferSize);
 
         //used to read DC values of power plan
-        [DllImport("powrprof.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern int PowerReadDCValueIndex(IntPtr RootPowerKey, ref Guid SchemeGuid, int SubGroupOfPowerSettingsGuid, out uint AcValueIndex);
-
-
+        [DllImport("powrprof.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        public static extern uint PowerReadDCValueIndex(IntPtr RootPowerKey, ref Guid SchemeGuid, ref Guid SubGroupOfPowerSetting, ref Guid PowerSettingGuid, out uint AcValueIndex);
 
 
 
