@@ -46,13 +46,7 @@ namespace Handheld_Hardware_Tools.UserControls.EditActionUserControls
             General_Functions.ChangeControllerInstructionPage("ChangeBack");
         }
 
-        private Dictionary<string,string> powerPlanLookup2 = new Dictionary<string, string>()
-        {
-            { Application.Current.Resources["Usercontrol_PowerPlanHighPerformance"].ToString(), "High_Performance" },
-            { Application.Current.Resources["Usercontrol_PowerPlanBalanced"].ToString(), "Balanced" },
-            { Application.Current.Resources["Usercontrol_PowerPlanPowerSaver"].ToString(), "Power_Saver" },
-            { Application.Current.Resources["Usercontrol_PowerPlanOptimizedPowerSaver"].ToString(), "Optimized_Power_Saver" }
-        };
+     
         
         private void ConfigureControl()
         {
@@ -103,7 +97,7 @@ namespace Handheld_Hardware_Tools.UserControls.EditActionUserControls
        
                 if (selectedItem.Value != null)
                 {
-
+                    PowerplanHelper.SetActivePowerScheme(selectedItem.Value);
                 }
 
                

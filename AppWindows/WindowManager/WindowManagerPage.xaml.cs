@@ -72,58 +72,7 @@ namespace Handheld_Hardware_Tools.AppWindows.WindowManager
             {
                 if (selectedProcess.MainWindowHandle != IntPtr.Zero)
                 {
-                    //WE NEED TO GET CURRENT STATE OF WINDOW BECAUSE MOVING IT WHILE NOT OPEN MAKES IT NOT WORK THE FIRST TIME
-    
-
-                    WindowState windowState = ScreenProgram_Management.GetWindowState(selectedProcess.MainWindowHandle);
-
-
-                    //if (windowState != WindowState.Maximized)
-                    //{
-                    ScreenProgram_Management.SetWindowState(selectedProcess.MainWindowHandle, WindowState.Normal);
-                        Thread.Sleep(200);
-                    //}
-
-
-
-                    List<Screen> screens = Screen.AllScreens.ToList();
-
-                    // Get the position and size of the window
-                    ScreenProgram_Management.RECT windowRect;
-                    ScreenProgram_Management.GetWindowRect(selectedProcess.MainWindowHandle, out windowRect);
-
-
-                    // Get the screen  of the winodw
-                    Screen windowScreen = Screen.FromHandle(selectedProcess.MainWindowHandle);
-
-                    int indexScreen = screens.IndexOf(windowScreen);
-
-          
-
-                    int newIndex = 0;
-                    if (indexScreen != -1 && indexScreen < (screens.Count-1))
-                    {
-                        newIndex = indexScreen + 1;
-                    }
-
-                    Screen targetScreen = screens[newIndex];
-                                        // Calculate the new position of the window relative to the target monitor
-                    int newX = targetScreen.Bounds.Left; // Example: 100 pixels from the left edge
-                    int newY = targetScreen.Bounds.Top; // Example: 100 pixels from the top edge
-
-
-                    Debug.WriteLine(indexScreen.ToString() + " newX " + newX.ToString() + "; newY " + newY.ToString());
-
-                    // Move the window to the new position
-                    ScreenProgram_Management.SetWindowPos(selectedProcess.MainWindowHandle, IntPtr.Zero, newX, newY, windowRect.Right - windowRect.Left, windowRect.Bottom - windowRect.Top, ScreenProgram_Management.SWP_SHOWWINDOW | ScreenProgram_Management.SWP_NOZORDER);
-
-                    Thread.Sleep(400);
-                    ScreenProgram_Management.SetWindowState(selectedProcess.MainWindowHandle, WindowState.Maximized);
-                    Thread.Sleep(400);
-                    //maximize window and set to front
-
-                    ScreenProgram_Management.SetForegroundWindow(selectedProcess.MainWindowHandle);
-
+                   
 
 
                 }
@@ -137,58 +86,7 @@ namespace Handheld_Hardware_Tools.AppWindows.WindowManager
             {
                 if (selectedProcess.MainWindowHandle != IntPtr.Zero)
                 {
-                    //WE NEED TO GET CURRENT STATE OF WINDOW BECAUSE MOVING IT WHILE NOT OPEN MAKES IT NOT WORK THE FIRST TIME
-
-                    WindowState windowState = ScreenProgram_Management.GetWindowState(selectedProcess.MainWindowHandle);
-
-
-                    //if (windowState != WindowState.Maximized)
-                    //{
-                    ScreenProgram_Management.SetWindowState(selectedProcess.MainWindowHandle, WindowState.Normal);
-                    Thread.Sleep(200);
-                    //}
-
-
-
-                    List<Screen> screens = Screen.AllScreens.ToList();
-
-                    // Get the position and size of the window
-                    ScreenProgram_Management.RECT windowRect;
-                    ScreenProgram_Management.GetWindowRect(selectedProcess.MainWindowHandle, out windowRect);
-
-
-                    // Get the screen  of the winodw
-                    Screen windowScreen = Screen.FromHandle(selectedProcess.MainWindowHandle);
-
-                    int indexScreen = screens.IndexOf(windowScreen);
-
-
-
-                    int newIndex = screens.Count-1;
-                    if (indexScreen >0)
-                    {
-                        newIndex = indexScreen - 1;
-                    }
-
-                    Screen targetScreen = screens[newIndex];
-                    // Calculate the new position of the window relative to the target monitor
-                    int newX = targetScreen.Bounds.Left; // Example: 100 pixels from the left edge
-                    int newY = targetScreen.Bounds.Top; // Example: 100 pixels from the top edge
-
-
-                    Debug.WriteLine(indexScreen.ToString() + " newX " + newX.ToString() + "; newY " + newY.ToString());
-
-                    // Move the window to the new position
-                    ScreenProgram_Management.SetWindowPos(selectedProcess.MainWindowHandle, IntPtr.Zero, newX, newY, windowRect.Right - windowRect.Left, windowRect.Bottom - windowRect.Top, ScreenProgram_Management.SWP_SHOWWINDOW | ScreenProgram_Management.SWP_NOZORDER);
-
-                    Thread.Sleep(400);
-                    ScreenProgram_Management.SetWindowState(selectedProcess.MainWindowHandle, WindowState.Maximized);
-                    Thread.Sleep(400);
-                    //maximize window and set to front
-
-                    ScreenProgram_Management.SetForegroundWindow(selectedProcess.MainWindowHandle);
-
-
+                    ScreenProgram_Management.MoveProgramToPreviousMonitor(selectedProcess.MainWindowHandle);
 
                 }
             }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Handheld_Hardware_Tools.AppWindows.OSK
 {
-    public class ControllerInputOSK
+    public class ControllerInputOSKcheese
     {
 
         public ButtonPressEventOSK buttonPressEvent = new ButtonPressEventOSK();
@@ -54,7 +54,7 @@ namespace Handheld_Hardware_Tools.AppWindows.OSK
             get { return _abortThread; }
             set { _abortThread = value; }
         }
-        public ControllerInputOSK()
+        public ControllerInputOSKcheese()
         {
             controllerThread = new Thread(MainControllerThreadLoop);
             controllerThread.IsBackground = true;

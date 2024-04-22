@@ -14,6 +14,7 @@ namespace Handheld_Hardware_Tools.AppWindows.OSK
 
         public OSK()
         {
+            
             InitializeComponent();
            
             //Move initilize components to sub routine and async it to make pages feel smoother
@@ -25,7 +26,7 @@ namespace Handheld_Hardware_Tools.AppWindows.OSK
         {
             SetLocation();
 
-            frame.Source = new Uri("Keyboards\\QWERTY_FlipDS.xaml", UriKind.RelativeOrAbsolute);
+            frame.Source = new Uri("Keyboards\\QWERTY.xaml", UriKind.RelativeOrAbsolute);
 
      
         }

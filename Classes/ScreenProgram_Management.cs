@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Handheld_Hardware_Tools.AppWindows.AyaNeoFlipDSApp;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -7,8 +8,12 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
+using System.Windows.Interop;
+using static Handheld_Hardware_Tools.Classes.DisplayHelper;
 
 namespace Handheld_Hardware_Tools.Classes
 {
@@ -305,6 +310,126 @@ namespace Handheld_Hardware_Tools.Classes
             ShowWindow(hWnd, nCmdShow);
         }
 
+        public static void MoveProgramToPreviousMonitor(IntPtr handle)
+        {
+            //This moves the program window handle from one monitor to the next
+
+
+            //WE NEED TO GET CURRENT STATE OF WINDOW BECAUSE MOVING IT WHILE NOT OPEN MAKES IT NOT WORK THE FIRST TIME
+
+            WindowState windowState = ScreenProgram_Management.GetWindowState(handle);
+
+
+            //if (windowState != WindowState.Maximized)
+            //{
+            ScreenProgram_Management.SetWindowState(handle, WindowState.Normal);
+            Thread.Sleep(200);
+            //}
+
+
+
+            List<Screen> screens = Screen.AllScreens.ToList();
+
+            // Get the position and size of the window
+            ScreenProgram_Management.RECT windowRect;
+            ScreenProgram_Management.GetWindowRect(handle, out windowRect);
+
+
+            // Get the screen  of the winodw
+            Screen windowScreen = Screen.FromHandle(handle);
+
+            int indexScreen = screens.IndexOf(windowScreen);
+
+
+
+            int newIndex = screens.Count - 1;
+            if (indexScreen > 0)
+            {
+                newIndex = indexScreen - 1;
+            }
+
+            Screen targetScreen = screens[newIndex];
+            // Calculate the new position of the window relative to the target monitor
+            int newX = targetScreen.Bounds.Left; // Example: 100 pixels from the left edge
+            int newY = targetScreen.Bounds.Top; // Example: 100 pixels from the top edge
+
+
+            Debug.WriteLine(indexScreen.ToString() + " newX " + newX.ToString() + "; newY " + newY.ToString());
+
+            // Move the window to the new position
+            ScreenProgram_Management.SetWindowPos(handle, IntPtr.Zero, newX, newY, windowRect.Right - windowRect.Left, windowRect.Bottom - windowRect.Top, ScreenProgram_Management.SWP_SHOWWINDOW | ScreenProgram_Management.SWP_NOZORDER);
+
+            Thread.Sleep(400);
+            ScreenProgram_Management.SetWindowState(handle, WindowState.Maximized);
+            Thread.Sleep(400);
+            //maximize window and set to front
+
+            ScreenProgram_Management.SetForegroundWindow(handle);
+
+
+        }
+
+        public static void MoveProgramToNextMonitor(IntPtr handle)
+        {
+            //This moves the program window handle from one monitor to the next
+
+
+            //WE NEED TO GET CURRENT STATE OF WINDOW BECAUSE MOVING IT WHILE NOT OPEN MAKES IT NOT WORK THE FIRST TIME
+
+
+            WindowState windowState = ScreenProgram_Management.GetWindowState(handle);
+
+
+            //if (windowState != WindowState.Maximized)
+            //{
+            ScreenProgram_Management.SetWindowState(handle, WindowState.Normal);
+            Thread.Sleep(200);
+            //}
+
+
+
+            List<Screen> screens = Screen.AllScreens.ToList();
+
+            // Get the position and size of the window
+            ScreenProgram_Management.RECT windowRect;
+            ScreenProgram_Management.GetWindowRect(handle, out windowRect);
+
+
+            // Get the screen  of the winodw
+            Screen windowScreen = Screen.FromHandle(handle);
+
+            int indexScreen = screens.IndexOf(windowScreen);
+
+
+
+            int newIndex = 0;
+            if (indexScreen != -1 && indexScreen < (screens.Count - 1))
+            {
+                newIndex = indexScreen + 1;
+            }
+
+            Screen targetScreen = screens[newIndex];
+            // Calculate the new position of the window relative to the target monitor
+            int newX = targetScreen.Bounds.Left; // Example: 100 pixels from the left edge
+            int newY = targetScreen.Bounds.Top; // Example: 100 pixels from the top edge
+
+
+            Debug.WriteLine(indexScreen.ToString() + " newX " + newX.ToString() + "; newY " + newY.ToString());
+
+            // Move the window to the new position
+            ScreenProgram_Management.SetWindowPos(handle, IntPtr.Zero, newX, newY, windowRect.Right - windowRect.Left, windowRect.Bottom - windowRect.Top, ScreenProgram_Management.SWP_SHOWWINDOW | ScreenProgram_Management.SWP_NOZORDER);
+
+            Thread.Sleep(400);
+            ScreenProgram_Management.SetWindowState(handle, WindowState.Maximized);
+            Thread.Sleep(400);
+            //maximize window and set to front
+
+            ScreenProgram_Management.SetForegroundWindow(handle);
+
+
+        }
+
+
         public static WindowState GetWindowState(IntPtr handle)
         {
             if (handle != null)
@@ -342,7 +467,56 @@ namespace Handheld_Hardware_Tools.Classes
         public const int SW_RESTORE = 9;
         public const int SW_SHOWDEFAULT = 10;
 
+        [DllImport("user32.dll")]
+        private static extern bool GetMonitorInfo(IntPtr hMonitor, ref MONITORINFO lpmi);
 
+        [DllImport("user32.dll")]
+        public static extern bool EnumDisplayMonitors(IntPtr hdc, IntPtr lpRect, MonitorEnumProc callback, IntPtr dwData);
+        public delegate bool MonitorEnumProc(IntPtr hMonitor, IntPtr hdcMonitor, IntPtr dwData);
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct MONITORINFO
+        {
+            public int cbSize;
+            public RECT rcMonitor;
+            public RECT rcWork;
+            public uint dwFlags;
+        }
+
+    
+      
+        public static void OpenAyaFlipDSWindowOnSpecificMonitor(int desiredWidth, int desiredHeight)
+        {
+            foreach (Screen screen in Screen.AllScreens)
+            {
+                var dm = new DEVMODE();
+                dm.dmSize = (short)Marshal.SizeOf(typeof(DEVMODE));
+                EnumDisplaySettings(screen.DeviceName, ENUM_CURRENT_SETTINGS, ref dm);
+
+                if (dm.dmPelsWidth == desiredWidth && dm.dmPelsHeight == desiredHeight)
+                {
+                    Window window = new AyaNeoFlipDSApp
+                    {
+                        Width = screen.Bounds.Width,
+                        Height = screen.Bounds.Height,
+
+                        Left = screen.Bounds.Left,
+                        Top = screen.Bounds.Top,
+                        //WindowState = WindowState.Maximized
+                    };
+           
+                    // Show the window on the specific monitor
+                    window.Show();
+                    window.WindowState = WindowState.Maximized;
+                    return;
+                }
+                
+            }
+
+
+
+
+        }
 
 
         //EVERYTHING BELOW IS THREAD STUFF LIKE SUSPENDING THREADS. I HAD IT A WHILE AGO TO SUSPEND GAMES TO PREVENT CONTROLLER INPUT FROM WORKING

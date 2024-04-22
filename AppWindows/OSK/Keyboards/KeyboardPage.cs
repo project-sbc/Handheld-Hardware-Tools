@@ -40,12 +40,24 @@ namespace Handheld_Hardware_Tools.AppWindows.OSK.Keyboards
 
         public MouseProfile mouseProfile;
 
-        public KeyboardPage(bool startMouse = false)
+        public KeyboardPage()
         {
-            if (startMouse)
-            {
-                
-            }
+           
+        }
+
+        public void OnPageLoad(object sender, EventArgs e)
+        {
+            
+        }
+
+        public virtual void SetLimitsXY()
+        {
+            
+            
+            lowerLimitX =0;
+            lowerLimitY = 0;
+            upperLimitY = virtualMainCanvas.ActualHeight - (circleDiameter);
+            upperLimitX = virtualMainCanvas.ActualWidth - (circleDiameter);
         }
 
         public virtual void ToggleControllerIconViewbox(bool connected) { }
@@ -262,19 +274,13 @@ namespace Handheld_Hardware_Tools.AppWindows.OSK.Keyboards
         public void SetUpForControllerInput()
         {
             //identify start buttons and make input circles but keep them transparent. This prevents any kind of error due to the circles not being generated when the controller connected event happens
-
-            //set upperLimitY based on window size
-            foreach (OSK mw in System.Windows.Application.Current.Windows.OfType<OSK>())
-            {
-                upperLimitY = mw.Top - circleDiameter / 2;
-            }
-
-
-            //upperLimitY = mw.Top - circleDiameter / 2;
+            
+            SetLimitsXY();
+            
 
             //identify the start buttons for the controller input (f and j keys)
-            leftButton = (Button)virtualGrid.Children.Cast<UIElement>().First(e => Grid.GetRow(e) == 2 && Grid.GetColumn(e) == 8);
-            rightButton = (Button)virtualGrid.Children.Cast<UIElement>().First(e => Grid.GetRow(e) == 2 && Grid.GetColumn(e) == 14);
+            leftButton = (Button)virtualGrid.Children.Cast<UIElement>().First(e => Grid.GetRow(e) == 2 && Grid.GetColumn(e) >= 8);
+            rightButton = (Button)virtualGrid.Children.Cast<UIElement>().First(e => Grid.GetRow(e) == 2 && Grid.GetColumn(e) >= 14);
 
             //setup start points for circles
             leftPoint = leftButton.TranslatePoint(new Point(0, 0), virtualMainCanvas);
@@ -440,7 +446,7 @@ namespace Handheld_Hardware_Tools.AppWindows.OSK.Keyboards
                             shiftPressed = !shiftPressed;
                             break;
                         case "RightTrigger":
-                            MoveWindowToNextMonitorAsync();
+                        
                             break;
                         case "B":
                             CloseWindow();
@@ -462,64 +468,7 @@ namespace Handheld_Hardware_Tools.AppWindows.OSK.Keyboards
 
 
 
-        public async Task MoveWindowToNextMonitorAsync()
-        {
-            //WE NEED TO GET CURRENT STATE OF WINDOW BECAUSE MOVING IT WHILE NOT OPEN MAKES IT NOT WORK THE FIRST TIME
-            OSK osk = Local_Object.Instance.GetOSKWindow();
-            var helper = new WindowInteropHelper(osk);
-
-            WindowState windowState = ScreenProgram_Management.GetWindowState(helper.Handle);
-
-
-            //if (windowState != WindowState.Maximized)
-            //{
-            ScreenProgram_Management.SetWindowState(helper.Handle, WindowState.Normal);
-            Thread.Sleep(200);
-            //}
-
-
-
-            List<System.Windows.Forms.Screen> screens = System.Windows.Forms.Screen.AllScreens.ToList();
-
-            // Get the position and size of the window
-            ScreenProgram_Management.RECT windowRect;
-            ScreenProgram_Management.GetWindowRect(helper.Handle, out windowRect);
-
-
-            // Get the screen  of the winodw
-            System.Windows.Forms.Screen windowScreen = System.Windows.Forms.Screen.FromHandle(helper.Handle);
-
-            int indexScreen = screens.IndexOf(windowScreen);
-
-
-
-            int newIndex = 0;
-            if (indexScreen != -1 && indexScreen < (screens.Count - 1))
-            {
-                newIndex = indexScreen + 1;
-            }
-
-            System.Windows.Forms.Screen targetScreen = screens[newIndex];
-            // Calculate the new position of the window relative to the target monitor
-            int newX = targetScreen.Bounds.Left; // Example: 100 pixels from the left edge
-            int newY = targetScreen.Bounds.Top; // Example: 100 pixels from the top edge
-
-
-            Debug.WriteLine(indexScreen.ToString() + " newX " + newX.ToString() + "; newY " + newY.ToString());
-
-            // Move the window to the new position
-            ScreenProgram_Management.SetWindowPos(helper.Handle, IntPtr.Zero, newX, newY, windowRect.Right - windowRect.Left, windowRect.Bottom - windowRect.Top, ScreenProgram_Management.SWP_SHOWWINDOW | ScreenProgram_Management.SWP_NOZORDER);
-
-            Thread.Sleep(400);
-            ScreenProgram_Management.SetWindowState(helper.Handle, WindowState.Maximized);
-            Thread.Sleep(400);
-            //maximize window and set to front
-
-            //ScreenProgram_Management.SetForegroundWindow(selectedProcess.MainWindowHandle);
-
-
-
-        }
+      
 
         private void ToggleOutlineTextBlock()
         {
@@ -579,9 +528,9 @@ namespace Handheld_Hardware_Tools.AppWindows.OSK.Keyboards
         //add variables for things like circle diameter, and upper limits of keyboard area to prevent circles from going out of bounds
         public const double circleDiameter = 28;
         public const double circleRadius = 14;
-        public double lowerLimitX = circleDiameter / 2;
-        public double lowerLimitY = circleDiameter / 2;
-        public double upperLimitX = System.Windows.SystemParameters.PrimaryScreenWidth - circleDiameter / 2;
+        public double lowerLimitX;
+        public double lowerLimitY;
+        public double upperLimitX;
         public double upperLimitY; //calculated later after we get the on load height
 
 
@@ -747,6 +696,7 @@ namespace Handheld_Hardware_Tools.AppWindows.OSK.Keyboards
         }
         public Point OffSetPoint(Point point, Double dx, Double dy)
         {
+        
             if ((point.X + dx >= lowerLimitX) && (point.X + dx <= upperLimitX))
             {
                 point.Offset(dx, 0);

@@ -1,25 +1,17 @@
 ﻿
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 using System.Windows.Threading;
 using WindowsInput.Native;
-using WindowsInput;
-using System.Windows.Controls.Primitives;
-using Handheld_Hardware_Tools.Classes;
 
-namespace Handheld_Hardware_Tools.AppWindows.OSK.Keyboards
+using Handheld_Hardware_Tools.Classes;
+using Handheld_Hardware_Tools.AppWindows.OSK.Keyboards;
+
+namespace Handheld_Hardware_Tools.AppWindows.AyaNeoFlipDSApp.Pages
 {
     /// <summary>
     /// Interaction logic for QWERTY.xaml
@@ -33,9 +25,7 @@ namespace Handheld_Hardware_Tools.AppWindows.OSK.Keyboards
 
             //Move initilize components to sub routine and async it to make pages feel smoother
             Dispatcher.BeginInvoke(new System.Action(() => Initialize()));
-
-            OSK osk = Local_Object.Instance.GetOSKWindow();
-            osk.WindowState = WindowState.Maximized;
+                   
         }
 
         private void Initialize()
@@ -165,7 +155,7 @@ namespace Handheld_Hardware_Tools.AppWindows.OSK.Keyboards
                     }
                 }
 
-                SendOutlinePreviewTextUpdate(sendCharacter);
+                //SendOutlinePreviewTextUpdate(sendCharacter);
                
             }
 
@@ -173,16 +163,7 @@ namespace Handheld_Hardware_Tools.AppWindows.OSK.Keyboards
 
         }
 
-        private void SendOutlinePreviewTextUpdate(string text)
-        {
-            var window = Local_Object.Instance.GetGeneralWindow(this);
-
-            if (window is OSK)
-            {
-                OSK osk = (OSK)window;
-                osk.UpdateOutlinePreviewText(text);
-            }
-        }
+      
 
 
         private Dictionary<VirtualKeyCode, string> oskShiftLookup = new Dictionary<VirtualKeyCode, string>()

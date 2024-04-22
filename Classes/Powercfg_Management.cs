@@ -40,6 +40,20 @@ namespace Handheld_Hardware_Tools.Classes
             }
         }
 
+
+
+
+        //constants for getting diff parameters in power plan using win api
+        // Constants for the power setting
+
+      
+        public void playgroundwinapi()
+        {
+
+
+        }
+
+
         #region common powercfg handler
 
         //i havent finished commonizing everything, this can be a later to do, the idea is that I can do all powercfg stuff through these two routines
@@ -53,6 +67,9 @@ namespace Handheld_Hardware_Tools.Classes
             string results = Run_CLI.Instance.RunCommand(queryString, true, "C:\\windows\\system32\\powercfg.exe", 1000).Trim();
             return PowercfgResultHandler(results, power);
         }
+
+
+       
 
 
         private int PowercfgResultHandler(string result, string power = null)
@@ -272,29 +289,7 @@ namespace Handheld_Hardware_Tools.Classes
         #region import/set hyatice plan
 
 
-        public Guid GetActiveScheme()
-        {
 
-            string activePlan = "";
-            string result = Run_CLI.Instance.RunCommand(" getactivescheme", true, "C:\\windows\\system32\\powercfg.exe", 1000);
-
-
-            string GUID = GetGUID(result);
-
-          
-            return new Guid(GUID);
-
-        }
-
-
-        private string GetGUID(string input)
-        {
-            if (input.Contains(":"))
-            {
-                return input.Substring(input.IndexOf(":") + 1, 37).Trim();
-            }
-            else { return ""; }
-        }
         private string GetSchemeName(string input)
         {
             if (input.Contains("(") && input.Contains(")"))
@@ -326,7 +321,7 @@ namespace Handheld_Hardware_Tools.Classes
                 string directory = @Path.Combine(appDir + "Resources\\HyaticePowerPlan\\HyaticePowerPlan2.pow");
 
                 string resultImport = Run_CLI.Instance.RunCommand(" -import " + directory, true, "C:\\windows\\system32\\powercfg.exe", 2000, true);
-                string guid = GetGUID(resultImport);
+                string guid = PowerplanHelper.GetGUID(resultImport);
                 if (guid != "")
                 {
                     string resultNameChange = Run_CLI.Instance.RunCommand(" -changename " + guid + " \"Optimized Power Saver\"", true, "C:\\windows\\system32\\powercfg.exe", 2000, true);
@@ -344,6 +339,40 @@ namespace Handheld_Hardware_Tools.Classes
     }
     public static class PowerplanHelper
     {
+        //guid values for diff power parameters used in reading/changing value
+        public static Guid GUID_MIN_CORE_PARKING = new Guid("0cc5b647-c1df-4637-891a-dec35c318583");
+        public static Guid GUID_MAX_CORE_PARKING = new Guid("0012ee47-9041-4b5d-9b77-535fba8b1442");
+        public static Guid GUID_EPP1 = new Guid("4faab71a-8bfb-4828-855e-c05f3c977f9a");
+        public static Guid GUID_MAX_PROC_FREQ = new Guid("893dee8e-2bef-41e0-89c6-b55d0929964b");
+
+
+
+
+
+
+        //used to change AC values of power plan
+        [DllImport("powrprof.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern int PowerWriteACValueIndex(IntPtr RootPowerKey, ref Guid SchemeGuid, int SubGroupOfPowerSettingsGuid, uint ValueIndex);
+
+        //used to read AC values of power plan
+        [DllImport("powrprof.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern int PowerReadACValueIndex(IntPtr RootPowerKey, ref Guid SchemeGuid, int SubGroupOfPowerSettingsGuid, out uint AcValueIndex);
+        //used to change DC values of power plan
+        [DllImport("powrprof.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern int PowerWriteDCValueIndex(IntPtr RootPowerKey, ref Guid SchemeGuid, int SubGroupOfPowerSettingsGuid, uint ValueIndex);
+
+        //used to read DC values of power plan
+        [DllImport("powrprof.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern int PowerReadDCValueIndex(IntPtr RootPowerKey, ref Guid SchemeGuid, int SubGroupOfPowerSettingsGuid, out uint AcValueIndex);
+
+
+
+
+
+
+
+
+
         [DllImport("powrprof.dll", CharSet = CharSet.Unicode)]
         public static extern uint PowerGetActiveScheme(IntPtr UserPowerKey, ref Guid SchemeGuid);
 
@@ -424,10 +453,37 @@ namespace Handheld_Hardware_Tools.Classes
         }
         public static string GetActivePowerSchemeName()
         {
-            Guid activeScheme = Powercfg_Management.Instance.GetActiveScheme();
+            //i need to use the powercfg command to get the active plan name.
+            //see comment in GetActiveScheme for reason why
+            Guid activeScheme = GetActiveScheme();
 
             return GetPowerSchemeName(activeScheme);
         }
+
+        public static Guid GetActiveScheme()
+        {
+            //KEEP THIS, i dont have a good way to get active GUID when the device has a power plan POLICY in place
+            //this seems crazy but on the legion go using win api to get active plan GUID returns a power policy
+            //i can't actually convert the power plan policy to the active scheme GUID
+            string activePlan = "";
+            string result = Run_CLI.Instance.RunCommand(" getactivescheme", true, "C:\\windows\\system32\\powercfg.exe", 1000);
+
+
+            string GUID = GetGUID(result);
+
+
+            return new Guid(GUID);
+
+        }
+        public static string GetGUID(string input)
+        {//used to get GUID from GetActiveScheme
+            if (input.Contains(":"))
+            {
+                return input.Substring(input.IndexOf(":") + 1, 37).Trim();
+            }
+            else { return ""; }
+        }
+
         public static string GetPowerSchemeName(Guid schemeGuid)
         {
             uint bufferSize = 128;

@@ -31,6 +31,7 @@ using Handheld_Hardware_Tools.AppWindows.MainWindow;
 using System.Threading;
 using Handheld_Hardware_Tools.AppWindows.OSK;
 using System.Linq;
+using Handheld_Hardware_Tools.AppWindows.AyaNeoFlipDSApp;
 
 
 namespace Handheld_Hardware_Tools
@@ -56,7 +57,8 @@ namespace Handheld_Hardware_Tools
             mouseKeyHook.Subscribe();
 
             InitializeComponent();
-            //run start up
+
+            //run start up routines
             InitializeRoutines();
 
             
@@ -73,9 +75,7 @@ namespace Handheld_Hardware_Tools
 
             //Application.Current.Resources.MergedDictionaries.Add(((ResourceDictionary)XamlReader.Load(xamlFile)));
 
-            //MainWindow guide = new MainWindow();
-            //guide.Show();
-
+           
 
             //Close the splashscreen thread IF it was used
             if (splashWindowThread != null )
@@ -83,7 +83,7 @@ namespace Handheld_Hardware_Tools
                 ((App)Application.Current).CancelSplashScreen();
 
             }
-
+            
         }
 
         public void CloseMouseMode()
