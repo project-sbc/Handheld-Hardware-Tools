@@ -14,6 +14,7 @@ namespace Handheld_Hardware_Tools.Classes
     {
         AC = 1,
         DC = 2,
+        None = 2
     }
 
     public static class PowerManager

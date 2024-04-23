@@ -54,7 +54,11 @@ namespace Handheld_Hardware_Tools.Classes
         RTCWAKE,
         STANDBYIDLE,
         ADAPTBRIGHT,
-        VIDEOIDLE
+        VIDEOIDLE,
+        EPP,
+        EPP1,
+        MAXCORES,
+        MINCORES
     }
 
     public static class SettingIdLookup
@@ -93,6 +97,10 @@ namespace Handheld_Hardware_Tools.Classes
             { Setting.RTCWAKE,          new Guid("bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d") },
             { Setting.STANDBYIDLE,      new Guid("29f6c1db-86da-48c5-9fdb-f2b67b1f44da") },
             { Setting.ADAPTBRIGHT,      new Guid("fbd9aa66-9553-4097-ba44-ed6e9d65eab8") },
+            { Setting.EPP,      new Guid("36687f9e-e3a5-4dbf-b1dc-15eb381c6863") },
+            { Setting.EPP1,      new Guid("36687f9e-e3a5-4dbf-b1dc-15eb381c6864") },
+            { Setting.MAXCORES,      new Guid("ea062031-0e34-4ff1-9b6d-eb1059334028") },
+            { Setting.MINCORES,      new Guid("0cc5b647-c1df-4637-891a-dec35c318583") },
             { Setting.VIDEOIDLE,        new Guid("3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e") }
         };
     }

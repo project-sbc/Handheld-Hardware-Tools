@@ -11,6 +11,8 @@ using System.Windows;
 using PowerManagerAPI;
 
 using System.Runtime.InteropServices;
+using Windows.System.Power;
+using AudioSwitcher.AudioApi;
 
 namespace Handheld_Hardware_Tools.Classes
 {
@@ -48,11 +50,63 @@ namespace Handheld_Hardware_Tools.Classes
       
         public void playgroundwinapi()
         {
-                Guid activeplan = PowerplanHelper.GetActiveScheme();
+            SetPlanSetting(Guid.Empty, SettingSubgroup.PROCESSOR_SETTINGS_SUBGROUP, Setting.EPP, PowerMode.None, 50);
 
-            var result =  PowerManager.GetPlanSetting(activeplan, SettingSubgroup.PROCESSOR_SETTINGS_SUBGROUP, Setting.PROCFREQMAX, PowerMode.AC);
+            var value = GetPlanSetting(Guid.Empty, SettingSubgroup.PROCESSOR_SETTINGS_SUBGROUP, Setting.EPP, PowerMode.None);
         }
 
+        public int GetPlanSetting(Guid activeplan, SettingSubgroup settingSubgroup, Setting setting, PowerMode powerMode)
+        {
+            //main routine to get power plan settings
+            //if Guid is empty then get active plan (in case there is a specific plan to change)
+            //if powermode is None then get the powermode by power line status
+
+            if (activeplan == Guid.Empty)
+            {
+                activeplan = PowerplanHelper.GetActiveScheme();
+            }
+           
+            if (powerMode == PowerMode.None)
+            {
+                if (SystemParameters.PowerLineStatus == PowerLineStatus.Online)
+                {
+                    powerMode = PowerMode.AC;
+                }
+                else
+                {
+                    powerMode = PowerMode.DC;
+                }
+            }
+           
+            return (int)PowerManager.GetPlanSetting(activeplan, settingSubgroup, setting, powerMode);
+
+        }
+        public void SetPlanSetting(Guid activeplan, SettingSubgroup settingSubgroup, Setting setting, PowerMode powerMode, uint value)
+        {
+            //main routine to sets power plan settings
+            //if Guid is empty then get active plan (in case there is a specific plan to change)
+            //if powermode is None then get the powermode by power line status
+            if (activeplan == Guid.Empty)
+            {
+                activeplan = PowerplanHelper.GetActiveScheme();
+            }
+
+            if (powerMode == PowerMode.None)
+            {
+                if (SystemParameters.PowerLineStatus == PowerLineStatus.Online)
+                {
+                    powerMode = PowerMode.AC;
+                }
+                else
+                {
+                    powerMode = PowerMode.DC;
+                }
+            }
+
+            PowerManager.SetPlanSetting(activeplan, settingSubgroup, setting, powerMode, value);
+
+            PowerManager.SetActivePlan(activeplan);
+        }
 
         #region common powercfg handler
 
@@ -146,7 +200,7 @@ namespace Handheld_Hardware_Tools.Classes
         private void ReadActiveCores()
         {
             //value is current active core count
-            int value = PowercfgReadValueHandler(" -Q SCHEME_CURRENT sub_processor CPMAXCORES");
+            int value = GetPlanSetting(Guid.Empty, SettingSubgroup.PROCESSOR_SETTINGS_SUBGROUP, Setting.MAXCORES, PowerMode.None);
 
             //value is a percentage of total number active cores (i.e. 50% on a 8C CPU means 4C are active), so we need to convert back to a raw core number value
             double calculateCores = (value * maxNumberCores) / 100;
@@ -160,10 +214,11 @@ namespace Handheld_Hardware_Tools.Classes
         {
             //convert core number to total percentage using CPU total # cores
          
-            string CorePercentage = (Math.Round((double)(cores*100 / maxNumberCores), 0) ).ToString();
-            PowercfgChangeValueHandler(CorePercentage, "CPMAXCORES");
-            PowercfgChangeValueHandler(CorePercentage, "CPMINCORES");      
-            
+            uint CorePercentage = ((uint)Math.Round((double)(cores*100 / maxNumberCores), 0) );
+
+            SetPlanSetting(Guid.Empty, SettingSubgroup.PROCESSOR_SETTINGS_SUBGROUP, Setting.MAXCORES, PowerMode.None, CorePercentage);
+            SetPlanSetting(Guid.Empty, SettingSubgroup.PROCESSOR_SETTINGS_SUBGROUP, Setting.MINCORES, PowerMode.None, CorePercentage);
+                       
             activeCores = cores;
         }
 
@@ -180,18 +235,15 @@ namespace Handheld_Hardware_Tools.Classes
 
         private void ReadEPP()
         {
-            int intEPP = PowercfgReadValueHandler(" -Q SCHEME_CURRENT SUB_PROCESSOR PERFEPP");
+            int value = GetPlanSetting(Guid.Empty, SettingSubgroup.PROCESSOR_SETTINGS_SUBGROUP, Setting.EPP, PowerMode.None);
 
-            EPP = intEPP;
+            EPP = value;
         }
   
         public void ChangeEPP(int epp)
         {
-            //PowercfgChangeValueHandler(epp.ToString(), "PERFEPP");
-            //PowercfgChangeValueHandler(epp.ToString(), "PERFEPP1");
-
-            PowerManager.SetPlanSetting()
-
+            SetPlanSetting(Guid.Empty, SettingSubgroup.PROCESSOR_SETTINGS_SUBGROUP, Setting.EPP, PowerMode.None, (uint)epp);
+            SetPlanSetting(Guid.Empty, SettingSubgroup.PROCESSOR_SETTINGS_SUBGROUP, Setting.EPP1, PowerMode.None, (uint)epp);
 
             EPP = epp;
         }
@@ -238,16 +290,17 @@ namespace Handheld_Hardware_Tools.Classes
        
             if (toggle) 
             {
-                PowercfgChangeValueHandler("0", "PROCFREQMAX");
+                SetPlanSetting(Guid.Empty, SettingSubgroup.PROCESSOR_SETTINGS_SUBGROUP, Setting.PROCFREQMAX, PowerMode.None, 0);
             }
             else
             {
-                Device device = Local_Object.Instance.GetMainWindowDevice();
+                Devices.Device device = Local_Object.Instance.GetMainWindowDevice();
                 if (device != null)
                 {
                     if (device.maxNonTurboCPUFrequnecy > -1)
                     {
-                        PowercfgChangeValueHandler(device.maxNonTurboCPUFrequnecy.ToString(), "PROCFREQMAX");
+                        SetPlanSetting(Guid.Empty, SettingSubgroup.PROCESSOR_SETTINGS_SUBGROUP, Setting.PROCFREQMAX, PowerMode.None, (uint)device.maxNonTurboCPUFrequnecy);
+                      
                     }
                 }
                 
@@ -256,8 +309,7 @@ namespace Handheld_Hardware_Tools.Classes
 
         private void ReadMaxCPUClock()
         {
-            string result = Run_CLI.Instance.RunCommand(" -Q SCHEME_CURRENT sub_processor PROCFREQMAX", true, "C:\\windows\\system32\\powercfg.exe", 1000).Trim();
-            int value = PowercfgResultHandler(result);
+            int value = GetPlanSetting(Guid.Empty, SettingSubgroup.PROCESSOR_SETTINGS_SUBGROUP, Setting.PROCFREQMAX, PowerMode.None);
             maxCPUClock = value;
 
             if (maxCPUClock != 0)
@@ -275,9 +327,9 @@ namespace Handheld_Hardware_Tools.Classes
             //when setting the max cpu clock, make sure the procthrottle max isn't 99% or less
             //this will mess with clock limits above the base cpu frequency
             //so call both a max cpu clock AND set procthrottlemax to 100% so that doesnt accidentally limit us
+            SetPlanSetting(Guid.Empty, SettingSubgroup.PROCESSOR_SETTINGS_SUBGROUP, Setting.PROCFREQMAX, PowerMode.None, (uint)value);
+            SetPlanSetting(Guid.Empty, SettingSubgroup.PROCESSOR_SETTINGS_SUBGROUP, Setting.PROCTHROTTLEMAX, PowerMode.None, 100);
 
-            PowercfgChangeValueHandler("100", "PROCTHROTTLEMAX");
-            PowercfgChangeValueHandler(value.ToString(), "PROCFREQMAX");
             maxCPUClock = value;
         }
 
