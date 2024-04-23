@@ -1,5 +1,4 @@
 ﻿using Handheld_Hardware_Tools.Classes.Devices;
-using Handheld_Hardware_Tools.Classes.Devices;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -41,19 +40,6 @@ namespace Handheld_Hardware_Tools.Classes
             }
         }
 
-
-
-
-        //constants for getting diff parameters in power plan using win api
-        // Constants for the power setting
-
-      
-        public void playgroundwinapi()
-        {
-            SetPlanSetting(Guid.Empty, SettingSubgroup.PROCESSOR_SETTINGS_SUBGROUP, Setting.EPP, PowerMode.None, 50);
-
-            var value = GetPlanSetting(Guid.Empty, SettingSubgroup.PROCESSOR_SETTINGS_SUBGROUP, Setting.EPP, PowerMode.None);
-        }
 
         public int GetPlanSetting(Guid activeplan, SettingSubgroup settingSubgroup, Setting setting, PowerMode powerMode)
         {

@@ -10,7 +10,7 @@
         xmlns:uc="clr-namespace:Handheld_Hardware_Tools.UserControls.HomePageUserControls"
       Title="HomePage"     
                  xmlns:UpperCase="clr-namespace:Handheld_Hardware_Tools.Classes.Converters"
-                      
+               
                         >
 
     <Grid  Name="grid" >

@@ -84,8 +84,6 @@ namespace Handheld_Hardware_Tools
 
             }
 
-            Powercfg_Management.Instance.playgroundwinapi();
-
         }
 
         public void CloseMouseMode()

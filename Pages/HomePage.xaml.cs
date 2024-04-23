@@ -13,6 +13,7 @@ using System;
 using Handheld_Hardware_Tools.UserControls.EditActionUserControls;
 using Handheld_Hardware_Tools.AppWindows.MainWindow;
 using System.Windows;
+using System.Threading.Tasks;
 
 namespace Handheld_Hardware_Tools.Pages
 {
@@ -35,7 +36,7 @@ namespace Handheld_Hardware_Tools.Pages
             virtualStackPanel = stackPanel;
             AddUserControlsToStackPanel();
 
-            //hide top row when in main window, but keep when in QAM
+            //hide top row when in main window, but keep when in QAM. reminder this is used in the QAM and the larger screen window
             Window parentWindow = Local_Object.Instance.GetGeneralWindow(this);
             if (parentWindow is MainWindow)
             {
@@ -43,7 +44,7 @@ namespace Handheld_Hardware_Tools.Pages
             }
         }
 
-        public void AddUserControlsToStackPanel()
+        public async void AddUserControlsToStackPanel()
         {
             //Get the XML list from the UserConfiguration folder for what controls go on the home page
             HomePageUserControlList chpl = (HomePageUserControlList)XML_Management.Instance.LoadXML("HomePageUserControlList");
@@ -58,16 +59,18 @@ namespace Handheld_Hardware_Tools.Pages
                     {
                         if (controllerUserControl.Visibility == System.Windows.Visibility.Visible && controllerUserControl.useableOnDevice)
                         {
-                            stackPanel.Children.Add(controllerUserControl);
-                            userControls.Add(controllerUserControl);
+                            Dispatcher.Invoke(() =>
+                            {
+                                stackPanel.Children.Add(controllerUserControl);
+                                userControls.Add(controllerUserControl);
+                            });
+                         
                         }
                     }
 
                 }
             }
 
-
-            chpl.SaveToXML();
 
         }
         private ControllerUserControl ReturnUserControlByName(string name)
@@ -108,7 +111,7 @@ namespace Handheld_Hardware_Tools.Pages
                     return null;
             }
         }
-       
+
        
     }
 }
