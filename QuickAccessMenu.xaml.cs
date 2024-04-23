@@ -32,6 +32,8 @@ using System.Threading;
 using Handheld_Hardware_Tools.AppWindows.OSK;
 using System.Linq;
 using Handheld_Hardware_Tools.AppWindows.AyaNeoFlipDSApp;
+using System.Reflection.Metadata;
+
 
 
 namespace Handheld_Hardware_Tools
@@ -138,30 +140,36 @@ namespace Handheld_Hardware_Tools
         private void SubscribeEvents()
         {
             SubscribeControllerEvents();
-            //subscribe to power changed (to update status bar)
+            //subscribe to 333333 changed (to update status bar)
             SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
 
         }
         
-
-
-        public void SetAppLocationHeight()
+        public void ChangeAppLocation(bool qamRight)
         {
-            Double height = General_Functions.GetWindowHeight(this);
+            System.Windows.Forms.Screen windowScreen = System.Windows.Forms.Screen.FromHandle(new WindowInteropHelper(this).Handle);
 
-            if (1 == 0)
+            if (qamRight)
             {
-                this.Height = height * 0.98;
-                this.MinHeight = height * 0.98;
-                this.MaxHeight = height * 0.98;
-                this.Top = height * 0.01;
+                this.Left = windowScreen.Bounds.Right - this.Width;
             }
             else
             {
-                this.Height = height;
-                this.MinHeight = height ;
-                this.MaxHeight = height;
-                this.Top = 0;
+                this.Left = 0;
+            }
+        }
+
+        public void SetAppLocationHeight()
+        {
+            Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
+            System.Windows.Forms.Screen windowScreen = System.Windows.Forms.Screen.FromHandle(new WindowInteropHelper(this).Handle);
+          
+            this.MinHeight = windowScreen.WorkingArea.Bottom - windowScreen.Bounds.Top;
+            this.MaxHeight = windowScreen.WorkingArea.Bottom - windowScreen.Bounds.Top;
+
+            if (settings.qamOnRightSide)
+            {
+                this.Left = windowScreen.Bounds.Right - this.Width;
             }
 
 
@@ -290,7 +298,7 @@ namespace Handheld_Hardware_Tools
         {
             try
             {
-                PowerStatus ps = new PowerStatus();
+                Classes.Models.PowerStatus ps = new Classes.Models.PowerStatus();
                 if (ps.powerStatus == "AC")
                 {
                     viewBoxBatteryPercentage.Visibility = Visibility.Collapsed;

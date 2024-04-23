@@ -39,6 +39,7 @@
                 <uc:IntelTDPType_Combobox/>
                 <uc:AutoStart_ToggleSwitch />
                 <uc:MaxTDP_Slider />
+                <uc:QAMSide_ToggleSwitch />
             </StackPanel>
         </ScrollViewer>
        

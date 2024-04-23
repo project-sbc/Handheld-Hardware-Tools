@@ -254,6 +254,9 @@
     <Compile Update="UserControls\HomePageUserControls\Brightness_Slider.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControls\SettingsPageUserControls\QAMSide_ToggleSwitch.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\SettingsPageUserControls\AutoStart_ToggleSwitch.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

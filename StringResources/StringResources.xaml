@@ -35,6 +35,7 @@
     <system:String x:Key="Usercontrol_IntelTDPType">Intel TDP Type</system:String>
     <system:String x:Key="Usercontrol_NoHotkey">No Hotkey</system:String>
     <system:String x:Key="Usercontrol_Autostart">Autostart </system:String>
+    <system:String x:Key="Usercontrol_QAMLocation">Launch Side</system:String>
     <system:String x:Key="Usercontrol_DisplayResolution">Resolution</system:String>
     <system:String x:Key="Usercontrol_DisplayRefreshRate">Refresh Rate</system:String>
     <!-- window manager app stings -->
