@@ -158,6 +158,8 @@ namespace Handheld_Hardware_Tools.Classes
                     break;
             }
 
+            filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, filePath);
+
             object objObject = null;
             if (File.Exists(filePath))
             {
