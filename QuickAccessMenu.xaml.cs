@@ -33,6 +33,8 @@ using Handheld_Hardware_Tools.AppWindows.OSK;
 using System.Linq;
 using Handheld_Hardware_Tools.AppWindows.AyaNeoFlipDSApp;
 using System.Reflection.Metadata;
+using System.Windows.Media;
+
 
 
 
@@ -145,13 +147,22 @@ namespace Handheld_Hardware_Tools
 
         }
         
+        public void SetAppPositionAndHeight()
+        {
+
+        }
+
         public void ChangeAppLocation(bool qamRight)
         {
-            System.Windows.Forms.Screen windowScreen = System.Windows.Forms.Screen.FromHandle(new WindowInteropHelper(this).Handle);
-
+         
             if (qamRight)
             {
-                this.Left = windowScreen.Bounds.Right - this.Width;
+                System.Windows.Forms.Screen windowScreen = System.Windows.Forms.Screen.FromHandle(new WindowInteropHelper(this).Handle);
+
+                double scaling = GetDPIScaling() / 100;
+                double leftPosition = Math.Round(windowScreen.Bounds.Width / (scaling), 0) - this.Width;
+                this.Left = leftPosition;
+
             }
             else
             {
@@ -159,19 +170,30 @@ namespace Handheld_Hardware_Tools
             }
         }
 
+        public double GetDPIScaling()
+        {
+            return Math.Round(VisualTreeHelper.GetDpi(this).DpiScaleX * 100, 0);
+        }
+
         public void SetAppLocationHeight()
         {
+            //Things to consider setting location and height
+            //DPI scaling (need monitor resolution AND scaling to calculate height and left
+            //need setting preference
             Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
             System.Windows.Forms.Screen windowScreen = System.Windows.Forms.Screen.FromHandle(new WindowInteropHelper(this).Handle);
-          
-            this.MinHeight = windowScreen.WorkingArea.Bottom - windowScreen.Bounds.Top;
-            this.MaxHeight = windowScreen.WorkingArea.Bottom - windowScreen.Bounds.Top;
+
+            double scaling = GetDPIScaling()/100;
+            double leftPosition = Math.Round(windowScreen.Bounds.Width / (scaling),0)-this.Width;
+            
+            double height = Math.Round(windowScreen.WorkingArea.Height / scaling, 0);
+            this.MinHeight = height;
+            this.MaxHeight = height;
 
             if (settings.qamOnRightSide)
             {
-                this.Left = windowScreen.Bounds.Right - this.Width;
+                this.Left = leftPosition;
             }
-
 
         }
 
