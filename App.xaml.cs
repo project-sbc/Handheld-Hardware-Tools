@@ -28,9 +28,13 @@ namespace Handheld_Hardware_Tools
             
 
         }
-                
+        
         protected override async void OnStartup(StartupEventArgs e)
         {
+            
+
+
+
             //determine if this is an autostart by checking if running from system32
             bool quietStart = false;
             //if start is from system32 (task scheduled start) then set quietStart to true, means auto start

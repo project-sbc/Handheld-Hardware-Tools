@@ -54,6 +54,9 @@ namespace Handheld_Hardware_Tools
       
         public QuickAccessMenu(Thread splashWindowThread = null)
         {
+            //check to see if app is already running
+            CheckAppAlreadyRunning();
+
             //Get the device type (i.e. win max 2, one x fly, etc)
             device = new Device_Management().device;
 
@@ -88,6 +91,16 @@ namespace Handheld_Hardware_Tools
 
             }
 
+        }
+
+        public void CheckAppAlreadyRunning()
+        {
+            Process[] HHTools = Process.GetProcessesByName("Handheld Hardware Tools");
+            if (HHTools.Length > 1)
+            {
+                System.Windows.MessageBox.Show("App is already running. Closing this instance");
+                this.Close();
+            }
         }
 
         public void CloseMouseMode()
