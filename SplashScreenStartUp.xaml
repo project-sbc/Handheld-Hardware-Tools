@@ -14,7 +14,7 @@
         Title="SplashScreenStartUp" Height="250" Width="400">
     <Border CornerRadius="20" >
         <Border.Background>
-            <ImageBrush ImageSource="{DynamicResource SplashscreenLogo}"  Stretch="Fill"/>
+            <ImageBrush x:Name="image"  Stretch="Fill"/>
         </Border.Background>
         <Grid>
             <Grid.RowDefinitions>

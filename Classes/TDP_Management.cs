@@ -65,7 +65,14 @@ namespace Handheld_Hardware_Tools.Classes
         }
         private void ReadTDP(string type)
         {
-           
+            //this prevents bans if any anticheat is detected running
+            if (AntiCheat_Detector.AntiCheatRunning()) 
+            {
+                Notification_Management.Instance.TaskbarNotification("AntiCheat service is running, changing TDP and other system functions are temporarily unavailable.");
+                return; 
+            }
+
+
             if (cpuType == "AMD")
             {//always read both sustained and boost on AMD, its fast
                 ReadAMDTDP();
@@ -453,6 +460,14 @@ namespace Handheld_Hardware_Tools.Classes
 
         public void ValidateTDPChange(int tdp1, int tdp2)
         {
+            //this prevents bans if any anticheat is detected running
+            if (AntiCheat_Detector.AntiCheatRunning())
+            {
+                Notification_Management.Instance.TaskbarNotification("AntiCheat service is running, changing TDP and other system functions are temporarily unavailable.");
+                return;
+            }
+
+
             //this makes sure you dont exceed min or max values
             Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
 

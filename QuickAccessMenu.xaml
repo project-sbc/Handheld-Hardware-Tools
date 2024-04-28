@@ -64,7 +64,7 @@
 
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
-        <Image    />
+        <Image  Name="MainWindowLogo" />
        
         <ui:NotifyIcon
                 Grid.Row="0"

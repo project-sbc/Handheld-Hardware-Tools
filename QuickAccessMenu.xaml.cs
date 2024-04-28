@@ -34,6 +34,8 @@ using System.Linq;
 using Handheld_Hardware_Tools.AppWindows.AyaNeoFlipDSApp;
 using System.Reflection.Metadata;
 using System.Windows.Media;
+using System.Drawing;
+using System.Windows.Media.Imaging;
 
 
 
@@ -54,8 +56,7 @@ namespace Handheld_Hardware_Tools
       
         public QuickAccessMenu(Thread splashWindowThread = null)
         {
-            //check to see if app is already running
-            CheckAppAlreadyRunning();
+            
 
             //Get the device type (i.e. win max 2, one x fly, etc)
             device = new Device_Management().device;
@@ -82,6 +83,12 @@ namespace Handheld_Hardware_Tools
 
             //Application.Current.Resources.MergedDictionaries.Add(((ResourceDictionary)XamlReader.Load(xamlFile)));
 
+
+            string picLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HH Logo.png");
+            
+
+            //
+            MainWindowLogo.Source = new BitmapImage(new Uri(picLocation));
            
 
             //Close the splashscreen thread IF it was used
@@ -93,16 +100,7 @@ namespace Handheld_Hardware_Tools
 
         }
 
-        public void CheckAppAlreadyRunning()
-        {
-            Process[] HHTools = Process.GetProcessesByName("Handheld Hardware Tools");
-            if (HHTools.Length > 1)
-            {
-                System.Windows.MessageBox.Show("App is already running. Closing this instance");
-                this.Close();
-            }
-        }
-
+       
         public void CloseMouseMode()
         {//close mouse mode, make sure to unsubscribe to controller events
             if (mouseMode != null)
