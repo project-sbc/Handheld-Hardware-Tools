@@ -14,8 +14,8 @@
     <SolidColorBrush x:Key="FontIconColor" Color="White"  />
     <SolidColorBrush x:Key="HighlightedSideMenuBackground" Color="Gray"  />
     <SolidColorBrush x:Key="ControlsBackground" Color="Transparent"  />
-     
-    <BitmapImage x:Key="MainWindowLogo"  />
+
+    <system:String x:Key="MainWindowLogo">MainWindowLogo.png</system:String>
 
 
 </ResourceDictionary>

@@ -23,8 +23,6 @@
 
   <ItemGroup>
 
-    <None Remove="HH Logo.png" />
-
     <None Remove="Resources\AMD\ADLX\ADLX_3DSettings.dll" />
     <None Remove="Resources\AMD\ADLX\ADLX_AutoTuning.dll" />
     <None Remove="Resources\AMD\ADLX\ADLX_DisplaySettings.dll" />
@@ -59,10 +57,12 @@
     <None Remove="Resources\SetDPI\SetDpi.exe" />
     <None Remove="Resources\WifiDirect\WiFiDirectLegacyAP.exe" />
     <None Remove="Resources\WifiDirect\WiFiDirectLegacyAPDemo.exe" />
+    <None Remove="Styles\MainWindowLogo.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Page Remove="Resources\AppStyle\AppStyle.xaml" />
+    <Page Remove="Styles\DefaultTheme.xaml" />
     <Page Remove="Styles\NewTheme.xaml" />
   </ItemGroup>
 
@@ -180,6 +180,12 @@
     <Content Include="Resources\WifiDirect\WiFiDirectLegacyAP.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Styles\DefaultTheme.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Styles\MainWindowLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Styles\NewTheme.xaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -271,12 +277,6 @@
 
   <ItemGroup>
     <Folder Include="Resources\Icons\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="HH Logo.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
 

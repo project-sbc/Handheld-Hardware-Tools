@@ -23,7 +23,7 @@ namespace Handheld_Hardware_Tools
         {
             InitializeComponent();
 
-            string picLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HH Logo.png");
+            string picLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Styles", Application.Current.Resources["MainWindowLogo"].ToString());
 
 
             //

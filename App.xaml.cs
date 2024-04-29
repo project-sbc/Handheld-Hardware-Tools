@@ -22,8 +22,8 @@ namespace Handheld_Hardware_Tools
         public App()
         {
           
-            //Directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            //string stringsFile = Path.Combine(Directory, "Styles", _DefaultStyle);
+            //string dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            //string stringsFile = Path.Combine(dir, "Styles", "DefaultTheme.xaml");
             //LoadStyleDictionaryFromFile(stringsFile);
             
 
