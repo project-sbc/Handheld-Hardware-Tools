@@ -189,9 +189,7 @@ namespace Handheld_Hardware_Tools.Classes
 
                 if (EnumDisplaySettings(primaryDevice.DeviceName, ENUM_CURRENT_SETTINGS, ref devMode))
                 {
-                    devMode.dmPelsWidth = newWidth;
-                    devMode.dmPelsHeight = newHeight;
-
+                    
                     // Retrieve available refresh rates for the primary monitor
                     List<int> displayFrequencies = GetAvailableRefreshRatesForPrimaryMonitor();
 
@@ -205,8 +203,14 @@ namespace Handheld_Hardware_Tools.Classes
                         }
                     }
 
+
+                    //get devmode FROM COMPLETE LIST OF DEVMODES  (i made the mistake of just changing the current devmode settings and it doesn't always work, so best method is to loop trhough all devmodes and apply the correct one then modifying one
+                    DEVMODE newDevMode = GetDEVMODEForNewResolutionMode(newWidth, newHeight, devMode.dmDisplayFrequency);
+
+
+
                     // Change display settings
-                    int result = ChangeDisplaySettings(ref devMode, 0);
+                    int result = ChangeDisplaySettings(ref newDevMode, 0);
                     if (result != DISP_CHANGE_SUCCESSFUL)
                     {
                         // Failed to change display settings
@@ -320,6 +324,43 @@ namespace Handheld_Hardware_Tools.Classes
 
             return resolutions;
 
+        }
+
+        private DEVMODE GetDEVMODEForNewResolutionMode(int xRes, int yRes, int refreshRate)
+        {
+            //this gets all the refresh rates for the current (or specified) resolution
+
+            DISPLAY_DEVICE displayDevice = new DISPLAY_DEVICE();
+            displayDevice.cb = Marshal.SizeOf(displayDevice);
+            uint deviceIndex = 0;
+
+            while (EnumDisplayDevices(null, deviceIndex, ref displayDevice, 0))
+            {
+                if (displayDevice.StateFlags.HasFlag(DisplayDeviceStateFlags.PrimaryDevice)) // Check if device is the primary display
+                {
+                    DEVMODE devMode = new DEVMODE();
+                    int iModeNum = 0;
+
+
+                    while (EnumDisplaySettings(displayDevice.DeviceName, iModeNum, ref devMode))
+                    {
+                        if (devMode.dmPelsWidth == xRes && devMode.dmPelsHeight == yRes && devMode.dmDisplayFrequency == refreshRate)
+                        {
+                            return devMode;
+
+                        }
+
+                        iModeNum++;
+                    }
+                 
+
+
+                }
+                deviceIndex++;
+            }
+
+            return new DEVMODE();
+          
         }
 
         public List<int> GetAvailableRefreshRatesForPrimaryMonitor(int xRes = 0, int yRes = 0)
