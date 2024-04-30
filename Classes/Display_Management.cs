@@ -298,7 +298,7 @@ namespace Handheld_Hardware_Tools.Classes
            
             List<Tuple<int, int>> resolutions = new List<Tuple<int, int>>();
 
-            DISPLAY_DEVICE displayDevice = new DISPLAY_DEVICE();
+            DISPLAY_DEVICE displayDevice = GetPrimaryDisplayDevice();
             displayDevice.cb = Marshal.SizeOf(displayDevice);
             uint deviceIndex = 0;
 
@@ -369,7 +369,7 @@ namespace Handheld_Hardware_Tools.Classes
 
             List<int> refreshRates = new List<int>();
 
-            DISPLAY_DEVICE displayDevice = new DISPLAY_DEVICE();
+            DISPLAY_DEVICE displayDevice = GetPrimaryDisplayDevice();
             displayDevice.cb = Marshal.SizeOf(displayDevice);
             uint deviceIndex = 0;
 

@@ -21,11 +21,15 @@ namespace Handheld_Hardware_Tools
 
         public App()
         {
-          
+
+            //run this so that everything shuts down when the main window closes
+            Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
+
+
             //string dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             //string stringsFile = Path.Combine(dir, "Styles", "DefaultTheme.xaml");
             //LoadStyleDictionaryFromFile(stringsFile);
-            
+
 
         }
         

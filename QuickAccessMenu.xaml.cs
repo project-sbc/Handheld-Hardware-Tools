@@ -74,10 +74,7 @@ namespace Handheld_Hardware_Tools
             commonFrame = frame;
             instructionFrame = frameControllerInput;
 
-            //run this so that everything shuts down when the main window closes
-            Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
-
-
+          
             //These are for a future feature of custom formats
             //FileStream xamlFile = new FileStream("Styles\\NewTheme.xaml", FileMode.Open, FileAccess.Read);
 
