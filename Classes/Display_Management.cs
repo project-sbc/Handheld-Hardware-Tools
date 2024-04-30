@@ -169,9 +169,7 @@ namespace Handheld_Hardware_Tools.Classes
         {
             DISPLAY_DEVICE displayDevice = GetPrimaryDisplayDevice();
             displayDevice.cb = Marshal.SizeOf(displayDevice);
-
-            EnumDisplayDevices(null, 0, ref displayDevice, 0);
-
+                        
             DEVMODE devMode = new DEVMODE();
             EnumDisplaySettings(displayDevice.DeviceName, -1, ref devMode);
 
@@ -302,24 +300,16 @@ namespace Handheld_Hardware_Tools.Classes
             displayDevice.cb = Marshal.SizeOf(displayDevice);
             uint deviceIndex = 0;
 
-            while (EnumDisplayDevices(null, deviceIndex, ref displayDevice, 0))
+            DEVMODE devMode = new DEVMODE();
+            int modeIndex = 0;
+            while (EnumDisplaySettings(displayDevice.DeviceName, modeIndex, ref devMode))
             {
-                if (displayDevice.StateFlags.HasFlag(DisplayDeviceStateFlags.PrimaryDevice)) // Check if device is the primary display
+                Tuple<int, int> resolution = new Tuple<int, int>(devMode.dmPelsWidth, devMode.dmPelsHeight);
+                if (!resolutions.Contains(resolution))
                 {
-                    DEVMODE devMode = new DEVMODE();
-                    int modeIndex = 0;
-                    while (EnumDisplaySettings(displayDevice.DeviceName, modeIndex, ref devMode))
-                    {
-                        Tuple<int, int> resolution = new Tuple<int, int>(devMode.dmPelsWidth, devMode.dmPelsHeight);
-                        if (!resolutions.Contains(resolution))
-                        {
-                            resolutions.Add(resolution);
-                        }
-                        modeIndex++;
-                    }
-                    break; // Once primary display's resolutions are found, exit the loop
+                    resolutions.Add(resolution);
                 }
-                deviceIndex++;
+                modeIndex++;
             }
 
             return resolutions;
@@ -371,46 +361,35 @@ namespace Handheld_Hardware_Tools.Classes
 
             DISPLAY_DEVICE displayDevice = GetPrimaryDisplayDevice();
             displayDevice.cb = Marshal.SizeOf(displayDevice);
-            uint deviceIndex = 0;
 
-            while (EnumDisplayDevices(null, deviceIndex, ref displayDevice, 0))
+
+            DEVMODE devMode = new DEVMODE();
+            int iModeNum = 0;
+
+            //we need to filter to only the current resolution (or specificed argument in function)
+            if (xRes == 0 || yRes == 0)
             {
-                if (displayDevice.StateFlags.HasFlag(DisplayDeviceStateFlags.PrimaryDevice)) // Check if device is the primary display
-                {
-                    DEVMODE devMode = new DEVMODE();
-                    int iModeNum = 0;
-
-                    //we need to filter to only the current resolution (or specificed argument in function)
-                    if (xRes == 0 || yRes == 0)
-                    {
-                        Tuple<int, int> resolution = GetPrimaryMonitorResolution();
-                        xRes = resolution.Item1;
-                        yRes = resolution.Item2;
-                    }
-
-
-
-                    while (EnumDisplaySettings(displayDevice.DeviceName, iModeNum, ref devMode))
-                    {
-                        if (devMode.dmPelsWidth == xRes && devMode.dmPelsHeight == yRes)
-                        {
-                            int refresh = devMode.dmDisplayFrequency;
-                            if (!refreshRates.Contains(refresh))
-                            {
-                                refreshRates.Add(refresh);
-                            }
-
-                        }
-
-                        iModeNum++;
-                    }
-                    return refreshRates;
-
-
-                }
-                deviceIndex++;
+                Tuple<int, int> resolution = GetPrimaryMonitorResolution();
+                xRes = resolution.Item1;
+                yRes = resolution.Item2;
             }
 
+
+
+            while (EnumDisplaySettings(displayDevice.DeviceName, iModeNum, ref devMode))
+            {
+                if (devMode.dmPelsWidth == xRes && devMode.dmPelsHeight == yRes)
+                {
+                    int refresh = devMode.dmDisplayFrequency;
+                    if (!refreshRates.Contains(refresh))
+                    {
+                        refreshRates.Add(refresh);
+                    }
+
+                }
+
+                iModeNum++;
+            }
             return refreshRates;
         }
 
