@@ -1,4 +1,5 @@
 ﻿using Handheld_Hardware_Tools.Classes.Actions;
+using Handheld_Hardware_Tools.Classes.Games;
 using Handheld_Hardware_Tools.Classes.HomePage;
 using Handheld_Hardware_Tools.Classes.MouseMode;
 using Handheld_Hardware_Tools.Classes.Profiles;
@@ -64,6 +65,9 @@ namespace Handheld_Hardware_Tools.Classes
                 case "MouseProfile":
                     folderFileName = "UserConfiguration\\MouseMode\\MouseProfiles.xml";
                     break;
+                case "GameLibList":
+                    folderFileName = "UserConfiguration\\GameLibrary\\GameLibrary.xml";
+                    break;
             }
 
 
@@ -108,21 +112,26 @@ namespace Handheld_Hardware_Tools.Classes
                         xmls = new XmlSerializer(typeof(Settings));
                         Settings objSettings = (Settings)objClass;
                         xmls.Serialize(sw, objSettings);
-                        objCM = null;
+                        objSettings = null;
                         break;
                     case "ActionList":
                         xmls = new XmlSerializer(typeof(ActionList));
                         ActionList objAL = (ActionList)objClass;
                         xmls.Serialize(sw, objAL);
-                        objCM = null;
+                        objAL = null;
                         break;
                     case "ProfileList":
                         xmls = new XmlSerializer(typeof(ProfileList));
                         ProfileList objPL = (ProfileList)objClass;
                         xmls.Serialize(sw, objPL);
-                        objCM = null;
+                        objPL = null;
                         break;
-
+                    case "GameLibList":
+                        xmls = new XmlSerializer(typeof(GameLibList));
+                        GameLibList objGL = (GameLibList)objClass;
+                        xmls.Serialize(sw, objGL);
+                        objGL = null;
+                        break;
                 }
                 sw.Dispose();
                 xmls = null;
@@ -155,6 +164,10 @@ namespace Handheld_Hardware_Tools.Classes
                     break;
                 case "MouseProfile":
                     filePath = "UserConfiguration\\MouseMode\\MouseProfiles.xml";
+                    break;
+
+                case "GameLibList":
+                    filePath = "UserConfiguration\\GameLibrary\\GameLibrary.xml";
                     break;
             }
 
@@ -191,6 +204,10 @@ namespace Handheld_Hardware_Tools.Classes
                             xmls = new XmlSerializer(typeof(ProfileList));
                             objObject = ((ProfileList)xmls.Deserialize(sr));
                             break;
+                        case "GameLibList":
+                            xmls = new XmlSerializer(typeof(GameLibList));
+                            objObject = ((GameLibList)xmls.Deserialize(sr));
+                            break;
                     }
 
                     sr.Dispose();
@@ -217,6 +234,9 @@ namespace Handheld_Hardware_Tools.Classes
                         break;
                     case "MouseProfile":
                         objObject = new MouseProfile();
+                        break;
+                    case "GameLibList":
+                        objObject = new GameLibList();
                         break;
 
 
