@@ -38,11 +38,11 @@ namespace Handheld_Hardware_Tools.UserControls.HomePageUserControls
             Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
             if (settings.syncSustainedBoostTDP)
             {
-                toggleSwitch.IsChecked = true;
+                toggleSwitch.IsChecked = false;
             }
             else
             {
-                toggleSwitch.IsChecked = false;
+                toggleSwitch.IsChecked = true;
             }
             control.Maximum = settings.maxTDP;
             control.Minimum = settings.minTDP;
