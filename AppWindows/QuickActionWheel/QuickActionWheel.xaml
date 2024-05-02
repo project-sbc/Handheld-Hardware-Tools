@@ -18,7 +18,7 @@
       AllowsTransparency="True"
      xmlns:fa="http://schemas.fontawesome.io/icons/"
          WindowStartupLocation="CenterScreen"
-         Height="600" Width="700">
+         Height="650" Width="700">
     <Window.Resources>
         <Style  TargetType="RadialMenu:RadialMenuCentralItem" BasedOn="{StaticResource {x:Type RadialMenu:RadialMenuCentralItem}}">
 
