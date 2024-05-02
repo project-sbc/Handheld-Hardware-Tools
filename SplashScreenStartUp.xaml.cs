@@ -23,7 +23,7 @@ namespace Handheld_Hardware_Tools
         {
             InitializeComponent();
 
-            string picLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Styles", Application.Current.Resources["MainWindowLogo"].ToString());
+            string picLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Styles", Application.Current.Resources["SplashWindowLogo"].ToString());
 
 
             //

@@ -9,7 +9,7 @@
     <UseWPF>true</UseWPF>
 	  <UseWindowsForms>true</UseWindowsForms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <ApplicationIcon>HH Tool icon v2 - Merged Down.ico</ApplicationIcon>
+    <ApplicationIcon>HH Tool icon.ico</ApplicationIcon>
     <StartupObject>Handheld_Hardware_Tools.App</StartupObject>
 	
   </PropertyGroup>
@@ -57,7 +57,7 @@
     <None Remove="Resources\SetDPI\SetDpi.exe" />
     <None Remove="Resources\WifiDirect\WiFiDirectLegacyAP.exe" />
     <None Remove="Resources\WifiDirect\WiFiDirectLegacyAPDemo.exe" />
-    <None Remove="Styles\MainWindowLogo.png" />
+    <None Remove="Styles\SplashWindowLogo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -79,7 +79,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="HH Tool icon v2 - Merged Down.ico" />
+    <Content Include="HH Tool icon.ico" />
     <Content Include="Resources\AMD\ADLX\ADLX_3DSettings.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -183,10 +183,10 @@
     <Content Include="Styles\DefaultTheme.xaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Styles\MainWindowLogo.png">
+    <Content Include="Styles\NewTheme.xaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Styles\NewTheme.xaml">
+    <Content Include="Styles\SplashWindowLogo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

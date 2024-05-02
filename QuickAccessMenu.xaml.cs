@@ -81,7 +81,7 @@ namespace Handheld_Hardware_Tools
             //Application.Current.Resources.MergedDictionaries.Add(((ResourceDictionary)XamlReader.Load(xamlFile)));
 
 
-            string picLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Styles", Application.Current.Resources["MainWindowLogo"].ToString());
+            string picLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Styles", Application.Current.Resources["SplashWindowLogo"].ToString());
             
 
             //

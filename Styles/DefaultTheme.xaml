@@ -15,7 +15,8 @@
     <SolidColorBrush x:Key="HighlightedSideMenuBackground" Color="Gray"  />
     <SolidColorBrush x:Key="ControlsBackground" Color="Transparent"  />
 
-    <system:String x:Key="MainWindowLogo">MainWindowLogo.png</system:String>
+    <system:String x:Key="MainWindowMiniLogo">MainWindowMiniLogo2.png</system:String>
+    <system:String x:Key="SplashWindowLogo">SplashWindowLogo.png</system:String>
 
 
 </ResourceDictionary>

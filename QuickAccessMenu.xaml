@@ -58,13 +58,13 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="50"  />
+            <RowDefinition Height="60"  />
 
             <RowDefinition   Height="*"/>
 
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
-        <Image  Name="MainWindowLogo" />
+    
        
         <ui:NotifyIcon
                 Grid.Row="0"
@@ -80,31 +80,31 @@
                 </ContextMenu>
             </ui:NotifyIcon.Menu>
         </ui:NotifyIcon>
-        <DockPanel  Grid.Column="1">
+        <DockPanel  Grid.Column="0" Grid.ColumnSpan="2">
+            <Image  Name="MainWindowLogo" Margin="10,4,0,4" />
 
-
-            <DockPanel  Margin="15,-7,15,0"  >
+            <DockPanel  Margin="0,0,15,0"  >
 
                 <Button  DockPanel.Dock="Right" Click="Button_Click"  Background="{DynamicResource ControlsBackground}">
-                    <ui:SymbolIcon x:Name="hideIcon"  Symbol="ArrowExit20" FontSize="23" Filled="False"  Visibility="Visible" />
+                    <ui:SymbolIcon x:Name="hideIcon"  Symbol="ArrowExit20" FontSize="30" Filled="False"  Visibility="Visible" />
 
                 </Button>
 
 
-                <Viewbox MaxHeight="25" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,0,20,0"  >
+                <Viewbox MaxHeight="30" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,0,20,0"  >
                     <TextBlock x:Name="timeStatusBar" FontSize="30" />
                 </Viewbox>
 
-                <ui:SymbolIcon x:Name="controllerStatusBarIcon"  Symbol="XboxController48" FontSize="23" Filled="True"  />
-                <ui:SymbolIcon x:Name="wifiStatusBarIcon" Symbol="Wifi120" FontSize="23" Filled="True" Margin="6,3,0,4" Visibility="Visible" />
-                <ui:SymbolIcon x:Name="noInternetStatusBarIcon" Symbol="WifiOff20" FontSize="23" Filled="True" Margin="6,0,0,4" Visibility="Visible" />
-                <ui:SymbolIcon x:Name="chargingStatusBarIcon" Symbol="BatteryCharge20" FontSize="23" Filled="True" Margin="9,0,0,0" Visibility="Visible" />
-                <ui:SymbolIcon x:Name="batteryStatusBarIcon" Symbol="Battery020" FontSize="23" Filled="False" Margin="6,0,0,0" Visibility="Visible" />
+                <ui:SymbolIcon x:Name="controllerStatusBarIcon"  Symbol="XboxController48" FontSize="30" Filled="True" Margin="0,0,25,0"  DockPanel.Dock="Right"/>
+                <ui:SymbolIcon x:Name="wifiStatusBarIcon" Symbol="Wifi120" FontSize="30" Filled="True" Margin="6,3,0,4" Visibility="Visible" DockPanel.Dock="Right"/>
+                <ui:SymbolIcon x:Name="noInternetStatusBarIcon" Symbol="WifiOff20" FontSize="30" Filled="True" Margin="6,0,0,4" Visibility="Visible" DockPanel.Dock="Right"/>
+                <ui:SymbolIcon x:Name="chargingStatusBarIcon" Symbol="BatteryCharge20" FontSize="30" Filled="True" Margin="0,0,0,0" Visibility="Visible" DockPanel.Dock="Right"/>
+                <ui:SymbolIcon x:Name="batteryStatusBarIcon" Symbol="Battery020" FontSize="30" Filled="False" Margin="0,0,0,0" Visibility="Visible" DockPanel.Dock="Right"/>
 
-                <Viewbox MaxHeight="25" Margin="0,0,6,0" DockPanel.Dock="Left" HorizontalAlignment="Left" Name="viewBoxBatteryPercentage" >
+                <Viewbox MaxHeight="30" Margin="0,0,0,0" DockPanel.Dock="Right" HorizontalAlignment="Right" Name="viewBoxBatteryPercentage" >
                     <TextBlock x:Name="batteryPercentageStatusBar" HorizontalAlignment="Left" FontSize="30"/>
                 </Viewbox>
-
+               
             </DockPanel>
 
 
