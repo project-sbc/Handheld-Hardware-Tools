@@ -19,10 +19,10 @@ namespace Handheld_Hardware_Tools.Pages
     /// <summary>
     /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class SteamGamePage : ControllerWrapPanelPage
+    public partial class GamePage : ControllerWrapPanelPage
     {
         
-        public SteamGamePage()
+        public GamePage()
         {
             //Move initilize components to sub routine and async it to make pages feel smoother
             Dispatcher.BeginInvoke(new System.Action(() => Initialize()));

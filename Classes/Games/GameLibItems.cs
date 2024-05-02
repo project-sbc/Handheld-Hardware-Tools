@@ -237,5 +237,6 @@ namespace Handheld_Hardware_Tools.Classes.Games
         public string path { get; set; }
         public string exe { get; set; }
         public string imageLocation { get; set; } = "";
+        public bool displayGame { get; set; } = true;
     }
 }
