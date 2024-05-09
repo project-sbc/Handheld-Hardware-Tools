@@ -180,12 +180,12 @@
     <Content Include="Resources\WifiDirect\WiFiDirectLegacyAP.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Styles\DefaultTheme.xaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Styles\NewTheme.xaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Styles\DefaultTheme.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Styles\NewTheme.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Styles\SplashWindowLogo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

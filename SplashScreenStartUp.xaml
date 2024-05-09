@@ -21,7 +21,11 @@
                 <RowDefinition Height="4*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <fa:ImageAwesome Icon="Spinner" Spin="True" Height="38" Width="48" Grid.Row="1" Foreground="White" VerticalAlignment="Top" />
+            <Border Grid.Row="1" Background="Transparent" Width="50" CornerRadius="25" >
+                <fa:ImageAwesome Icon="Spinner" Spin="True" Height="38" Width="48" Foreground="White"  VerticalAlignment="Center" />
+            </Border>
+
         </Grid>
+
     </Border>
 </Window>
