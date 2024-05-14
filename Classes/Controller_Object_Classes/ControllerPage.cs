@@ -17,6 +17,18 @@ namespace Handheld_Hardware_Tools.Classes.Controller_Object_Classes
         //controllerNavigatePage is a bool to determine if actions go to usercontrol or stay at page level
         public bool controllerNavigatePage = true;
 
+
+       public ControllerPage()
+        {
+            this.Unloaded += ControllerPage_Unloaded;
+        }
+
+        private void ControllerPage_Unloaded(object sender, RoutedEventArgs e)
+        {
+            OnUnload();
+        }
+
+        public virtual void OnUnload() { userControls.Clear(); }
         public virtual void HandleControllerInput(string action) 
         {
             if (controllerNavigatePage)

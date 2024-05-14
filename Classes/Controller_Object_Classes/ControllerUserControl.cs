@@ -21,7 +21,16 @@ namespace Handheld_Hardware_Tools.Classes.Controller_Object_Classes
         public ControllerUserControl()
         {
             useableOnDevice = UseableOnThisDevice();
+            this.Unloaded += ControllerUserControl_Unloaded;
         }
+
+        private void ControllerUserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            OnUnload();
+        }
+
+    
+        public virtual void OnUnload() { }
 
         public virtual void ControlChangeValueHandler() { }
 
