@@ -146,7 +146,7 @@ namespace Handheld_Hardware_Tools.UserControls.EditActionUserControls
                                 }
                                 if (editActionPage.action.hotKey != hotKeyText || editActionPage.action.hotkeyType != hotKeyType)
                                 {
-                                    editActionPage.updateControllerHotKeyDictionary = true;
+                                    editActionPage.updateKBHotKeyDictionary = true;
                                 }
 
                                 editActionPage.action.hotKey = hotKeyText;
@@ -292,7 +292,7 @@ namespace Handheld_Hardware_Tools.UserControls.EditActionUserControls
             previousGamepad = 0;
 
 
-            //MouseKeyHook.programmingKeystroke = true;
+            mainWindow.mouseKeyHook.programmingKeystroke = true;
 
             //set up separate timer to get controller input
             gamepadTimer.Tick += gamepad_Tick;
@@ -304,7 +304,8 @@ namespace Handheld_Hardware_Tools.UserControls.EditActionUserControls
             fiveSecondTimeOutTimer.Interval = new TimeSpan(0, 0, 5);
 
             //subscribe to event that tracks keyboard presses for a completed hotkey
-            //FIX THIS HAVENT ADDED KB EVENT YET: MouseKeyHook.keyboardEvents.keyboardStringPress += handleKeyboardStringPress;
+            //FIX THIS HAVENT ADDED KB EVENT YET:
+            mainWindow.mouseKeyHook.keyboardEvents.keyboardStringPress += handleKeyboardStringPress;
 
             //set the control to the ... signifying its listening
             textBlockHotKey.Text = "...";
@@ -324,12 +325,13 @@ namespace Handheld_Hardware_Tools.UserControls.EditActionUserControls
             mainWindow.controllerInput.suspendEventsForHotKeyProgramming = false;
 
             //now keyboard
-            // FIX THIS NO KEYBOARD IN YET: MouseKeyHook.programmingKeystroke = false;
+            // FIX THIS NO KEYBOARD IN YET:
+            mainWindow.mouseKeyHook.programmingKeystroke = false;
 
             //stop the specific timer for tracking controller hotkey inputs AND unsubscribe to prevent threads from staying open after closure
             gamepadTimer.Stop();
             gamepadTimer.Tick -= gamepad_Tick;
-            //MouseKeyHook.keyboardEvents.keyboardStringPress -= handleKeyboardStringPress;
+            mainWindow.mouseKeyHook.keyboardEvents.keyboardStringPress -= handleKeyboardStringPress;
             if (timedOut)
             {
                 textBlockHotKey.Text = hotKeyText;
@@ -345,10 +347,17 @@ namespace Handheld_Hardware_Tools.UserControls.EditActionUserControls
 
         private void handleKeyboardStringPress(object sender, EventArgs args)
         {
-            //control.Content = (string)sender;
-            //Global_Variables.hotKeys.editingHotkey.Hotkey = (string)sender;
-            //Global_Variables.hotKeys.editingHotkey.Type = "Keyboard";
+            //these three variables will get passed to the action
+
+            hotKeyText = (string)sender;
+            hotKeyType = "Keyboard";
+
+            //set text block and icon
+            textBlockHotKey.Text = (string)sender;
+            iconHotKeyType.Symbol = Wpf.Ui.Common.SymbolRegular.Keyboard24;
+
             stopKB_Controller_Timer(false);
+
         }
 
 
@@ -360,7 +369,7 @@ namespace Handheld_Hardware_Tools.UserControls.EditActionUserControls
             
             stopKB_Controller_Timer(true);
         }
-
+    
 
         #endregion
 

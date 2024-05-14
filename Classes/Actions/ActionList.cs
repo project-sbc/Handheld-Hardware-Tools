@@ -96,7 +96,20 @@ namespace Handheld_Hardware_Tools.Classes.Actions
 
             return actionHotKeys;
         }
+        public Dictionary<string, Action> ReturnKeyboardActionHotKeyList()
+        {
+            Dictionary<string, Action> actionHotKeys = new Dictionary<string, Action>();
 
+            List<Action> list = this.Where(p => p.hotkeyType == "Keyboard" && p.hotKey != "").ToList();
+
+            foreach (Action action in list)
+            {
+                actionHotKeys.Add(action.hotKey, action);
+
+            }
+
+            return actionHotKeys;
+        }
     }
 
    

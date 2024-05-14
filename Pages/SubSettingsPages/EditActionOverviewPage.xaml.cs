@@ -1,4 +1,5 @@
 ﻿
+using Handheld_Hardware_Tools.AppWindows.QuickActionWheel.QuickActionWheelItem_Actions;
 using Handheld_Hardware_Tools.Classes;
 using Handheld_Hardware_Tools.Classes.Actions;
 using Handheld_Hardware_Tools.Classes.Actions.ActionClass;
@@ -24,10 +25,10 @@ namespace Handheld_Hardware_Tools.Pages
     public partial class EditActionOverviewPage : ControllerPage
     {
 
-        public EditActionOverviewPage(Classes.Actions.Action? action = null)
+        public EditActionOverviewPage(Classes.Actions.Action? action = null, bool updateControllerDictionary = false, bool updateKBDictionary = false)
         {
             //Move initilize components to sub routine and async it to make pages feel smoother
-            Dispatcher.BeginInvoke(new System.Action(() => InitializeActions(action)));
+            Dispatcher.BeginInvoke(new System.Action(() => InitializeActions(action, updateControllerDictionary, updateKBDictionary)));
 
         }
 
@@ -47,11 +48,11 @@ namespace Handheld_Hardware_Tools.Pages
         }
 
 
-        private void InitializeActions(Classes.Actions.Action? action = null)
+        private void InitializeActions(Classes.Actions.Action? action = null, bool updateControllerDictionary = false, bool updateKBDictionary = false)
         {
             InitializeComponent();
             virtualStackPanel = stackPanel;
-            AddControlsToArray(action);
+            AddControlsToArray(action, updateControllerDictionary, updateKBDictionary);
             SetPageDefaultInstruction();
 
         }
@@ -80,7 +81,7 @@ namespace Handheld_Hardware_Tools.Pages
         }
 
 
-        private void AddControlsToArray(Classes.Actions.Action? saveAction = null)
+        private void AddControlsToArray(Classes.Actions.Action? saveAction = null, bool updateControllerDictionary = false, bool updateKBDictionary = false)
         {
             ActionList actions = (ActionList)XML_Management.Instance.LoadXML("ActionList");
 
@@ -97,6 +98,20 @@ namespace Handheld_Hardware_Tools.Pages
                     actions[saveAction.ID] = saveAction;
                 }
                 actions.SaveToXML();
+
+                if (updateControllerDictionary || updateKBDictionary)
+                {
+                    QuickAccessMenu qam = Local_Object.Instance.GetQAMWindow();
+
+                    if (updateControllerDictionary)
+                    {
+                        qam.controllerInput.suspendEventsForHotKeyProgramming = true;
+                    }
+                    if (updateKBDictionary)
+                    {
+                        qam.mouseKeyHook.UpdateDictionary();
+                    }
+                }
             }
 
 
@@ -142,7 +157,7 @@ namespace Handheld_Hardware_Tools.Pages
             mw.controllerInput.suspendEventsForNewHotKeyList = true;
         }
 
-        public void HandleUserControlInputs(UserControl userControl, string action)
+        public void HandleUserControlInputs(UserControl userControl, string action, string arguments = "")
         {
             int ucIndex = stackPanel.Children.IndexOf(userControl);
             if (ucIndex >= 0)
@@ -154,6 +169,8 @@ namespace Handheld_Hardware_Tools.Pages
                         userControls.Remove((ControllerUserControl)userControl);
                         highlightedUserControl = -1;
                         ReturnControlToPage();
+
+
                         break;
 
                     case "MoveUp":
@@ -208,6 +225,20 @@ namespace Handheld_Hardware_Tools.Pages
                 {
                     //make sure to save XML and rebase IDs when moving or deleting, because that will screw up the order
                     SaveActionList();
+
+                    if (action == "Delete" && arguments != "")
+                    {
+                        //update the controller or keyboard dictionary based on deletion only if there was an action
+                        QuickAccessMenu qam = Local_Object.Instance.GetQAMWindow();
+                        if (arguments == "Controller")
+                        {
+                            qam.controllerInput.suspendEventsForNewHotKeyList = true;
+                        }
+                        if (arguments == "Keyboard")
+                        {
+                            qam.mouseKeyHook.UpdateDictionary();
+                        }
+                    }
                 }
 
             }

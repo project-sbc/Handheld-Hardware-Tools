@@ -332,7 +332,7 @@ namespace Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls
 
         }
 
-        private void SendCommandToEditActionOverviewPage(string action)
+        private void SendCommandToEditActionOverviewPage(string strAction)
         {
             QuickAccessMenu mainWindow = (QuickAccessMenu)Application.Current.MainWindow;
 
@@ -340,7 +340,17 @@ namespace Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls
 
             if (editActionOverviewPage != null)
             {
-                editActionOverviewPage.HandleUserControlInputs(this, action);
+                //this passes an argument to make sure the dictionary for controller/kb hotkeys gets updated
+                if (strAction == "Delete" && action.hotkeyType != "")
+                {
+                    editActionOverviewPage.HandleUserControlInputs(this, strAction, action.hotkeyType);
+                }
+                else
+                {
+                    editActionOverviewPage.HandleUserControlInputs(this, strAction);
+                }
+               
+                
             }
 
         }
@@ -352,6 +362,8 @@ namespace Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+
+
             SendCommandToEditActionOverviewPage("Delete");
         }
 

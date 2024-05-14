@@ -128,20 +128,13 @@ namespace Handheld_Hardware_Tools.Pages
         private void SaveActionToEditOverviewPage()
         {
             //gets the overview page, sends to the frame on the mainwindow, passes the action to the page so it will add it and then save
-            EditActionOverviewPage editActionOverviewPage = new EditActionOverviewPage(action);
+            EditActionOverviewPage editActionOverviewPage = new EditActionOverviewPage(action, updateControllerHotKeyDictionary, updateKBHotKeyDictionary);
             
             //get mainwindow frame
             QuickAccessMenu mainWindow = Local_Object.Instance.GetQAMWindow();
             mainWindow.frame.Content = editActionOverviewPage;
 
-            if (updateControllerHotKeyDictionary)
-            {
-                mainWindow.controllerInput.suspendEventsForNewHotKeyList = true;
-            }
-            if (updateKBHotKeyDictionary)
-            {
-                MessageBox.Show("ADD KEYBOARD HANDLER HERE TO UPDATE KB DICTIONARY EditActionPage.xaml.cs");
-            }
+  
         }
 
         private void ValidateInputs()
