@@ -434,6 +434,8 @@ namespace Handheld_Hardware_Tools.Classes
         }
         public static Dictionary<string, Guid> GetPowerSchemes()
         {
+            Powercfg_Management.Instance.importHyaticePowerPlan();
+
             Dictionary<string, Guid> schemes = new Dictionary<string, Guid>();
             uint index = 0;
             uint bufferSize = 128; // Start with a small buffer size

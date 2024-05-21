@@ -25,6 +25,7 @@ namespace Handheld_Hardware_Tools.Classes
         public string passwordWifiAP { get; set; } = "eh123456";
 
         public bool hideSplashScreen { get; set; } = false;
+        public bool launchLargeWindow { get; set; } = false;
 
         public bool qamOnRightSide { get; set; } = true;
 

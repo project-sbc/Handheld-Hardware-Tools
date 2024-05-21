@@ -8,7 +8,8 @@
         mc:Ignorable="d"
                             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                      
-                        
+        WindowStyle="None"
+    
         WindowState="Maximized"
                xmlns:outlineTB="clr-namespace:Handheld_Hardware_Tools.Classes"
         xmlns:materialIcons="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"

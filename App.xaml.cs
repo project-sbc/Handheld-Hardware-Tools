@@ -72,7 +72,7 @@ namespace Handheld_Hardware_Tools
             }
             
             this.MainWindow = qam;
-            
+
 
             if (quietStart)
             {
@@ -80,7 +80,18 @@ namespace Handheld_Hardware_Tools
             }
             else
             {
-                qam.Show();
+                if (settings.launchLargeWindow)
+                {
+                    qam.Hide();
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+
+                }
+                else
+                {
+                    qam.Show();
+                }
+               
             }
 
 
