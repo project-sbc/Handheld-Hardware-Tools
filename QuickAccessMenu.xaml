@@ -10,7 +10,7 @@
               xmlns:Converter="clr-namespace:Handheld_Hardware_Tools.Classes.Converters"
         Title="Everything Handhelds Tool" 
             
-        Left="985"
+        Left="0"
         Top="0"
         x:Name="quickAccessMenu"
         Topmost="True"
