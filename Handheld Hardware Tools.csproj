@@ -58,6 +58,7 @@
     <None Remove="Resources\SetDPI\SetDpi.exe" />
     <None Remove="Resources\WifiDirect\WiFiDirectLegacyAP.exe" />
     <None Remove="Resources\WifiDirect\WiFiDirectLegacyAPDemo.exe" />
+    <None Remove="Resources\ZipExtractor\ZipExtractor.exe" />
     <None Remove="Styles\SplashWindowLogo.png" />
   </ItemGroup>
 
@@ -176,6 +177,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\WifiDirect\WiFiDirectLegacyAP.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ZipExtractor\ZipExtractor.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Styles\DefaultTheme.xaml">
