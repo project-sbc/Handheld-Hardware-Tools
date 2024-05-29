@@ -432,11 +432,11 @@ namespace Handheld_Hardware_Tools.Classes
             uint result = PowerSetActiveScheme(IntPtr.Zero, ref schemeGuid);
             return result == 0; // 0 indicates success
         }
-        public static Dictionary<string, Guid> GetPowerSchemes()
+        public static Dictionary<Guid, string> GetPowerSchemes()
         {
             Powercfg_Management.Instance.importHyaticePowerPlan();
 
-            Dictionary<string, Guid> schemes = new Dictionary<string, Guid>();
+            Dictionary<Guid, string> schemes = new Dictionary<Guid, string>();
             uint index = 0;
             uint bufferSize = 128; // Start with a small buffer size
 
@@ -459,20 +459,20 @@ namespace Handheld_Hardware_Tools.Classes
                     Guid balanced = new Guid("381b4222-f694-41f0-9685-ff5bb260df2e");
                     Guid highPerformance = new Guid("8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c");
 
-                    if (!schemes.ContainsValue(powerSaver))
+                    if (!schemes.ContainsKey(powerSaver))
                     {
                         string keyName = GetPowerSchemeName(powerSaver);
-                        schemes.Add(keyName, powerSaver);
+                        schemes.Add(powerSaver, keyName);
                     }
-                    if (!schemes.ContainsValue(balanced))
+                    if (!schemes.ContainsKey(balanced))
                     {
                         string keyName = GetPowerSchemeName(balanced);
-                        schemes.Add(keyName, balanced);
+                        schemes.Add(balanced, keyName);
                     }
-                    if (!schemes.ContainsValue(highPerformance))
+                    if (!schemes.ContainsKey(highPerformance))
                     {
                         string keyName = GetPowerSchemeName(highPerformance);
-                        schemes.Add(keyName, highPerformance);
+                        schemes.Add(highPerformance, keyName);
                     }
                   
 
@@ -486,7 +486,7 @@ namespace Handheld_Hardware_Tools.Classes
                 }
 
                 string schemeName = GetPowerSchemeName(schemeGuid);
-                schemes.Add(schemeName, schemeGuid);
+                schemes.Add(schemeGuid, schemeName);
                 index++;
             }
 

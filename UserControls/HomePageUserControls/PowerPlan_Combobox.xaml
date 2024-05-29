@@ -21,7 +21,7 @@
                 </DockPanel>
 
 
-                <ComboBox x:Name="comboBox"  Margin="5,5,5,0" DropDownClosed="comboBox_DropDownClosed"  DisplayMemberPath="Key"   />
+                <ComboBox x:Name="comboBox"  Margin="5,5,5,0" DropDownClosed="comboBox_DropDownClosed"  DisplayMemberPath="Value"   />
             </DockPanel>
         </ui:Card>
 

@@ -25,7 +25,7 @@ namespace Handheld_Hardware_Tools.UserControls.EditActionUserControls
     public partial class PowerPlan_Combobox : ControllerUserControl
     {
         int originalSelectedIndex = -1;
-        Dictionary<string, Guid> powerPlanLookup = PowerplanHelper.GetPowerSchemes();
+        Dictionary<Guid, string> powerPlanLookup = PowerplanHelper.GetPowerSchemes();
         public PowerPlan_Combobox()
         {
             InitializeComponent();
@@ -54,9 +54,9 @@ namespace Handheld_Hardware_Tools.UserControls.EditActionUserControls
 
             string getActiveScheme = PowerplanHelper.GetActivePowerSchemeName();
 
-            foreach (KeyValuePair<string,Guid> pair in comboBox.ItemsSource)
+            foreach (KeyValuePair<Guid, string> pair in comboBox.ItemsSource)
             {
-                if (pair.Key == getActiveScheme)
+                if (pair.Value == getActiveScheme)
                 {
                     comboBox.SelectedItem = pair;
                     originalSelectedIndex = comboBox.SelectedIndex;
