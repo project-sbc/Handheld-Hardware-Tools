@@ -61,7 +61,7 @@ namespace Handheld_Hardware_Tools.Classes
         private async Task<bool> DownloadLatestHHT(string url)
         {
            
-            string outputFilePath = AppDomain.CurrentDomain.BaseDirectory + "\\Resources\\Handheld.Hardware.Tools.zip"; 
+            string outputFilePath = AppDomain.CurrentDomain.BaseDirectory + "Resources\\ZipExtractor\\Handheld.Hardware.Tools.zip"; 
 
             bool result = await DownloadZipFile(url, outputFilePath);
 
