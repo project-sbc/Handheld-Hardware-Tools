@@ -468,10 +468,6 @@ namespace Handheld_Hardware_Tools
             SetAppLocationHeight();
 
 
-
-
-        
-
         }
 
         #endregion
