@@ -6,11 +6,15 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Handheld_Hardware_Tools.Classes
 {
@@ -40,6 +44,133 @@ namespace Handheld_Hardware_Tools.Classes
             }
         }
 
+        public async void CheckForUpdates(bool checkAtStartup)
+        {
+
+            string url = await CheckLatestVersionGetDownloadLink();
+            if (url != "")
+            {
+                bool downloadResult = await DownloadLatestHHT(url);
+                if (downloadResult)
+                {
+                    RunZipExtractor();
+                }
+            }
+
+        }
+        private async Task<bool> DownloadLatestHHT(string url)
+        {
+           
+            string outputFilePath = AppDomain.CurrentDomain.BaseDirectory + "\\Resources\\Handheld.Hardware.Tools.zip"; 
+
+            bool result = await DownloadZipFile(url, outputFilePath);
+
+            return result;
+        }
+        private static async Task<bool> DownloadZipFile(string url, string outputFilePath)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    HttpResponseMessage response = await client.GetAsync(url);
+                    response.EnsureSuccessStatusCode();
+
+                    using (Stream contentStream = await response.Content.ReadAsStreamAsync(),
+                                  fileStream = new FileStream(outputFilePath, FileMode.Create, FileAccess.Write, FileShare.None, 8192, true))
+                    {
+                        await contentStream.CopyToAsync(fileStream);
+                    }
+
+                    Console.WriteLine("Download completed successfully.");
+                    return true;
+                }
+                catch (HttpRequestException ex)
+                {
+                    Console.WriteLine($"Network error occurred: {ex.Message}");
+                }
+                catch (TaskCanceledException ex)
+                {
+                    Console.WriteLine($"Request timed out: {ex.Message}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                }
+                return false;
+            }
+        }
+        private async Task<string> CheckLatestVersionGetDownloadLink()
+        {
+         
+            // Get the currently executing assembly
+            Assembly assembly = Assembly.GetExecutingAssembly();
+
+            // Get the version information
+            string version = assembly.GetName().Version.ToString();
+
+            //Get latest version from XML file
+            string[] xmlValues = await ReadXMLFile();
+
+            string latestVersion = xmlValues[0];
+
+            if (version != latestVersion)
+            {
+                return xmlValues[1];
+            }
+            else
+            {
+                return "";
+            }
+           
+
+        }
+
+        private async Task<string[]> ReadXMLFile()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string[] returnValues = new string[2];
+                try
+                {
+                    HttpResponseMessage response = await client.GetAsync("https://raw.githubusercontent.com/project-sbc/Handheld-Hardware-Tools/master/Update.xml");
+                    response.EnsureSuccessStatusCode();
+                    string xmlContent = await response.Content.ReadAsStringAsync();
+
+                    // Load the XML content into an XmlDocument
+                    XmlDocument doc = new XmlDocument();
+                    doc.LoadXml(xmlContent);
+
+                    // Return the XML content as string
+                    XmlNode versionNode = doc.SelectSingleNode("//item/version");
+                    if (versionNode != null)
+                    {
+                        returnValues[0]= versionNode.InnerText;
+                    }
+                    else
+                    {
+                        returnValues[0] = string.Empty;
+                    }
+
+                    XmlNode urlNode = doc.SelectSingleNode("//item/url");
+                    if (urlNode != null)
+                    {
+                        returnValues[1] = urlNode.InnerText;
+                    }
+                    else
+                    {
+                        returnValues[1] = string.Empty;
+                    }
+                    return returnValues;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                    return returnValues;
+                }
+            }
+        }
+
 
         private void RunZipExtractor()
         {
@@ -49,7 +180,7 @@ namespace Handheld_Hardware_Tools.Classes
             var arguments = new Collection<string>
                 {
                     "--input",
-                    Path.Combine(zipextractorfolder, "HandheldHardwareTools.zip"),
+                    Path.Combine(zipextractorfolder, "Handheld.Hardware.Tools.zip"),
                     "--output",
                     AppDomain.CurrentDomain.BaseDirectory,
                     "--current-exe",
