@@ -93,11 +93,11 @@ namespace Handheld_Hardware_Tools.UserControls.EditActionUserControls
             {
                 originalSelectedIndex = comboBox.SelectedIndex;
 
-                KeyValuePair<string, Guid> selectedItem = (KeyValuePair<string, Guid>)comboBox.SelectedItem;
+                KeyValuePair<Guid,string> selectedItem = (KeyValuePair<Guid, string>)comboBox.SelectedItem;
        
-                if (selectedItem.Value != null)
+                if (selectedItem.Key != null)
                 {
-                    PowerplanHelper.SetActivePowerScheme(selectedItem.Value);
+                    PowerplanHelper.SetActivePowerScheme(selectedItem.Key);
                 }
 
                
