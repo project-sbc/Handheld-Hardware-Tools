@@ -12,19 +12,26 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using WindowsInput;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Handheld_Hardware_Tools.Classes.MouseMode;
 
 namespace Handheld_Hardware_Tools.Classes.MouseMode
 {
     public class MouseMode
     {
-        MouseProfile mouseProfile = (MouseProfile)XML_Management.Instance.LoadXML("MouseProfile");
+        MouseProfile mouseProfile = ((MouseProfile)XML_Management.Instance.LoadXML("MouseProfile"));
         InputSimulator inputSimulator = Local_Object.Instance.GetMainWindowInputSimulator();
-
+        Dictionary<string, Actions.MouseAction> mouseActionList = new Dictionary<string, Actions.MouseAction>();
         //xValues never change so im going to leave that here
         private double[] xValueArray { get; set; } = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
         public MouseMode()
         {
             SubscribeControllerEvents();
+
+            if (mouseProfile != null)
+            {
+                mouseActionList = mouseProfile.GetMouseActionDictionary();
+            }
+
         }
         public void SubscribeControllerEvents()
         {
@@ -40,11 +47,11 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode
         private void ButtonPressEvent_controllerInputReleaseEvent(object? sender, controllerInputEventArgs e)
         {
             //THIS IS SPECIFIC TO LEFT MOUSE! yo ushould be able to drag with the left mouse so this should enable it
-            MouseLeftClick mouseLeftClick = mouseProfile.mouseActionList.Values.OfType<MouseLeftClick>().FirstOrDefault();
+            MouseLeftClick mouseLeftClick = mouseActionList.Values.OfType<MouseLeftClick>().FirstOrDefault();
 
             if (mouseLeftClick != null)
             {
-                string value = mouseProfile.mouseActionList.FirstOrDefault(x => x.Value == mouseLeftClick).Key;
+                string value = mouseActionList.FirstOrDefault(x => x.Value == mouseLeftClick).Key;
                 if (value == e.Action)
                 {
                     mouseLeftClick.ReleaseClick();
@@ -56,6 +63,8 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode
         public void UpdateMouseProfile()
         {//this should only be called if the mouse profile page was modified and saved
             mouseProfile = (MouseProfile)XML_Management.Instance.LoadXML("MouseProfile");
+
+            mouseActionList = mouseProfile.GetMouseActionDictionary();
         }
 
         private void ButtonPressEvent_controllerInputEvent(object? sender, controllerInputEventArgs e)
@@ -64,9 +73,9 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode
             //this is what i want for mousemode, only work when the user enables it AND no windows are open, otherwise controller input takes over
             if (!System.Windows.Application.Current.Windows.Cast<System.Windows.Window>().Any(x => x.Visibility == Visibility.Visible))
             {
-                if (mouseProfile.mouseActionList.ContainsKey(e.Action))
+                if (mouseActionList.ContainsKey(e.Action))
                 {
-                    Classes.MouseMode.Actions.MouseAction mouseAction = mouseProfile.mouseActionList[e.Action];
+                    Classes.MouseMode.Actions.MouseAction mouseAction = mouseActionList[e.Action];
                     if (mouseAction != null)
                     {
                         mouseAction.ClickEvent();

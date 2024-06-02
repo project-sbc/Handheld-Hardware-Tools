@@ -1,6 +1,7 @@
 ﻿using Handheld_Hardware_Tools.Classes;
 using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
 using Handheld_Hardware_Tools.Classes.Devices;
+using Handheld_Hardware_Tools.Classes.MouseMode;
 using Handheld_Hardware_Tools.Pages;
 using System;
 
@@ -46,29 +47,41 @@ namespace Handheld_Hardware_Tools.UserControls.SubPageUserControls.EditMouseMode
 
         private void HandleToggleChange()
         {
-            //when this toggle is flipped, we will change whether tpd is synced or not in the settings. This setting is checked everytime 
-            //tdp is changed
+        
 
             //this little piece is just to stop it from running at load. The configure controls will handle all of this and it doesn't need to be run at runtime
             if (!this.IsLoaded)
             {
                 return;
             }
-            MouseModeSettingsPage mouseModeSettingsPage = (MouseModeSettingsPage)Local_Object.Instance.GetGeneralWindowPage(this);
 
-            if (mouseModeSettingsPage != null)
+            MouseProfile mouseProfile = (MouseProfile)XML_Management.Instance.LoadXML("MouseProfile");
+
+            if (mouseProfile != null)
             {
-                
+
                 if (toggleSwitch.IsChecked == true)
                 {
-                    mouseModeSettingsPage.mouseProfile.rightScroll = true;
+                    mouseProfile.rightScroll = true;
                 }
                 else
                 {
-                    mouseModeSettingsPage.mouseProfile.rightScroll = false;
+                    mouseProfile.rightScroll = false;
                 }
             }
-           
+
+            mouseProfile.SaveToXML();
+
+            
+            QuickAccessMenu qam = Local_Object.Instance.GetQAMWindow();
+
+            if (qam != null)
+            {
+                if (qam.mouseMode != null)
+                {
+                    qam.mouseMode.UpdateMouseProfile();
+                }
+            }
 
 
         }

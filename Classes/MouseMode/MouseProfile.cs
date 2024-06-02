@@ -1,25 +1,31 @@
-﻿using Handheld_Hardware_Tools.Classes.MouseMode.Actions;
+﻿using Handheld_Hardware_Tools.Classes.Actions.ActionClass;
+using Handheld_Hardware_Tools.Classes.MouseMode.Actions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using WindowsInput;
 
 namespace Handheld_Hardware_Tools.Classes.MouseMode
 {
     public class MouseProfile
     {
-        public Dictionary<string, MouseAction> mouseActionList { get; set; } = new Dictionary<string, MouseAction>
+        public List<MouseActionItem> mouseActionList { get; set; } = new List<MouseActionItem>
         {
-            { "A", new MouseLeftClick() },
-            { "B" , new MouseRightClick() },
-            { "Y" , new OpenOSK() },
-            { "DPadUp", new KeyboardClick(){virtualKeyCode = WindowsInput.Native.VirtualKeyCode.UP } },
-            { "DPadDown", new KeyboardClick(){virtualKeyCode = WindowsInput.Native.VirtualKeyCode.DOWN } },
-            { "DPadLeft", new KeyboardClick(){virtualKeyCode = WindowsInput.Native.VirtualKeyCode.LEFT } },
-            { "DPadRight", new KeyboardClick(){virtualKeyCode = WindowsInput.Native.VirtualKeyCode.RIGHT } },
-            { "X", new AltTab() }
+            new MouseActionItem(){button="A", mouseAction= new MouseLeftClick()},
+            new MouseActionItem(){button="B", mouseAction= new MouseRightClick()},
+            new MouseActionItem(){button="Y", mouseAction= new OpenOSK()},
+            new MouseActionItem(){button="X", mouseAction= new AltTab()},
+
+
+
+            new MouseActionItem(){button="DPadUp", mouseAction= new KeyboardClick() { virtualKeyCode = WindowsInput.Native.VirtualKeyCode.UP }},
+            new MouseActionItem(){button="DPadDown", mouseAction= new KeyboardClick() { virtualKeyCode = WindowsInput.Native.VirtualKeyCode.DOWN }},
+            new MouseActionItem(){button="DPadLeft", mouseAction= new KeyboardClick() { virtualKeyCode = WindowsInput.Native.VirtualKeyCode.LEFT }},
+            new MouseActionItem(){button="DPadRight", mouseAction= new KeyboardClick() { virtualKeyCode = WindowsInput.Native.VirtualKeyCode.RIGHT }},
+
         };
 
         public bool rightScroll { get; set; } = true;
@@ -35,5 +41,34 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode
        
         public double[] yValuesMouse { get; set; } = { 3, 5, 10, 15, 20, 25, 30, 35, 45, 55 };
         public double[] yValuesScroll { get; set; } = { 3, 5, 10, 15, 20, 25, 30, 35, 45, 55 };
+
+        public void SaveToXML()
+        {
+            XML_Management.Instance.SaveXML("MouseProfile", this);
+        }
+
+        public Dictionary<string, MouseAction> GetMouseActionDictionary()
+        {
+            Dictionary<string, MouseAction> dictionary = new Dictionary<string, MouseAction>();
+            foreach( MouseActionItem mouseActionItem in mouseActionList)
+            {
+                if (!dictionary.ContainsKey(mouseActionItem.button))
+                {
+                    dictionary.Add(mouseActionItem.button, mouseActionItem.mouseAction);
+                }
+            }
+            return dictionary;
+        }
+    }
+
+    [XmlInclude(typeof(MouseLeftClick))]
+    [XmlInclude(typeof(MouseRightClick))]
+    [XmlInclude(typeof(KeyboardClick))]
+    [XmlInclude(typeof(AltTab))]
+    [XmlInclude(typeof(OpenOSK))]
+    public class MouseActionItem
+    {
+        public string button { get; set; }
+        public MouseAction mouseAction { get; set; }
     }
 }

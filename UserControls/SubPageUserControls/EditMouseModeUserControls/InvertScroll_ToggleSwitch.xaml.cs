@@ -2,6 +2,7 @@
 using Handheld_Hardware_Tools.Classes;
 using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
 using Handheld_Hardware_Tools.Classes.Devices;
+using Handheld_Hardware_Tools.Classes.MouseMode;
 using Handheld_Hardware_Tools.Pages;
 using System;
 
@@ -55,21 +56,34 @@ namespace Handheld_Hardware_Tools.UserControls.SubPageUserControls.EditMouseMode
             {
                 return;
             }
-            MouseModeSettingsPage mouseModeSettingsPage = (MouseModeSettingsPage)Local_Object.Instance.GetGeneralWindowPage(this);
 
-            if (mouseModeSettingsPage != null)
+            MouseProfile mouseProfile = (MouseProfile)XML_Management.Instance.LoadXML("MouseProfile");
+
+            if (mouseProfile != null)
             {
-                
+
                 if (toggleSwitch.IsChecked == true)
                 {
-                    mouseModeSettingsPage.mouseProfile.reverseVerticalScroll = true;
+                    mouseProfile.reverseVerticalScroll = true;
                 }
                 else
                 {
-                    mouseModeSettingsPage.mouseProfile.reverseVerticalScroll = false;
+                    mouseProfile.reverseVerticalScroll = false;
                 }
             }
-           
+
+            mouseProfile.SaveToXML();
+
+
+            QuickAccessMenu qam = Local_Object.Instance.GetQAMWindow();
+
+            if (qam != null)
+            {
+                if (qam.mouseMode != null)
+                {
+                    qam.mouseMode.UpdateMouseProfile();
+                }
+            }
 
 
         }

@@ -1,5 +1,6 @@
 ﻿using Handheld_Hardware_Tools.Classes;
 using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
+using Handheld_Hardware_Tools.Classes.MouseMode;
 using Handheld_Hardware_Tools.Pages;
 using System;
 using System.Collections.Generic;
@@ -71,12 +72,27 @@ namespace Handheld_Hardware_Tools.UserControls.SubPageUserControls.EditMouseMode
      
         public override void ControlChangeValueHandler()
         {
-            MouseModeSettingsPage mouseModeSettingsPage = (MouseModeSettingsPage)Local_Object.Instance.GetGeneralWindowPage(this);
+            MouseProfile mouseProfile = (MouseProfile)XML_Management.Instance.LoadXML("MouseProfile");
 
-            if (mouseModeSettingsPage != null)
+            if (mouseProfile != null)
             {
-                mouseModeSettingsPage.mouseProfile.sensitivityScrollValue = slider.Value;
+
+                mouseProfile.sensitivityScrollValue = slider.Value;
             }
+
+            mouseProfile.SaveToXML();
+
+
+            QuickAccessMenu qam = Local_Object.Instance.GetQAMWindow();
+
+            if (qam != null)
+            {
+                if (qam.mouseMode != null)
+                {
+                    qam.mouseMode.UpdateMouseProfile();
+                }
+            }
+
         }
     }
 }
