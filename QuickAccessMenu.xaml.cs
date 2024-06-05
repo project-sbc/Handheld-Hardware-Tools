@@ -314,6 +314,10 @@ namespace Handheld_Hardware_Tools
         {
             switch (e.Mode)
             {
+                case PowerModes.Suspend:
+                    Log_Writer.Instance.writeLog("about to sleep!");
+                    break;
+
                 case PowerModes.Resume:
 
                     break;
