@@ -63,7 +63,7 @@ namespace Handheld_Hardware_Tools
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             string message = "An unhandled exception just occurred: " + e.Exception.Message + ". Stack Trace: " + e.Exception.StackTrace + ". Source: " + e.Exception.Source + ". Inner Exception: " + e.Exception.InnerException;
-            MessageBox.Show(message, "Exception Sample", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(message, "Exception", MessageBoxButton.OK, MessageBoxImage.Error);
             Log_Writer.Instance.writeLog(message);
             Environment.Exit(0);
 
@@ -71,9 +71,6 @@ namespace Handheld_Hardware_Tools
         protected override async void OnStartup(StartupEventArgs e)
         {
             
-
-
-
             //determine if this is an autostart by checking if running from system32
             bool quietStart = false;
             //if start is from system32 (task scheduled start) then set quietStart to true, means auto start
