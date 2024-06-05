@@ -420,16 +420,10 @@ namespace Handheld_Hardware_Tools
             //Write log to tell app is closing
             Log_Writer.Instance.writeLog("App closing");
 
-            //unload notify icon
-            UnloadNotifyIcon();
+          
         }
 
-        private void UnloadNotifyIcon()
-        {
-            notifyIcon.Dispose();
-            notifyIcon = null;
-        }
-
+     
         private void UnsubscribeEvents()
         {
             //unsubscribe to controller input

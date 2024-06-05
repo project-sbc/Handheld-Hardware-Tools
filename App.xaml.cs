@@ -18,20 +18,47 @@ namespace Handheld_Hardware_Tools
     {
 
         public SplashScreenStartUp splashWindow;
-
+        public static System.Windows.Forms.NotifyIcon icon;
         public App()
         {
-
+ 
             //run this so that everything shuts down when the main window closes
             Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
-
+            SetUpNotifyIcon();
             //string dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             //string stringsFile = Path.Combine(dir, "Styles", "DefaultTheme.xaml");
             //LoadStyleDictionaryFromFile(stringsFile);
 
 
         }
+
+        private void SetUpNotifyIcon()
+        {
+            App.icon = new System.Windows.Forms.NotifyIcon();
+            icon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(AppDomain.CurrentDomain.BaseDirectory + "Handheld Hardware Tools.exe");
+            icon.Visible = true;
+            icon.Click += Icon_Click;
+        
+        }
+             
+
+        private void Icon_Click(object? sender, EventArgs e)
+        {
+            System.Windows.Forms.MouseEventArgs mouseEventArgs = (System.Windows.Forms.MouseEventArgs)e;
+
+            if (mouseEventArgs.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                QuickAccessMenu qam = Local_Object.Instance.GetQAMWindow();
+
+                if (qam != null)
+                {
+                    qam.ToggleWindow();
+                }
+            }
+
+        }
+
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             string message = "An unhandled exception just occurred: " + e.Exception.Message + ". Stack Trace: " + e.Exception.StackTrace + ". Source: " + e.Exception.Source + ". Inner Exception: " + e.Exception.InnerException;
