@@ -38,6 +38,7 @@ namespace Handheld_Hardware_Tools
             App.icon = new System.Windows.Forms.NotifyIcon();
             icon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(AppDomain.CurrentDomain.BaseDirectory + "Handheld Hardware Tools.exe");
             icon.Visible = true;
+            icon.Text = "Handheld Hardware Tools"; 
             icon.Click += Icon_Click;
         
         }
