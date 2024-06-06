@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using static Handheld_Hardware_Tools.Classes.DisplayHelper;
 
@@ -175,6 +177,28 @@ namespace Handheld_Hardware_Tools.Classes
 
             return devMode.dmDisplayFrequency;
         }
+
+
+        public void SetDisplayScaling(string value)
+        {
+            string result = "";
+            string processSDPI = AppDomain.CurrentDomain.BaseDirectory + "Resources\\SetDPI\\SetDPI.exe";
+
+            try
+            {
+                result = Run_CLI.Instance.RunCommand(" " + value, true, processSDPI);
+                Task.Delay(600);
+                QuickAccessMenu qam = Local_Object.Instance.GetQAMWindow();
+                qam.SetAppLocationHeight();
+            }
+            catch (Exception ex)
+            {
+                string errorMsg = "Error: ChangeDisplaySettings.cs:  set DPI CLI: " + ex.Message + " Result: " + result;
+                Log_Writer.Instance.writeLog(errorMsg);
+
+            }
+        }
+
         public void ChangePrimaryMonitorResolution(int newWidth, int newHeight)
         {
             // Get primary display device

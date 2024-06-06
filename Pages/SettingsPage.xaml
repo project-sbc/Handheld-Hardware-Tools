@@ -41,6 +41,7 @@
                 <uc:AutoStart_ToggleSwitch />
                 <uc:MaxTDP_Slider />
                 <uc:QAMSide_ToggleSwitch />
+                <uc:RestartToBios_Button />
             </StackPanel>
         </ScrollViewer>
        

@@ -24,6 +24,7 @@
     <system:String x:Key="Usercontrol_CloseProgram">Close - </system:String>
     <system:String x:Key="Usercontrol_ShutdownPC">Shut Down PC</system:String>
     <system:String x:Key="Usercontrol_RestartPC">Restart PC</system:String>
+    <system:String x:Key="Usercontrol_RestartToBios">Restart PC To BIOS</system:String>
     <system:String x:Key="Usercontrol_ActionType">Action Type</system:String>
     <system:String x:Key="Usercontrol_ActionEnableHotKey">Enable Hotkey</system:String>
     <system:String x:Key="Usercontrol_ActionArguments">Action Parameters</system:String>

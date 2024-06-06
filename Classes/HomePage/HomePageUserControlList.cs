@@ -65,6 +65,7 @@ namespace Handheld_Hardware_Tools.Classes.HomePage
             this.Add("Usercontrol_GPUCLK", true);
             this.Add("Usercontrol_DisplayResolution", true);
             this.Add("Usercontrol_DisplayRefreshRate", true);
+            this.Add("Usercontrol_DisplayScaling", true);
 
         }
 
