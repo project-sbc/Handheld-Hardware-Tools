@@ -100,7 +100,9 @@ namespace Handheld_Hardware_Tools.Pages
                     return new IntelCPUPowerBalance_Slider();
                 case "Usercontrol_PowerBalanceGPU":
                     return new IntelGPUPowerBalance_Slider();
+                case "Usercontrol_DisplayScaling":
 
+                    return new Scaling_Combobox();
                 case "Usercontrol_GPUCLK":
                     return new GPUClock_Slider();
                 case "Usercontrol_DisplayResolution":
