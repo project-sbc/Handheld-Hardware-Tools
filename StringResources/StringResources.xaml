@@ -271,7 +271,7 @@ features such as TDP and fan control.
     <system:String x:Key="Usercontrol_Theme">Theme</system:String>
     <system:String x:Key="Usercontrol_CombineTDP">Sync TDP Values</system:String>
     <system:String x:Key="Usercontrol_EnableNotifications">Enable Notifications</system:String>
-    <system:String x:Key="Usercontrol_Scaling">Display Scaling</system:String>
+    <system:String x:Key="Usercontrol_DisplayScaling">Display Scaling</system:String>
     <system:String x:Key="Usercontrol_Language">Language</system:String>
     <system:String x:Key="Usercontrol_IntelTDP">Intel TDP Type</system:String>
     <system:String x:Key="Usercontrol_MouseMode">Mouse Mode</system:String>
