@@ -85,7 +85,7 @@ namespace Handheld_Hardware_Tools
 
 
             QuickAccessMenu qam = null;
-            Thread splashScreenThread = null;
+            //Thread splashScreenThread = null;
             if (!settings.hideSplashScreen && !quietStart)
             {
                 //if not quiet start then show splashscreen using separate thread so we can load the 
@@ -140,7 +140,11 @@ namespace Handheld_Hardware_Tools
         }
         public void CancelSplashScreen()
         {
-            splashWindow.Dispatcher.Invoke(() => splashWindow.Close());
+            if(splashWindow != null)
+            {
+                splashWindow.Dispatcher.Invoke(() => splashWindow.Close());
+            }
+            
         }
         /// <summary>
         /// This funtion loads a ResourceDictionary from a file at runtime

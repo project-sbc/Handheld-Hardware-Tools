@@ -460,6 +460,7 @@ namespace Handheld_Hardware_Tools
         #region LoadedEvent
         private void UiWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            
             //set location
             SetAppLocationHeight();
 
