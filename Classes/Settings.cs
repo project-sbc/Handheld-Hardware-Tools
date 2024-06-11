@@ -30,7 +30,8 @@ namespace Handheld_Hardware_Tools.Classes
         public bool qamOnRightSide { get; set; } = true;
 
         public bool checkUpdatesAtStart { get; set; } = false;
-        public DateTime lastUpdateCheck { get; set; } = DateTime.Now;
+        public string lastUpdateCheck { get; set; } = "";
+        public string lastUpdateCheckVersion { get; set; } = "";
 
         public void SaveToXML()
         {

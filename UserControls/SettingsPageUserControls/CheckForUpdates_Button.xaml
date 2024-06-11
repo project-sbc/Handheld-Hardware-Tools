@@ -6,15 +6,24 @@
              xmlns:local="clr-namespace:Handheld_Hardware_Tools.UserControls.PowerPageUserControls"
              xmlns:classes="clr-namespace:Handheld_Hardware_Tools.Classes.Controller_Object_Classes"  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                                mc:Ignorable="d" 
-            Height="60"  Margin="0,0,0,3" >
+            Height="80"  Margin="0,0,0,3" >
     <Border Style="{StaticResource userControlBorder}" Name="border">
         <Grid >
             <Button  x:Name="button" Width="Auto"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" Click="button_Click">
                 <DockPanel HorizontalAlignment="Left" >
                     <ui:SymbolIcon x:Name="controllerStatusBarIcon" Symbol="ArrowSync20" FontSize="30" Margin="0,0,18,0"  VerticalAlignment="Center" DockPanel.Dock="Left" HorizontalContentAlignment="Left" HorizontalAlignment="Left" />
-                    <Viewbox Height="30" VerticalAlignment="Center"  HorizontalAlignment="Stretch" DockPanel.Dock="Right" >
-                        <TextBlock Text="{DynamicResource Usercontrol_CheckUpdate}"  />
-                    </Viewbox>
+                    <StackPanel DockPanel.Dock="Right">
+                        <Viewbox Height="30" VerticalAlignment="Center"  HorizontalAlignment="Left" DockPanel.Dock="Right" >
+                            <TextBlock Text="{DynamicResource Usercontrol_CheckUpdate}"  />
+                        </Viewbox>
+                        <Viewbox Height="15" VerticalAlignment="Center"  HorizontalAlignment="Left" DockPanel.Dock="Right" >
+                            <TextBlock Name="currentVersion"  />
+                        </Viewbox>
+                        <Viewbox Height="15" VerticalAlignment="Center"  HorizontalAlignment="Left" DockPanel.Dock="Right" >
+                            <TextBlock x:Name="lastChecked"  />
+                        </Viewbox>
+                    </StackPanel>
+                  
                 </DockPanel>
 
             </Button>

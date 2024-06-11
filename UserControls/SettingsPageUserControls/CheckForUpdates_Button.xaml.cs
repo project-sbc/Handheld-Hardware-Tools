@@ -38,7 +38,26 @@ namespace Handheld_Hardware_Tools.UserControls.SettingsPageUserControls
             //main control
             mainControl = button;
 
-        
+
+            UpdateTextfields();
+
+
+        }
+        private void UpdateTextfields()
+        {
+            currentVersion.Text = Application.Current.Resources["Usercontrol_CurrentVersion"].ToString() + ": " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+
+            Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
+            if (settings.lastUpdateCheck != "")
+            {
+                lastChecked.Text = Application.Current.Resources["Usercontrol_LastChecked"].ToString() + ": " + settings.lastUpdateCheck + "; " + Application.Current.Resources["Usercontrol_Version"].ToString() + ": " + settings.lastUpdateCheckVersion;
+            }
+            else
+            {
+                lastChecked.Text = Application.Current.Resources["Usercontrol_LastChecked"].ToString() + ": N/A";
+            }
+
         }
         public override void ChangeMainWindowControllerInstructionPage()
         {
@@ -48,7 +67,7 @@ namespace Handheld_Hardware_Tools.UserControls.SettingsPageUserControls
         private void button_Click(object sender, RoutedEventArgs e)
         {
             Update_Management.Instance.CheckForUpdates(false);
-
+            UpdateTextfields();
         }
     }
 }
