@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms.Integration;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -22,7 +23,7 @@ namespace Handheld_Hardware_Tools.Pages
         public InfoPage()
         {
             //Move initilize components to sub routine and async it to make pages feel smoother
-            Dispatcher.BeginInvoke(new Action(() => Initialize()));
+           Application.Current.Dispatcher.BeginInvoke(new Action(() => Initialize()));
 
         }
 

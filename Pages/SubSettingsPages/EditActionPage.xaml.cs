@@ -37,7 +37,7 @@ namespace Handheld_Hardware_Tools.Pages
         public EditActionPage(Classes.Actions.Action importAction = null)
         {
             //Move initilize components to sub routine and async it to make pages feel smoother
-            Dispatcher.BeginInvoke(new System.Action(() => InitializeActions(importAction)));
+            Application.Current.Dispatcher.BeginInvoke(new System.Action(() => InitializeActions(importAction)));
 
          
         }

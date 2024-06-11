@@ -24,7 +24,7 @@ namespace Handheld_Hardware_Tools.AppWindows.AyaNeoFlipDSApp.Pages
         {
 
             //Move initilize components to sub routine and async it to make pages feel smoother
-            Dispatcher.BeginInvoke(new System.Action(() => Initialize()));
+            Application.Current.Dispatcher.BeginInvoke(new System.Action(() => Initialize()));
                    
         }
 

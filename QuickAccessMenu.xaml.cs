@@ -36,6 +36,8 @@ using System.Reflection.Metadata;
 using System.Windows.Media;
 using System.Drawing;
 using System.Windows.Media.Imaging;
+using Handheld_Hardware_Tools.Classes.Motherboard_Info;
+using System.Threading.Tasks;
 
 
 
@@ -54,12 +56,13 @@ namespace Handheld_Hardware_Tools
         public MouseKeyHook mouseKeyHook = new MouseKeyHook();
 
       
-        public QuickAccessMenu(Thread splashWindowThread = null)
+        public QuickAccessMenu()
         {
-            
+
 
             //Get the device type (i.e. win max 2, one x fly, etc)
-            device = new Device_Management().device;
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => device = new Device_Management().device));
+           
 
             //subscribe mouse key events
             mouseKeyHook.Subscribe();
@@ -67,7 +70,8 @@ namespace Handheld_Hardware_Tools
             InitializeComponent();
 
             //run start up routines
-            InitializeRoutines();
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => InitializeRoutines()));
+            
 
             
             //set your common items between windows (this has to do with the ControllerWindow custom class)
@@ -88,13 +92,7 @@ namespace Handheld_Hardware_Tools
             MainWindowLogo.Source = new BitmapImage(new Uri(picLocation));
            
 
-            //Close the splashscreen thread IF it was used
-            if (splashWindowThread != null )
-            {
-                ((App)Application.Current).CancelSplashScreen();
-
-            }
-
+          
             
         }
 
@@ -123,13 +121,11 @@ namespace Handheld_Hardware_Tools
 
         #region Set up
         private void InitializeRoutines() 
-        { 
+        {
 
             //Write log to tell app is open
-            Log_Writer.Instance.writeLog("Start Main Window");
-
-            //unhide powercfg stuff
-            Powercfg_Management.Instance.UnhidePowerCfgSettings();
+            Task.Run(() => Log_Writer.Instance.writeLog("Start Main Window"));
+            Task.Run(() => Powercfg_Management.Instance.UnhidePowerCfgSettings());
             
 
             //set nav menu items from model
@@ -189,6 +185,7 @@ namespace Handheld_Hardware_Tools
             //Things to consider setting location and height
             //DPI scaling (need monitor resolution AND scaling to calculate height and left
             //need setting preference
+
             Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
             System.Windows.Forms.Screen windowScreen = System.Windows.Forms.Screen.FromHandle(new WindowInteropHelper(this).Handle);
 
@@ -233,6 +230,7 @@ namespace Handheld_Hardware_Tools
             UpdateTime();
             UpdatePowerStatusBar();
             UpdateNetworkStatus();
+
             UpdateControllerStatus();
         }
 
