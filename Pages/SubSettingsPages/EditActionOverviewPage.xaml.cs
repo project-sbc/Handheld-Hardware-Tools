@@ -28,7 +28,7 @@ namespace Handheld_Hardware_Tools.Pages
         public EditActionOverviewPage(Classes.Actions.Action? action = null, bool updateControllerDictionary = false, bool updateKBDictionary = false)
         {
             //Move initilize components to sub routine and async it to make pages feel smoother
-            Dispatcher.BeginInvoke(new System.Action(() => InitializeActions(action, updateControllerDictionary, updateKBDictionary)));
+            Application.Current.Dispatcher.BeginInvoke(new System.Action(() => InitializeActions(action, updateControllerDictionary, updateKBDictionary)));
 
         }
 

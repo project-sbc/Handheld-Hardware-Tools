@@ -30,7 +30,7 @@
         </StackPanel>
        
 
-        <ScrollViewer Grid.Row="1" x:Name="scrollViewer"  VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="1" x:Name="scrollViewer" PanningMode="Both" CanContentScroll="True"  VerticalScrollBarVisibility="Auto">
             <StackPanel  x:Name="stackPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
                 <uc:YoutubePage_Button />
                 <uc:TutorialVideosPage_Button />

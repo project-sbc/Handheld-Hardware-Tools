@@ -27,7 +27,7 @@ namespace Handheld_Hardware_Tools.Pages
         public MouseModeSettingsPage()
         {
             //Move initilize components to sub routine and async it to make pages feel smoother
-            Dispatcher.BeginInvoke(new Action(() => Initialize()));
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => Initialize()));
 
         }
 

@@ -85,18 +85,19 @@ namespace Handheld_Hardware_Tools
 
 
             QuickAccessMenu qam = null;
+            Thread splashScreenThread = null;
             if (!settings.hideSplashScreen && !quietStart)
             {
                 //if not quiet start then show splashscreen using separate thread so we can load the 
                 //QAM on the UI thread but at the same time not block a UI thread for the splashscreen so the window loading spins :)  <-- smiley face for me
                
-                Thread splashScreenThread = new Thread(StartSplashScreenThread);
+                //splashScreenThread = new Thread(StartSplashScreenThread);
                
-                splashScreenThread.SetApartmentState(ApartmentState.STA);
-                splashScreenThread.IsBackground = true;
+                //splashScreenThread.SetApartmentState(ApartmentState.STA);
+                //splashScreenThread.IsBackground = true;
 
-                splashScreenThread.Start();
-                qam = new QuickAccessMenu(splashScreenThread);
+                //splashScreenThread.Start();
+                qam = new QuickAccessMenu();
             }
             else
             {
@@ -122,6 +123,8 @@ namespace Handheld_Hardware_Tools
                 else
                 {
                     qam.Show();
+                 
+     
                 }
                
             }

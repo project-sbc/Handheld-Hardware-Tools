@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Handheld_Hardware_Tools.Classes.Motherboard_Info;
 
 namespace Handheld_Hardware_Tools.Classes.Devices
@@ -22,7 +23,10 @@ namespace Handheld_Hardware_Tools.Classes.Devices
 
             try
             {//do this so when people ask about new devices i can ask them for log file
-                Log_Writer.Instance.writeLog("Manufacturer:" + manufacturer + ", product: " + product + ", cpu: " + motherboard_Info.CPUName());
+                Application.Current.Dispatcher.Invoke(() => {
+                    Log_Writer.Instance.writeLog("Manufacturer:" + manufacturer + ", product: " + product + ", cpu: " + motherboard_Info.CPUName());
+                });
+                
             }
             catch { }
 
