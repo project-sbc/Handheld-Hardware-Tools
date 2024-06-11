@@ -38,6 +38,8 @@ namespace Handheld_Hardware_Tools.Classes
             //mouse drag events for whether the QAM should open by touch drag
             m_GlobalHook.MouseDragStarted += M_GlobalHook_MouseDragStarted;
             m_GlobalHook.MouseDragFinished += M_GlobalHook_MouseDragFinished;
+
+            
   
         }
 
@@ -53,20 +55,24 @@ namespace Handheld_Hardware_Tools.Classes
                 if (endScreen.DeviceName == screen.DeviceName)
                 {
 
-                    //this checks if the Y posistion of the end drag is within 10% of the start drag.
+                    //this checks if the Y posistion of the end drag is within 15% of the start drag.
                     double yTolerance = endScreen.Bounds.Height * 0.1;
+                    double xTolerance = endScreen.Bounds.Width * 0.25;
                     if (e.Y < startDragPoint.Y + yTolerance && e.Y > startDragPoint.Y - yTolerance)
                     {
+                        
+
                         QuickAccessMenu qam = Local_Object.Instance.GetQAMWindow();
 
                         if (qam.Visibility != System.Windows.Visibility.Visible)
                         {
+
                             Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
-                            if (settings.qamOnRightSide && startDragPoint.X > screen.Bounds.Width * 0.9)
+                            if (settings.qamOnRightSide && startDragPoint.X > screen.Bounds.Width * 0.85 && e.X < (startDragPoint.X - xTolerance))
                             {
                                 qam.Show();
                             }
-                            if (!settings.qamOnRightSide && startDragPoint.X < screen.Bounds.Width * 0.1)
+                            if (!settings.qamOnRightSide && startDragPoint.X < screen.Bounds.Width * 0.15 && e.X > (startDragPoint.X + xTolerance))
                             {
                                 qam.Show();
                             }
@@ -93,7 +99,7 @@ namespace Handheld_Hardware_Tools.Classes
             //start event for detecting swipe input for opening menu
             Screen tempScreen = Screen.FromPoint(e.Location);
             
-            if (e.X > tempScreen.Bounds.Width * 0.9 || e.X < tempScreen.Bounds.Width * 0.1)
+            if (e.X > tempScreen.Bounds.Width * 0.85 || e.X < tempScreen.Bounds.Width * 0.15)
             {
                 
                 if (e.Y > tempScreen.Bounds.Height * 0.33 && e.Y < tempScreen.Bounds.Height * 0.66)
