@@ -9,12 +9,17 @@
         mc:Ignorable="d"
               xmlns:Converter="clr-namespace:Handheld_Hardware_Tools.Classes.Converters"
         Title="Everything Handhelds Tool" 
-            
+    
         Left="0"
         Top="0"
         x:Name="quickAccessMenu"
         Topmost="True"
-        Width="565"
+        Width="0"
+                          MaxWidth="0"
+                          MinWidth="0"
+        Height="0"
+        MaxHeight="0" 
+        MinHeight="0"
         WindowStyle="None"
         AllowsTransparency="True"
         SizeToContent="Height"
@@ -22,7 +27,7 @@
     
         Loaded="UiWindow_Loaded"
         Closing="Window_Closing" 
-        
+        ContentRendered="MainWindow_ContentRendered"
   
        
         >

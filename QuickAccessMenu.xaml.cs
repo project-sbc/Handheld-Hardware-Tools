@@ -58,45 +58,40 @@ namespace Handheld_Hardware_Tools
       
         public QuickAccessMenu()
         {
-
-
-            //Get the device type (i.e. win max 2, one x fly, etc)
-            Application.Current.Dispatcher.BeginInvoke(new Action(() => device = new Device_Management().device));
-           
-
-            //subscribe mouse key events
-            mouseKeyHook.Subscribe();
-
-            InitializeComponent();
-
-            //run start up routines
-            Application.Current.Dispatcher.BeginInvoke(new Action(() => InitializeRoutines()));
-            
-
-            
             //set your common items between windows (this has to do with the ControllerWindow custom class)
+            this.Visibility = Visibility.Hidden;
+            
+          
             commonFrame = frame;
             instructionFrame = frameControllerInput;
 
+       
+
+            InitializeComponent();
           
-            //These are for a future feature of custom formats
-            //FileStream xamlFile = new FileStream("Styles\\NewTheme.xaml", FileMode.Open, FileAccess.Read);
-
-            //Application.Current.Resources.MergedDictionaries.Add(((ResourceDictionary)XamlReader.Load(xamlFile)));
-
-
-            string picLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Styles", Application.Current.Resources["SplashWindowLogo"].ToString());
+            UpdateStatusBar();
+            //run start up routines
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => InitializeRoutines()));
             
+                      
+        }
+        private void MainWindow_ContentRendered(object sender, EventArgs e)
+        {
+            //set location
+            SetAppLocationHeight();
 
-            //
-            MainWindowLogo.Source = new BitmapImage(new Uri(picLocation));
+            Debug.WriteLine("closing");
+            ((App)Application.Current).CancelSplashScreen();
+
+            if (!String.Equals("C:\\Windows\\System32", Directory.GetCurrentDirectory(), StringComparison.OrdinalIgnoreCase))
+            {
+                this.Show();
+            }
            
 
-          
-            
+            // Perform any other actions needed after the UI is fully loaded
         }
 
-       
         public void CloseMouseMode()
         {//close mouse mode, make sure to unsubscribe to controller events
             if (mouseMode != null)
@@ -122,10 +117,19 @@ namespace Handheld_Hardware_Tools
         #region Set up
         private void InitializeRoutines() 
         {
+            //Get the device type (i.e. win max 2, one x fly, etc)
+            device = new Device_Management().device;
+          
+
+            //subscribe mouse key events
+            mouseKeyHook.Subscribe();
+
+            
+
 
             //Write log to tell app is open
-            Task.Run(() => Log_Writer.Instance.writeLog("Start Main Window"));
-            Task.Run(() => Powercfg_Management.Instance.UnhidePowerCfgSettings());
+            Log_Writer.Instance.writeLog("Start Main Window");
+            Powercfg_Management.Instance.UnhidePowerCfgSettings();
             
 
             //set nav menu items from model
@@ -136,6 +140,21 @@ namespace Handheld_Hardware_Tools
 
             //update status bar values and start dispatcher timer for statusbar
             SetUpStatusBarStartDispatcherTimer();
+
+
+            string picLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Styles", Application.Current.Resources["SplashWindowLogo"].ToString());
+
+
+            //
+            MainWindowLogo.Source = new BitmapImage(new Uri(picLocation));
+
+
+            //These are for a future feature of custom formats
+            //FileStream xamlFile = new FileStream("Styles\\NewTheme.xaml", FileMode.Open, FileAccess.Read);
+
+            //Application.Current.Resources.MergedDictionaries.Add(((ResourceDictionary)XamlReader.Load(xamlFile)));
+
+
         }
 
         public void SetNavigationMenuItemSource()
@@ -152,10 +171,7 @@ namespace Handheld_Hardware_Tools
 
         }
         
-        public void SetAppPositionAndHeight()
-        {
 
-        }
 
         public void ChangeAppLocation(bool qamRight)
         {
@@ -189,6 +205,10 @@ namespace Handheld_Hardware_Tools
             Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
             System.Windows.Forms.Screen windowScreen = System.Windows.Forms.Screen.FromHandle(new WindowInteropHelper(this).Handle);
 
+            this.MaxWidth = 565;
+            this.Width = 565;
+            this.MinWidth = 565;
+    
             double scaling = GetDPIScaling()/100;
             double leftPosition = Math.Round(windowScreen.Bounds.Width / (scaling),0)-this.Width;
             
@@ -461,10 +481,7 @@ namespace Handheld_Hardware_Tools
         private void UiWindow_Loaded(object sender, RoutedEventArgs e)
         {
             
-            //set location
-            SetAppLocationHeight();
-
-
+          
         }
 
         #endregion
