@@ -98,14 +98,13 @@ namespace Handheld_Hardware_Tools.Classes
         public string DeviceCPUType()
         {
             string cpuType = "";
-            cpuType = ((QuickAccessMenu)Application.Current.MainWindow).device.cpuType;
+            cpuType = ((App)Application.Current).device.cpuType;
             return cpuType;
         }
 
         public Device GetMainWindowDevice()
         {
-            QuickAccessMenu qam = GetQAMWindow();
-            return qam.device;
+            return ((App)Application.Current).device;
            
         }
         public OSK GetOSKWindow()

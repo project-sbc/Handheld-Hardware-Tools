@@ -355,13 +355,13 @@ namespace Handheld_Hardware_Tools.Classes
 
         private string DeviceMCHBAR()
         {
-            QuickAccessMenu mw = Local_Object.Instance.GetQAMWindow();
+            Device device = ((App)Application.Current).device;
 
-            if (mw!= null)
+            if (device!= null)
             {
-                if (mw.device.mchBar != null)
+                if (device.mchBar != null)
                 {
-                    return mw.device.mchBar;
+                    return device.mchBar;
                 }
             }
 

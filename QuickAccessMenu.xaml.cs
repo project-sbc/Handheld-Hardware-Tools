@@ -48,7 +48,7 @@ namespace Handheld_Hardware_Tools
     public partial class QuickAccessMenu : ControllerWindow 
     {
 
-        public Device device;
+       
         public MouseMode mouseMode;
         public InputSimulator inputSimulator = new InputSimulator();
         public WiFiDirectHotspotManager wifiAP = null;
@@ -58,11 +58,7 @@ namespace Handheld_Hardware_Tools
       
         public QuickAccessMenu()
         {
-
-
-            //Get the device type (i.e. win max 2, one x fly, etc)
-            Application.Current.Dispatcher.BeginInvoke(new Action(() => device = new Device_Management().device));
-           
+            
 
             //subscribe mouse key events
             mouseKeyHook.Subscribe();
@@ -152,10 +148,6 @@ namespace Handheld_Hardware_Tools
 
         }
         
-        public void SetAppPositionAndHeight()
-        {
-
-        }
 
         public void ChangeAppLocation(bool qamRight)
         {
@@ -185,9 +177,15 @@ namespace Handheld_Hardware_Tools
             //Things to consider setting location and height
             //DPI scaling (need monitor resolution AND scaling to calculate height and left
             //need setting preference
-
+ 
+            this.Top = 0;
             Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
             System.Windows.Forms.Screen windowScreen = System.Windows.Forms.Screen.FromHandle(new WindowInteropHelper(this).Handle);
+
+            this.Width = 565;
+            this.MaxWidth = 565;
+            this.MinWidth = 565;
+
 
             double scaling = GetDPIScaling()/100;
             double leftPosition = Math.Round(windowScreen.Bounds.Width / (scaling),0)-this.Width;
@@ -195,10 +193,14 @@ namespace Handheld_Hardware_Tools
             double height = Math.Round(windowScreen.WorkingArea.Height / scaling, 0);
             this.MinHeight = height;
             this.MaxHeight = height;
-
+      
             if (settings.qamOnRightSide)
             {
                 this.Left = leftPosition;
+            }
+            else
+            {
+                this.Left = 0;
             }
 
         }
@@ -462,7 +464,7 @@ namespace Handheld_Hardware_Tools
         {
             
             //set location
-            SetAppLocationHeight();
+            
 
 
         }
@@ -620,6 +622,15 @@ namespace Handheld_Hardware_Tools
         private void notifyIcon_LeftClick(NotifyIcon sender, RoutedEventArgs e)
         {
             TasksToggleWindowOpen();
+        }
+
+        private void quickAccessMenu_ContentRendered(object sender, EventArgs e)
+        {
+            ((App)Application.Current).CancelSplashScreen();
+
+       
+
+            SetAppLocationHeight();
         }
     }
 }

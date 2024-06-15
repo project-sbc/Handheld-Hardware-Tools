@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
 using System.Threading;
+using Handheld_Hardware_Tools.Classes.Devices;
 
 
 namespace Handheld_Hardware_Tools
@@ -16,9 +17,10 @@ namespace Handheld_Hardware_Tools
     /// </summary>
     public partial class App : Application
     {
-
+        public Device device = null;
         public SplashScreenStartUp splashWindow;
         public static System.Windows.Forms.NotifyIcon icon;
+        public Thread splashScreenThread = null;
         public App()
         {
  
@@ -78,10 +80,20 @@ namespace Handheld_Hardware_Tools
             {
                 quietStart = true;
             }
-                      
 
             //lets check if quiet start is enabled (no splashscreen)
             Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
+
+            //run start up routines
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                device = new Device_Management().device;
+                SetDefaultTDP(settings.defaultTDP);
+
+            }));
+
+
+         
 
 
             QuickAccessMenu qam = null;
@@ -91,12 +103,12 @@ namespace Handheld_Hardware_Tools
                 //if not quiet start then show splashscreen using separate thread so we can load the 
                 //QAM on the UI thread but at the same time not block a UI thread for the splashscreen so the window loading spins :)  <-- smiley face for me
                
-                //splashScreenThread = new Thread(StartSplashScreenThread);
+                splashScreenThread = new Thread(StartSplashScreenThread);
                
-                //splashScreenThread.SetApartmentState(ApartmentState.STA);
-                //splashScreenThread.IsBackground = true;
+                splashScreenThread.SetApartmentState(ApartmentState.STA);
+                splashScreenThread.IsBackground = true;
 
-                //splashScreenThread.Start();
+                splashScreenThread.Start();
                 qam = new QuickAccessMenu();
             }
             else
@@ -137,6 +149,15 @@ namespace Handheld_Hardware_Tools
             splashWindow.Show();
             System.Windows.Threading.Dispatcher.Run();
           
+        }
+
+        private void SetDefaultTDP(int defaultTDP)
+        {
+            if (defaultTDP != 0)
+            {
+                TDP_Management.Instance.ChangeSustainedBoostTDP(defaultTDP, defaultTDP);
+            }
+           
         }
         public void CancelSplashScreen()
         {
