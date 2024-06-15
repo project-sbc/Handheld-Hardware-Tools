@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
 using System.Threading;
-using System.Diagnostics;
 
 
 namespace Handheld_Hardware_Tools
@@ -84,26 +83,28 @@ namespace Handheld_Hardware_Tools
             //lets check if quiet start is enabled (no splashscreen)
             Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
 
-            QuickAccessMenu qam = new QuickAccessMenu();
-            this.MainWindow = qam;
 
-            Thread splashScreenThread = null;
+            QuickAccessMenu qam = null;
+            //Thread splashScreenThread = null;
             if (!settings.hideSplashScreen && !quietStart)
             {
                 //if not quiet start then show splashscreen using separate thread so we can load the 
                 //QAM on the UI thread but at the same time not block a UI thread for the splashscreen so the window loading spins :)  <-- smiley face for me
                
-                splashScreenThread = new Thread(StartSplashScreenThread);
+                //splashScreenThread = new Thread(StartSplashScreenThread);
                
-                splashScreenThread.SetApartmentState(ApartmentState.STA);
-                splashScreenThread.IsBackground = true;
+                //splashScreenThread.SetApartmentState(ApartmentState.STA);
+                //splashScreenThread.IsBackground = true;
 
-                splashScreenThread.Start();
-          
+                //splashScreenThread.Start();
+                qam = new QuickAccessMenu();
             }
-
-    
-   
+            else
+            {
+                qam = new QuickAccessMenu();
+            }
+            
+            this.MainWindow = qam;
 
 
             if (quietStart)
@@ -141,7 +142,6 @@ namespace Handheld_Hardware_Tools
         {
             if(splashWindow != null)
             {
-                
                 splashWindow.Dispatcher.Invoke(() => splashWindow.Close());
             }
             
