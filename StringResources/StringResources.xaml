@@ -13,6 +13,7 @@
 
     <system:String x:Key="Usercontrol_Volume">Volume</system:String>
     <system:String x:Key="Usercontrol_TDP">TDP</system:String>
+    <system:String x:Key="Usercontrol_DefaultTDP">Default TDP</system:String>
     <system:String x:Key="Usercontrol_PowerBalanceCPU">Power Balance CPU</system:String>
     <system:String x:Key="Usercontrol_PowerBalanceGPU">Power Balance GPU</system:String>
     <system:String x:Key="Usercontrol_TDP2">Boost TDP</system:String>

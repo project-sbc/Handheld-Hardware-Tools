@@ -38,6 +38,7 @@
                 <uc:EditActionsSettings_Button/>
                 <uc:EditHomepageSettings_Button/>
                 <uc:IntelTDPType_Combobox/>
+                <uc:DefaultTDP_Slider />
                 <uc:AutoStart_ToggleSwitch />
                 <uc:MaxTDP_Slider />
                 <uc:QAMSide_ToggleSwitch />
