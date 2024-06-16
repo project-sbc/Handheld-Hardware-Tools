@@ -628,9 +628,15 @@ namespace Handheld_Hardware_Tools
         {
             ((App)Application.Current).CancelSplashScreen();
 
-       
 
-            SetAppLocationHeight();
+            if (String.Equals("C:\\Windows\\System32", Directory.GetCurrentDirectory(), StringComparison.OrdinalIgnoreCase))
+            {
+                this.Hide();
+            }
+            else
+            {
+                SetAppLocationHeight();
+            }
         }
     }
 }

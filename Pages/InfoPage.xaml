@@ -34,6 +34,8 @@
             <StackPanel  x:Name="stackPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
                 <uc:YoutubePage_Button />
                 <uc:TutorialVideosPage_Button />
+                <uc:HHDiscord_Button/>
+                <uc:HUDiscord_Button/>
                 <uc:PayPalDonate_Button />
                 <uc:KofiDonate_Button />
                 <uc:PatreonDonate_Button />

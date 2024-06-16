@@ -1,0 +1,49 @@
+﻿<classes:ControllerUserControl x:Class="Handheld_Hardware_Tools.UserControls.InfoPageUserControls.HUDiscord_Button"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Handheld_Hardware_Tools.UserControls.PowerPageUserControls"
+             xmlns:classes="clr-namespace:Handheld_Hardware_Tools.Classes.Controller_Object_Classes"  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                               mc:Ignorable="d" 
+            Height="Auto"  Margin="0,0,0,3"
+                               
+                           xmlns:fa="http://schemas.fontawesome.io/icons/"    >
+    <Border Style="{StaticResource userControlBorder}" Name="border">
+        <Grid >
+
+            <Button  x:Name="button" Width="Auto"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" Click="button_Click">
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="1" Grid.RowSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <ui:Hyperlink NavigateUri="https://discord.gg/WHAfRn4QX8"  x:Name="hyperlink" >
+                            <Viewbox Height="30" VerticalAlignment="Center"  HorizontalAlignment="Stretch" DockPanel.Dock="Right" >
+                                <TextBlock Text="{DynamicResource UserControl_HUDiscordLink}"  />
+                            </Viewbox>
+                        </ui:Hyperlink>
+
+
+                        <TextBlock Text="{DynamicResource UserControl_HUDiscordLink_Subtext}" TextWrapping="Wrap" Grid.Row="1" Margin="10,0,10,0"/>
+
+                    </Grid>
+                    <Image Name="image" />
+                  
+                </Grid>
+
+            </Button>
+           
+        </Grid>
+       
+
+    </Border>
+    
+</classes:ControllerUserControl>

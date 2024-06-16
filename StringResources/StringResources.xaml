@@ -96,8 +96,12 @@ features such as TDP and fan control.
     <system:String x:Key="UserControl_TutorialVideos_Subtext">See a list of tutorial videos on how to use HCP.
     </system:String>
 
-    <system:String x:Key="UserControl_DiscordLink">Discord Link</system:String>
-    <system:String x:Key="UserControl_DiscordLink_Subtext">Come chat with me and other people about handhelds, SBCs, or HCP.
+    <system:String x:Key="UserControl_HUDiscordLink">Discord Link</system:String>
+    <system:String x:Key="UserControl_HUDiscordLink_Subtext">Come chat with Handhelds United crew on discord.
+    </system:String>
+
+    <system:String x:Key="UserControl_HHDiscordLink">Discord Link</system:String>
+    <system:String x:Key="UserControl_HHDiscordLink_Subtext">Come chat with me and other people about handhelds, SBCs, or HHT.
     </system:String>
 
     <system:String x:Key="UserControl_YoutubeLink">Handheld Hardware Channel</system:String>

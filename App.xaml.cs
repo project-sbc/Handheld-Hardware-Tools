@@ -119,6 +119,7 @@ namespace Handheld_Hardware_Tools
             this.MainWindow = qam;
 
 
+            qam.Show();
             if (quietStart)
             {
                 qam.Hide();
