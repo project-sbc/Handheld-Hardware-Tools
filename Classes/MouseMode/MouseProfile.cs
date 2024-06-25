@@ -19,6 +19,14 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode
             new MouseActionItem(){button="Y", mouseAction= new OpenOSK()},
             new MouseActionItem(){button="X", mouseAction= new AltTab()},
 
+            new MouseActionItem(){button="LeftThumb", mouseAction= null},
+            new MouseActionItem(){button="RightThumb", mouseAction= null},
+            new MouseActionItem(){button="LeftShoulder", mouseAction= null},
+            new MouseActionItem(){button="RightShoulder", mouseAction= null},
+            new MouseActionItem(){button="Start", mouseAction= null},
+            new MouseActionItem(){button="Back", mouseAction= null},
+            new MouseActionItem(){button="LeftTrigger", mouseAction= null},
+            new MouseActionItem(){button="RightTrigger", mouseAction= null},
 
 
             new MouseActionItem(){button="DPadUp", mouseAction= new KeyboardClick() { virtualKeyCode = WindowsInput.Native.VirtualKeyCode.UP }},
