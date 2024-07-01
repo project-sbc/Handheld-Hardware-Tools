@@ -500,6 +500,9 @@ namespace Handheld_Hardware_Tools
 
         }
 
+
+        Process gameProcess = null;
+
         private void DetermineAppFocusOnFullScreenGame()
         {
             //this code checks for full screen games
@@ -510,12 +513,16 @@ namespace Handheld_Hardware_Tools
             {
                 if (p.MainWindowHandle != IntPtr.Zero)
                 {
-                    Debug.WriteLine(p.ProcessName);
+                    
 
                     if (ScreenProgram_Management.IsForegroundFullScreen(new HandleRef(null, p.MainWindowHandle), null) && !ScreenProgram_Management.ExcludeFullScreenProcessList.Contains(p.ProcessName))
                     {
                         //this is where we will make app non focusable
+                        Debug.WriteLine(p.ProcessName);
+                        gameProcess = p;
                         SetWindowAsNonFocusable(p.MainWindowHandle);
+
+                        //SetWindowAsFocusable();
                         return;
                     }
                 }
@@ -528,8 +535,8 @@ namespace Handheld_Hardware_Tools
         private void TasksToggleWindowClosed()
         {
             //Tasks to do when window is hiding
+            HandleNonNullGameProcess();
 
-      
             //Stop statusbar update timer
             statusBarDispatcherTimer.Stop();
 
@@ -540,6 +547,23 @@ namespace Handheld_Hardware_Tools
             this.Visibility = Visibility.Hidden;
                        
         }
+
+        private void HandleNonNullGameProcess()
+        {
+            //this handles if a full window app was running when the app was opened, we can check if the window is not open and reopen it for us
+            if (gameProcess != null)
+            {
+                if (!ScreenProgram_Management.IsForegroundFullScreen(new HandleRef(null, gameProcess.MainWindowHandle), null))
+                {
+                    //the above checks if the app is still fullscreen, if not  (i.e. using !) then we get here
+                    ScreenProgram_Management.SetWindowState(gameProcess.MainWindowHandle, WindowState.Maximized);
+
+                }
+                gameProcess = null;
+            }
+
+        }
+
         public void ToggleWindow()
         {
            
