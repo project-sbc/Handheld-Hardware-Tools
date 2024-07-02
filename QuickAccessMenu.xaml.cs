@@ -492,9 +492,14 @@ namespace Handheld_Hardware_Tools
             //determine if a full screen game is running, if so we will open the app as NON-FOCUSABLE. this makes it so that some games won't minimize
             DetermineAppFocusOnFullScreenGame();
 
+            if (this.WindowState == WindowState.Minimized)
+            {
+                this.WindowState = WindowState.Normal;
+            }
+
             //set app to normal state and visible
-            this.WindowState = WindowState.Normal;
-            this.Show();
+            this.Visibility = Visibility.Visible;
+            //this.Show();
 
             
 
@@ -556,7 +561,7 @@ namespace Handheld_Hardware_Tools
                 if (!ScreenProgram_Management.IsForegroundFullScreen(new HandleRef(null, gameProcess.MainWindowHandle), null))
                 {
                     //the above checks if the app is still fullscreen, if not  (i.e. using !) then we get here
-                    ScreenProgram_Management.SetWindowState(gameProcess.MainWindowHandle, WindowState.Maximized);
+                    ScreenProgram_Management.SetWindowState(gameProcess.MainWindowHandle, WindowState.Normal);
 
                 }
                 gameProcess = null;
