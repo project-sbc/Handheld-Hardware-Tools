@@ -186,6 +186,8 @@ features such as TDP and fan control.
     <system:String x:Key="EditActionUserControl_MoveUp">Move Up</system:String>
     <system:String x:Key="EditActionUserControl_MoveDown">Move Down</system:String>
 
+
+    
     <system:String x:Key="ActionUserControl_DisplayInPanel">Displayed In Menu</system:String>
     <system:String x:Key="ActionUserControl_HiddenInPanel">Hidden In Menu</system:String>
 
@@ -219,6 +221,7 @@ features such as TDP and fan control.
     <system:String x:Key="Usercontrol_MouseSensitivity">Mouse Sensitivity</system:String>
     <system:String x:Key="Usercontrol_ScrollSensitivity">Scroll Sensitivity</system:String>
     <system:String x:Key="Usercontrol_InvertVerticalScroll">Invert Vertical Scroll Direction</system:String>
+    <system:String x:Key="Usercontrol_EditMouseButtonActions">Edit Mouse Mode Button Actions</system:String>
     <system:String x:Key="Usercontrol_MouseMovementStick">Mouse Movement Joystick</system:String>
     <system:String x:Key="Usercontrol_MouseMovementLeftStick">Left</system:String>
     <system:String x:Key="Usercontrol_MouseMovementRightStick">Right</system:String>

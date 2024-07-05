@@ -13,6 +13,10 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode.Actions
 {
     public class AltTab : MouseAction
     {
+        public AltTab() 
+        {
+            mouseActionName = "AltTab";
+        }
         DispatcherTimer unpressAltTimer = null;
         public override void ClickEvent()
         {

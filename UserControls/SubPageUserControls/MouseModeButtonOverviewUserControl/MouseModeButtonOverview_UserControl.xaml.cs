@@ -14,6 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms.Design.Behavior;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -32,7 +33,7 @@ namespace Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls
         public MouseModeButtonOverview_UserControl(Handheld_Hardware_Tools.Classes.MouseMode.MouseActionItem newAction)
         {
             InitializeComponent();
-
+            
             //set virtual border
             borderControl = border;
 
@@ -65,17 +66,34 @@ namespace Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls
         }
         private void SetActionNameTextBlock()
         {
-            actionName.Text = Application.Current.Resources["MouseAction_" + action.mouseAction.ToString()].ToString();
+            if (action.mouseAction != null)
+            {
+                actionName.Text = Application.Current.Resources["MouseAction_" + action.mouseAction.mouseActionName.ToString()].ToString();
+            }
+            switch (action.button)
+            {
+                case "A":
+                    buttonIcon.Glyph = '\uF093';
+                    break;
+                case "B":
+                    buttonIcon.Glyph = '\uF094';
+                    break;
+                case "X":
+                    buttonIcon.Glyph = '\uF095';
+                    break;
+                case "Y":
+                    buttonIcon.Glyph = '\uF096';
+                    break;
+            }
         }
       
        
 
-        private void SetActionTextBlockAndIcon()
-        {
-           
-        }
+      
         private void SetMainIconAndArguments()
         {
+
+
             switch (action.mouseAction)
             {
                 case ScrollLeft:
@@ -112,7 +130,7 @@ namespace Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls
         {
             if (action == "B")
             {
-                card.IsExpanded = false;
+             
                 ReturnControlToPage();
   
             }

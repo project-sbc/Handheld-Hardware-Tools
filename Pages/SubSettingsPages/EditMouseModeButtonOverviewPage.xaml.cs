@@ -106,6 +106,7 @@ namespace Handheld_Hardware_Tools.Pages
             {
                 foreach (Classes.MouseMode.MouseActionItem action in actions)
                 {
+                    
                     UserControl userControl = new MouseModeButtonOverview_UserControl(action);
                     stackPanel.Children.Add(userControl);
                     userControls.Add((ControllerUserControl)userControl);

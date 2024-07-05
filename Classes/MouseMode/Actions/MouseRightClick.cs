@@ -11,7 +11,10 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode.Actions
 {
     public class MouseRightClick : MouseAction
     {
-
+        public MouseRightClick()
+        {
+            mouseActionName = "MouseRightClick";
+        }
         public override void ClickEvent()
         {
             InputSimulator inputSimulator = Local_Object.Instance.GetMainWindowInputSimulator();
