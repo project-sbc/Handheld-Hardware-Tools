@@ -381,10 +381,7 @@ namespace Handheld_Hardware_Tools.Classes
         {
             try
             {
-                result = "CPU Family: Hawk Point\r\nSMU BIOS Interface Version: 14\r\nVersion: v0.15.0 \r\nPM Table Version: 4c0008\r\n|        Name         |   Value   |     Parameter      |\r\n|---------------------|-----------|--------------------|\r\n| STAPM LIMIT         |    15.000 | stapm-limit        |\r\n| STAPM VALUE         |     3.529 |                    |\r\n| PPT LIMIT FAST      |    15.000 | fast-limit         |\r\n| PPT VALUE FAST      |     6.696 |                    |\r\n| PPT LIMIT SLOW      |    15.000 | slow-limit         |\r\n| PPT VALUE SLOW      |     9.756 |                    |\r\n| StapmTimeConst      |    79.770 | stapm-time         |\r\n| SlowPPTTimeConst    |    52.500 | slow-time          |\r\n| PPT LIMIT APU       |    15.000 | apu-slow-limit     |\r\n| PPT VALUE APU       |       nan |                    |\r\n| TDC LIMIT VDD       |    54.000 | vrm-current        |\r\n| TDC VALUE VDD       |     7.649 |                    |\r\n| TDC LIMIT SOC       |    16.000 | vrmsoc-current     |\r\n| TDC VALUE SOC       |     2.092 |                    |\r\n| EDC LIMIT VDD       |   105.000 | vrmmax-current     |\r\n| EDC VALUE VDD       |    60.317 |                    |\r\n| EDC LIMIT SOC       |    23.000 | vrmsocmax-current  |\r\n| EDC VALUE SOC       |     2.883 |                    |\r\n| THM LIMIT CORE      |    90.000 | tctl-temp          |\r\n| THM VALUE CORE      |    45.495 |                    |\r\n| STT LIMIT APU       |     0.000 | apu-skin-temp      |\r\n| STT VALUE APU       |     0.000 |                    |\r\n| STT LIMIT dGPU      |     0.000 | dgpu-skin-temp     |\r\n| STT VALUE dGPU      |     0.000 |                    |\r\n| CCLK Boost SETPOINT |       nan | power-saving /     |\r\n| CCLK BUSY VALUE     |       nan | max-performance    |\r\n";
-
-
-
+               
                 using (StringReader reader = new StringReader(result))
                 {
                     string line;
@@ -398,15 +395,13 @@ namespace Handheld_Hardware_Tools.Classes
                             tdp = tdp.Substring(0, tdp.IndexOf("."));
                             tdpSustained = (int)Math.Round(Convert.ToDouble(tdp), 0);
 
-
-                            Log_Writer.Instance.writeLog("TDP sustained is " + tdpSustained.ToString());
                         }
                         if (line.Contains("PPT LIMIT SLOW"))
                         {
                             tdp = line.Replace("|", "").Replace("PPT LIMIT SLOW", "").Replace(" ", "").Replace("slow-limit", "");
                             tdp = tdp.Substring(0, tdp.IndexOf("."));
                             tdpBoost = (int)Math.Round(Convert.ToDouble(tdp), 0);
-                            Log_Writer.Instance.writeLog("TDP boost is " + tdpBoost.ToString());
+                           
                             return;
                         }
                     }
