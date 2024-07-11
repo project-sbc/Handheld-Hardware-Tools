@@ -33,6 +33,9 @@ namespace Handheld_Hardware_Tools.Classes
         public string lastUpdateCheck { get; set; } = "";
         public string lastUpdateCheckVersion { get; set; } = "";
 
+        public string controllerGUID = "";
+        public string controllerInstanceID = "";
+
         public void SaveToXML()
         {
             XML_Management.Instance.SaveXML("Settings", this);

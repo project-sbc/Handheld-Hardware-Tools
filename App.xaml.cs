@@ -31,8 +31,8 @@ namespace Handheld_Hardware_Tools
             //string dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             //string stringsFile = Path.Combine(dir, "Styles", "DefaultTheme.xaml");
             //LoadStyleDictionaryFromFile(stringsFile);
-
-
+            ControllerStatus_Management.ToggleEnableDisableController();
+            
         }
 
         private void SetUpNotifyIcon()
