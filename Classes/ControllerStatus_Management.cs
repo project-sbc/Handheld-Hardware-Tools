@@ -44,8 +44,7 @@ namespace Handheld_Hardware_Tools.Classes
 
         private static string controllerInstanceID = "";
         private static string controllerGUID = ""; 
-        private static string controllerVIDPID = ""; 
-
+   
 
         public static void GetControllerGUIDInstanceID(bool checkNewController = false)
         {
@@ -72,12 +71,9 @@ namespace Handheld_Hardware_Tools.Classes
             string[] returnValues = new string[3];
             returnValues[0] = "";
             returnValues[1] = "";
-            returnValues[2] = "";
+
 
             var instance = 0;
-            //Get the VID and PID from instance path, should look like this VID_045E&PID_028E, we need this to search in the Devcon interface GUID
-            string strVIDPID1 = "VID_045E&PID_028E";
-            string strVIDPID2 = "VID_17EF&PID_6182";
 
 
             // enumerate all devices that export the GUID_DEVINTERFACE_USB_DEVICE interface
@@ -92,18 +88,11 @@ namespace Handheld_Hardware_Tools.Classes
 
 
                 //We want the device that has our VID and PID value, the variable strDevInstPth that should look like this  VID_045E&PID_028E
-                if (path.Contains(strVIDPID1) || path.Contains(strVIDPID2))
+                if (path != null)
                 {
                     returnValues[0] = usbDevice.GetProperty<Guid>(DevicePropertyKey.Device_ClassGuid).ToString();
                     returnValues[1] = usbDevice.InstanceId;
-                    if (path.Contains(strVIDPID1))
-                    {
-                        returnValues[2] = strVIDPID1;
-                    }
-                    if (path.Contains(strVIDPID2))
-                    {
-                        returnValues[2] = strVIDPID2;
-                    }
+                   
                     break;
                     
                 }
