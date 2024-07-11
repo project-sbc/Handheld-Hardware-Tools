@@ -185,6 +185,7 @@ namespace Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls
 
 
                     break;
+               
                 case "Toggle_WifiAP":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.Router24;
 
@@ -211,6 +212,10 @@ namespace Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls
                     break;
                 case "Toggle_VolumeMute":
                     symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.SpeakerMute24;
+
+                    break;
+                case "Toggle_Controller":
+                    symbolIcon.Symbol = Wpf.Ui.Common.SymbolRegular.XboxController24;
 
                     break;
                 case "Toggle_Wifi":

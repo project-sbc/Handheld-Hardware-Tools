@@ -104,6 +104,9 @@ namespace Handheld_Hardware_Tools.UserControls.ActionWrapPanelUserControls
                 case "Toggle_FreeSync":
                     actionHandler = new ActionUserControl_Toggle_FreeSync(action);
                     break;
+                case "Toggle_Controller":
+                    actionHandler = new ActionUserControl_Toggle_Controller(action);
+                    break;
                 default:
                     MessageBox.Show("NO HANDLER FOR THIS ACTION, ADD IT YOU DUMMY. Action_UserControl.xaml.cs " + action.actionName);
                     break;

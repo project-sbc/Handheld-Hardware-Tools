@@ -137,6 +137,9 @@ namespace Handheld_Hardware_Tools.UserControls.EditActionUserControls
                     case "Toggle_OSK":
                         newAction = new Classes.Actions.ActionClass.Toggle_OSK();
                         break;
+                    case "Toggle_Controller":
+                        newAction = new Classes.Actions.ActionClass.Toggle_Controller();
+                        break;
                     case "Cycle_Volume":
                         newAction = new Classes.Actions.ActionClass.Cycle_Volume();
                         break;

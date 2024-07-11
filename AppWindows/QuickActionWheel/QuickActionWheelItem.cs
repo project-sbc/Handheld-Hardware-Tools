@@ -47,46 +47,41 @@ namespace Handheld_Hardware_Tools.AppWindows.QuickActionWheel
             {
                 case Cycle_TDP:
                     return new QuickActionWheelItem_Cycle_TDP();
-                    break;
                 case Cycle_EPP:
                     return new QuickActionWheelItem_Cycle_EPP();
-                    break;
+
                 case Change_TDP:
                     return new QuickActionWheelItem_Change_TDP();
-                    break;
                 case Toggle_OSK:
                     return new QuickActionWheelItem_Toggle_OSK();
-                    break;
+
+                case Toggle_Controller:
+                    return new QuickActionWheelItem_Toggle_Controller();
+                case Toggle_IntegerScaling:
+                    return new QuickActionWheelItem_Toggle_IntegerScaling();
                 case Toggle_QAM:
                     return new QuickActionWheelItem_Toggle_QAM();
-                    break;
+
                 case Toggle_WindowManager:
                     return new QuickActionWheelItem_Toggle_WindowManager();
-                    break;
                 case Toggle_Guide:
                     return new QuickActionWheelItem_Toggle_Guide();
-                    break;
+
                 case Toggle_MouseMode:
                     return new QuickActionWheelItem_Toggle_MouseMode();
-                    break;
                 case Cycle_Volume:
                     return new QuickActionWheelItem_Cycle_Volume();
-                    break;
+
                 case Toggle_Desktop:
                     return new QuickActionWheelItem_Toggle_Desktop();
-                    break;
                 case Open_SteamBP:
                     return new QuickActionWheelItem_Open_SteamBP();
-                    break;
                 case Toggle_Wifi:
                     return new QuickActionWheelItem_Toggle_Wifi();
-                    break;
                 case Toggle_BT:
                     return new QuickActionWheelItem_Toggle_BT();
-                    break;
                 case Toggle_VolumeMute:
                     return new QuickActionWheelItem_Toggle_VolumeMute();
-                    break;
 
             }
             return null;

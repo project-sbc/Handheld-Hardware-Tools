@@ -24,15 +24,7 @@ namespace Handheld_Hardware_Tools.Classes.Actions.ActionClass
         {
             //Shell objects need to run on STA thread, thats why i need to use a new thread, otherwise it wont work
 
-            if (1 == 1)
-            {
-
-                //Thread thread = new Thread(ToggleDesktop);
-                //thread.SetApartmentState(ApartmentState.STA); //Set the thread to STA
-                //thread.Start();
-                //Debug.WriteLine("Invoking togg desk");
-              
-            }
+            ControllerStatus_Management.Instance.ToggleEnableDisableController();
            
        
 

@@ -46,7 +46,7 @@ namespace Handheld_Hardware_Tools.Classes
         private static string controllerGUID = ""; 
    
 
-        public static void GetControllerGUIDInstanceID(bool checkNewController = false)
+        public void GetControllerGUIDInstanceID(bool checkNewController = false)
         {
             //checkNewController will overwrite the settings guid and controller
             Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
@@ -66,7 +66,7 @@ namespace Handheld_Hardware_Tools.Classes
             controllerInstanceID = settings.controllerInstanceID;
         }
 
-        private static string[] GetControllerGUIDFromDeviceManager()
+        private string[] GetControllerGUIDFromDeviceManager()
         {
             string[] returnValues = new string[3];
             returnValues[0] = "";
@@ -104,7 +104,7 @@ namespace Handheld_Hardware_Tools.Classes
 
 
 
-        public static bool BuiltInControllerStatus()
+        public bool BuiltInControllerStatus()
         {
 
             bool controllerEnabled = false;
@@ -146,7 +146,7 @@ namespace Handheld_Hardware_Tools.Classes
 
 
 
-        public static bool ToggleEnableDisableController()
+        public bool ToggleEnableDisableController()
         {
             //error number CM01
             try

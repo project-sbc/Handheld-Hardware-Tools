@@ -160,6 +160,7 @@ features such as TDP and fan control.
     <system:String x:Key="Action_Cycle_Volume">Change Volume Mode</system:String>
 
     <system:String x:Key="Action_Toggle_WifiAP">Toggle Wifi AP</system:String>
+    <system:String x:Key="Action_Toggle_Controller">Toggle Controller</system:String>
     <system:String x:Key="Action_Toggle_Wifi">Toggle Wifi</system:String>
     <system:String x:Key="Action_Toggle_BT">Toggle Bluetooth</system:String>
     <system:String x:Key="Action_Toggle_QAM">Toggle Menu</system:String>
