@@ -11,6 +11,10 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode.Actions
 {
     public class KeyboardClick : MouseAction
     {
+        public KeyboardClick()
+        {
+            mouseActionName = "KeyboardClick";
+        }
         public VirtualKeyCode virtualKeyCode { get; set; }
         public override void ClickEvent()
         {

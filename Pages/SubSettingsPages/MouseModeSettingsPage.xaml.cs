@@ -5,6 +5,7 @@ using Handheld_Hardware_Tools.Classes.Models;
 using Handheld_Hardware_Tools.Classes.MouseMode;
 using Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls;
 using Handheld_Hardware_Tools.UserControls.HomePageUserControls;
+using Handheld_Hardware_Tools.UserControls.SubPageUserControls;
 using Handheld_Hardware_Tools.UserControls.SubPageUserControls.EditMouseModeUserControls;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,7 @@ namespace Handheld_Hardware_Tools.Pages
             stackPanel.Children.Add(new MouseSensitivity_Slider(mouseProfile.sensitivityMouseValue));
             stackPanel.Children.Add(new ScrollSensitivity_Slider(mouseProfile.sensitivityScrollValue));
             stackPanel.Children.Add(new InvertScroll_ToggleSwitch(mouseProfile.reverseVerticalScroll));
+            stackPanel.Children.Add(new EditMouseButtonSettings_Button());
 
             userControls = General_Functions.SearchStackPanelReturnArray(stackPanel);
         }

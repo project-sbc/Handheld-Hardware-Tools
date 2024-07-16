@@ -47,6 +47,18 @@
     <system:String x:Key="Usercontrol_KillTask">Kill Process</system:String>
         
         
+        
+    <!-- mouse mode action items-->
+    <system:String x:Key="MouseAction_KeyboardClick">Key Press</system:String>
+    <system:String x:Key="MouseAction_MouseLeftClick">Left Mouse Click</system:String>
+    <system:String x:Key="MouseAction_MouseRightClick">Right Mouse Click</system:String>
+    <system:String x:Key="MouseAction_ScrollUp">Scroll Up</system:String>
+    <system:String x:Key="MouseAction_ScrollDown">Scroll Down</system:String>
+    <system:String x:Key="MouseAction_ScrollLeft">Scroll Left</system:String>
+    <system:String x:Key="MouseAction_ScrollRight">Scroll Right</system:String>
+    <system:String x:Key="MouseAction_OpenOSK">Open OSK</system:String>
+    <system:String x:Key="MouseAction_AltTab">Switch Windows (Alt-Tab)</system:String>
+
     <!-- Info page strings-->
     <system:String x:Key="Usercontrol_TutorialVideos">Tutorial Videos</system:String>
     <system:String x:Key="Usercontrol_TutorialVideos_Subtext">Watch how to videos to get the most out of this tool</system:String>
@@ -148,6 +160,7 @@ features such as TDP and fan control.
     <system:String x:Key="Action_Cycle_Volume">Change Volume Mode</system:String>
 
     <system:String x:Key="Action_Toggle_WifiAP">Toggle Wifi AP</system:String>
+    <system:String x:Key="Action_Toggle_Controller">Toggle Controller</system:String>
     <system:String x:Key="Action_Toggle_Wifi">Toggle Wifi</system:String>
     <system:String x:Key="Action_Toggle_BT">Toggle Bluetooth</system:String>
     <system:String x:Key="Action_Toggle_QAM">Toggle Menu</system:String>
@@ -174,6 +187,8 @@ features such as TDP and fan control.
     <system:String x:Key="EditActionUserControl_MoveUp">Move Up</system:String>
     <system:String x:Key="EditActionUserControl_MoveDown">Move Down</system:String>
 
+
+    
     <system:String x:Key="ActionUserControl_DisplayInPanel">Displayed In Menu</system:String>
     <system:String x:Key="ActionUserControl_HiddenInPanel">Hidden In Menu</system:String>
 
@@ -207,6 +222,7 @@ features such as TDP and fan control.
     <system:String x:Key="Usercontrol_MouseSensitivity">Mouse Sensitivity</system:String>
     <system:String x:Key="Usercontrol_ScrollSensitivity">Scroll Sensitivity</system:String>
     <system:String x:Key="Usercontrol_InvertVerticalScroll">Invert Vertical Scroll Direction</system:String>
+    <system:String x:Key="Usercontrol_EditMouseButtonActions">Edit Mouse Mode Button Actions</system:String>
     <system:String x:Key="Usercontrol_MouseMovementStick">Mouse Movement Joystick</system:String>
     <system:String x:Key="Usercontrol_MouseMovementLeftStick">Left</system:String>
     <system:String x:Key="Usercontrol_MouseMovementRightStick">Right</system:String>

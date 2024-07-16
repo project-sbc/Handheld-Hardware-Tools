@@ -13,7 +13,10 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode.Actions
 {
     public class OpenOSK : MouseAction
     {
-
+        public OpenOSK()
+        {
+            mouseActionName = "OpenOSK";
+        }
         public override void ClickEvent()
         {
             Application.Current.Dispatcher.BeginInvoke(() =>

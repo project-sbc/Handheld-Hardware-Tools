@@ -11,7 +11,10 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode.Actions
 {
     public class ScrollRight : MouseAction
     {
-
+        public ScrollRight()
+        {
+            mouseActionName = "ScrollRight";
+        }
         public override void ClickEvent()
         {
             InputSimulator inputSimulator =Local_Object.Instance.GetMainWindowInputSimulator();

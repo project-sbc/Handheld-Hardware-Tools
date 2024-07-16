@@ -13,7 +13,10 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode.Actions
 {
     public class MouseLeftClick : MouseAction
     {
-
+        public MouseLeftClick()
+        {
+            mouseActionName = "MouseLeftClick";
+        }
         public override void ClickEvent()
         {
             InputSimulator inputSimulator = Local_Object.Instance.GetMainWindowInputSimulator();

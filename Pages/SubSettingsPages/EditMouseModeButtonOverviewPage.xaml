@@ -1,4 +1,4 @@
-﻿<classes:ControllerPage x:Class="Handheld_Hardware_Tools.Pages.MouseButtonBindingsPage"
+﻿<classes:ControllerPage x:Class="Handheld_Hardware_Tools.Pages.EditMouseModeButtonOverviewPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,13 +7,13 @@
          xmlns:classes="clr-namespace:Handheld_Hardware_Tools.Classes.Controller_Object_Classes"
  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"  
       mc:Ignorable="d" 
-        xmlns:uc="clr-namespace:Handheld_Hardware_Tools.UserControls.SubPageUserControls.EditMouseModeUserControls"
+        xmlns:uc="clr-namespace:Handheld_Hardware_Tools.UserControls.SettingsPageUserControls"
       Title="HomePage"     
-                 xmlns:UpperCase="clr-namespace:Handheld_Hardware_Tools.Classes.Converters"
-                       
+                 xmlns:UpperCase="clr-namespace:Handheld_Hardware_Tools.Classes.Converters" Unloaded="ControllerPage_Unloaded"
+                        
                         >
 
-    <Grid >
+    <Grid  >
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition  />
@@ -21,12 +21,14 @@
        
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" >
-            <ui:SymbolIcon Symbol="KeyboardMouse16" Filled="True" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" Margin="0,0,10,0"  FontSize="33"/>
+            <ui:SymbolIcon Symbol="Router24" Filled="True" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" Margin="0,0,10,0"  FontSize="33"/>
             <Viewbox   VerticalAlignment="Bottom" HorizontalAlignment="Left"   >
 
-                <TextBlock VerticalAlignment="Bottom"  Text="{DynamicResource Usercontrol_MouseModeSettings}" />
+                <TextBlock VerticalAlignment="Bottom"  Text="{DynamicResource Usercontrol_EditActions}" />
 
             </Viewbox>
+
+   
             <Button x:Name="Back" Click="Back_Click"  Margin="4" Background="{DynamicResource ControlsBackground}">
                 <Viewbox     >
                     <TextBlock  Text="{DynamicResource Usercontrol_Back}" />
@@ -37,7 +39,7 @@
 
         <ScrollViewer Grid.Row="1" x:Name="scrollViewer" PanningMode="Both" CanContentScroll="True"  VerticalScrollBarVisibility="Auto">
             <StackPanel  x:Name="stackPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-    
+               
             </StackPanel>
         </ScrollViewer>
        

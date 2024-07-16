@@ -379,32 +379,43 @@ namespace Handheld_Hardware_Tools.Classes
 
         private void AMDParseTDP(string result)
         {
-            using (StringReader reader = new StringReader(result))
+            try
             {
-                string line;
-                string tdp;
-                while ((line = reader.ReadLine()) != null)
+               
+                using (StringReader reader = new StringReader(result))
                 {
-                    double n = 0;
-                    if (line.Contains("STAPM LIMIT"))
+                    string line;
+                    string tdp;
+                    while ((line = reader.ReadLine()) != null)
                     {
-                        tdp = line.Replace("|", "").Replace("STAPM LIMIT", "").Replace(" ", "").Replace("stapm-limit", "");
-                        tdp = tdp.Substring(0, tdp.IndexOf("."));
-                        tdpSustained = (int)Math.Round(Convert.ToDouble(tdp), 0);
-                    }
-                    if (line.Contains("PPT LIMIT SLOW"))
-                    {
-                        tdp = line.Replace("|", "").Replace("PPT LIMIT SLOW", "").Replace(" ", "").Replace("slow-limit", "");
-                        tdp = tdp.Substring(0, tdp.IndexOf("."));
-                        tdpBoost = (int)Math.Round(Convert.ToDouble(tdp), 0);
-                        return;
-                    }
-                }
+                        double n = 0;
+                        if (line.Contains("STAPM LIMIT"))
+                        {
+                            tdp = line.Replace("|", "").Replace("STAPM LIMIT", "").Replace(" ", "").Replace("stapm-limit", "");
+                            tdp = tdp.Substring(0, tdp.IndexOf("."));
+                            tdpSustained = (int)Math.Round(Convert.ToDouble(tdp), 0);
 
-                //THERE IS A RETURN IN THE SECOND SECTION THAT IF IT CAN READ THE TDP WONT COME TO THIS SECTIOn
-                //THIS SECTION IS FOR DEVICES LIKE STEAM DECK AND AMD Z1E WHERE YOU CAN"T READ THE TDP
-                unableToReadTDPDevice = true;
+                        }
+                        if (line.Contains("PPT LIMIT SLOW"))
+                        {
+                            tdp = line.Replace("|", "").Replace("PPT LIMIT SLOW", "").Replace(" ", "").Replace("slow-limit", "");
+                            tdp = tdp.Substring(0, tdp.IndexOf("."));
+                            tdpBoost = (int)Math.Round(Convert.ToDouble(tdp), 0);
+                           
+                            return;
+                        }
+                    }
+
+                    //THERE IS A RETURN IN THE SECOND SECTION THAT IF IT CAN READ THE TDP WONT COME TO THIS SECTIOn
+                    //THIS SECTION IS FOR DEVICES LIKE STEAM DECK AND AMD Z1E WHERE YOU CAN"T READ THE TDP
+                    unableToReadTDPDevice = true;
+                }
             }
+            catch (Exception ex)
+            {
+                Log_Writer.Instance.writeLog("Error pasing AMD TDP string " + result + ": " + ex.InnerException);
+            }
+         
         }
         private void ChangeAMDTDP(int pl1TDP, int pl2TDP)
         {

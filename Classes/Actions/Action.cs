@@ -26,6 +26,7 @@ namespace Handheld_Hardware_Tools.Classes.Actions
     [XmlInclude(typeof(Toggle_IntegerScaling))]
     [XmlInclude(typeof(Toggle_MicrophoneMute))]
     [XmlInclude(typeof(Toggle_VolumeMute))]
+    [XmlInclude(typeof(Toggle_Controller))]
     [XmlInclude(typeof(Toggle_Wifi))]
     [XmlInclude(typeof(Toggle_QAM))]
     [XmlInclude(typeof(Toggle_BT))]
@@ -87,6 +88,7 @@ namespace Handheld_Hardware_Tools.Classes.Actions
             this.Add("Toggle_MicrophoneMute", Application.Current.Resources["Action_Toggle_MicrophoneMute"].ToString());
             this.Add("Toggle_VolumeMute", Application.Current.Resources["Action_Toggle_VolumeMute"].ToString());
             this.Add("Toggle_BT", Application.Current.Resources["Action_Toggle_BT"].ToString());
+            this.Add("Toggle_Controller", Application.Current.Resources["Action_Toggle_Controller"].ToString());
             this.Add("Toggle_WinOSK", Application.Current.Resources["Action_Toggle_WinOSK"].ToString());
             this.Add("Toggle_OSK", Application.Current.Resources["Action_Toggle_OSK"].ToString());
             this.Add("Toggle_Desktop", Application.Current.Resources["Action_Toggle_Desktop"].ToString());

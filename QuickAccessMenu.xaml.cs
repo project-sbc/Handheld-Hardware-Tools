@@ -67,7 +67,8 @@ namespace Handheld_Hardware_Tools
 
             //run start up routines
             Application.Current.Dispatcher.BeginInvoke(new Action(() => InitializeRoutines()));
-            
+
+            ADLX_Management.SetFPSLimit(0, true, 60);
 
             
             //set your common items between windows (this has to do with the ControllerWindow custom class)
@@ -491,13 +492,21 @@ namespace Handheld_Hardware_Tools
             //determine if a full screen game is running, if so we will open the app as NON-FOCUSABLE. this makes it so that some games won't minimize
             DetermineAppFocusOnFullScreenGame();
 
+            if (this.WindowState == WindowState.Minimized)
+            {
+                this.WindowState = WindowState.Normal;
+            }
+
             //set app to normal state and visible
-            this.WindowState = WindowState.Normal;
-            this.Show();
+            this.Visibility = Visibility.Visible;
+            //this.Show();
 
             
 
         }
+
+
+        Process gameProcess = null;
 
         private void DetermineAppFocusOnFullScreenGame()
         {
@@ -509,12 +518,16 @@ namespace Handheld_Hardware_Tools
             {
                 if (p.MainWindowHandle != IntPtr.Zero)
                 {
-                    Debug.WriteLine(p.ProcessName);
+                    
 
                     if (ScreenProgram_Management.IsForegroundFullScreen(new HandleRef(null, p.MainWindowHandle), null) && !ScreenProgram_Management.ExcludeFullScreenProcessList.Contains(p.ProcessName))
                     {
                         //this is where we will make app non focusable
+                        Debug.WriteLine(p.ProcessName);
+                        gameProcess = p;
                         SetWindowAsNonFocusable(p.MainWindowHandle);
+
+                        //SetWindowAsFocusable();
                         return;
                     }
                 }
@@ -527,8 +540,8 @@ namespace Handheld_Hardware_Tools
         private void TasksToggleWindowClosed()
         {
             //Tasks to do when window is hiding
+            HandleNonNullGameProcess();
 
-      
             //Stop statusbar update timer
             statusBarDispatcherTimer.Stop();
 
@@ -539,6 +552,23 @@ namespace Handheld_Hardware_Tools
             this.Visibility = Visibility.Hidden;
                        
         }
+
+        private void HandleNonNullGameProcess()
+        {
+            //this handles if a full window app was running when the app was opened, we can check if the window is not open and reopen it for us
+            if (gameProcess != null)
+            {
+                if (!ScreenProgram_Management.IsForegroundFullScreen(new HandleRef(null, gameProcess.MainWindowHandle), null))
+                {
+                    //the above checks if the app is still fullscreen, if not  (i.e. using !) then we get here
+                    ScreenProgram_Management.SetWindowState(gameProcess.MainWindowHandle, WindowState.Normal);
+
+                }
+                gameProcess = null;
+            }
+
+        }
+
         public void ToggleWindow()
         {
            

@@ -11,7 +11,10 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode.Actions
 {
     public class ScrollDown : MouseAction
     {
-  
+        public ScrollDown()
+        {
+            mouseActionName = "ScrollDown";
+        }
         public override void ClickEvent()
         {
             InputSimulator inputSimulator =Local_Object.Instance.GetMainWindowInputSimulator();

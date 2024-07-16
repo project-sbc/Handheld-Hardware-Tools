@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Markup;
 using System.Threading;
 using Handheld_Hardware_Tools.Classes.Devices;
+using System.Diagnostics;
 
 
 namespace Handheld_Hardware_Tools
@@ -23,7 +24,9 @@ namespace Handheld_Hardware_Tools
         public Thread splashScreenThread = null;
         public App()
         {
- 
+            
+
+
             //run this so that everything shuts down when the main window closes
             Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
@@ -31,8 +34,8 @@ namespace Handheld_Hardware_Tools
             //string dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             //string stringsFile = Path.Combine(dir, "Styles", "DefaultTheme.xaml");
             //LoadStyleDictionaryFromFile(stringsFile);
-
-
+           
+            
         }
 
         private void SetUpNotifyIcon()
@@ -72,6 +75,8 @@ namespace Handheld_Hardware_Tools
         }
         protected override async void OnStartup(StartupEventArgs e)
         {
+
+            CheckMultipleHHTProcessRunning();
             
             //determine if this is an autostart by checking if running from system32
             bool quietStart = false;
@@ -159,6 +164,19 @@ namespace Handheld_Hardware_Tools
                 TDP_Management.Instance.ChangeSustainedBoostTDP(defaultTDP, defaultTDP);
             }
            
+        }
+
+        private void CheckMultipleHHTProcessRunning()
+        {
+            Process[] hhtProcesses = Process.GetProcessesByName("Handheld Hardware Tools");
+
+            if (hhtProcesses != null)
+            {
+                if (hhtProcesses.Length > 1) 
+                {
+                    this.Shutdown();
+                }
+            }
         }
         public void CancelSplashScreen()
         {

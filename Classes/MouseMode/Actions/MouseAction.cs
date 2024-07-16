@@ -13,6 +13,7 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode.Actions
 
     public class MouseAction
     {
+        public string mouseActionName;
         public virtual void ClickEvent() { }
     }
 }
