@@ -68,8 +68,6 @@ namespace Handheld_Hardware_Tools
             //run start up routines
             Application.Current.Dispatcher.BeginInvoke(new Action(() => InitializeRoutines()));
 
-            ADLX_Management.SetFPSLimit(0, true, 60);
-
             
             //set your common items between windows (this has to do with the ControllerWindow custom class)
             commonFrame = frame;
