@@ -79,11 +79,49 @@ namespace Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls
                     buttonIcon.Glyph = '\uF094';
                     break;
                 case "X":
+                    
                     buttonIcon.Glyph = '\uF095';
                     break;
                 case "Y":
                     buttonIcon.Glyph = '\uF096';
                     break;
+                case "LeftShoulder":
+                    buttonIcon.Glyph = '\uF10C';
+                    break;
+                case "RightShoulder":
+                    buttonIcon.Glyph = '\uF10D';
+                    break;
+                case "LeftTrigger":
+                    buttonIcon.Glyph = '\uF10A';
+                    break;
+                case "RightTrigger":
+                    buttonIcon.Glyph = '\uF10B';
+                    break;
+                case "LeftThumb":
+                    buttonIcon.Glyph = '\uF108';
+                    break;
+                case "RightThumb":
+                    buttonIcon.Glyph = '\uF109';
+                    break;
+                case "Start":
+                    buttonIcon.Glyph = '\uEDE3';
+                    break;
+                case "Back":
+                    buttonIcon.Glyph = '\uEECA';
+                    break;
+                case "DPadUp":
+                    buttonIcon.Glyph = '\uF0AD';
+                    break;
+                case "DPadDown":
+                    buttonIcon.Glyph = '\uF0AE';
+                    break;
+                case "DPadLeft":
+                    buttonIcon.Glyph = '\uF0B0';
+                    break;
+                case "DPadRight":
+                    buttonIcon.Glyph = '\uF0AF';
+                    break;
+
             }
         }
       
@@ -101,7 +139,7 @@ namespace Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls
 
                     break;
                 default:
-                    MessageBox.Show("NO HANDLER FOR THIS MOUSE ACTION, ADD IT YOU DUMMY. MouseModeActionOverview_UserControl.xaml.cs ");
+                    //MessageBox.Show("NO HANDLER FOR THIS MOUSE ACTION, ADD IT YOU DUMMY. MouseModeActionOverview_UserControl.xaml.cs ");
                     break;
             }
             //hide arguments if there are none in the action

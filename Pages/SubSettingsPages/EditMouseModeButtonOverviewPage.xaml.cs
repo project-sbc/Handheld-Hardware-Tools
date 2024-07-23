@@ -81,6 +81,11 @@ namespace Handheld_Hardware_Tools.Pages
         {
             MouseProfile mouseProfile = (MouseProfile)XML_Management.Instance.LoadXML("MouseProfile");
             
+            if (mouseProfile.mouseActionList == null)
+            {
+                mouseProfile.mouseActionList = DefaultMouseActionItems.DefaultMouseActionItemList;
+                mouseProfile.SaveToXML();
+            }
 
             if (saveAction != null)
             {
@@ -123,26 +128,7 @@ namespace Handheld_Hardware_Tools.Pages
 
         private void SaveActionList()
         {
-            //grabs all the actions from each control and then saves them to the XML
-            ActionList actions = new ActionList();
 
-            ReBaseIDsInActionList();
-
-            foreach (object child in stackPanel.Children)
-            {
-                if (child != null)
-                {
-                    ActionOverview_UserControl editAction_UserControl = (ActionOverview_UserControl)child;
-                    actions.Add(editAction_UserControl.action);
-                }
-            }
-
-            actions.SaveToXML();
-
-
-            //set controller input class to update controller hotkey dictionary
-            QuickAccessMenu mw = (QuickAccessMenu)Application.Current.MainWindow;
-            mw.controllerInput.suspendEventsForNewHotKeyList = true;
         }
 
         public void HandleUserControlInputs(UserControl userControl, string action, string arguments = "")
