@@ -8,6 +8,7 @@ using Handheld_Hardware_Tools.Models;
 using Handheld_Hardware_Tools.Pages;
 
 using SharpDX.XInput;
+using SharpDX.DirectInput;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -30,6 +31,7 @@ namespace Handheld_Hardware_Tools.Classes
         public ControllerConnectionChangedEvent controllerConnectionChangedEvent = new ControllerConnectionChangedEvent();
         public JoystickEvent joystickEvent = new JoystickEvent();
         public Controller? controller;
+        public DirectInput? directInput;
 
            
         public Dictionary<ushort, Actions.Action> controllerHotKeyDictionary = new Dictionary<ushort, Actions.Action>();
@@ -469,6 +471,7 @@ namespace Handheld_Hardware_Tools.Classes
                     }
                 }
 
+             
                 controllerConnected = false;
 
                 //if nothing connected and isn't null then we wait a few seconds and try again

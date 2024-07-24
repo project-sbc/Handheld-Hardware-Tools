@@ -70,6 +70,11 @@ namespace Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls
             {
                 actionName.Text = Application.Current.Resources["MouseAction_" + action.mouseAction.mouseActionName.ToString()].ToString();
             }
+            else
+            {
+                actionName.Text = Application.Current.Resources["MouseAction_None"].ToString();
+                actionArguments.Visibility = Visibility.Collapsed;
+            }
             switch (action.button)
             {
                 case "A":
@@ -79,7 +84,6 @@ namespace Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls
                     buttonIcon.Glyph = '\uF094';
                     break;
                 case "X":
-                    
                     buttonIcon.Glyph = '\uF095';
                     break;
                 case "Y":
@@ -130,12 +134,16 @@ namespace Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls
       
         private void SetMainIconAndArguments()
         {
+            if (action.mouseAction.mouseActionName.Contains("Scroll"))
+            {
+                actionArguments.Text = action.mouseAction.ar
+            }
 
 
             switch (action.mouseAction)
             {
                 case ScrollLeft:
-                   
+                    
 
                     break;
                 default:

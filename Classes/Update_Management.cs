@@ -1,5 +1,4 @@
 ﻿using ABI.System;
-using AutoUpdaterDotNET;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
