@@ -25,5 +25,9 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode.Actions
             }
 
         }
+        public override string ReturnArgument()
+        {
+            return virtualKeyCode.ToString();
+        }
     }
 }

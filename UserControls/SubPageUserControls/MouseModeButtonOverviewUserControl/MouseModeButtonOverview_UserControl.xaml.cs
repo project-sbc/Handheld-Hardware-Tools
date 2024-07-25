@@ -59,9 +59,7 @@ namespace Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls
 
            
 
-            //set main icon and arguments
-            SetMainIconAndArguments();
-
+         
 
         }
         private void SetActionNameTextBlock()
@@ -69,11 +67,21 @@ namespace Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls
             if (action.mouseAction != null)
             {
                 actionName.Text = Application.Current.Resources["MouseAction_" + action.mouseAction.mouseActionName.ToString()].ToString();
+
+                string argument = action.mouseAction.ReturnArgument();
+                if (argument != "")
+                {
+                    actionArguments.Text = argument;
+                }
+                else
+                {
+                    viewboxArguments.Visibility = Visibility.Collapsed;
+                }
             }
             else
             {
                 actionName.Text = Application.Current.Resources["MouseAction_None"].ToString();
-                actionArguments.Visibility = Visibility.Collapsed;
+                viewboxArguments.Visibility = Visibility.Collapsed;
             }
             switch (action.button)
             {
@@ -132,27 +140,7 @@ namespace Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls
        
 
       
-        private void SetMainIconAndArguments()
-        {
-            if (action.mouseAction.mouseActionName.Contains("Scroll"))
-            {
-                actionArguments.Text = action.mouseAction.ar
-            }
-
-
-            switch (action.mouseAction)
-            {
-                case ScrollLeft:
-                    
-
-                    break;
-                default:
-                    //MessageBox.Show("NO HANDLER FOR THIS MOUSE ACTION, ADD IT YOU DUMMY. MouseModeActionOverview_UserControl.xaml.cs ");
-                    break;
-            }
-            //hide arguments if there are none in the action
-   
-        }
+    
 
         #endregion
 
@@ -237,6 +225,11 @@ namespace Handheld_Hardware_Tools.UserControls.ActionOverviewUserControls
         private void btnMoveDown_Click(object sender, RoutedEventArgs e)
         {
             SendCommandToEditActionOverviewPage("MoveDown");
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

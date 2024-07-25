@@ -58,6 +58,7 @@
     <system:String x:Key="MouseAction_ScrollRight">Scroll Right</system:String>
     <system:String x:Key="MouseAction_OpenOSK">Open OSK</system:String>
     <system:String x:Key="MouseAction_AltTab">Switch Windows (Alt-Tab)</system:String>
+    <system:String x:Key="MouseAction_None">None</system:String>
 
     <!-- Info page strings-->
     <system:String x:Key="Usercontrol_TutorialVideos">Tutorial Videos</system:String>

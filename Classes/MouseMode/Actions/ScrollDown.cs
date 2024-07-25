@@ -11,6 +11,7 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode.Actions
 {
     public class ScrollDown : MouseAction
     {
+        public int scrollSpeed { get; set; } = 5;
         public ScrollDown()
         {
             mouseActionName = "ScrollDown";
@@ -20,9 +21,13 @@ namespace Handheld_Hardware_Tools.Classes.MouseMode.Actions
             InputSimulator inputSimulator =Local_Object.Instance.GetMainWindowInputSimulator();
             if (inputSimulator != null)
             {
-                inputSimulator.Mouse.VerticalScroll(5);
+                inputSimulator.Mouse.VerticalScroll(scrollSpeed);
             }
 
+        }
+        public override string ReturnArgument()
+        {
+            return scrollSpeed.ToString();
         }
     }
 }
