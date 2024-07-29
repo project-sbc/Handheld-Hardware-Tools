@@ -181,9 +181,9 @@ namespace Handheld_Hardware_Tools
             Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
             System.Windows.Forms.Screen windowScreen = System.Windows.Forms.Screen.FromHandle(new WindowInteropHelper(this).Handle);
 
-            this.Width = 565;
-            this.MaxWidth = 565;
-            this.MinWidth = 565;
+            this.Width = 580;
+            this.MaxWidth = 580;
+            this.MinWidth = 580;
 
 
             double scaling = GetDPIScaling()/100;
@@ -447,7 +447,8 @@ namespace Handheld_Hardware_Tools
             //loads page in frame when navigation menu item changes
             if (navigationViewListBox.SelectedItem != null)
             {
-                frame.Content = General_Functions.TranslateIconToPageURI((Wpf.Ui.Common.SymbolRegular)navigationViewListBox.SelectedItem);
+                Tuple<Wpf.Ui.Common.SymbolRegular, string> tuple = (Tuple<Wpf.Ui.Common.SymbolRegular, string>)navigationViewListBox.SelectedItem;
+                frame.Content = General_Functions.TranslateIconToPageURI(tuple.Item1);
 
             }
         }

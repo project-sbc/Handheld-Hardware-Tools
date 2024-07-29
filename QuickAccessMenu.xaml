@@ -40,7 +40,15 @@
                                 Padding="2"
                                 CornerRadius="7"
                                 SnapsToDevicePixels="true">
-                            <ui:SymbolIcon Name="icon" FontFamily="Segoe MDL2 Assets" FontSize="35"  Symbol="{Binding}"/>
+                            <StackPanel CanHorizontallyScroll="False">
+                                <ui:SymbolIcon Name="icon" FontFamily="Segoe MDL2 Assets" FontSize="50"  Symbol="{Binding Item1}"/>
+                                <Viewbox Width="55" MaxHeight="15">
+                                    <TextBlock  Text="{Binding Item2}"/>
+                                </Viewbox>
+                         
+                            </StackPanel>
+                           
+                            
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="true">
@@ -58,7 +66,7 @@
     <Grid Margin="0,0,0,0"  Background="{DynamicResource MainWindowBackground}" >
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="65"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -111,7 +119,7 @@
 
 
 
-        <ListView x:Name="navigationViewListBox" Grid.Row="1" ItemContainerStyle="{DynamicResource _ListBoxItemStyle}"   SelectedIndex="0" Width="40" Margin="4,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"  SelectionChanged="navigationViewListBox_SelectionChanged"  >
+        <ListView x:Name="navigationViewListBox" Grid.Row="1" ItemContainerStyle="{DynamicResource _ListBoxItemStyle}"   SelectedIndex="0" Width="60" Margin="4,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"  SelectionChanged="navigationViewListBox_SelectionChanged"  >
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical"></StackPanel>
