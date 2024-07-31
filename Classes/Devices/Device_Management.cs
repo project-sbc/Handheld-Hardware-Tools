@@ -87,9 +87,12 @@ namespace Handheld_Hardware_Tools.Classes.Devices
 
                     break;
                     //REMEMBER I CHANGED AYANEO TO STOP BECAUSE I NEVER MADE CLASSES FOR ALL AYA NEO PRODUCTS. LIGHTEN WAS TESTING FOR ME
-                case "AYANEO_CHANGEBACK":
+                case "AYANEO":
                     switch (product)
                     {
+                        case "FLIP DS":
+                            handheldDevice = new AyaNeo_Flip_DS();
+                            break;
                         case "AIR":
                             handheldDevice.deviceName = "Aya Neo Air";
                             break;
