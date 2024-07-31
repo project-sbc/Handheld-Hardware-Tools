@@ -129,7 +129,7 @@ namespace Handheld_Hardware_Tools.Classes
 
                 if (keyboardAction.Count != null)
                 {
-                    Debug.WriteLine(runningKeyStroke);
+                   
                     if (keyboardAction.ContainsKey(runningKeyStroke) && !programmingKeystroke)
                    {
 
