@@ -8,6 +8,7 @@
  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"  
       mc:Ignorable="d" 
         xmlns:uc="clr-namespace:Handheld_Hardware_Tools.UserControls.HomePageUserControls"
+                        xmlns:uc2="clr-namespace:Handheld_Hardware_Tools.UserControls"
       Title="HomePage"     
                  xmlns:UpperCase="clr-namespace:Handheld_Hardware_Tools.Classes.Converters"
                
@@ -32,7 +33,7 @@
 
         <ScrollViewer Grid.Row="1" x:Name="scrollViewer" PanningMode="Both" CanContentScroll="True"  VerticalScrollBarVisibility="Auto">
             <StackPanel  x:Name="stackPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-              
+                <uc2:TDP_Slider/>
 
             </StackPanel>
         </ScrollViewer>

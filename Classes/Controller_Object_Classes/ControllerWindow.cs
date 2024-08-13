@@ -23,6 +23,8 @@ namespace Handheld_Hardware_Tools.Classes.Controller_Object_Classes
         public Frame commonFrame;
         public Frame instructionFrame;
 
+
+
         public void SetControllerNavigateWindow(bool navigateValue)
         {
             //set the controllerNavigateWindow from page level
@@ -53,6 +55,8 @@ namespace Handheld_Hardware_Tools.Classes.Controller_Object_Classes
 
             return false;
         }
+
+
         public virtual void SetControllerInputPage(string pageName)
         {
             //Sets the controller instruction on the bottom of the page
@@ -100,8 +104,11 @@ namespace Handheld_Hardware_Tools.Classes.Controller_Object_Classes
                 }
             }
 
-
-            instructionFrame.Source = uri;
+            if (instructionFrame != null)
+            {
+                instructionFrame.Source = uri;
+            }
+          
         }
 
 
