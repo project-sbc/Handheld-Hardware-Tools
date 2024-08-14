@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls.Primitives;
+using System.Windows.Forms;
 
 namespace Handheld_Hardware_Tools.UserControls
 {
@@ -13,17 +14,25 @@ namespace Handheld_Hardware_Tools.UserControls
     {
         public TDP_Slider()
         {
-            userControlIconSymbol.Symbol = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
-            
-            
             //set up device specific settings
+
+            //get settings to find out tdp min and maxes
             Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
             slider.Maximum = settings.maxTDP;
             slider.Minimum = settings.minTDP;
+
+            //set value to current tdp
             slider.Value = TDP_Management.Instance.ReadAndReturnSustainedTDP();
 
-            mainText = "Cheese";
-            subText = "grater";
+            //set common user control stuff like text and symbols
+
+            glyph = "";
+            fontIconVisibility = System.Windows.Visibility.Collapsed;
+            symbolRegular = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
+            symbolIconVisibility = System.Windows.Visibility.Visible;
+            mainText = "TDP";
+            subText = "Adjust the sustained thermal design power limit.";
+            valueText = "W";
         }
 
 

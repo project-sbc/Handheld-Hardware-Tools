@@ -5,39 +5,65 @@
  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
  xmlns:local="clr-namespace:Handheld_Hardware_Tools.UserControls.HomePageUserControls"
  xmlns:classes="clr-namespace:Handheld_Hardware_Tools.Classes.Controller_Object_Classes"  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-                   mc:Ignorable="d" Height="120" HorizontalAlignment="Stretch" >
+                   mc:Ignorable="d" Height="150" HorizontalAlignment="Stretch" >
     <Border Style="{StaticResource userControlBorder}" Name="border">
         <ui:Card VerticalAlignment="Center" x:Name="card" >
+            <Grid>
 
-            <DockPanel >
-                <DockPanel  DockPanel.Dock="Top" Margin="0,-5,0,0">
-                    <StackPanel Orientation="Horizontal">
-                        <Viewbox x:Name="viewboxIconSymbol">
-                            <ui:SymbolIcon x:Name="userControlIconSymbol"   Margin="0,0,8,0"  VerticalAlignment="Top"   />
-                           
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" MaxWidth="50" />
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="0" >
+                        <Viewbox x:Name="viewboxIconSymbol"  Visibility="{Binding symbolIconVisibility}">
+                            <ui:SymbolIcon Symbol="{Binding Path=symbolRegular}"      />
+
                         </Viewbox>
-                        <Viewbox x:Name="viewboxIconFont" Visibility="Collapsed" >
-                            <ui:FontIcon x:Name="userControlIconFont"   Margin="0,0,8,0"  VerticalAlignment="Top"   />
+                        <Viewbox x:Name="viewboxIconFont" Visibility="{Binding fontIconVisibility}" >
+                            <ui:FontIcon Glyph="{Binding Path=glyph}"     />
                         </Viewbox>
-                        
+
                     </StackPanel>
 
-                    <Viewbox Name="viewboxMainText" VerticalAlignment="Center"  HorizontalAlignment="Left" >
-                        <TextBlock x:Name="textblockMainText" Text="{Binding mainText}"  />
+                    <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Stretch" >
+                        <Viewbox MaxHeight="20"  HorizontalAlignment="Stretch">
+                            <TextBlock Text="{Binding Path=mainText}"  />
+                        </Viewbox>
+
+                        <Viewbox MaxHeight="20" HorizontalAlignment="Left" Visibility="Collapsed">
+                            <TextBlock Text="{Binding Path=subText}"  />
+                        </Viewbox>
+                    </StackPanel>
+                  
+                    <Viewbox Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" >
+
+                        <TextBlock  >
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding ElementName="slider" Path="Value" />
+                                    <Binding Path="valueText" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+
+
                     </Viewbox>
 
-                    <Viewbox Name="viewboxValueText" Height="30" VerticalAlignment="Center" HorizontalAlignment="Right"  DockPanel.Dock="Right" >
-
-                        <TextBlock Text="{Binding ElementName=slider, Path=Value,StringFormat= '\{0\} '}" />
-
-                    </Viewbox>
-
-
-                </DockPanel>
-
-
-                <Slider x:Name="slider" Minimum="0" Maximum="10" IsSnapToTickEnabled="True" Interval="1" TickFrequency="1" Margin="5,5,5,0" Thumb.DragCompleted="slider_DragCompleted"  Thumb.DragStarted="slider_DragStarted" />
-            </DockPanel>
+                </Grid>
+                <Slider x:Name="slider" Minimum="0" Maximum="10" IsSnapToTickEnabled="True" Interval="1" TickFrequency="1" Margin="5,5,5,0" Thumb.DragCompleted="slider_DragCompleted"  Thumb.DragStarted="slider_DragStarted" Grid.Row="2" />
+            </Grid>
+            
+            
+           
         </ui:Card>
 
     </Border>
