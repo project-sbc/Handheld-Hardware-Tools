@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-
 using Wpf.Ui.Controls;
 
 namespace Handheld_Hardware_Tools.Classes.Controller_Object_Classes

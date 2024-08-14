@@ -5,10 +5,11 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls.Primitives;
-using System.Windows.Forms;
 
-namespace Handheld_Hardware_Tools.UserControls
+
+namespace Handheld_Hardware_Tools.UserControls.HomePageUserControls
 {
     public class TDP_Slider : CommonUserControl_Slider
     {
@@ -20,6 +21,8 @@ namespace Handheld_Hardware_Tools.UserControls
             Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
             slider.Maximum = settings.maxTDP;
             slider.Minimum = settings.minTDP;
+            slider.Interval = 1;
+            slider.TickFrequency = 1;
 
             //set value to current tdp
             slider.Value = TDP_Management.Instance.ReadAndReturnSustainedTDP();
@@ -30,20 +33,16 @@ namespace Handheld_Hardware_Tools.UserControls
             fontIconVisibility = System.Windows.Visibility.Collapsed;
             symbolRegular = Wpf.Ui.Common.SymbolRegular.DeveloperBoardLightning20;
             symbolIconVisibility = System.Windows.Visibility.Visible;
-            mainText = "TDP";
-            subText = "Adjust the sustained thermal design power limit.";
-            valueText = "W";
+            mainText = Application.Current.Resources["Usercontrol_TDP_Maintext"].ToString();
+            subText = Application.Current.Resources["Usercontrol_TDP_Subtext"].ToString();
+            valueText = Application.Current.Resources["Usercontrol_TDP_Unitvalue"].ToString();
         }
 
 
-        public override void slider_DragStarted(object sender, DragStartedEventArgs e)
+        public override void ControlChangeValueHandler()
         {
-            dragStarted = true;
-        }
-        public override void slider_DragCompleted(object sender, DragCompletedEventArgs e)
-        {
-            dragStarted = false;
-            ControlChangeValueHandler();
+            int tdp = (int)Math.Round(slider.Value, 0);
+            TDP_Management.Instance.ChangeSustainedTDP(tdp);
         }
     }
 }

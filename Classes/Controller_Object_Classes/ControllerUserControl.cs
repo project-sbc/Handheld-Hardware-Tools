@@ -91,17 +91,10 @@ namespace Handheld_Hardware_Tools.Classes.Controller_Object_Classes
             
         }
 
-        public void ReturnControlToWindow()
-        {
-           
-
-            //OLD CODE WHEN I ONLY HAD ONE WINDOW, NOW TRYING TO COMMONIZE
-            //MainWindow wnd = (MainWindow)Application.Current.MainWindow;
-            //wnd.SetControllerNavigateWindow(true);
-        }
 
         public virtual bool UseableOnThisDevice()
         {
+            //default is true, if there is specific criteria like cpu manufacturer or device this can be added as an override in the specific control
             return true;
         }
 

@@ -5,46 +5,52 @@
  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
  xmlns:local="clr-namespace:Handheld_Hardware_Tools.UserControls.HomePageUserControls"
  xmlns:classes="clr-namespace:Handheld_Hardware_Tools.Classes.Controller_Object_Classes"  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-                   mc:Ignorable="d" Height="150" HorizontalAlignment="Stretch" >
+                   mc:Ignorable="d" Height="120" HorizontalAlignment="Stretch"  >
     <Border Style="{StaticResource userControlBorder}" Name="border">
         <ui:Card VerticalAlignment="Center" x:Name="card" >
             <Grid>
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" MaxWidth="50" />
+                        <ColumnDefinition Width="5"  />
                         <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="5"  />
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel Orientation="Horizontal" Grid.Column="0" >
-                        <Viewbox x:Name="viewboxIconSymbol"  Visibility="{Binding symbolIconVisibility}">
-                            <ui:SymbolIcon Symbol="{Binding Path=symbolRegular}"      />
+                    <Viewbox x:Name="viewboxIconSymbol"  Visibility="{Binding symbolIconVisibility}">
+                        <ui:SymbolIcon Symbol="{Binding Path=symbolRegular}"      />
 
-                        </Viewbox>
-                        <Viewbox x:Name="viewboxIconFont" Visibility="{Binding fontIconVisibility}" >
-                            <ui:FontIcon Glyph="{Binding Path=glyph}"     />
-                        </Viewbox>
+                    </Viewbox>
+                    <Viewbox x:Name="viewboxIconFont" Visibility="{Binding fontIconVisibility}" >
+                        <ui:FontIcon Glyph="{Binding Path=glyph}"     />
+                    </Viewbox>
+                  
 
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Stretch" >
-                        <Viewbox MaxHeight="20"  HorizontalAlignment="Stretch">
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="3" />
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+                        <Viewbox   HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="{Binding Path=mainTextSpan}">
                             <TextBlock Text="{Binding Path=mainText}"  />
                         </Viewbox>
 
-                        <Viewbox MaxHeight="20" HorizontalAlignment="Left" Visibility="Collapsed">
-                            <TextBlock Text="{Binding Path=subText}"  />
+                        <Viewbox  HorizontalAlignment="Left" Grid.Row="2" Visibility="{Binding Path=subTextVisibility}">
+                            <TextBlock Text="{Binding Path=subText}" TextWrapping="Wrap" />
                         </Viewbox>
-                    </StackPanel>
+                    </Grid>
+                   
                   
-                    <Viewbox Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" >
+                    <Viewbox Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" >
 
                         <TextBlock  >
                             <TextBlock.Text>

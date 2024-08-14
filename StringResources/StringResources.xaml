@@ -11,8 +11,25 @@
     <system:String x:Key="MainWindow_NavigationViewMenuItem_Settings">Settings</system:String>
     <system:String x:Key="MainWindow_NavigationViewMenuItem_Information">Information</system:String>
 
+
+    <system:String x:Key="Usercontrol_TDP_Maintext">TDP</system:String>
+    <system:String x:Key="Usercontrol_TDP_Subtext">Adjust the sustained thermal design power limit.</system:String>
+    <system:String x:Key="Usercontrol_TDP_Unitvalue">W</system:String>
+
+    <system:String x:Key="Usercontrol_EPP_Maintext">EPP</system:String>
+    <system:String x:Key="Usercontrol_EPP_Subtext">Adjust the energy performance preference. Lower value means greater CPU performance.</system:String>
+    <system:String x:Key="Usercontrol_EPP_Unitvalue">%</system:String>
+
+
+        
+        
+        
+        
+        
+        
+        
     <system:String x:Key="Usercontrol_Volume">Volume</system:String>
-    <system:String x:Key="Usercontrol_TDP">TDP</system:String>
+
     <system:String x:Key="Usercontrol_DefaultTDP">Default TDP</system:String>
     <system:String x:Key="Usercontrol_PowerBalanceCPU">Power Balance CPU</system:String>
     <system:String x:Key="Usercontrol_PowerBalanceGPU">Power Balance GPU</system:String>
@@ -128,7 +145,7 @@ features such as TDP and fan control.
 
 
 
-    <system:String x:Key="Usercontrol_EPP">EPP</system:String>
+
     <system:String x:Key="Usercontrol_FPSLimit">FPS Limit</system:String>
     <system:String x:Key="Usercontrol_ActiveCores">Active CPU Cores</system:String>
 

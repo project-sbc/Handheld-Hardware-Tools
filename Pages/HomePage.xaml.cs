@@ -78,7 +78,10 @@ namespace Handheld_Hardware_Tools.Pages
             switch(name)
             {
                 case "Usercontrol_TDP":
-                    return new TDP_Slider();
+                    return new TDP_Slider()
+                    {
+                        Height = 120
+                    };
                 case "Usercontrol_TDP2":
                     return new TDP_Boost_Slider();
                 case "Usercontrol_Brightness":

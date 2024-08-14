@@ -1,4 +1,6 @@
-﻿using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
+﻿using Handheld_Hardware_Tools.Classes;
+using Handheld_Hardware_Tools.Classes.Controller_Object_Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -39,18 +41,59 @@ namespace Handheld_Hardware_Tools.UserControls
 
         public Visibility symbolIconVisibility { get; set; }
         public Visibility fontIconVisibility { get; set; }
+        public Visibility subTextVisibility { get; set; } = Visibility.Collapsed;
+        public int mainTextSpan { get; set; } = 3;
 
         public CommonUserControl_Slider()
         {
             InitializeComponent();
             DataContext = this;
-            
+
+            borderControl = border;
+
+            //hide subtext and adjust main text span if width is greater or less than 1000
+            if (this.Height > 150)
+            {
+                mainTextSpan = 1;
+                subTextVisibility = Visibility.Visible;
+            }
+        }
+
+        public override void HandleControllerInput(string action)
+        {
+            switch (action)
+            {
+                case "DPadRight":
+                    slider.Value = slider.Value + slider.Interval;
+                    break;
+                case "DPadLeft":
+                    slider.Value = slider.Value - slider.Interval;
+                    break;
+                case "A":
+                    ControlChangeValueHandler();
+                    break;
+                case "B":
+                    ControlChangeValueHandler();
+                    ReturnControlToPage();
+                    break;
+
+                default: break;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public virtual void slider_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e) {}
+        public virtual void slider_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e) 
+        {
+            dragStarted = false;
+            ControlChangeValueHandler();     
+        }
 
-        public virtual void slider_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e) {}
+        public virtual void slider_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e) 
+        {
+            dragStarted = true;
+        }
+        public virtual void slider_DragCompletedAction() { }
+     
     }
 }
