@@ -24,14 +24,14 @@ namespace Handheld_Hardware_Tools.UserControls
     /// <summary>
     /// Interaction logic for CommonUserControl.xaml
     /// </summary>
-    public partial class CommonUserControl_Slider : ControllerUserControl
+    public partial class CommonUserControl_SliderToggleSwitch : ControllerUserControl
     {
         public bool dragStarted = false;
 
         public string mainText { get; set; } = "";
         //sub text is the long text only displayed in larger windows
         public string subText { get; set; } = "";
-        //value text is for the displayed unit value (i.e. W or %)
+        //value text is for the displayed value (i.e. W or %)
         public string valueText { get; set; } = "";
 
 
@@ -43,35 +43,19 @@ namespace Handheld_Hardware_Tools.UserControls
         public Visibility fontIconVisibility { get; set; }
         public Visibility subTextVisibility { get; set; } = Visibility.Collapsed;
         public int mainTextSpan { get; set; } = 3;
-   
 
-        public CommonUserControl_Slider()
+        public CommonUserControl_SliderToggleSwitch()
         {
             InitializeComponent();
             DataContext = this;
 
             borderControl = border;
 
-           
-           
-        }
-
-        private void ConfigureSubTextHeightBasedOnWindow(string window)
-        { //hide subtext and adjust height and text span based on window
-            switch (window)
+            //hide subtext and adjust main text span if width is greater or less than 1000
+            if (this.Height > 150)
             {
-                case "MainWindow":
-                    mainTextSpan = 1;
-                    subTextVisibility = Visibility.Visible;
-                    this.Height = 160;
-                    break;
-                case "quickAccessMenu":
-                    this.Height = 100;
-                    break;
-                case "FlipDS":
-                    this.Height = 120;
-                    break;
-                default:break;
+                mainTextSpan = 1;
+                subTextVisibility = Visibility.Visible;
             }
         }
 
@@ -109,14 +93,7 @@ namespace Handheld_Hardware_Tools.UserControls
         {
             dragStarted = true;
         }
-
-        protected override void OnRender(DrawingContext dc)
-        {
-            base.OnRender(dc);
-            System.Windows.Window window = System.Windows.Window.GetWindow(this);
-            // Custom rendering logic here
-            ConfigureSubTextHeightBasedOnWindow(window.Name);
-        }
-
+       
+     
     }
 }

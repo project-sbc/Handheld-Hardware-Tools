@@ -15,6 +15,7 @@ using Handheld_Hardware_Tools.AppWindows.MainWindow;
 using System.Windows;
 using System.Threading.Tasks;
 
+
 namespace Handheld_Hardware_Tools.Pages
 {
     /// <summary>
@@ -28,20 +29,21 @@ namespace Handheld_Hardware_Tools.Pages
             //Move initilize components to sub routine and async it to make pages feel smoother
             Application.Current.Dispatcher.BeginInvoke(new Action(() => Initialize()));
 
+
+            
         }
 
         private void Initialize()
         {
             InitializeComponent();
             virtualStackPanel = stackPanel;
+
+            Window window = Window.GetWindow(this);
+
             AddUserControlsToStackPanel();
 
-            //hide top row when in main window, but keep when in QAM. reminder this is used in the QAM and the larger screen window
-            Window parentWindow = Local_Object.Instance.GetGeneralWindow(this);
-            if (parentWindow is MainWindow)
-            {
-                grid.RowDefinitions[0].Height = new GridLength(0);
-            }
+            
+
         }
 
         public async void AddUserControlsToStackPanel()
@@ -78,10 +80,7 @@ namespace Handheld_Hardware_Tools.Pages
             switch(name)
             {
                 case "Usercontrol_TDP":
-                    return new TDP_Slider()
-                    {
-                        Height = 120
-                    };
+                    return new TDP_Slider();
                 case "Usercontrol_TDP2":
                     return new TDP_Boost_Slider();
                 case "Usercontrol_Brightness":

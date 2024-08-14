@@ -5,31 +5,31 @@
  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
  xmlns:local="clr-namespace:Handheld_Hardware_Tools.UserControls.HomePageUserControls"
  xmlns:classes="clr-namespace:Handheld_Hardware_Tools.Classes.Controller_Object_Classes"  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-                   mc:Ignorable="d" Height="120" HorizontalAlignment="Stretch"  >
+                   mc:Ignorable="d"  HorizontalAlignment="Stretch"  >
     <Border Style="{StaticResource userControlBorder}" Name="border">
         <ui:Card VerticalAlignment="Center" x:Name="card" >
-            <Grid>
+            <Grid Margin="-3">
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="10"/>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="25"/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0">
+                <Grid Grid.Row="0" Margin="0,0,0,-3">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" MaxWidth="50" />
+                        <ColumnDefinition Width="40"  />
                         <ColumnDefinition Width="5"  />
                         <ColumnDefinition Width="4*"/>
                         <ColumnDefinition Width="5"  />
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Viewbox x:Name="viewboxIconSymbol"  Visibility="{Binding symbolIconVisibility}">
-                        <ui:SymbolIcon Symbol="{Binding Path=symbolRegular}"      />
+                    <Viewbox x:Name="viewboxIconSymbol"  Visibility="{Binding symbolIconVisibility}" HorizontalAlignment="Left">
+                        <ui:SymbolIcon  Symbol="{Binding Path=symbolRegular}"      />
 
                     </Viewbox>
-                    <Viewbox x:Name="viewboxIconFont" Visibility="{Binding fontIconVisibility}" >
+                    <Viewbox x:Name="viewboxIconFont" Visibility="{Binding fontIconVisibility}" HorizontalAlignment="Left">
                         <ui:FontIcon Glyph="{Binding Path=glyph}"     />
                     </Viewbox>
                   

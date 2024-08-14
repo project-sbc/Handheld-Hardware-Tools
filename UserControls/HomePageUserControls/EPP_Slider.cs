@@ -16,7 +16,6 @@ namespace Handheld_Hardware_Tools.UserControls.HomePageUserControls
         {
             //set up device specific settings
 
-         
             slider.Maximum = 100;
             slider.Minimum = 0;
             slider.Interval = 5;

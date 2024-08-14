@@ -19,7 +19,7 @@ namespace Handheld_Hardware_Tools.Pages
     /// </summary>
     public partial class PowerPage : ControllerPage
     {
-        
+
         public PowerPage()
         {
             //Move initilize components to sub routine and async it to make pages feel smoother

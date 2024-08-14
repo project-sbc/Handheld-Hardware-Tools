@@ -17,6 +17,7 @@ namespace Handheld_Hardware_Tools.UserControls.HomePageUserControls
         {
             //set up device specific settings
 
+
             //get settings to find out tdp min and maxes
             Settings settings = (Settings)XML_Management.Instance.LoadXML("Settings");
             slider.Maximum = settings.maxTDP;

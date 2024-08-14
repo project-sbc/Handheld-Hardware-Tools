@@ -14,7 +14,7 @@ namespace Handheld_Hardware_Tools.Classes.Controller_Object_Classes
 {
     public class ControllerWrapPanelPage : ControllerPage
     {
-       
+
         public override void HandleControllerInput(string action) 
         {
             if (controllerNavigatePage)

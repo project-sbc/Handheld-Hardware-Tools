@@ -262,6 +262,9 @@
     <Compile Update="ControllerInstructionPages\SelectHide.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControls\CommonUserControl_SliderToggleSwitch.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\HomePageUserControls\ActiveCores_Slider.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
