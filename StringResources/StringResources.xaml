@@ -13,8 +13,12 @@
 
 
     <system:String x:Key="Usercontrol_TDP_Maintext">TDP</system:String>
-    <system:String x:Key="Usercontrol_TDP_Subtext">Adjust the sustained thermal design power limit.</system:String>
+    <system:String x:Key="Usercontrol_TDP_Subtext">Adjust the sustained thermal design power limit. This is the long term power usage of the CPU.</system:String>
     <system:String x:Key="Usercontrol_TDP_Unitvalue">W</system:String>
+
+    <system:String x:Key="Usercontrol_Boost_TDP_Maintext">Boost TDP</system:String>
+    <system:String x:Key="Usercontrol_Boost_TDP_Subtext">Adjust the short term boosted thermal design power limit. This is the allowable brief power usage of the CPU.</system:String>
+    <system:String x:Key="Usercontrol_Boost_TDP_Unitvalue">W</system:String>
 
     <system:String x:Key="Usercontrol_EPP_Maintext">EPP</system:String>
     <system:String x:Key="Usercontrol_EPP_Subtext">Adjust the energy performance preference. Lower value means greater CPU performance.</system:String>

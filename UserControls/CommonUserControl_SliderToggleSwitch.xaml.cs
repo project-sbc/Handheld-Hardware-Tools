@@ -61,24 +61,46 @@ namespace Handheld_Hardware_Tools.UserControls
 
         public override void HandleControllerInput(string action)
         {
-            switch (action)
-            {
-                case "DPadRight":
-                    slider.Value = slider.Value + slider.Interval;
-                    break;
-                case "DPadLeft":
-                    slider.Value = slider.Value - slider.Interval;
-                    break;
-                case "A":
-                    ControlChangeValueHandler();
-                    break;
-                case "B":
-                    ControlChangeValueHandler();
-                    ReturnControlToPage();
-                    break;
 
-                default: break;
+            ToggleSwitch tS = toggleSwitchControl as ToggleSwitch;
+            if (action == "X")
+            {
+                tS.IsChecked = !tS.IsChecked;
+                ChangeMainWindowControllerInstructionPage();
             }
+            else
+            {
+                if (tS.IsChecked == true)
+                {
+                    switch (action)
+                    {
+                        case "DPadRight":
+                            slider.Value = slider.Value + slider.Interval;
+                            break;
+                        case "DPadLeft":
+                            slider.Value = slider.Value - slider.Interval;
+                            break;
+                        case "A":
+                            ControlChangeValueHandler();
+                            break;
+                        case "B":
+                            ControlChangeValueHandler();
+                            ReturnControlToPage();
+                            break;
+
+                        default: break;
+                    }
+                }
+                else
+                {
+                    if (action == "B")
+                    {
+                        ReturnControlToPage();
+                    }
+                }
+            }
+
+    
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -93,7 +115,26 @@ namespace Handheld_Hardware_Tools.UserControls
         {
             dragStarted = true;
         }
-       
-     
+
+        public virtual void handleToggleChange()
+        {
+
+            //this little piece is just to stop it from running at load. The configure controls will handle all of this and it doesn't need to be run at runtime
+            if (!this.IsLoaded)
+            {
+                return;
+            }
+
+           
+        }
+        public virtual void toggleSwitch_Checked(object sender, RoutedEventArgs e)
+        {
+            handleToggleChange();
+        }
+
+        public virtual void toggleSwitch_Unchecked(object sender, RoutedEventArgs e)
+        {
+            handleToggleChange();
+        }
     }
 }
